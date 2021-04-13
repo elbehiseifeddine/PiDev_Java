@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1020.0" prefWidth="1470.0" styleClass="parent" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.utilisateur.MainController">
+   <children>
+      <Pane layoutY="210.0" prefHeight="600.0" prefWidth="1470.0" styleClass="pane">
+         <children>
+            <Label layoutX="1025.0" layoutY="105.0" text="Vous avez déjà un compte?" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="1025.0" layoutY="179.0" prefHeight="82.0" prefWidth="368.0" text="Cliquer sur le boutton Sign in pour acceder a votre compte" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="1025.0" layoutY="285.0" mnemonicParsing="false" onAction="#open_signin" prefHeight="47.0" prefWidth="139.0" styleClass="trans-btn-white-border" text="Sign In">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Label layoutX="50.0" layoutY="58.0" prefWidth="396.0" text="vous n'avez pas de compte Freelancer ?" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Button layoutX="50.0" layoutY="173.0" mnemonicParsing="false" onAction="#open_signupFreelancer" prefHeight="47.0" prefWidth="139.0" styleClass="trans-btn-white-border" text="Sign Up">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="50.0" layoutY="373.0" prefWidth="396.0" text="vous n'avez pas de compte Societe?" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Button layoutX="50.0" layoutY="488.0" mnemonicParsing="false" onAction="#open_signupSociete" prefHeight="47.0" prefWidth="139.0" styleClass="trans-btn-white-border" text="Sign Up">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <VBox id="vbox" fx:id="vbox" layoutX="41.0" layoutY="-49.0" prefHeight="700.0" prefWidth="680.0" styleClass="white-pane" />
+         </children>
+      </Pane>
+      <Button layoutX="1405.0" layoutY="6.0" mnemonicParsing="false" onAction="#Exit" prefHeight="22.0" prefWidth="66.0" styleClass="close-btn">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Exit_Button.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

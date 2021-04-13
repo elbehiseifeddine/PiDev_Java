@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.bases.BaseGuiEventAdminController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox prefHeight="656.0" prefWidth="300.0" styleClass="left-navbar" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="654.0" prefWidth="300.0">
+               <children>
+                  <Button fx:id="btn_home" mnemonicParsing="false" onAction="#Accueil" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Label text="Accueil" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="7.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btn_eventformapp" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#EventFormApp" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Label text="Event/Form Approuvée" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="7.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_eventform" layoutX="10.0" layoutY="71.0" mnemonicParsing="false" onAction="#EventForm" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Label text="Evenement et Formation" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="7.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_statistique" layoutX="10.0" layoutY="206.0" mnemonicParsing="false" onAction="#Statistique" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Label text="Statistique" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="7.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Line endX="176.89292907714844" endY="-0.6213112473487854" layoutX="122.0" layoutY="210.0" startX="-100.0">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Line>
+                  <Button fx:id="sign_out_btn" layoutX="10.0" layoutY="452.0" mnemonicParsing="false" onAction="#Deconnect" prefHeight="38.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <Label text="Sign Out" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="3.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <bottom>
+      <HBox prefHeight="38.0" prefWidth="1280.0" styleClass="footer" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="35.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Logo_Compact.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="20.0" top="2.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label text="© 2021 PowerDev. All Rights Reserved." textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <ScrollPane fx:id="scroll_pane" prefHeight="656.0" prefWidth="974.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,156 @@
+
+/* 
+    Created on : Apr 9, 2021, 2:57:15 PM
+    Author     : seifeddine
+*/
+
+.parent{
+    -fx-background-color: transparent;
+}
+
+.pane{
+    -fx-background-color: #BC0852;
+}
+
+.trans-btn-white-border{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-text-fill: whitesmoke;
+}
+
+.white-pane{
+    -fx-background-color: #ffffff;
+}
+
+.blue-panel{
+    -fx-background-color: #ffffff;
+}
+
+.tf_box{
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.tf{
+    -fx-background-color: transparent;
+}
+
+.blue-btn{
+    -fx-background-color: #BC0852;
+    -fx-background-radius: 5px;
+    -fx-text-fill: whitesmoke;
+    -fx-padding: 5px 30px 5px 30px;
+    -fx-font-size: 19;
+    -fx-font-weight: 700;
+}
+
+.close-btn{
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+}
+
+.close-btn:hover{
+    -fx-background-color: #BC0852;
+}
+
+.left-navbar{
+    -fx-background-color: #FFFFFF;
+}
+
+.main-bar{
+    -fx-background-color: #F7F7F7;
+}
+
+.footer{
+    -fx-background-color: #333333;
+}
+
+.image-profile{
+    
+    -fx-margin: 5px 30px 5px 30px;
+}
+
+.profile_topbar{
+    -fx-background-color: #333333;
+}
+
+.profile_nom_text{
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.profile_text{
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-font-weight: 200;
+}
+
+.profile_edit_titre{
+    -fx-display: block;
+    -fx-font-size: 1.8em;
+    -fx-margin-top: 1.5em;
+    -fx-margin-bottom: 1.5em;
+    -fx-margin-left: 0;
+    -fx-margin-right: 0;
+    -fx-padding-top: 2em;
+    -fx-font-weight: bold;
+}
+.profile_edit_sous_titre{
+    -fx-display: block;
+    -fx-font-size: 1.1em;
+    -fx-margin-top: 1em;
+    -fx-margin-bottom: 1.1em;
+    -fx-margin-left: 0;
+    -fx-margin-right: 0;
+    -fx-font-weight: 200;
+}
+
+.profile_edit_tf{
+    -fx-background-radius: 10px;
+    -fx-font-size: 20;
+    -fx-font-weight: 200;
+}
+
+.profile_edit_p_button{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-text-fill: black;
+    -fx-padding: 5px 30px 5px 30px;
+    -fx-font-size: 16;
+    -fx-font-weight: 400;
+    -fx-border-color: gray;
+    -fx-border-radius: 10px;
+}
+
+.profile_edit_save_button{
+    -fx-background-color: #ed2a26;
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-padding: 6px 30px 6px 30px;
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+    
+}
+
+.left-navbar-btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.left-navbar-btn:hover{
+    -fx-background-color: #FFECEC;
+    -fx-cursor: hand;
+}
+
+.img_button{
+    -fx-background-radius: 40px;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}

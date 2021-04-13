@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Demande Non Approuve Super Admin">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>
