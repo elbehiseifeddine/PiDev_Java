@@ -44,5 +44,28 @@ public class ReclamationService {
         return CountReclamationNonApprouve;
         
     }
+    
+    public int CountReclamation(){
+        int CountReclamation = 0;
+        try {
+            
+            
+
+            String req ="SELECT COUNT(*) FROM reclamation;";
+            Statement st2 = cnx.createStatement();
+
+            ResultSet rs2ResultSet = st2.executeQuery(req);
+            rs2ResultSet.first();
+                System.out.println(rs2ResultSet.getInt(1));
+            CountReclamation = rs2ResultSet.getInt(1);
+            rs2ResultSet.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("this is count relamation non approuve || Connexion à la base de données impossible , " + ex.getMessage());
+        } 
+        return CountReclamation;
+    }
+    
+    
 
 }

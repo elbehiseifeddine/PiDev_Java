@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1119.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.StatistiqueController">
    <children>
       <Label text="Statistique Super Admin">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <BarChart fx:id="BarChartUser" title="Utilisateur par mois">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="x_user" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y_user" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <LineChart fx:id="LineChartReclamation" prefHeight="400.0" prefWidth="937.0" title="Reclamation par mois">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="x_reclamation" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y_reclamation" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <AreaChart fx:id="AriaChartOffre" prefHeight="324.0" prefWidth="1602.0" title="Offre emploi/stage par mois">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="x_offre" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y_offre" side="LEFT" />
+        </yAxis>
+      </AreaChart>
+      <LineChart fx:id="LineChartDemande" title="Demande Emploi/stage par moi">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="x_demande" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y_demande" side="LEFT" />
+        </yAxis>
+      </LineChart>
    </children>
 </VBox>
