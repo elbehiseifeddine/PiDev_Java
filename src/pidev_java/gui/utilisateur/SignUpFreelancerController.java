@@ -90,7 +90,7 @@ public class SignUpFreelancerController implements Initializable {
                     f.setEmail(tf_email.getText());
                     f.setMot_de_passe(tf_pwd.getText());
                     f.setAdresse("Add Adresse");
-                    f.setPhoto_de_profile("Add Photo de profile");
+                    f.setPhoto_de_profile("img-1.jpg");
                     f.setSexe("Add sexe");
                     f.setCompetences("Add Competence");
                     f.setLangues("Add Langues");

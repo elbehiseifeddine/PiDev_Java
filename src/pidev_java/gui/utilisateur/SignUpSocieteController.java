@@ -78,7 +78,7 @@ public class SignUpSocieteController implements Initializable {
                     s.setMot_de_pass(tf_pwd.getText());
                     s.setAdresse("Add Adresse");
                     s.setStatus_juridique("Add Status Juridique");
-                    s.setPhoto_de_profile("Add Photo de Profile");
+                    s.setPhoto_de_profile("img-1.jpg");
                     s.setViews_nb(0);
                     s.setEtat(0);
                     s.setDate_creation(date);
