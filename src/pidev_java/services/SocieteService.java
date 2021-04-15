@@ -117,5 +117,62 @@ public class SocieteService implements UtilisateurInterface<Societe> {
         }
         return (false);
     }
+
+    public ArrayList<Societe> getAll() {
+        
+        ArrayList<Societe> ListeSocietes = new ArrayList<>();
+        String req = "SELECT * FROM societe";
+        try {
+
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Societe a = new Societe();
+                a.setId(rs.getInt("id"));
+                a.setNom(rs.getString("nom"));
+                a.setStatus_juridique(rs.getString("status_juridique"));
+                a.setEmail(rs.getString("email"));
+                a.setAdresse(rs.getString("adresse"));
+                a.setEtat(rs.getInt("etat"));
+                a.setDate_creation(rs.getString("date_creation"));
+                
+                ListeSocietes.add(a);
+                
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+        }
+        return ListeSocietes;
+    }
+
+    public void ActivateSociete(int id){
+        
+        try {
+            String req = "UPDATE societe SET etat= 0"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SocieteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void DeactivateSociete(int id){
+        
+        try {
+            String req = "UPDATE societe SET etat= 1"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SocieteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
     
 }

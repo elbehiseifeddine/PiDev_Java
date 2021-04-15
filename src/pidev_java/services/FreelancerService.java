@@ -128,5 +128,62 @@ public class FreelancerService implements UtilisateurInterface<Freelancer>{
         }
         return (false);
     }
+    
+    public ArrayList<Freelancer> getAll() {
+        
+        ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
+        String req = "SELECT * FROM freelancer";
+        try {
 
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Freelancer a = new Freelancer();
+                a.setId(rs.getInt("id"));
+                a.setNom(rs.getString("nom"));
+                a.setPrenom(rs.getString("prenom"));
+                a.setEmail(rs.getString("email"));
+                a.setAdresse(rs.getString("adresse"));
+                a.setMot_de_passe(rs.getString("mot_de_passe"));
+                a.setEtat(rs.getInt("etat"));
+                a.setDate_creation(rs.getString("date_creation"));
+                a.setCompetences(rs.getString("competences"));
+                a.setSexe(rs.getString("sexe"));
+                
+                ListeFreelancers.add(a);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+        }
+        return ListeFreelancers;
+    }
+
+    public void ActivateFreelancer(int id){
+        
+        try {
+            String req = "UPDATE freelancer SET etat= 0"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FreelancerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void DeactivateFreelancer(int id){
+        
+        try {
+            String req = "UPDATE freelancer SET etat= 1"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FreelancerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
 }

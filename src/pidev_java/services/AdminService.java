@@ -73,8 +73,7 @@ public class AdminService implements IAdminService<Admin> {
 
     @Override
     public ArrayList<Admin> getAll() {
-        ObservableList<Admin> ListType = FXCollections.
-                observableArrayList();
+        
         ArrayList<Admin> ListeAdmins = new ArrayList<>();
         String req = "SELECT * FROM admin";
         try {
@@ -93,7 +92,7 @@ public class AdminService implements IAdminService<Admin> {
                 a.setEtat(rs.getBoolean("etat"));
                 a.setApprouve(rs.getInt("approuve"));
                 a.setNonApprouve(rs.getInt("nonapprouve"));
-                ListType.add(a);
+                
                 ListeAdmins.add(a);
             }
             rs.close();
