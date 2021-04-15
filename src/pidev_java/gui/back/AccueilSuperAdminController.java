@@ -103,6 +103,8 @@ public class AccueilSuperAdminController implements Initializable {
     private TableColumn<Admin, Integer> nonapprouve_events;
     @FXML
     private TableColumn<Admin, String> actions_events;
+    @FXML
+    private Button btn_refresh;
 
     /**
      * Initializes the controller class.
@@ -184,7 +186,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminReclamation.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
@@ -262,7 +264,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminEmploi.getSelectionModel().getSelectedItem();
                             FXMLLoader loader2 = new FXMLLoader();
-                            loader2.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader2.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader2.load();
                             } catch (IOException ex) {
@@ -340,7 +342,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminEvents.getSelectionModel().getSelectedItem();
                             FXMLLoader loader3 = new FXMLLoader();
-                            loader3.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader3.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader3.load();
                             } catch (IOException ex) {
@@ -376,7 +378,7 @@ public class AccueilSuperAdminController implements Initializable {
     @FXML
     private void CreateAdmin(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+        loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
         try {
             loader.load(); 
         } catch (IOException ex) {
@@ -389,5 +391,12 @@ public class AccueilSuperAdminController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
+    }
+
+    @FXML
+    private void Refresh(ActionEvent event) {
+        refrechAdminEmploi();
+        refrechAdminEvents();
+        refrechAdminReclamation();
     }
 }

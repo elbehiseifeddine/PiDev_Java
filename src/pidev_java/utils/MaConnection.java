@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author seifeddine
  */
 public class MaConnection {
-    private String url="jdbc:mysql://localhost:3306/pidevv3";
+    private String url="jdbc:mysql://localhost:3306/pidev";
     private String userName="root";
     private String password="";
     

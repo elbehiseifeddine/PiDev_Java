@@ -324,6 +324,7 @@ public class AdminService implements IAdminService<Admin> {
 
             while (rs.next()) {
                 Admin a = new Admin();
+                a.setId(rs.getInt("id"));
                 a.setNom(rs.getString("nom"));
                 a.setPrenom(rs.getString("prenom"));
                 a.setLogin(rs.getString("login"));
@@ -353,6 +354,7 @@ public class AdminService implements IAdminService<Admin> {
 
             while (rs.next()) {
                 Admin a = new Admin();
+                a.setId(rs.getInt("id"));
                 a.setNom(rs.getString("nom"));
                 a.setPrenom(rs.getString("prenom"));
                 a.setLogin(rs.getString("login"));

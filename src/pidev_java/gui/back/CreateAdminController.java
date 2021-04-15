@@ -5,16 +5,25 @@
  */
 package pidev_java.gui.back;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import pidev_java.entities.Admin;
 import pidev_java.services.AdminService;
 
@@ -80,6 +89,26 @@ public class CreateAdminController implements Initializable {
         AdminService service = new AdminService();
         service.add(a);
         
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
+            
+            FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
+        try {
+            loader.load(); 
+        } catch (IOException ex) {
+            Logger.getLogger(AccueilSuperAdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Parent parent = loader.getRoot();
+        Stage stage2 = new Stage();
+        stage2.setScene(new Scene(parent));
+        stage2.initStyle(StageStyle.UTILITY);
+        
+          
+        stage2.show();
+        
+        stage.close();
+        
     
         }else {
             System.out.println("bbbbb "+id_admin);
@@ -101,7 +130,9 @@ public class CreateAdminController implements Initializable {
             System.out.println("aaaaaaa "+a);
             service.update(a, OldType);
             
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             
+            stage.close();
         }
     }
     
