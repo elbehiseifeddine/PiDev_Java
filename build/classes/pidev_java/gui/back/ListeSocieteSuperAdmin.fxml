@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.ListeSocieteSuperAdminController">
    <children>
-      <Label text="Liste des Societe Super Admin">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <AnchorPane id="AnchorPane" prefHeight="1030.0" prefWidth="1601.0" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@superadminindex.css" />
+          </stylesheets>
+         <children>
+            <TableView fx:id="TableSociete" cache="true" layoutX="17.0" layoutY="152.0" prefHeight="878.0" prefWidth="1574.0">
+              <columns>
+                <TableColumn fx:id="id_societe" prefWidth="75.0" text="C1" visible="false" />
+                <TableColumn fx:id="nom" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Nom" />
+                  <TableColumn fx:id="email" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Email" />
+                  <TableColumn fx:id="adresse" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Adresse" />
+                  <TableColumn fx:id="statue_juridique" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Statue juridique" />
+                  <TableColumn fx:id="date_creation" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Date Creation" />
+                  <TableColumn fx:id="etat" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Etat" />
+                  <TableColumn fx:id="actions" prefWidth="224.0" sortable="false" style="fx-alignment: centre;" text="Action" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutX="-1.0" layoutY="25.0" prefHeight="54.0" prefWidth="1601.0" text="Liste des Societes" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+          
+      </AnchorPane>
    </children>
 </VBox>
