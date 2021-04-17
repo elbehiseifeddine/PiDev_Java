@@ -83,7 +83,7 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
                 Statement st = cnx.createStatement();
                 ResultSet rst = st.executeQuery(req);
                 if (rst.next()) {
-                    f.setId(rst.getString("id"))
+                    f.setId(rst.getInt("id"))
                     f.setNom(rst.getString("nom"));
                     f.setPrenom(rst.getString("prenom"));
                     f.setEmail(rst.getString("email"));
