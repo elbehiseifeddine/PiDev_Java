@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.ListeFreelancersSuperAdminController">
    <children>
-      <Label text="Liste Freelancers Super Admin">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <AnchorPane id="AnchorPane" prefHeight="932.0" prefWidth="1601.0" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@superadminindex.css" />
+          </stylesheets>
+         <children>
+            <TableView fx:id="TableFreelancer" cache="true" layoutX="10.0" layoutY="154.0" prefHeight="874.0" prefWidth="1586.0">
+              <columns>
+                <TableColumn fx:id="id_freelancer" prefWidth="75.0" text="C1" visible="false" />
+                <TableColumn fx:id="nom" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Nom" />
+                  <TableColumn fx:id="prenom" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Prenom" />
+                  <TableColumn fx:id="email" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Email" />
+                  <TableColumn fx:id="adresse" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Adresse" />
+                  <TableColumn fx:id="Competance" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Competances" />
+                  <TableColumn fx:id="sexe" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Sexe" />
+                  <TableColumn fx:id="date_creation" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Date Creation" />
+                  <TableColumn fx:id="etat" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Etat" />
+                  <TableColumn fx:id="actions" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Action" />
+              </columns>
+            </TableView>
+            <Label alignment="CENTER" layoutY="24.0" prefHeight="54.0" prefWidth="1601.0" text="Liste des Freelancers" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+          
+      </AnchorPane>
    </children>
 </VBox>

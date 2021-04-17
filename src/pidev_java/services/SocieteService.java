@@ -28,10 +28,13 @@ public class SocieteService implements UtilisateurInterface<Societe> {
     @Override 
     public boolean add(Societe entity){
         try{
-            String test="SELECT * FROM Societe WHERE email="+"\""+entity.getEmail()+"\"";
-            Statement st=cnx.createStatement();
-            ResultSet rst=st.executeQuery(test);
-            if(rst.next()==false){
+            String testS="SELECT * FROM Societe WHERE email="+"\""+entity.getEmail()+"\"";
+            String testF="SELECT * FROM Freelancer WHERE email="+"\""+entity.getEmail()+"\"";
+            Statement stS = cnx.createStatement();
+            Statement stF = cnx.createStatement();
+            ResultSet rstS = stS.executeQuery(testS);
+            ResultSet rstF = stF.executeQuery(testF);
+            if(rstS.next()==false && rstF.next()==false){
                 String req ="INSERT INTO Societe(nom,adresse,email,mot_de_pass,"
                     + "photo_de_profile,status_juridique,"
                     + "views_nb,etat,date_creation) "
@@ -72,6 +75,7 @@ public class SocieteService implements UtilisateurInterface<Societe> {
                 ResultSet rst=st.executeQuery(req);
                 System.err.println("aaaaaaaaaaaaaa");
                 if(rst.next()){
+                    s.setId(rst.getId("id"));
                     s.setNom(rst.getString("nom"));
                     s.setEmail(rst.getString("email"));
                     s.setMot_de_pass(rst.getString("mot_de_pass"));
@@ -116,6 +120,61 @@ public class SocieteService implements UtilisateurInterface<Societe> {
             Logger.getLogger(MaConnection.class.getName()).log(Level.SEVERE,null,ex);
         }
         return (false);
+    }
+    
+    public ArrayList<Societe> getAll() {
+        
+        ArrayList<Societe> ListeSocietes = new ArrayList<>();
+        String req = "SELECT * FROM societe";
+        try {
+
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Societe a = new Societe();
+                a.setId(rs.getInt("id"));
+                a.setNom(rs.getString("nom"));
+                a.setStatus_juridique(rs.getString("status_juridique"));
+                a.setEmail(rs.getString("email"));
+                a.setAdresse(rs.getString("adresse"));
+                a.setEtat(rs.getInt("etat"));
+                a.setDate_creation(rs.getString("date_creation"));
+                
+                ListeSocietes.add(a);
+                
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+        }
+        return ListeSocietes;
+    }
+
+    public void ActivateSociete(int id){
+        
+        try {
+            String req = "UPDATE societe SET etat= 0"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SocieteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void DeactivateSociete(int id){
+        
+        try {
+            String req = "UPDATE societe SET etat= 1"
+                    + " WHERE id = "+id;
+            PreparedStatement pst=cnx.prepareStatement(req);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SocieteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
