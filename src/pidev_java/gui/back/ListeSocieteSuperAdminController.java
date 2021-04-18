@@ -93,11 +93,13 @@ public class ListeSocieteSuperAdminController implements Initializable {
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#ff1744;"
+                                + "-fx-background-color: green;"
                         );
                         Deactivate.setStyle(
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#00E676;"
+                                + "-fx-background-color: red;"
                         );
                         Activate.setOnMouseClicked((event) -> {
                             Societe a = TableSociete.getSelectionModel().getSelectedItem();
