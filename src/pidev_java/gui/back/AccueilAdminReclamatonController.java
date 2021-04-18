@@ -95,8 +95,9 @@ public class AccueilAdminReclamatonController implements Initializable {
             HBox buttons = new HBox(approuve);
             VBox vbox = new VBox(hboxowner,hboxtype,hboxtexte,hboxdate,buttons);
             //vbox.getChildren().addAll(hboxowner,hboxtype,hboxtexte,hboxdate);
-            
+            vbox.setSpacing(20);
             listView.getItems().add(vbox);
+            
         }
 
     }
