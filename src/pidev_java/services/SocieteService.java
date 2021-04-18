@@ -75,7 +75,7 @@ public class SocieteService implements UtilisateurInterface<Societe> {
                 ResultSet rst=st.executeQuery(req);
                 System.err.println("aaaaaaaaaaaaaa");
                 if(rst.next()){
-                    s.setId(rst.getId("id"));
+                    s.setId(rst.getInt("id"));
                     s.setNom(rst.getString("nom"));
                     s.setEmail(rst.getString("email"));
                     s.setMot_de_pass(rst.getString("mot_de_pass"));
