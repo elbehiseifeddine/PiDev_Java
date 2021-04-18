@@ -14,6 +14,7 @@ public class Admin {
     private int id,Approuve,nonApprouve;
     private String nom, prenom,login,pass,type;
     private boolean etat;
+    private static Admin instance;
 
     public Admin(String nom, String prenom, String pass, String type, boolean etat) {
         this.nom = nom;
@@ -24,6 +25,18 @@ public class Admin {
     }
 
     public Admin() {
+    }
+    
+    public static void setInstance(Admin a) {
+        instance=a;
+     }
+     
+     public static Admin getInstance() {
+        return instance;
+    }
+     
+    public static void cleanFreelancer() {
+        instance=null;
     }
 
     public String getNom() {
