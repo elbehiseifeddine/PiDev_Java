@@ -28,10 +28,16 @@ public class SocieteService implements UtilisateurInterface<Societe> {
     @Override 
     public boolean add(Societe entity){
         try{
-            String test="SELECT * FROM Societe WHERE email="+"\""+entity.getEmail()+"\"";
-            Statement st=cnx.createStatement();
-            ResultSet rst=st.executeQuery(test);
-            if(rst.next()==false){
+            String testS = "SELECT * FROM Societe WHERE email=" + "\"" + entity.getEmail() + "\"";
+            String testF = "SELECT * FROM Freelancer WHERE email=" + "\"" + entity.getEmail() + "\"";
+            String testA = "SELECT * FROM admin WHERE login ='"+entity.getEmail()+"' ;";
+            Statement stS = cnx.createStatement();
+            Statement stF = cnx.createStatement();
+            Statement stA = cnx.createStatement();
+            ResultSet rstS = stS.executeQuery(testS);
+            ResultSet rstF = stF.executeQuery(testF);
+            ResultSet rstA = stA.executeQuery(testA);
+            if (rstS.next() == false && rstF.next() == false && rstA.next() == false) {
                 String req ="INSERT INTO Societe(nom,adresse,email,mot_de_pass,"
                     + "photo_de_profile,status_juridique,"
                     + "views_nb,etat,date_creation) "
@@ -72,6 +78,7 @@ public class SocieteService implements UtilisateurInterface<Societe> {
                 ResultSet rst=st.executeQuery(req);
                 System.err.println("aaaaaaaaaaaaaa");
                 if(rst.next()){
+                    s.setId(rst.getInt("id"));
                     s.setNom(rst.getString("nom"));
                     s.setEmail(rst.getString("email"));
                     s.setMot_de_pass(rst.getString("mot_de_pass"));
@@ -174,5 +181,7 @@ public class SocieteService implements UtilisateurInterface<Societe> {
     }
     
     
+    
+
     
 }

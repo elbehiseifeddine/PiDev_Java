@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pidev_java.utils.JavaMail;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String rootname = "ReclamationAdmin";
+        String rootname = "main";
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         //
         if (rootname.equals("main")) {

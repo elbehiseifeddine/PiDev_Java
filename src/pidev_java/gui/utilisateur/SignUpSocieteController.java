@@ -9,6 +9,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.fxml.FXML;
@@ -21,6 +23,7 @@ import pidev_java.entities.Freelancer;
 import pidev_java.entities.Societe;
 import pidev_java.services.FreelancerService;
 import pidev_java.services.SocieteService;
+import pidev_java.utils.JavaMail;
 
 /**
  * FXML Controller class
@@ -78,14 +81,19 @@ public class SignUpSocieteController implements Initializable {
                     s.setMot_de_pass(tf_pwd.getText());
                     s.setAdresse("Add Adresse");
                     s.setStatus_juridique("Add Status Juridique");
-                    s.setPhoto_de_profile("Add Photo de Profile");
+                    s.setPhoto_de_profile("img-1.jpg");
                     s.setViews_nb(0);
-                    s.setEtat(0);
+                    s.setEtat(1);
                     s.setDate_creation(date);
                     boolean test=new SocieteService().add(s);
                     if(test){
-                        compte_validator.setText("Compte a été créer, Connectez-vous à votre compte");
+                        compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
                         compte_validator.setVisible(true); 
+                        try {
+                            JavaMail.sendMail(tf_email.getText(),"EmailConfirmation");
+                        } catch (Exception ex) {
+                            Logger.getLogger(SignUpFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }else{
                         compte_validator.setText("Compte déja exist");
                         compte_validator.setVisible(true); 

@@ -119,7 +119,7 @@ public class BaseGuiController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/utilisateur/FreelancerProfile.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
-
+            System.out.println(e);
         }
     }
 

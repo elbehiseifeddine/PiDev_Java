@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
               <URL value="@superadminindex.css" />
           </stylesheets>
          <children>
-            <TableView fx:id="TableFreelancer" cache="true" layoutX="10.0" layoutY="154.0" prefHeight="200.0" prefWidth="1585.0">
+            <TableView fx:id="TableFreelancer" cache="true" layoutX="10.0" layoutY="154.0" prefHeight="874.0" prefWidth="1586.0">
               <columns>
                 <TableColumn fx:id="id_freelancer" prefWidth="75.0" text="C1" visible="false" />
                 <TableColumn fx:id="nom" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Nom" />
@@ -29,11 +30,11 @@
                   <TableColumn fx:id="actions" prefWidth="176.0" sortable="false" style="fx-alignment: centre;" text="Action" />
               </columns>
             </TableView>
-            <Text fill="#e10707" layoutX="618.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Freelancers" textAlignment="CENTER" wrappingWidth="546.1367492675781" AnchorPane.leftAnchor="618.0" AnchorPane.rightAnchor="437.4632507324218">
+            <Label alignment="CENTER" layoutY="24.0" prefHeight="54.0" prefWidth="1601.0" text="Liste des Freelancers" textFill="RED">
                <font>
-                  <Font name="System Bold" size="29.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
-            </Text>
+            </Label>
          </children>
           
       </AnchorPane>

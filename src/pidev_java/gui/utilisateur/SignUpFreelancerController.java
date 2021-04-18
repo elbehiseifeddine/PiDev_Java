@@ -9,6 +9,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import pidev_java.entities.Freelancer;
 import pidev_java.services.FreelancerService;
+import pidev_java.utils.JavaMail;
 
 /**
  * FXML Controller class
@@ -90,7 +93,7 @@ public class SignUpFreelancerController implements Initializable {
                     f.setEmail(tf_email.getText());
                     f.setMot_de_passe(tf_pwd.getText());
                     f.setAdresse("Add Adresse");
-                    f.setPhoto_de_profile("Add Photo de profile");
+                    f.setPhoto_de_profile("img-1.jpg");
                     f.setSexe("Add sexe");
                     f.setCompetences("Add Competence");
                     f.setLangues("Add Langues");
@@ -98,12 +101,17 @@ public class SignUpFreelancerController implements Initializable {
                     f.setCompte_linkedin("Add Compte Linkedin");
                     f.setCompte_twitter("Add Compte Twitter");
                     f.setViews_nb(0);
-                    f.setEtat(0);
+                    f.setEtat(1);
                     f.setDate_creation(date);
                     boolean test=new FreelancerService().add(f);
                     if(test){
-                        compte_validator.setText("Compte a été créer, Connectez-vous à votre compte");
+                        compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
                         compte_validator.setVisible(true); 
+                        try {
+                            JavaMail.sendMail(tf_email.getText(),"EmailConfirmation");
+                        } catch (Exception ex) {
+                            Logger.getLogger(SignUpFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }else{
                         compte_validator.setText("Compte déja exist");
                         compte_validator.setVisible(true); 

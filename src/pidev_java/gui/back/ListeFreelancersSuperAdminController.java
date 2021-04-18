@@ -28,9 +28,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
-import pidev_java.entities.Admin;
 import pidev_java.entities.Freelancer;
-import pidev_java.services.AdminService;
 import pidev_java.services.FreelancerService;
 
 /**
@@ -110,11 +108,14 @@ public class ListeFreelancersSuperAdminController implements Initializable {
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#ff1744;"
+                                + "-fx-background-color: green;"
+                                
                         );
                         Deactivate.setStyle(
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#00E676;"
+                                + "-fx-background-color: red;"
                         );
                         Activate.setOnMouseClicked((event) -> {
                             Freelancer a = TableFreelancer.getSelectionModel().getSelectedItem();
