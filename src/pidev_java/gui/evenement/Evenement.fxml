@@ -1,45 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.evenement.EvenementController">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="textlabelle" layoutX="116.0" layoutY="109.0" promptText="labelle" />
-      <TextField fx:id="textdecription" layoutX="116.0" layoutY="144.0" promptText="description" />
-      <TextField fx:id="textedated" layoutX="116.0" layoutY="230.0" promptText="heure debut" />
-      <TextField fx:id="textdatef" layoutX="116.0" layoutY="325.0" promptText="heure fin" />
-      <TextField fx:id="textlieu" layoutX="116.0" layoutY="368.0" promptText="Lieu" />
-      <TextField fx:id="textdomaine" layoutX="116.0" layoutY="407.0" promptText="Domaine" />
-      <TextField fx:id="textnb" layoutX="116.0" layoutY="445.0" onMouseClicked="#ajouterEvent" promptText="nb participant" />
-      <Button fx:id="btnajouterE" layoutX="441.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#ajouterE" prefHeight="25.0" prefWidth="70.0" text="ajouter" />
-      <Button fx:id="btnmodifierE" layoutX="516.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#modifierEvent" text="modifier" />
-      <Button fx:id="btnsuppE" layoutX="581.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#supprimerEvent" text="supprimer" />
-      <TableView fx:id="tableevent" layoutX="297.0" layoutY="96.0" onMouseClicked="#afficherEvent" prefHeight="422.0" prefWidth="787.0">
-         <columns>
-            <TableColumn fx:id="labelle" minWidth="5.0" prefWidth="114.0" text="Labelle" />
-            <TableColumn fx:id="description" prefWidth="102.0" text="Description" />
-            <TableColumn fx:id="dated" prefWidth="109.0" text="Date Debut" />
-            <TableColumn fx:id="datef" prefWidth="91.0" text="Date Fin" />
-            <TableColumn fx:id="lieu" prefWidth="97.0" text="Lieu" />
-            <TableColumn fx:id="domaine" prefWidth="133.0" text="Domaine" />
-            <TableColumn fx:id="nbPart" prefWidth="66.0" text="NbParticipant" />
-            <TableColumn fx:id="action" prefWidth="66.0" text="Action" />
-         </columns>
-      </TableView>
-      <Label fx:id="textidE" layoutX="123.0" layoutY="69.0" textFill="WHITE">
+      <Label text="Evenement">
          <font>
-            <Font size="1.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <DatePicker fx:id="textdatefine" layoutX="116.0" layoutY="276.0" promptText="date fin" />
-      <DatePicker fx:id="textdatedebE" layoutX="116.0" layoutY="189.0" promptText="date Debut" />
-      <TextField fx:id="textimageE" layoutX="116.0" layoutY="493.0" onMouseClicked="#importimage" promptText="image" />
    </children>
-</AnchorPane>
+</VBox>
