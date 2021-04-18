@@ -136,7 +136,10 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         return (false);
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> Gestion_Utilisateur
     public ArrayList<Freelancer> getAll() {
 
         ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
