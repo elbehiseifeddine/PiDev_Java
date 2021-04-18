@@ -22,8 +22,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import pidev_java.entities.Admin;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.Societe;
+import pidev_java.services.AdminService;
 import pidev_java.services.FreelancerService;
 import pidev_java.services.SocieteService;
 
@@ -131,8 +133,89 @@ public class SignInController implements Initializable {
                             compte_validator.setVisible(true);
                         }
                     } else {
-                        compte_validator.setText("Email n'exist pas");
-                        compte_validator.setVisible(true);
+                        Admin a = new AdminService().findByEmail(tf_email.getText());
+                        if (a.getLogin() != null) {
+                            if (a.getPass().equals(tf_pwd.getText())) {
+                                if (a.isEtat() == true) {
+                                    Admin.setInstance(a);
+                                    if (a.getType().equals("Admin des reclamations")) {
+                                        try {
+                                            Image img = new Image("pidev_java/assets/Logo_Compact.png");
+                                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiReclamationAdmin.fxml"));
+                                            Parent root = (Parent) fxmlLoader.load();
+                                            Stage stage = new Stage();
+                                            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                            primaryStage.close();
+                                            stage.setScene(new Scene(root));
+                                            stage.setMaximized(true);
+                                            stage.getIcons().add(img);
+                                            stage.setTitle("RightJob");
+                                            stage.show();
+                                        } catch (IOException e) {
+                                            System.err.println(e);
+                                        }
+                                    }else if (a.getType().equals("Admin des events")) {
+                                        try {
+                                            Image img = new Image("pidev_java/assets/Logo_Compact.png");
+                                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiEventAdmin.fxml"));
+                                            Parent root = (Parent) fxmlLoader.load();
+                                            Stage stage = new Stage();
+                                            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                            primaryStage.close();
+                                            stage.setScene(new Scene(root));
+                                            stage.setMaximized(true);
+                                            stage.getIcons().add(img);
+                                            stage.setTitle("RightJob");
+                                            stage.show();
+                                        } catch (IOException e) {
+                                            System.err.println(e);
+                                        }
+                                    }else if (a.getType().equals("Admin des emplois")) {
+                                        try {
+                                            Image img = new Image("pidev_java/assets/Logo_Compact.png");
+                                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiOffreAdmin.fxml"));
+                                            Parent root = (Parent) fxmlLoader.load();
+                                            Stage stage = new Stage();
+                                            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                            primaryStage.close();
+                                            stage.setScene(new Scene(root));
+                                            stage.setMaximized(true);
+                                            stage.getIcons().add(img);
+                                            stage.setTitle("RightJob");
+                                            stage.show();
+                                        } catch (IOException e) {
+                                            System.err.println(e);
+                                        }
+                                    }
+                                }else{
+                                    compte_validator.setText("Compte Desactiver");
+                                    compte_validator.setVisible(true);
+                                }
+                            }
+                        } else {
+                            if (new AdminService().findSuperAdminByEmail(tf_email.getText()).getLogin() != null) {
+                                if (new AdminService().findSuperAdminByEmail(tf_email.getText()).getPass().equals(tf_pwd.getText())) {
+                                        try {
+                                            Image img = new Image("pidev_java/assets/Logo_Compact.png");
+                                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiSuperAdmin.fxml"));
+                                            Parent root = (Parent) fxmlLoader.load();
+                                            Stage stage = new Stage();
+                                            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                            primaryStage.close();
+                                            stage.setScene(new Scene(root));
+                                            stage.setMaximized(true);
+                                            stage.getIcons().add(img);
+                                            stage.setTitle("RightJob");
+                                            stage.show();
+                                        } catch (IOException e) {
+                                            System.err.println(e);
+                                        }
+                                }
+                            }else{
+                                compte_validator.setText("Email n'exist pas");
+                                compte_validator.setVisible(true);
+                            }
+                        }
                     }
                 }
             }
@@ -146,7 +229,7 @@ public class SignInController implements Initializable {
                 pwd_validator.setText("Votre Mot De Pass doit comporter au moins 3 caractères");
                 pwd_validator.setVisible(true);
             }
-        }        
+        }
     }
 
 }

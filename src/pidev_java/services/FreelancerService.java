@@ -30,11 +30,14 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         try {
             String testS = "SELECT * FROM Societe WHERE email=" + "\"" + entity.getEmail() + "\"";
             String testF = "SELECT * FROM Freelancer WHERE email=" + "\"" + entity.getEmail() + "\"";
+            String testA = "SELECT * FROM admin WHERE login ='"+entity.getEmail()+"' ;";
             Statement stS = cnx.createStatement();
             Statement stF = cnx.createStatement();
+            Statement stA = cnx.createStatement();
             ResultSet rstS = stS.executeQuery(testS);
             ResultSet rstF = stF.executeQuery(testF);
-            if (rstS.next() == false && rstF.next() == false) {
+            ResultSet rstA = stA.executeQuery(testA);
+            if (rstS.next() == false && rstF.next() == false && rstA.next() == false) {
                 System.out.println("bbbbbbbbbbbbbbb");
                 System.out.println("aaaaaaaaaaa");
                 String req = "INSERT INTO Freelancer(nom,adresse,email,mot_de_passe,"
@@ -132,13 +135,11 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
         return (false);
     }
-    
-    public ArrayList<Freelancer> getAll() {
-        
-        ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
-        String req = "SELECT * FROM freelancer";
-        try {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Gestion_Utilisateur
     public ArrayList<Freelancer> getAll() {
 
         ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
