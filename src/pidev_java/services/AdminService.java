@@ -372,4 +372,31 @@ public class AdminService implements IAdminService<Admin> {
         }
         return ListeAdmins;
     }
+
+    @Override
+    public Admin findByEmail(String login){
+        Admin a = new Admin();
+        try {
+            
+            String req = "SELECT * FROM admin WHERE login ='"+login+"' ;";
+            Statement st = cnx.createStatement();
+            ResultSet rs4 = st.executeQuery(req);
+            while(rs4.next()){
+                a.setId(rs4.getInt("id"));
+                a.setLogin(login);
+                a.setPass(rs4.getString("password"));
+                a.setNom(rs4.getString("nom"));
+                a.setPrenom(rs4.getString("prenom"));
+                a.setType(rs4.getString("type"));
+                a.setEtat(rs4.getBoolean("etat"));
+                a.setApprouve(rs4.getInt("approuve"));
+                a.setNonApprouve(rs4.getInt("nonapprouve"));
+            }
+            rs4.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
 }

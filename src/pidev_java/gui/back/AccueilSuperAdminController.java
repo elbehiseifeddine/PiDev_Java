@@ -148,10 +148,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory
                 = (TableColumn<Admin, String> param) -> {
@@ -226,10 +226,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom_emploi.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_emploi.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_emploi.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password_emploi.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password_emploi.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat_emploi.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve_emploi.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve_emploi.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve_emploi.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve_emploi.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory1
                 = (TableColumn<Admin, String> param) -> {
@@ -304,10 +304,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom_events.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_events.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_events.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password_events.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password_events.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat_events.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve_events.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve_events.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve_events.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve_events.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory2
                 = (TableColumn<Admin, String> param) -> {
