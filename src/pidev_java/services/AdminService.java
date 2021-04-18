@@ -73,8 +73,7 @@ public class AdminService implements IAdminService<Admin> {
 
     @Override
     public ArrayList<Admin> getAll() {
-        ObservableList<Admin> ListType = FXCollections.
-                observableArrayList();
+        
         ArrayList<Admin> ListeAdmins = new ArrayList<>();
         String req = "SELECT * FROM admin";
         try {
@@ -93,7 +92,7 @@ public class AdminService implements IAdminService<Admin> {
                 a.setEtat(rs.getBoolean("etat"));
                 a.setApprouve(rs.getInt("approuve"));
                 a.setNonApprouve(rs.getInt("nonapprouve"));
-                ListType.add(a);
+                
                 ListeAdmins.add(a);
             }
             rs.close();
@@ -325,6 +324,7 @@ public class AdminService implements IAdminService<Admin> {
 
             while (rs.next()) {
                 Admin a = new Admin();
+                a.setId(rs.getInt("id"));
                 a.setNom(rs.getString("nom"));
                 a.setPrenom(rs.getString("prenom"));
                 a.setLogin(rs.getString("login"));
@@ -354,6 +354,7 @@ public class AdminService implements IAdminService<Admin> {
 
             while (rs.next()) {
                 Admin a = new Admin();
+                a.setId(rs.getInt("id"));
                 a.setNom(rs.getString("nom"));
                 a.setPrenom(rs.getString("prenom"));
                 a.setLogin(rs.getString("login"));
@@ -370,5 +371,32 @@ public class AdminService implements IAdminService<Admin> {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
         }
         return ListeAdmins;
+    }
+
+    @Override
+    public Admin findByEmail(String login){
+        Admin a = new Admin();
+        try {
+            
+            String req = "SELECT * FROM admin WHERE login ='"+login+"' ;";
+            Statement st = cnx.createStatement();
+            ResultSet rs4 = st.executeQuery(req);
+            while(rs4.next()){
+                a.setId(rs4.getInt("id"));
+                a.setLogin(login);
+                a.setPass(rs4.getString("password"));
+                a.setNom(rs4.getString("nom"));
+                a.setPrenom(rs4.getString("prenom"));
+                a.setType(rs4.getString("type"));
+                a.setEtat(rs4.getBoolean("etat"));
+                a.setApprouve(rs4.getInt("approuve"));
+                a.setNonApprouve(rs4.getInt("nonapprouve"));
+            }
+            rs4.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
     }
 }

@@ -103,6 +103,8 @@ public class AccueilSuperAdminController implements Initializable {
     private TableColumn<Admin, Integer> nonapprouve_events;
     @FXML
     private TableColumn<Admin, String> actions_events;
+    @FXML
+    private Button btn_refresh;
 
     /**
      * Initializes the controller class.
@@ -146,10 +148,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory
                 = (TableColumn<Admin, String> param) -> {
@@ -184,7 +186,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminReclamation.getSelectionModel().getSelectedItem();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
@@ -224,10 +226,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom_emploi.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_emploi.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_emploi.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password_emploi.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password_emploi.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat_emploi.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve_emploi.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve_emploi.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve_emploi.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve_emploi.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory1
                 = (TableColumn<Admin, String> param) -> {
@@ -262,7 +264,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminEmploi.getSelectionModel().getSelectedItem();
                             FXMLLoader loader2 = new FXMLLoader();
-                            loader2.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader2.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader2.load();
                             } catch (IOException ex) {
@@ -302,10 +304,10 @@ public class AccueilSuperAdminController implements Initializable {
         nom_events.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_events.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_events.setCellValueFactory(new PropertyValueFactory<>("login"));
-        password_events.setCellValueFactory(new PropertyValueFactory<>("password"));
+        password_events.setCellValueFactory(new PropertyValueFactory<>("pass"));
         etat_events.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        approuve_events.setCellValueFactory(new PropertyValueFactory<>("approuve"));
-        nonapprouve_events.setCellValueFactory(new PropertyValueFactory<>("nonapprouve"));
+        approuve_events.setCellValueFactory(new PropertyValueFactory<>("Approuve"));
+        nonapprouve_events.setCellValueFactory(new PropertyValueFactory<>("nonApprouve"));
 
         Callback<TableColumn<Admin, String>, TableCell<Admin, String>> cellFactory2
                 = (TableColumn<Admin, String> param) -> {
@@ -340,7 +342,7 @@ public class AccueilSuperAdminController implements Initializable {
                         editbtn.setOnMouseClicked((event) -> {
                             Admin a = TableadminEvents.getSelectionModel().getSelectedItem();
                             FXMLLoader loader3 = new FXMLLoader();
-                            loader3.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+                            loader3.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
                             try {
                                 loader3.load();
                             } catch (IOException ex) {
@@ -376,7 +378,7 @@ public class AccueilSuperAdminController implements Initializable {
     @FXML
     private void CreateAdmin(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/pidev/gui/CreateAdmin.fxml"));
+        loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
         try {
             loader.load(); 
         } catch (IOException ex) {
@@ -389,5 +391,12 @@ public class AccueilSuperAdminController implements Initializable {
         stage.setScene(new Scene(parent));
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
+    }
+
+    @FXML
+    private void Refresh(ActionEvent event) {
+        refrechAdminEmploi();
+        refrechAdminEvents();
+        refrechAdminReclamation();
     }
 }

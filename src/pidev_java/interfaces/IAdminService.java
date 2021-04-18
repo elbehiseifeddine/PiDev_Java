@@ -21,6 +21,7 @@ public interface IAdminService<T> {
     public ArrayList<T> getAllAdminReclamation();
     public ArrayList<T> getAllAdminEmploi();
     public ArrayList<T> getAllAdminEvent();
+    public T findByEmail(String login);
 
     
     

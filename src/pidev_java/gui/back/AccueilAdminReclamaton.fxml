@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminReclamatonController">
    <children>
-      <Label text="Acceuill Admin Reclamation">
+      <Label fx:id="titre" text="Acceuill Admin Reclamation">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <ListView fx:id="listView" prefHeight="989.0" prefWidth="1602.0" />
    </children>
 </VBox>

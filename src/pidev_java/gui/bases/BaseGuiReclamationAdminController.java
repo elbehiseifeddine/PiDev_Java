@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 
 /**
@@ -33,8 +34,9 @@ public class BaseGuiReclamationAdminController implements Initializable {
     private Button sign_out_btn;
     @FXML
     private ScrollPane scroll_pane;
-    @FXML
     private Parent fxml;
+//    @FXML
+//    private Label id_Admin;
 
     /**
      * Initializes the controller class.
@@ -44,6 +46,7 @@ public class BaseGuiReclamationAdminController implements Initializable {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/back/AccueilAdminReclamaton.fxml"));
             scroll_pane.setContent(fxml);
+            //id_Admin.setVisible(false);
         } catch (IOException e) {
 
         }

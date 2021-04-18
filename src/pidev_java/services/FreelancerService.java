@@ -132,6 +132,12 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
         return (false);
     }
+    
+    public ArrayList<Freelancer> getAll() {
+        
+        ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
+        String req = "SELECT * FROM freelancer";
+        try {
 
     public ArrayList<Freelancer> getAll() {
 
