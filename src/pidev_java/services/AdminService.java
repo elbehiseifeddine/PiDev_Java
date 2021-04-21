@@ -400,6 +400,24 @@ public class AdminService implements IAdminService<Admin> {
         return a;
     }
     
+    public boolean AdminExiste(String login){
+        boolean bool = false;
+        try {
+            
+            String req = "SELECT * FROM admin WHERE login ='"+login+"' ;";
+            Statement st = cnx.createStatement();
+            ResultSet rs4 = st.executeQuery(req);
+            
+            bool = rs4.first();
+            
+            rs4.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bool;
+    }
+    
     public Admin findSuperAdminByEmail(String login){
         Admin a = new Admin();
         try {
@@ -421,4 +439,33 @@ public class AdminService implements IAdminService<Admin> {
         }
         return a;
     }
+
+    public ArrayList<Admin> Recherche(String nom){
+        ArrayList<Admin> list = new ArrayList<>();
+        try {
+            
+            String req = "SELECT * FROM admin WHERE nom LIKE '%"+nom+"%' ;";
+            Statement st = cnx.createStatement();
+            ResultSet rs4 = st.executeQuery(req);
+            while(rs4.next()){
+                Admin a = new Admin();
+                a.setId(rs4.getInt("id"));
+                a.setLogin(rs4.getString("login"));
+                a.setPass(rs4.getString("password"));
+                a.setNom(rs4.getString("nom"));
+                a.setPrenom(rs4.getString("prenom"));
+                a.setType(rs4.getString("type"));
+                a.setEtat(rs4.getBoolean("etat"));
+                a.setApprouve(rs4.getInt("approuve"));
+                a.setNonApprouve(rs4.getInt("nonapprouve"));
+                list.add(a);
+            }
+            rs4.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
 }
