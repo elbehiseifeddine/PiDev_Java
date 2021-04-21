@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev_java.gui.offreStage;
+package pidev_java.gui.offreEmploi;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.net.URL;
@@ -16,15 +16,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pidev_java.entities.offreStage;
-import pidev_java.services.stageService;
+import pidev_java.entities.offreEmploi;
+import pidev_java.services.emploiService;
 
 /**
  * FXML Controller class
  *
  * @author Ghassen Riahi
  */
-public class ItemController implements Initializable {
+public class ItemEmpController implements Initializable {
 
     @FXML
     private Label idNom;
@@ -33,9 +33,7 @@ public class ItemController implements Initializable {
     @FXML
     private Label idDesc;
     @FXML
-    private Label idDuree;
-    @FXML
-    private Label idType;
+    private Label idSalaire;
     @FXML
     private Label idDTexpr;
     @FXML
@@ -44,22 +42,24 @@ public class ItemController implements Initializable {
     private FontAwesomeIconView iconEdit;
     @FXML
     private FontAwesomeIconView icondelete;
-
     
-    stageService ss=new stageService();
-    ConsulterOffreStageController co;
-    private offreStage offre;
+    
+    
+    emploiService ss=new emploiService();
+    ConsulterOffreEmploiController co;
+    private offreEmploi offre;
+        
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }   
+         
+    }    
+
     
-    
-    
-     public void setData(offreStage os,ConsulterOffreStageController fc) {
+     public void setData(offreEmploi os,ConsulterOffreEmploiController fc) {
          this.co=fc;
         this.offre = os;
         
@@ -67,41 +67,33 @@ public class ItemController implements Initializable {
         this.idComp.setText(os.getCompetence());
         this.idDesc.setText(os.getDescription());
         this.idDomaine.setText(String.valueOf(os.getDomaine()));
-        this.idDuree.setText(String.valueOf(os.getDuree()));
-        this.idType.setText(String.valueOf(os.getTypeStage()));
+        this.idSalaire.setText(String.valueOf(os.getSalaire()));
+        
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
-        
-        
-        
-
-        
-        
-    }
-
+     }
+    
     @FXML
     private void editoStage(MouseEvent event) {
-        try {
+         try {
                  FXMLLoader loader1 = new FXMLLoader ();
-                 loader1.setLocation(getClass().getResource("/pidev_java/gui/offreStage/ModifieroffreStage.fxml"));
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/offreStage/ModifieroffreEmploi.fxml"));
                 
                  Parent  parent = (Parent)loader1.load();
                   Stage stage = new Stage();
                  stage.setScene(new Scene(parent));
                   stage.show();
                    
-                  ModifieroffreStageController afc=loader1.getController();
+                  ModifieroffreEmploiController afc=loader1.getController();
                  afc.initUpdate(this.co,this.offre);
                 
              } catch (Exception ex) {
                 System.out.println("erreur");
              }
-        
-        
     }
 
     @FXML
     private void DeleteoStage(MouseEvent event) {
-        this.ss.delete(this.offre.getId());
+         this.ss.delete(this.offre.getId());
     }
     
 }

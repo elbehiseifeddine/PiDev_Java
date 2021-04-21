@@ -33,7 +33,7 @@ public class stageService implements IServiceOffre<offreStage> {
        try{
         
         String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat)"
-                + " values (?, ?, ?, ?,?, ?, ?,?,?)";
+                + " values (?, ?, ?, ?,?, ?, ?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());

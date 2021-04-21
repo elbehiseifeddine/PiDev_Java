@@ -20,6 +20,7 @@ public class offreEmploi {
     private String salaire;
     private Date dateCreation;
     private Date dateExpiration;
+    private int etat;
 
     public offreEmploi() {
     }
@@ -45,6 +46,38 @@ public class offreEmploi {
         this.dateCreation = dateCreation;
         this.dateExpiration = dateExpiration;
     }
+
+    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration, int etat) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+    }
+
+    public offreEmploi(String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration, int etat) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+    
     
 
     public int getId() {

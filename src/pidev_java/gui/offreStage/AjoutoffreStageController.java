@@ -118,10 +118,7 @@ public class AjoutoffreStageController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now.toLocalDate());
         Date dateC = Date.valueOf(now.toLocalDate());
-         Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
-
-        offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbDomaine.getSelectionModel().getSelectedItem(), dateC, dateE);
-            
+         
         
         if (this.tfNom.getText().equals("")) {
             usernameValidator.getItems().clear();
@@ -154,15 +151,18 @@ public class AjoutoffreStageController implements Initializable {
             usernameValidator.getItems().add(
                     new MenuItem("choisir une durée"));
             usernameValidator.show(cmbDuree, Side.RIGHT, 10, 0);
-//        } else if (this.dtExpiration.getValue()==null) {
-//            usernameValidator.getItems().clear();
-//            usernameValidator.getItems().add(
-//                    new MenuItem("saisir une date d'expiration"));
-//            usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
+        } else if (this.dtExpiration.getValue()==null) {
+            usernameValidator.getItems().clear();
+            usernameValidator.getItems().add(
+                    new MenuItem("saisir une date d'expiration"));
+            usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
             
         } else {
             
-           
+           Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
+
+        offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbDomaine.getSelectionModel().getSelectedItem(), dateC, dateE);
+            
             new stageService().add(e);
             showAlertWithHeaderText();
               this.cs.updateList();
