@@ -74,7 +74,7 @@ public class SignUpSocieteController implements Initializable {
                     }
                     
                 }else{
-                    String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+                    String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
                     Societe s= new Societe();
                     s.setNom(tf_nom.getText());
                     s.setEmail(tf_email.getText());

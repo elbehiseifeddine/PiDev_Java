@@ -5,31 +5,44 @@
  */
 package pidev_java.gui.back;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import pidev_java.entities.Admin;
 import pidev_java.entities.Freelancer;
+import pidev_java.services.AdminService;
 import pidev_java.services.FreelancerService;
+import pidev_java.utils.PdfGeneration;
 
 /**
  * FXML Controller class
@@ -40,28 +53,27 @@ public class ListeFreelancersSuperAdminController implements Initializable {
 
     
     ObservableList<Freelancer> ListFreelancer = FXCollections.observableArrayList();
-    @FXML
     private TableView<Freelancer> TableFreelancer;
-    @FXML
     private TableColumn<Freelancer, Integer> id_freelancer;
-    @FXML
     private TableColumn<Freelancer, String> nom;
-    @FXML
     private TableColumn<Freelancer, String> prenom;
-    @FXML
     private TableColumn<Freelancer, String> email;
-    @FXML
     private TableColumn<Freelancer, String> adresse;
-    @FXML
     private TableColumn<Freelancer, Integer> etat;
-    @FXML
     private TableColumn<Freelancer, String> Competance;
-    @FXML
     private TableColumn<Freelancer, String> sexe;
-    @FXML
     private TableColumn<Freelancer, String> date_creation;
-    @FXML
     private TableColumn<Freelancer, String> actions;
+    @FXML
+    private AnchorPane NavBar;
+    @FXML
+    private AnchorPane Admins;
+    @FXML
+    private HBox AdminRecHbox;
+    @FXML
+    private Label LabelReclamationVide;
+    @FXML
+    private Label pdfLab;
     /**
      * Initializes the controller class.
      */
@@ -79,71 +91,102 @@ public class ListeFreelancersSuperAdminController implements Initializable {
     
     private void loadDataFreelancer() {
         refrechFreelancer();
-        FreelancerService Service = new FreelancerService();
-        id_freelancer.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        Competance.setCellValueFactory(new PropertyValueFactory<>("competences"));
-        etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
-        date_creation.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
+        FreelancerService freelancerService = new FreelancerService();
 
-        Callback<TableColumn<Freelancer, String>, TableCell<Freelancer, String>> cellFactory
-                = (TableColumn<Freelancer, String> param) -> {
-                    // make cell containing buttons
-                    final TableCell<Freelancer, String> cell = new TableCell<Freelancer, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
+        ArrayList<Freelancer> liste = freelancerService.getAll();
+        if (liste.isEmpty()) {
+            AdminRecHbox.setVisible(false);
+            LabelReclamationVide.setText("Aucun admin disponible, pensez à lui créer ! ");
 
-                    } else {
-                        Button Activate = new Button("Activate");
-                        Button Deactivate = new Button("Deactivate");
-                        Activate.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#ff1744;"
-                                + "-fx-background-color: green;"
-                                
-                        );
-                        Deactivate.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                                + "-fx-background-color: red;"
-                        );
-                        Activate.setOnMouseClicked((event) -> {
-                            Freelancer a = TableFreelancer.getSelectionModel().getSelectedItem();
-                            System.out.println(a.getId()+"aaaaaaaaaaaaaaa");
-                            Service.ActivateFreelancer(a.getId());
-                            refrechFreelancer();
-                        });
-                        Deactivate.setOnMouseClicked((event) -> {
-                            Freelancer a = TableFreelancer.getSelectionModel().getSelectedItem();
-                            Service.DeactivateFreelancer(a.getId());
-                            refrechFreelancer();
+        } else {
+            for (Freelancer freelancer : liste) {
+                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+                Label name = new Label(freelancer.getNom() + " " + freelancer.getPrenom());
+                name.setStyle("-fx-font-weight: bold;");
+                Label LabelEmail = new Label(freelancer.getEmail());
+                Label lock = new Label();
+                Button activatebtn = new Button();
 
-                        });
-                        HBox managebtn = new HBox(Activate, Deactivate);
-                        managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(Activate, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(Deactivate, new Insets(2, 3, 0, 2));
-                        setGraphic(managebtn);
-
-                        setText(null);
-                    }
+                if(freelancer.getEtat()==0){
+                    activatebtn.setStyle(
+                        " -fx-cursor: hand ;"
+                        + "-glyph-size:28px;"
+                        + "-fx-fill:#00E676;"
+                        + "-fx-background-radius: 5px;"
+                        + "-fx-background-color: green;"
+                        + "-fx-text-fill: whitesmoke;" 
+                        + "-fx-font-size: 19;" 
+                        + "-fx-font-weight: 600;"
+                    );
+                    activatebtn.setText("Activated");                    
+                }else{
+                    activatebtn.setStyle(
+                        " -fx-cursor: hand ;"
+                        + "-glyph-size:28px;"
+                        + "-fx-fill:#00E676;"
+                        + "-fx-background-radius: 5px;"
+                        + "-fx-background-color: red;"
+                        + "-fx-text-fill: whitesmoke;" 
+                        + "-fx-font-size: 19;" 
+                        + "-fx-font-weight: 600;"
+                    );
+                    activatebtn.setText("Deactivated");  
                 }
-            };
-                    return cell;
-                };
-        actions.setCellFactory(cellFactory);
-        TableFreelancer.setItems(ListFreelancer);
+                
+                activatebtn.setOnMouseClicked((event) -> {
+                    if(freelancer.getEtat()==1){
+                        freelancerService.ActivateFreelancer(freelancer.getId());
+                        activatebtn.setStyle(
+                            " -fx-cursor: hand ;"
+                            + "-glyph-size:28px;"
+                            + "-fx-fill:#00E676;"
+                            + "-fx-background-radius: 5px;"
+                            + "-fx-background-color: green;"
+                            + "-fx-text-fill: whitesmoke;" 
+                            + "-fx-font-size: 19;" 
+                            + "-fx-font-weight: 600;"
+                        );
+                        activatebtn.setText("Activated");   
+                    }else{
+                        freelancerService.DeactivateFreelancer(freelancer.getId());
+                        activatebtn.setStyle(
+                            " -fx-cursor: hand ;"
+                            + "-glyph-size:28px;"
+                            + "-fx-fill:#00E676;"
+                            + "-fx-background-radius: 5px;"
+                            + "-fx-background-color: red;"
+                            + "-fx-text-fill: whitesmoke;" 
+                            + "-fx-font-size: 19;" 
+                            + "-fx-font-weight: 600;"
+                        );
+                        activatebtn.setText("Deactivated");
+                    }
+                        
+                });
+                HBox managebtn = new HBox(activatebtn);
+                managebtn.setStyle("-fx-alignment:center");
+                HBox.setMargin(activatebtn, new Insets(2, 3, 0, 2));
+                VBox vbox = new VBox(image, name, LabelEmail, lock, managebtn);
+                vbox.setMaxWidth(1501 / liste.size());
+                vbox.setPrefWidth(250);
+                vbox.setSpacing(8);
+                vbox.setPadding(new Insets(0, 20, 0, 20));
+                vbox.setAlignment(Pos.CENTER);
+                vbox.setStyle("-fx-background-color: white;"+"-fx-background-radius: 20px;");
+                AdminRecHbox.getChildren().add(vbox);
+            }
+        }
+        AdminRecHbox.setSpacing(20);
+        AdminRecHbox.prefWidth(1585);
 
+    }
+
+    @FXML
+    private void PDFGenerator(ActionEvent event) {
+        FreelancerService freelancerService = new FreelancerService();
+        ArrayList<Freelancer> List = freelancerService.getAll();
+        PdfGeneration.FreelancerListPdf(List);
+        pdfLab.setVisible(true);
     }
     
 }
