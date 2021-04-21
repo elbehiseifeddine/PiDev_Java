@@ -152,7 +152,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void OffreEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/offreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/AjoutoffreEmploi.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -163,7 +163,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void ConsulterOffreEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/consulterOffreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/ConsulterOffreEmploi.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -174,7 +174,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void OffreStage(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/offreStage.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/AjoutoffreStage.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -185,7 +185,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void ConsulterOffreStage(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/consulterOffreStage.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 

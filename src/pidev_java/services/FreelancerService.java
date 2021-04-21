@@ -135,11 +135,7 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
         return (false);
     }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> Gestion_Event
     public ArrayList<Freelancer> getAll() {
 
         ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();
