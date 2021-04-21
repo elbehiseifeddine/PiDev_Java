@@ -103,11 +103,12 @@ public class SignUpFreelancerController implements Initializable {
                     f.setViews_nb(0);
                     f.setEtat(1);
                     f.setDate_creation(date);
+                    
                     boolean test=new FreelancerService().add(f);
                     if(test){
-                        compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
-                        compte_validator.setVisible(true); 
                         try {
+                            compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
+                            compte_validator.setVisible(true); 
                             JavaMail.sendMail(tf_email.getText(),"EmailConfirmation");
                         } catch (Exception ex) {
                             Logger.getLogger(SignUpFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
