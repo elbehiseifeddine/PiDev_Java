@@ -19,6 +19,7 @@
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/MaConnection.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminReclamatonController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/MainController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/CreateAdmin.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignInController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdmin.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminService.java</file>
@@ -28,6 +29,7 @@
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/Reclamation.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminReclamationService.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/FreelancerProfileController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/Main.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/SocieteService.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/CreateAdminController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminReclamationService.java</file>
