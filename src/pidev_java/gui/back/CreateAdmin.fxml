@@ -9,17 +9,17 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.CreateAdminController">
    <children>
       <TextField fx:id="nom" layoutX="127.0" layoutY="32.0" promptText="Entrer le nom" />
-      <TextField fx:id="prenom" layoutX="398.0" layoutY="32.0" promptText="Entrer le prenom" />
+      <TextField fx:id="prenom" layoutX="433.0" layoutY="32.0" promptText="Entrer le prenom" />
       <TextField fx:id="login" layoutX="128.0" layoutY="102.0" promptText="Entrer l'email" />
-      <TextField fx:id="pass" layoutX="399.0" layoutY="103.0" promptText="Entrer mot de passe" />
+      <TextField fx:id="pass" layoutX="433.0" layoutY="102.0" promptText="Entrer mot de passe" />
       <ChoiceBox fx:id="type" layoutX="126.0" layoutY="213.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="etat" layoutX="403.0" layoutY="213.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="etat" layoutX="432.0" layoutY="213.0" prefWidth="150.0" />
       <Label layoutX="49.0" layoutY="36.0" text="Nom :" />
-      <Label layoutX="328.0" layoutY="36.0" text="Prenom :" />
+      <Label layoutX="339.0" layoutY="36.0" text="Prenom :" />
       <Label layoutX="48.0" layoutY="107.0" text="Email :" />
-      <Label layoutX="313.0" layoutY="107.0" text="Mot de passe :" />
+      <Label layoutX="324.0" layoutY="107.0" text="Mot de passe :" />
       <Label layoutX="22.0" layoutY="182.0" text="Type de compte" />
-      <Label layoutX="311.0" layoutY="182.0" text="Etat de compte" />
+      <Label layoutX="322.0" layoutY="182.0" text="Etat de compte" />
       <Button fx:id="btnValider" layoutX="163.0" layoutY="313.0" mnemonicParsing="false" onAction="#AjouterAdmin" prefHeight="26.0" prefWidth="115.0" text="Submit" />
       <Button fx:id="btnReset" layoutX="363.0" layoutY="313.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="115.0" text="Reset" />
       <Label fx:id="nom_error" layoutX="128.0" layoutY="58.0" textFill="#df4f6e" />

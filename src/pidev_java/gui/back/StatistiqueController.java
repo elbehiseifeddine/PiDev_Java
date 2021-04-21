@@ -71,27 +71,13 @@ public class StatistiqueController implements Initializable {
             XYChart.Series demandeEmploi = new XYChart.Series<>();
             XYChart.Series demandeStage = new XYChart.Series<>();
 
-            String reqFreelancer = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM freelancer "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqSociete = "SELECT MONTH(date_creation) mois ,COUNT(*) count"
-                    + " FROM societe "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqReclamation = "SELECT DATE_FORMAT(date_reclamation,'%M') mois ,COUNT(*) count"
-                    + " FROM reclamation "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqOffreEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM offre_emploi "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqOffreStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM offre_stage "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqDemandeEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM demande_emploi "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM demande_stage "
-                    + "GROUP BY mois ORDER BY mois ASC;";
+            String reqFreelancer = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM freelancer GROUP BY mois;";
+            String reqSociete = "SELECT MONTH(date_creation) mois ,COUNT(*) count FROM societe GROUP BY mois;";
+            String reqReclamation = "SELECT DATE_FORMAT(date_reclamation,'%M') mois ,COUNT(*) count FROM reclamation GROUP BY mois;";
+            String reqOffreEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_emploi GROUP BY mois;";
+            String reqOffreStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_stage GROUP BY mois;";
+            String reqDemandeEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_emploi GROUP BY mois;";
+            String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_stage GROUP BY mois;";
 
             //Statestique reclamation dans LineChart
             Statement stReclamation = cnx.createStatement();

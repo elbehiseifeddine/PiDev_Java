@@ -25,7 +25,6 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        PdfGeneration.FreelancerListPdf(new FreelancerService().getAll());
         String rootname = "main";
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         //
