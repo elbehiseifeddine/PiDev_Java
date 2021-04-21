@@ -23,7 +23,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String rootname = "main";
+        String rootname = "baseSuperAdmin";
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         //
         if (rootname.equals("main")) {

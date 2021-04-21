@@ -78,7 +78,8 @@ public class JavaMail {
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String path="D:/Projects/ESPRIT/semestre 2/PiDev/Logo-complet.png";
+            //String path="D:/Projects/ESPRIT/semestre 2/PiDev/Logo-complet.png";
+            String path="https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk";
             File file = new File(path.trim());
             DataSource fds = new FileDataSource(file);
             messageBodyPart.setDataHandler(new DataHandler(fds));

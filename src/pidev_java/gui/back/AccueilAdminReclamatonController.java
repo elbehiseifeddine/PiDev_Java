@@ -18,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import pidev_java.entities.Admin;
 import pidev_java.entities.Reclamation;
 import pidev_java.services.AdminReclamationService;
 import pidev_java.services.ReclamationService;
@@ -39,7 +40,7 @@ public class AccueilAdminReclamatonController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        System.out.println(Admin.getInstance().getId());
         ArrayList<Reclamation> listReclamation = new ArrayList<>();
         ReclamationService service = new ReclamationService();
         AdminReclamationService ars = new AdminReclamationService();
@@ -89,7 +90,7 @@ public class AccueilAdminReclamatonController implements Initializable {
                                 + "-fx-fill:#ff1744;"
                         );
             approuve.setOnMouseClicked((event) -> {
-                //ars.Activate(reclamation, admin);
+                ars.Activate(reclamation, Admin.getInstance());
             });
             
             HBox buttons = new HBox(approuve);
