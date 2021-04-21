@@ -13,7 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pidev_java.services.FreelancerService;
 import pidev_java.utils.JavaMail;
+import pidev_java.utils.PdfGeneration;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        PdfGeneration.FreelancerListPdf(new FreelancerService().getAll());
         String rootname = "main";
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         //
@@ -107,6 +110,10 @@ public class Launcher extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private Object FreelancerService() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
