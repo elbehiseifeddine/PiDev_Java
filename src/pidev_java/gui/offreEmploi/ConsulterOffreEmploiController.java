@@ -38,10 +38,6 @@ public class ConsulterOffreEmploiController implements Initializable {
     private ScrollPane scrolEmploi;
     @FXML
     private GridPane gridEmploi;
-    @FXML
-    private ScrollPane scrolStage1;
-    @FXML
-    private GridPane gridStage1;
     emploiService ss=new emploiService();
 
     /**
