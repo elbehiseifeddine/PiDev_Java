@@ -82,6 +82,7 @@ public class CreateAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        type.setValue("Admin des reclamations");
         type.setItems(ListType);
         etat.setValue("Active");
         etat.setItems(ListEtat);
@@ -101,39 +102,38 @@ public class CreateAdminController implements Initializable {
                     } else {
                         if (pass.getText().equals("")) {
                             pass_error.setText("Veuillez saisir le mot de passe");
-                        }else {
-                            if (type.getSelectionModel().getSelectedItem().equals("")){
-                    type_error.setText("Veuillez schoisir un type");
-                }else {
-                              if (etat.getSelectionModel().getSelectedItem().equals("")){
-                    etat_error.setText("Veuillez schoisir un type");
-                }  else{
-                Admin a = new Admin();
-                a.setNom(nom.getText());
-                a.setPrenom(prenom.getText());
-                a.setLogin(login.getText());
-                a.setPass(pass.getText());
-                a.setType(type.getSelectionModel().getSelectedItem());
-                if (etat.getSelectionModel().getSelectedItem().equals("Active")) {
-                    a.setEtat(true);
-                } else {
-                    a.setEtat(false);
-                }
-                System.out.println("helooooooooooooooooooooo");
-                AdminService service = new AdminService();
-                service.add(a);
-                JOptionPane.showMessageDialog(null, "Admin Ajouté avec succes!");
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.close();
-
-            }
+                        } else {
+                            if (type.getSelectionModel().getSelectedItem().equals("")) {
+                                type_error.setText("Veuillez schoisir un type");
+                            } else {
+                                if (etat.getSelectionModel().getSelectedItem().equals("")) {
+                                    etat_error.setText("Veuillez schoisir un type");
+                                } else {
+                                    Admin a = new Admin();
+                                    a.setNom(nom.getText());
+                                    a.setPrenom(prenom.getText());
+                                    a.setLogin(login.getText());
+                                    a.setPass(pass.getText());
+                                    a.setType(type.getSelectionModel().getSelectedItem());
+                                    if (etat.getSelectionModel().getSelectedItem().equals("Active")) {
+                                        a.setEtat(true);
+                                    } else {
+                                        a.setEtat(false);
+                                    }
+                                    System.out.println("helooooooooooooooooooooo");
+                                    AdminService service = new AdminService();
+                                    service.add(a);
+                                    JOptionPane.showMessageDialog(null, "Admin Ajouté avec succes!");
+                                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    stage.close();
+                                }
                             }
                         }
                     }
 
                 }
             }
-        }else {
+        } else {
             System.out.println("bbbbb " + id_admin);
             AdminService service = new AdminService();
             Admin a = service.find(id_admin);

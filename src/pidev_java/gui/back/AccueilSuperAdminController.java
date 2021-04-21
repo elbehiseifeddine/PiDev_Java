@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -119,7 +120,7 @@ public class AccueilSuperAdminController implements Initializable {
 
         } else {
             for (Admin admin : liste) {
-                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+                ImageView image = new ImageView("./pidev_java/assets/img-1-1.png");
                 Label name = new Label(admin.getNom() + " " + admin.getPrenom());
                 Label Labelapprouve = new Label(admin.getApprouve() + " Approuvé");
                 Label Labelnonapprouve = new Label(admin.getNonApprouve() + " Non Approuvé");
@@ -140,10 +141,10 @@ public class AccueilSuperAdminController implements Initializable {
                 deletebtn.setOnMouseClicked((MouseEvent event) -> {
 
                     int reponse = JOptionPane.showConfirmDialog(null, "Vous voulez vraiment supprimer " + admin.getNom() + " " + admin.getPrenom() + "?", "Select an Option...",
-                            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
                     if (reponse == JOptionPane.YES_OPTION) {
                         adminService.delete(admin);
-                        refrechAdminReclamation();
+                        refrechpage();
                     }
                 });
                 editbtn.setOnMouseClicked((event) -> {
@@ -161,6 +162,7 @@ public class AccueilSuperAdminController implements Initializable {
                     Parent parent = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
+                    stage.setTitle("Modifier admin");
                     stage.initStyle(StageStyle.UTILITY);
                     stage.show();
 
@@ -173,6 +175,7 @@ public class AccueilSuperAdminController implements Initializable {
                 vbox.setMaxWidth(1501 / liste.size());
                 vbox.setSpacing(13);
                 vbox.setPadding(new Insets(0, 20, 0, 20));
+                vbox.setAlignment(Pos.CENTER);
                 AdminRecHbox.getChildren().add(vbox);
             }
         }
@@ -190,7 +193,7 @@ public class AccueilSuperAdminController implements Initializable {
             LabelVideEmploi.setText("Aucun admin disponible, pensez à lui créer ! ");
         } else {
             for (Admin admin : liste) {
-                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+                ImageView image = new ImageView("./pidev_java/assets/img-1-1.png");
                 Label name = new Label(admin.getNom() + " " + admin.getPrenom());
                 Label Labelapprouve = new Label(admin.getApprouve() + " Approuvé");
                 Label Labelnonapprouve = new Label(admin.getNonApprouve() + " Non Approuvé");
@@ -211,10 +214,10 @@ public class AccueilSuperAdminController implements Initializable {
                 deletebtn.setOnMouseClicked((MouseEvent event) -> {
 
                     int reponse = JOptionPane.showConfirmDialog(null, "Vous voulez vraiment supprimer " + admin.getNom() + " " + admin.getPrenom() + "?", "Select an Option...",
-                            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
                     if (reponse == JOptionPane.YES_OPTION) {
                         adminService.delete(admin);
-                        refrechAdminReclamation();
+                        refrechpage();
                     }
                 });
                 editbtn.setOnMouseClicked((event) -> {
@@ -232,6 +235,7 @@ public class AccueilSuperAdminController implements Initializable {
                     Parent parent = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
+                    stage.setTitle("Modifier admin");
                     stage.initStyle(StageStyle.UTILITY);
                     stage.show();
 
@@ -244,6 +248,7 @@ public class AccueilSuperAdminController implements Initializable {
                 vbox.setMaxWidth(1501 / liste.size());
                 vbox.setSpacing(13);
                 vbox.setPadding(new Insets(0, 20, 0, 20));
+                vbox.setAlignment(Pos.CENTER);
                 AdminEmploiHbox.getChildren().add(vbox);
             }
         }
@@ -261,7 +266,7 @@ public class AccueilSuperAdminController implements Initializable {
             LabelVideEvent.setText("Aucun admin disponible, pensez à lui créer ! ");
         } else {
             for (Admin admin : liste) {
-                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+                ImageView image = new ImageView("./pidev_java/assets/img-1-1.png");
                 Label name = new Label(admin.getNom() + " " + admin.getPrenom());
                 Label Labelapprouve = new Label(admin.getApprouve() + " Approuvé");
                 Label Labelnonapprouve = new Label(admin.getNonApprouve() + " Non Approuvé");
@@ -282,10 +287,10 @@ public class AccueilSuperAdminController implements Initializable {
                 deletebtn.setOnMouseClicked((MouseEvent event) -> {
 
                     int reponse = JOptionPane.showConfirmDialog(null, "Vous voulez vraiment supprimer " + admin.getNom() + " " + admin.getPrenom() + "?", "Select an Option...",
-                            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
                     if (reponse == JOptionPane.YES_OPTION) {
                         adminService.delete(admin);
-                        refrechAdminReclamation();
+                        refrechpage();
                     }
                 });
                 editbtn.setOnMouseClicked((event) -> {
@@ -303,6 +308,7 @@ public class AccueilSuperAdminController implements Initializable {
                     Parent parent = loader.getRoot();
                     Stage stage = new Stage();
                     stage.setScene(new Scene(parent));
+                    stage.setTitle("Modifier admin");
                     stage.initStyle(StageStyle.UTILITY);
                     stage.show();
 
@@ -315,6 +321,7 @@ public class AccueilSuperAdminController implements Initializable {
                 vbox.setMaxWidth(1501 / liste.size());
                 vbox.setSpacing(13);
                 vbox.setPadding(new Insets(0, 20, 0, 20));
+                vbox.setAlignment(Pos.CENTER);
                 AdminEventHbox.getChildren().add(vbox);
             }
         }
@@ -336,14 +343,22 @@ public class AccueilSuperAdminController implements Initializable {
         Parent parent = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
+        stage.setTitle("Créer nouveau admin");
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
 
     @FXML
     private void Refresh(ActionEvent event) {
-        refrechAdminEmploi();
-        refrechAdminEvents();
-        refrechAdminReclamation();
+        refrechpage();
+    }
+    
+     void refrechpage(){
+        AdminRecHbox.getChildren().setAll();
+        AdminEmploiHbox.getChildren().setAll();
+        AdminEventHbox.getChildren().setAll();
+        loadDataRec();
+        loadDataEmploi();
+        loadDataEvent();
     }
 }
