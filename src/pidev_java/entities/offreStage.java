@@ -22,7 +22,7 @@ public class offreStage {
     private String typeStage;
     private Date dateCreation;
     private Date dateExpiration;
-
+private int etat;
     public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration) {
         this.nomProjet = nomProjet;
         this.competence = competence;
@@ -34,6 +34,18 @@ public class offreStage {
         this.dateExpiration = dateExpiration;
         
         
+    }
+
+    public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration, int etat) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.duree = duree;
+        this.typeStage = typeStage;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
     }
 
     public offreStage(int id, String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration) {
@@ -95,6 +107,14 @@ public class offreStage {
 
     public Date getDateExpiration() {
         return dateExpiration;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
     }
     
     

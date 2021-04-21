@@ -32,7 +32,7 @@ public class stageService implements IServiceOffre<offreStage> {
     public void add(offreStage entity) {
        try{
         
-        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration)"
+        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat)"
                 + " values (?, ?, ?, ?,?, ?, ?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
@@ -45,6 +45,7 @@ public class stageService implements IServiceOffre<offreStage> {
              ps.setString(7, entity.getTypeStage());
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
+            ps.setInt(10,0);
            
            
             ps.executeUpdate();
@@ -120,6 +121,38 @@ public class stageService implements IServiceOffre<offreStage> {
             } catch (Exception ex) {
 	    System.err.println(ex.getMessage());
             }   
+    }
+
+    @Override
+    public List<offreStage> getOwn() {
+         ArrayList<offreStage> res = new ArrayList<offreStage>();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_stage  where offre_stage.societe_id=societe.id ";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                 
+    
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom_projet");
+                String comp = rs.getString("competences");
+                String description = rs.getString("description");
+                String domaine=rs.getString("domaine");
+                String duree=rs.getString("duree");
+                String type=rs.getString("type_stage");
+                Date dtc=rs.getDate("date_creation");
+                Date dtE=rs.getDate("date_expiration");
+               
+                
+                offreStage F = new offreStage (id,nom,comp,description,domaine,duree,type,dtc,dtE);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;    
     }
     
 }

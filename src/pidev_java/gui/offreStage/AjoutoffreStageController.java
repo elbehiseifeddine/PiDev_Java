@@ -118,10 +118,11 @@ public class AjoutoffreStageController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now.toLocalDate());
         Date dateC = Date.valueOf(now.toLocalDate());
-
-        Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
+         Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
 
         offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbDomaine.getSelectionModel().getSelectedItem(), dateC, dateE);
+            
+        
         if (this.tfNom.getText().equals("")) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
@@ -138,28 +139,30 @@ public class AjoutoffreStageController implements Initializable {
             usernameValidator.getItems().add(
                     new MenuItem("entrer une description"));
             usernameValidator.show(tfDescription, Side.RIGHT, 10, 0);
-        } else if (this.cmbDomaine.getEditor().getText().equals("")) {
+        } else if (this.cmbDomaine.getValue().equals("")) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
                     new MenuItem("choisir un domaine"));
             usernameValidator.show(cmbDomaine, Side.RIGHT, 10, 0);
-        } else if (this.cmbType.getEditor().getText().equals("")) {
+        } else if (this.cmbType.getValue().equals("")) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
                     new MenuItem("choisir un type de stage"));
             usernameValidator.show(cmbType, Side.RIGHT, 10, 0);
-        } else if (this.cmbDuree.getEditor().getText().equals("")) {
+        } else if (this.cmbDuree.getValue().equals("")) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
                     new MenuItem("choisir une durée"));
             usernameValidator.show(cmbDuree, Side.RIGHT, 10, 0);
-        } else if (this.dtExpiration.getValue().equals("1997-12-12")) {
-            usernameValidator.getItems().clear();
-            usernameValidator.getItems().add(
-                    new MenuItem("saisir une date d'expiration"));
-            usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
+//        } else if (this.dtExpiration.getValue()==null) {
+//            usernameValidator.getItems().clear();
+//            usernameValidator.getItems().add(
+//                    new MenuItem("saisir une date d'expiration"));
+//            usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
+            
         } else {
             
+           
             new stageService().add(e);
             showAlertWithHeaderText();
               this.cs.updateList();

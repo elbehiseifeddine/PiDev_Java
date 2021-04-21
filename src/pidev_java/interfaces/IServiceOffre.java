@@ -16,5 +16,6 @@ public interface IServiceOffre<T> {
     public void delete(int id);
     public void update(T entity);
     public List<T> getAll();
+    public List<T> getOwn();
     
 }

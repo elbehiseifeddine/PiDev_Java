@@ -117,6 +117,11 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
             }   
     }
 
+    @Override
+    public List<offreEmploi> getOwn() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
     
     
