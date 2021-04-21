@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -40,14 +41,20 @@ public class ConsulterOffreStageController implements Initializable {
     
     stageService ss=new stageService();
     @FXML
+    private TabPane idTab;
+    @FXML
     private Button btnA;
+    @FXML
+    private ScrollPane scrolStage1;
+    @FXML
+    private GridPane gridStage1;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+       // idTab.getSelectionModel().getSelectedItem().
         
         scrolStage.setVisible(true);
          gridStage.getChildren().clear();

@@ -14,9 +14,11 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -36,6 +38,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreStage;
 import pidev_java.services.stageService;
 
@@ -164,7 +168,8 @@ public class AjoutoffreStageController implements Initializable {
         offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbDomaine.getSelectionModel().getSelectedItem(), dateC, dateE);
             
             new stageService().add(e);
-            showAlertWithHeaderText();
+           notification();
+            this.resetStage();
               this.cs.updateList();
                 Window window = ((Node) (event.getSource())).getScene().getWindow();
         if (window instanceof Stage) {
@@ -213,5 +218,25 @@ public class AjoutoffreStageController implements Initializable {
         alert.setContentText("votre offre est ajouté avec succés!");
 
         alert.showAndWait();
+    }
+    
+    public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés d'ajout")
+                .text("votre offre a été ajouter avec succés")
+              //  .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
+    
     }
 }

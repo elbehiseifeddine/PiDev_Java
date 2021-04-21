@@ -128,7 +128,7 @@ public class stageService implements IServiceOffre<offreStage> {
          ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_stage  where offre_stage.societe_id=societe.id ";
+            String sql = "SELECT * FROM offre_stage  where societe_id=9";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  

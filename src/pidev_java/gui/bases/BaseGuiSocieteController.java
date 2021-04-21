@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -202,6 +203,16 @@ public class BaseGuiSocieteController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void ConsulterOffreStage(MouseEvent event) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
     }
 
 }

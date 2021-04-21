@@ -14,17 +14,24 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.emploiService;
 
@@ -83,18 +90,64 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     
     @FXML
     private void ajouterEmploi(MouseEvent event) {
+        
+        ContextMenu usernameValidator = new ContextMenu();
+        usernameValidator.setAutoHide(false);
+        final ContextMenu passValidator = new ContextMenu();
+        passValidator.setAutoHide(false);
+        
+        
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
           LocalDateTime now = LocalDateTime.now();
           System.out.println(now.toLocalDate());
          Date dateC=Date.valueOf(now.toLocalDate());
+         
+         if (this.tfNom.getText().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("entrer un nom de projet"));
+                    usernameValidator.show(tfNom, Side.RIGHT, 10, 0);
+                }
+        else if (this.tfCompetences.getText().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("entrer des compétences"));
+                    usernameValidator.show(tfCompetences, Side.RIGHT, 10, 0);
+                }
+        else if (this.tfDescription.getText().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("entrer une description"));
+                    usernameValidator.show(tfDescription, Side.RIGHT, 10, 0);
+                }
+        else if (this.cmbDomaine.getValue().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("choisir un domaine"));
+                    usernameValidator.show(cmbDomaine, Side.RIGHT, 10, 0);
+                }
+         else if (this.tfsalaire.equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("saisir un salaire"));
+                    usernameValidator.show(tfsalaire, Side.RIGHT, 10, 0);
+         }
+          else if (this.dtExpiration.getValue()==null) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("saisir une date d'expiration"));
+                    usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
+         }
+          else{
          Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
         
        
         offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),tfsalaire.getText(),dateC,dateE);
       
         new emploiService().add(e);
-        showAlertWithHeaderText();
+        notification();
         reset();
+    }
     }
 
     @FXML
@@ -119,6 +172,25 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.cmbDomaine.setValue("-- choisir un domaine --");
     
     this.dtExpiration.setValue(null);
+    
+    }
+     public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés d'ajout")
+                .text("votre offre a été ajouter avec succés")
+              //  .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
     
     }
     
