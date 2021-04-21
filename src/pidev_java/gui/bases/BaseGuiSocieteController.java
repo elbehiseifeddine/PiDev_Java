@@ -192,6 +192,27 @@ public class BaseGuiSocieteController implements Initializable {
         }
 
     }
+    @FXML
+    private void ConsulterDemandeE (){
+        
+         try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/demandeEmploi.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
+    }
+    
+     @FXML
+    private void ConsulterDemandeS(){
+        
+         try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/demandeStage.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
+    }
 
     @FXML
     private void Publication(ActionEvent event) {

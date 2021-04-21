@@ -78,7 +78,7 @@ public class JavaMail {
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
             messageBodyPart = new MimeBodyPart();
-            String path="D:/Projects/ESPRIT/semestre 2/PiDev/Logo-complet.png";
+            String path="../assets/Logo complet.png";
             File file = new File(path.trim());
             DataSource fds = new FileDataSource(file);
             messageBodyPart.setDataHandler(new DataHandler(fds));
