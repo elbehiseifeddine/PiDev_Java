@@ -109,23 +109,28 @@ public class CreateAdminController implements Initializable {
                                 if (etat.getSelectionModel().getSelectedItem().equals("")) {
                                     etat_error.setText("Veuillez schoisir un type");
                                 } else {
-                                    Admin a = new Admin();
-                                    a.setNom(nom.getText());
-                                    a.setPrenom(prenom.getText());
-                                    a.setLogin(login.getText());
-                                    a.setPass(pass.getText());
-                                    a.setType(type.getSelectionModel().getSelectedItem());
-                                    if (etat.getSelectionModel().getSelectedItem().equals("Active")) {
-                                        a.setEtat(true);
-                                    } else {
-                                        a.setEtat(false);
-                                    }
-                                    System.out.println("helooooooooooooooooooooo");
                                     AdminService service = new AdminService();
-                                    service.add(a);
-                                    JOptionPane.showMessageDialog(null, "Admin Ajouté avec succes!");
-                                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                                    stage.close();
+                                    if (service.AdminExiste(login.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Admin existe déja !");
+                                    } else {
+                                        Admin a = new Admin();
+                                        a.setNom(nom.getText());
+                                        a.setPrenom(prenom.getText());
+                                        a.setLogin(login.getText());
+                                        a.setPass(pass.getText());
+                                        a.setType(type.getSelectionModel().getSelectedItem());
+                                        if (etat.getSelectionModel().getSelectedItem().equals("Active")) {
+                                            a.setEtat(true);
+                                        } else {
+                                            a.setEtat(false);
+                                        }
+                                        System.out.println("helooooooooooooooooooooo");
+
+                                        service.add(a);
+                                        JOptionPane.showMessageDialog(null, "Admin Ajouté avec succes!");
+                                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                        stage.close();
+                                    }
                                 }
                             }
                         }
