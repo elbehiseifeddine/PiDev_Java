@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -856,6 +857,7 @@ public class ToExcel {
     }
     public void excelfile() {
         try {
+            
             Workbook workbook = new XSSFWorkbook();
             ReclamationExcel(workbook);
             OffreEmploiExcel(workbook);
@@ -865,10 +867,21 @@ public class ToExcel {
             DemandeEmploiExcel(workbook);
             DemandeStageExcel(workbook);
 
-            FileOutputStream fileOut = new FileOutputStream("Historique.xlsx");
+            
+            
+             JFileChooser f = new JFileChooser();
+             f.setDialogTitle("save : ");
+        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
+        
+        f.showSaveDialog(null);
+        if(f.getSelectedFile()!=null){
+            FileOutputStream fileOut = new FileOutputStream(f.getCurrentDirectory()+"\\Historique.xlsx");
             workbook.write(fileOut);
             fileOut.close();
             workbook.close();
+        System.out.println(f.getSelectedFile());
+        }
+
         } catch (IOException ex) {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }

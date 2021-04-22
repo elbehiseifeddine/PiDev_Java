@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
@@ -21,6 +22,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import pidev_java.services.ToExcel;
 import pidev_java.utils.MaConnection;
 
 /**
@@ -56,6 +59,8 @@ public class StatistiqueController implements Initializable {
     private NumberAxis y_demande;
     @FXML
     private CategoryAxis x_demande;
+    @FXML
+    private Button ExportExcel;
 
     /**
      * Initializes the controller class.
@@ -568,6 +573,12 @@ public class StatistiqueController implements Initializable {
             Logger.getLogger(StatistiqueController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @FXML
+    private void ExportToExcel(ActionEvent event) {
+        ToExcel excel = new ToExcel();
+        excel.excelfile();
     }
 
 }

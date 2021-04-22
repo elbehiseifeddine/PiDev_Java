@@ -53,9 +53,7 @@ public class Launcher extends Application {
         //primaryStage.show();
             case "baseSuperAdmin":
                 {
-                    ToExcel excel = new ToExcel();
                     
-                    excel.excelfile();
                     Image img = new Image("pidev_java/assets/Logo_Compact.png");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/bases/BaseGuiSuperAdmin.fxml"));
                     Parent root = loader.load();

@@ -408,7 +408,11 @@ public class AccueilSuperAdminController implements Initializable {
 
     @FXML
     private void rechercheAdmin(KeyEvent event) {
+        if (recherche.getText().isEmpty()){
+            refrechpage();
+        }else{
         recherche(recherche.getText());
+        }
         
     }
 
@@ -501,7 +505,7 @@ public class AccueilSuperAdminController implements Initializable {
         } else {
             Label erreur = new Label("Admin n'existe pas !");
 
-            erreur.setStyle("-fx-fill:#e10707;"
+            erreur.setStyle("-fx-text-fill:#e70707;"
                     + "-fx-font-weight : Bold ;");
             Admins.getChildren().add(erreur);
         }
