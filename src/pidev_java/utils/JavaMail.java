@@ -82,7 +82,7 @@ public class JavaMail {
             BodyPart messageBodyPart = new MimeBodyPart();
             String htmlText = 
                 "<center>" +
-                "   <img src=\"cid:image\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
+                "   <img src=\"https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
                 "   <br>" +
                 "   <h1>Bienvenu dans notre site RightJob </h1>" +
                 "   <p>Votre adhesion est effectuer avec succés , j'espère vous trouvez ce que vous chercher, nous vous souhaitons nos chèrs salutation</p>" +
@@ -91,14 +91,14 @@ public class JavaMail {
                 "</center>";
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
-            messageBodyPart = new MimeBodyPart();
-            String path="C:/xampp/htdocs/PiDev_Java/src/pidev_java/assets/Logo complet (1).png";
+            //messageBodyPart = new MimeBodyPart();
+            //String path="C:/xampp/htdocs/PiDev_Java/src/pidev_java/assets/Logo complet (1).png";
 //            String path="https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk";
-            File file = new File(path.trim());
-            DataSource fds = new FileDataSource(file);
-            messageBodyPart.setDataHandler(new DataHandler(fds));
-            messageBodyPart.setHeader("Content-ID", "<image>");
-            multipart.addBodyPart(messageBodyPart);
+//            File file = new File(path.trim());
+//            DataSource fds = new FileDataSource(file);
+//            messageBodyPart.setDataHandler(new DataHandler(fds));
+//            messageBodyPart.setHeader("Content-ID", "<image>");
+            //multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
             Transport.send(message);
             System.out.println("message sent");
@@ -118,21 +118,21 @@ public class JavaMail {
             BodyPart messageBodyPart = new MimeBodyPart();
             String htmlText = 
                 "<center>" +
-                "   <img src=\"cid:image\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
+                "   <img src=\"https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
                 "   <br>" +
                 "   <h1>Nouvelle Reclamation détécté </h1>" +
                 "   <p>Une nouvelle reclamation est intercépter, veuillez la consulter à partir de votre profil d'admin de reclamation ! Merci !</p>" +
                 "</center>";
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
-            messageBodyPart = new MimeBodyPart();
-            String path="C:/xampp/htdocs/PiDev_Java/src/pidev_java/assets/Logo complet (1).png";
-//            String path="https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk";
-            File file = new File(path.trim());
-            DataSource fds = new FileDataSource(file);
-            messageBodyPart.setDataHandler(new DataHandler(fds));
-            messageBodyPart.setHeader("Content-ID", "<image>");
-            multipart.addBodyPart(messageBodyPart);
+//            messageBodyPart = new MimeBodyPart();
+//            String path="C:/xampp/htdocs/PiDev_Java/src/pidev_java/assets/Logo complet (1).png";
+////            String path="https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk";
+//            File file = new File(path.trim());
+//            DataSource fds = new FileDataSource(file);
+//            messageBodyPart.setDataHandler(new DataHandler(fds));
+//            messageBodyPart.setHeader("Content-ID", "<image>");
+//            multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
             Transport.send(message);
             System.out.println("message sent");
