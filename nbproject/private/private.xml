@@ -1,88 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/styles/Styles.css</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiOffreAdminController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpSocieteController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiReclamationAdminController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/FreelancerService.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/styles/Styles.css</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/entities/Freelancer.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/utils/JavaMail.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/SocieteService.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/Launcher.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ListeFreelancersSuperAdminController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/AdminService.java</file>
-=======
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/ReclamationService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiReclamationAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/Statistique.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/StatistiqueController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/JavaMail.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/Admin.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiSuperAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/Launcher.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignIn.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListeSocieteSuperAdmin.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/MaConnection.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminReclamatonController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/MainController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignInController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdmin.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/FreelancerService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListeFreelancersSuperAdmin.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/Reclamation.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminReclamationService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/FreelancerProfileController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/SocieteService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/CreateAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminReclamationService.java</file>
->>>>>>> Gestion_admins
+            <file>file:/C:/wamp64/www/PiDev_Java/src/pidev_java/services/DemandeStageService.java</file>
+            <file>file:/C:/wamp64/www/PiDev_Java/src/pidev_java/gui/quiz/reponse.fxml</file>
+            <file>file:/C:/wamp64/www/PiDev_Java/src/pidev_java/gui/quiz/quiz.fxml</file>
+            <file>file:/C:/wamp64/www/PiDev_Java/src/pidev_java/gui/quiz/question.fxml</file>
         </group>
     </open-files>
 </project-private>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/utils/PdfGeneration.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/FreelancerService.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/styles/Styles.css</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/FreelancerProfileController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/Launcher.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ListeFreelancersSuperAdminController.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> Gestion_Utilisateur
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/DemandeEmploiController.java</file>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/services/DemandeEmploiService.java</file>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/AjoutDemandeEController.java</file>
-        </group>
-    </open-files>
-</project-private>
->>>>>>> Gestion_Demandes
