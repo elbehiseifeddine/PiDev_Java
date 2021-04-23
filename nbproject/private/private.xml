@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -75,3 +76,17 @@
     </open-files>
 </project-private>
 >>>>>>> Gestion_Utilisateur
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
+            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/DemandeEmploiController.java</file>
+            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/services/DemandeEmploiService.java</file>
+            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/AjoutDemandeEController.java</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> Gestion_Demandes
