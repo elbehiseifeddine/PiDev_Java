@@ -5,6 +5,7 @@
  */
 package pidev_java.gui.bases;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,8 +77,9 @@ public class BaseGuiController implements Initializable {
         try {
             nom.setText(Freelancer.getInstance().getNom());
             email.setText(Freelancer.getInstance().getEmail());
-            Image im=new Image("/pidev_java/assets/"+Freelancer.getInstance().getPhoto_de_profile(),false);
-            myCircle.setFill(new ImagePattern(im));
+            File file= new File(Freelancer.getInstance().getPhoto_de_profile());
+            Image img = new Image(file.toURI().toString());
+            myCircle.setFill(new ImagePattern(img));
             System.out.println("FreelancerProfile.fxmlaaaaaaaaaaaaaaa");
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/utilisateur/FreelancerProfile.fxml"));
             System.out.println("FreelancerProfile.fxml");

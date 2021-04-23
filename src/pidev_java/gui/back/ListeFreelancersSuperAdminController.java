@@ -7,6 +7,8 @@ package pidev_java.gui.back;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,17 +32,22 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import pidev_java.entities.Admin;
 import pidev_java.entities.Freelancer;
+import pidev_java.gui.utilisateur.FreelancerProfileController;
 import pidev_java.services.AdminService;
 import pidev_java.services.FreelancerService;
 import pidev_java.utils.PdfGeneration;
@@ -100,7 +108,16 @@ public class ListeFreelancersSuperAdminController implements Initializable {
 
         } else {
             for (Freelancer freelancer : liste) {
-                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+                System.out.println(freelancer.getPhoto_de_profile());
+                System.out.println(freelancer.getNom());
+                System.out.println(freelancer);
+                System.out.println("aaaaaaaaaaaaaaaaa");
+                File file= new File(freelancer.getPhoto_de_profile());
+                Image img = new Image(file.toURI().toString());
+                Circle image=new Circle();
+                image.setFill(new ImagePattern(img));
+               
+                
                 Label name = new Label(freelancer.getNom() + " " + freelancer.getPrenom());
                 name.setStyle("-fx-font-weight: bold;");
                 Label LabelEmail = new Label(freelancer.getEmail());

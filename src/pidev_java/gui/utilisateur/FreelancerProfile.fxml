@@ -205,7 +205,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="btn_save" mnemonicParsing="false" prefHeight="46.0" prefWidth="1458.0" styleClass="profile_edit_p_button" text="Cliquer pour choisir une photo" />
+                  <Button fx:id="btn_save" mnemonicParsing="false" onAction="#AttachPic" prefHeight="46.0" prefWidth="1458.0" styleClass="profile_edit_p_button" text="Cliquer pour choisir une photo" />
                   <Button mnemonicParsing="false" onAction="#Save" prefHeight="34.0" prefWidth="2344.0" styleClass="profile_edit_save_button" text="Sauvegarder">
                      <VBox.margin>
                         <Insets top="40.0" />
