@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.FormationController">
-   <children>
-      <Button fx:id="btnajouter" layoutX="431.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#ajouterformation" prefHeight="25.0" prefWidth="70.0" text="ajouter" />
-      <Button fx:id="btnmodifier" layoutX="506.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#modifierformation" text="modifier" />
-      <Button fx:id="btnsupp" layoutX="571.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#supprimerformation" text="supprimer" />
-      <TextField fx:id="textlabelle" layoutX="14.0" layoutY="95.0" prefHeight="25.0" prefWidth="122.0" promptText="labelle" />
-      <TextField fx:id="textdecription" layoutX="14.0" layoutY="134.0" prefHeight="25.0" prefWidth="122.0" promptText="description" />
-      <TextField fx:id="textedated" layoutX="14.0" layoutY="222.0" prefHeight="25.0" prefWidth="122.0" promptText="heure debut" />
-      <TextField fx:id="textdatef" layoutX="14.0" layoutY="312.0" prefHeight="25.0" prefWidth="122.0" promptText="heure fin" />
-      <TextField fx:id="textlieu" layoutX="14.0" layoutY="350.0" prefHeight="25.0" prefWidth="122.0" promptText="Lieu" />
-      <TextField fx:id="textdomaine" layoutX="14.0" layoutY="389.0" prefHeight="25.0" prefWidth="122.0" promptText="Domaine" />
-      <TextField fx:id="textmontant" layoutX="14.0" layoutY="422.0" onKeyTyped="#controlemontant" prefHeight="25.0" prefWidth="122.0" promptText="Montant" />
-      <TableView fx:id="tableformation" layoutX="306.0" layoutY="86.0" onMouseClicked="#afficherform" prefHeight="422.0" prefWidth="768.0">
-        <columns>
-          <TableColumn fx:id="labelle" minWidth="5.0" prefWidth="58.0" text="Labelle" />
-            <TableColumn fx:id="description" prefWidth="72.0" text="Description" />
-            <TableColumn fx:id="dated" prefWidth="60.0" text="Date Debut" />
-            <TableColumn fx:id="datef" prefWidth="61.0" text="Date Fin" />
-            <TableColumn fx:id="lieu" prefWidth="140.0" text="Lieu" />
-            <TableColumn fx:id="domaine" prefWidth="185.0" text="Domaine" />
-          <TableColumn fx:id="montant" prefWidth="63.0" text="Montant" />
-            <TableColumn fx:id="action" prefWidth="128.0" text="Action" />
-        </columns>
-      </TableView>
-      <Label fx:id="textid" layoutX="129.0" layoutY="55.0" textFill="WHITE">
-         <font>
-            <Font size="1.0" />
-         </font>
-      </Label>
-      <DatePicker fx:id="textdatedeb" layoutX="14.0" layoutY="181.0" prefHeight="25.0" prefWidth="122.0" promptText="date debut" />
-      <DatePicker fx:id="textdatefin" layoutX="14.0" layoutY="272.0" prefHeight="25.0" prefWidth="122.0" promptText="date fin" />
-      <TextField fx:id="textimage" layoutX="14.0" layoutY="459.0" onMouseClicked="#importimg" prefHeight="25.0" prefWidth="122.0" promptText="image" />
-      <Label fx:id="labellabel" layoutX="144.0" layoutY="99.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labeldesc" layoutX="144.0" layoutY="134.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labeldatedeb" layoutX="144.0" layoutY="181.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labelheuredeb" layoutX="144.0" layoutY="222.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labeldatefin" layoutX="144.0" layoutY="272.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labelheurefin" layoutX="144.0" layoutY="312.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labellieu" layoutX="144.0" layoutY="350.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labeldaomaine" layoutX="144.0" layoutY="389.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labelmontant" layoutX="144.0" layoutY="422.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-      <Label fx:id="labelimage" layoutX="144.0" layoutY="459.0" prefHeight="25.0" prefWidth="154.0" textFill="#ee0707" />
-   </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.FormationController">
+  <tabs>
+    <Tab fx:id="tabMesFormation" text="Mes Formation">
+         <content>
+            <AnchorPane prefHeight="180.0" prefWidth="900.0">
+               <children>
+                    <Pane fx:id="paneMesFormation" layoutX="6.0" prefHeight="116.0" prefWidth="974.0">
+                     <children>
+                        <FontAwesomeIconView fx:id="ajoutFormation" fill="#0017ff" glyphName="PLUS" layoutX="14.0" layoutY="61.0" onMouseClicked="#AjoutFormation" size="45" />
+                     </children>
+                  </Pane>
+                  <ScrollPane fx:id="scrolMesFormation" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
+                     <content>
+                        <GridPane fx:id="gridMesFormation" prefHeight="443.0" prefWidth="900.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                 
+               </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+    <Tab fx:id="tabFormation" text="Formation">
+         <content>
+               <AnchorPane prefHeight="180.0" prefWidth="900.0">
+               <children>
+            <ScrollPane fx:id="scrolFormation" layoutX="26.0" layoutY="101.0" prefHeight="656.0" prefWidth="900.0">
+               <content>
+                  <GridPane fx:id="gridFormation" prefHeight="434.0" prefWidth="700.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+              </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+      <Tab fx:id="tabFormation1" text="Mes Praticipations">
+         <content>
+                <AnchorPane prefHeight="180.0" prefWidth="900.0">
+               <children>
+            <ScrollPane fx:id="scrolPartF"  layoutX="26.0" layoutY="101.0"  prefHeight="656.0" prefWidth="900.0">
+               <content>
+                  <GridPane fx:id="gridPartF" prefHeight="434.0" prefWidth="700.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author seifeddine
  */
 public class MaConnection {
-    private String url="jdbc:mysql://localhost:3306/pidev";
+    private String url="jdbc:mysql://localhost:3308/pidev";
     private String userName="root";
     private String password="";
     
@@ -25,9 +25,10 @@ public class MaConnection {
     
     private MaConnection(){
         try{
+            Class.forName("com.mysql.jdbc.Driver");
             cnx= DriverManager.getConnection(url,userName,password);
             System.out.println("connection établie");
-        }catch(SQLException ex){
+        }catch(Exception ex){
             Logger.getLogger(MaConnection.class.getName()).log(Level.SEVERE,null,ex);
         }
     }

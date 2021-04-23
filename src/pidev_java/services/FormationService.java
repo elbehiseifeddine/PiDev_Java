@@ -39,8 +39,8 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setString(7,e.getImageF());
                 preparedStmt.setString(8, e.getLabelle());
                 preparedStmt.setBoolean(9, e.isEtat());
-                preparedStmt.setLong(10, 1);
-                preparedStmt.setLong(11, 1);
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, 1);
               
                 preparedStmt.execute();
@@ -121,6 +121,70 @@ public class FormationService implements IServiceEvent<Formation>{
  
 		return true;
 	}
+    
+    
+        
+    public ArrayList<Formation> ListerparU(int idu) {
+        ArrayList<Formation> res = new ArrayList<Formation>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where id_fr_id="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("image");
+                
+                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+    
+    
+     public Formation FindParId(int idf) {
+       Formation F=new Formation();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where id="+idf;
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt("id");
+                System.out.println(id+" hadha id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("image");
+                
+                 F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return F;
+    }
 
    
 }

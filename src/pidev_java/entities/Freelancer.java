@@ -17,6 +17,12 @@ public class Freelancer {
     public Freelancer() {
     }
 
+    public Freelancer(int id) {
+        this.id = id;
+    }
+
+    
+    
     public Freelancer(String nom, String prenom, String adresse, String email, String mot_de_passe, String photo_de_profile, String sexe, String competences, String langues, String compte_facebook, String compte_linkedin, String compte_twitter, String date_creation, int etat, int views_nb) {
         this.nom = nom;
         this.prenom = prenom;

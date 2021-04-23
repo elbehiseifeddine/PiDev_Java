@@ -1,27 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/styles/Styles.css</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiOffreAdminController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpSocieteController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiReclamationAdminController.java</file>
-=======
->>>>>>> Gestion_Utilisateur
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/FreelancerService.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/styles/Styles.css</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/SocieteService.java</file>
-<<<<<<< HEAD
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/Launcher.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ListeFreelancersSuperAdminController.java</file>
-=======
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/AdminService.java</file>
->>>>>>> Gestion_Utilisateur
-        </group>
-    </open-files>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
 </project-private>
