@@ -78,7 +78,7 @@ public class publicationsListViewCell extends ListCell<Publications> {
 
             }
 
-            lb_user_id.setText(String.valueOf(publications.getFreelancer_id()));
+            lb_user_id.setText(String.valueOf(publications.getNomUtil()) + " " + String.valueOf(publications.getPrenomUtil()) );
             lb_pub_desc.setText(publications.getDescription());
             img_pub.setImage(new Image( publications.getImage()));
             lb_pub_date.setText(publications.getDate_publication());
@@ -112,32 +112,35 @@ public class publicationsListViewCell extends ListCell<Publications> {
 
             setText(null);
             setGraphic(gridPane);
+            Freelancer f = Freelancer.getInstance();
+            if (publications.getFreelancer_id() != f.getId()){
+                btn_pub_sup.setVisible(false) ;
+                btn_pub_edit.setVisible(false);
+            }
             
             btn_pub_sup.setOnAction(e->{
-                Freelancer f = Freelancer.getInstance();
-                
                 if (publications.getFreelancer_id() == f.getId()){
                 
                    PublicationsService ser = new PublicationsService();
+                   
                     try {
                         ser.delete(publications.getId());
+                        
                     } 
                     catch (SQLException ex) {
                         Logger.getLogger(publicationsListViewCell.class.getName()).log(Level.SEVERE, null, ex);
                     }
-    ;
-
 
                        JOptionPane.showMessageDialog(null, "Publication suprimée !");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Cette publication ne vous appartient pas !");
                 }
+                
             
             });
             
             btn_pub_edit.setOnAction(e->{
-                Freelancer f = Freelancer.getInstance();
                 Stage stage = new Stage();
                 
                 

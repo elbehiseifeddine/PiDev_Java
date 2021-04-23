@@ -81,17 +81,29 @@ public class PublicationsController implements Initializable {
 
     @FXML
     private void ajouterP(ActionEvent event) throws SQLException {
-        Freelancer f = Freelancer.getInstance();
-        Publications p = new Publications();
-            p.setDescription(tf_pub_desc.getText());
-            p.setImage(file.toURI().toString());
-            p.setFreelancer_id(f.getId());
+        if(tf_pub_desc.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "La description est obligatoire !");
             
-            new PublicationsService().ajouter(p);
-            tf_pub_desc.setText("");
-            img.setImage(null);
+        }
+        else {
+            Freelancer f = Freelancer.getInstance();
+            Publications p = new Publications();
+                p.setDescription(tf_pub_desc.getText());
+                
+                p.setFreelancer_id(f.getId());
+                if(file != null){
+                    p.setImage(file.toURI().toString());
+                }
+
+                new PublicationsService().ajouter(p);
+                tf_pub_desc.setText("");
+                img.setImage(null);
+                
+                JOptionPane.showMessageDialog(null, "Publication ajoutée !");
+        }
             
             loadE();
+            
     }
 
     @FXML
@@ -120,7 +132,9 @@ public class PublicationsController implements Initializable {
                     ps.getString("image"),
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
-                    ps.getInt("societe_id")
+                    ps.getInt("societe_id"),
+                    ps.getString("esm"),
+                    ps.getString("la9ab")
                     
             ));
                     
