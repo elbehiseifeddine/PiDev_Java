@@ -5,10 +5,15 @@
  */
 package pidev_java.gui.utilisateur;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +32,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.Societe;
 import pidev_java.services.FreelancerService;
@@ -86,8 +93,10 @@ public class FreelancerProfileController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         Freelancer f = Freelancer.getInstance();
-        Image im = new Image("/pidev_java/assets/" + f.getPhoto_de_profile(), false);
-        image.setFill(new ImagePattern(im));
+        File file= new File(f.getPhoto_de_profile());
+        Image img = new Image(file.toURI().toString());
+        image.setFill(new ImagePattern(img));
+        
         //image.setEffect(new DropShadow(+10d, 0d, +2d, Color.BLACK));
         System.out.println("SocieteProfile.fxmlaaaaaaaaaaaaaaa");
         nomprenom.setText(f.getNom() + f.getPrenom());
@@ -126,6 +135,7 @@ public class FreelancerProfileController implements Initializable {
     private void Save(ActionEvent event) {
 
         Freelancer fe = Freelancer.getInstance();
+        
         boolean test = new FreelancerService().UpdateFreelancer(tf_nom.getText(),
                 tf_prenom.getText(), tf_email.getText(), tf_adresse.getText(), tf_linkedin.getText(),
                 tf_facebook.getText(), tf_twitter.getText(), (String) tf_sexe.getValue(),
@@ -135,6 +145,8 @@ public class FreelancerProfileController implements Initializable {
                 tf_prenom.getText(), tf_adresse.getText(), tf_email.getText(), pic.getText(),
                 (String) tf_sexe.getValue(), tf_competance.getText(), tf_langues.getText(),
                 tf_facebook.getText(), tf_linkedin.getText(), tf_twitter.getText(), fe.getId(), fe.getViews_nb());
+        Image im = new Image(f.getPhoto_de_profile());
+            image.setFill(new ImagePattern(im));
         if (test == true) {
             Freelancer.setInstance(f);
             nomprenom.setText(tf_nom.getText() + tf_prenom.getText());
@@ -143,7 +155,20 @@ public class FreelancerProfileController implements Initializable {
             competences.setText(tf_competance.getText());
             langues.setText(tf_langues.getText());
             sexe.setText((String) tf_sexe.getValue());
+            Image img = new Image(f.getPhoto_de_profile());
+            image.setFill(new ImagePattern(img));
 
         }
+    }
+
+    @FXML
+    private void AttachPic(ActionEvent event) {
+        JFileChooser chooser= new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f=chooser.getSelectedFile();
+        String file=f.getAbsolutePath();
+        String img=file.replace("\\", "\\\\");
+        pic.setText(img);
+        
     }
 }

@@ -2,90 +2,93 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefWidth="1601.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilSuperAdminController">
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilSuperAdminController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="932.0" prefWidth="1601.0" styleClass="mainFxmlClass">
-          <stylesheets>
-              <URL value="@superadminindex.css" />
-          </stylesheets>
+      <AnchorPane prefHeight="1130.0" prefWidth="1602.0">
          <children>
-            <TableView fx:id="TableadminReclamation" cache="true" layoutX="10.0" layoutY="154.0" prefHeight="200.0" prefWidth="1585.0">
-              <columns>
-                <TableColumn fx:id="id_a_r" prefWidth="75.0" text="C1" visible="false" />
-                <TableColumn fx:id="nom" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Last name" />
-                  <TableColumn fx:id="prenom" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="First name" />
-                  <TableColumn fx:id="email" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Login" />
-                  <TableColumn fx:id="password" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Password" />
-                  <TableColumn fx:id="etat" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Account validation" />
-                  <TableColumn fx:id="approuve" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Approuvé" />
-                  <TableColumn fx:id="nonapprouve" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Non Approuvé" />
-                  <TableColumn fx:id="actions" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Actions" />
-              </columns>
-            </TableView>
-            <Text fill="#e10707" layoutX="59.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des administrateurs" textAlignment="CENTER" wrappingWidth="546.1367492675781">
-               <font>
-                  <Font name="System Bold" size="29.0" />
-               </font>
-            </Text>
-            <Button fx:id="btnCreateAdmin" layoutX="1406.0" layoutY="90.0" mnemonicParsing="false" onAction="#CreateAdmin" prefHeight="46.0" prefWidth="174.0" text="Create new admin" textFill="#e70707">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></Button>
-            <TableView fx:id="TableadminEmploi" cache="true" layoutX="14.0" layoutY="433.0" prefHeight="200.0" prefWidth="1585.0">
-               <columns>
-                  <TableColumn fx:id="id_a_e" prefWidth="75.0" text="C1" visible="false" />
-                  <TableColumn fx:id="nom_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Last name" />
-                  <TableColumn fx:id="prenom_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="First name" />
-                  <TableColumn fx:id="email_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Login" />
-                  <TableColumn fx:id="password_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Password" />
-                  <TableColumn fx:id="etat_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Account validation" />
-                  <TableColumn fx:id="approuve_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Approuvé" />
-                  <TableColumn fx:id="nonapprouve_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Non Approuvé" />
-                  <TableColumn fx:id="actions_emploi" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Actions" />
-               </columns>
-            </TableView>
-            <Text fill="#0d18f2" layoutX="26.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des reclamations" textAlignment="CENTER" wrappingWidth="305.3367156982422">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fill="#0d18f2" layoutX="26.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des emplois" textAlignment="CENTER" wrappingWidth="250.13670349121094">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <TableView fx:id="TableadminEvents" cache="true" layoutX="14.0" layoutY="718.0" prefHeight="200.0" prefWidth="1585.0">
-               <columns>
-                  <TableColumn fx:id="id_a_event" prefWidth="75.0" text="C1" visible="false" />
-                  <TableColumn fx:id="nom_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Last name" />
-                  <TableColumn fx:id="prenom_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="First name" />
-                  <TableColumn fx:id="email_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Login" />
-                  <TableColumn fx:id="password_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Password" />
-                  <TableColumn fx:id="etat_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Account validation" />
-                  <TableColumn fx:id="approuve_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Approuvé" />
-                  <TableColumn fx:id="nonapprouve_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Non Approuvé" />
-                  <TableColumn fx:id="actions_events" prefWidth="198.0" sortable="false" style="fx-alignment: centre;" text="Actions" />
-               </columns>
-            </TableView>
-            <Text fill="#0d18f2" layoutX="31.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des evénements" textAlignment="CENTER" wrappingWidth="295.73667907714844">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Button fx:id="btn_refresh" layoutX="1265.0" layoutY="94.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="39.0" prefWidth="111.0" text="Refresh" textFill="#ec0a0a">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
+            <AnchorPane id="AnchorPane" fx:id="NavBar" prefHeight="200.0" prefWidth="1602.0" styleClass="mainFxmlClass">
+                <stylesheets>
+                    <URL value="@superadminindex.css" />
+                </stylesheets>
+               <children>
+                  <Text fill="#e10707" layoutX="58.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des administrateurs" textAlignment="CENTER" wrappingWidth="546.1367492675781">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnCreateAdmin" layoutX="1405.0" layoutY="113.0" mnemonicParsing="false" onAction="#CreateAdmin" prefHeight="46.0" prefWidth="174.0" text="Create new admin" textFill="#e70707">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_refresh" layoutX="1261.0" layoutY="116.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="39.0" prefWidth="111.0" text="Refresh" textFill="#ec0a0a">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="recherche" layoutX="31.0" layoutY="121.0" onKeyReleased="#rechercheAdmin" prefHeight="30.0" prefWidth="1222.0" promptText="Chercher un admin" style="-fx-border-radius: 15px;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+                
+                  </AnchorPane>
+            <AnchorPane fx:id="Admins" layoutY="169.0" prefHeight="959.0" prefWidth="1606.0">
+               <children>
+                  <Text fx:id="Label2" fill="#0d18f2" layoutX="47.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des emplois" textAlignment="CENTER" wrappingWidth="250.13670349121094">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <HBox fx:id="AdminRecHbox" layoutX="20.0" layoutY="84.0" prefHeight="200.0" prefWidth="1585.0">
+                     <children>
+                        <Label fx:id="LabelReclamationVide" prefHeight="30.0" prefWidth="18.0" textFill="#b90404">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="AdminEventHbox" layoutX="20.0" layoutY="734.0" prefHeight="200.0" prefWidth="1585.0">
+                     <children>
+                        <Label fx:id="LabelVideEvent" prefHeight="30.0" prefWidth="18.0" textFill="#cc0000">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="AdminEmploiHbox" layoutX="20.0" layoutY="406.0" prefHeight="200.0" prefWidth="1585.0">
+                     <children>
+                        <Label fx:id="LabelVideEmploi" prefHeight="30.0" prefWidth="18.0" textFill="#d10505">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Text fx:id="Label3" fill="#0d18f2" layoutX="25.0" layoutY="695.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des evénements" textAlignment="CENTER" wrappingWidth="295.73667907714844">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="Label1" fill="#3204d9" layoutX="20.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admins des reclamations" textAlignment="CENTER" wrappingWidth="305.3367156982422">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
-          
       </AnchorPane>
    </children>
 </VBox>

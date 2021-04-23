@@ -138,6 +138,15 @@
     -fx-font-weight: 700;
     
 }
+.pdf_button{
+    -fx-background-color: green;
+    -fx-background-radius: 10px;
+    -fx-text-fill: white;
+    -fx-padding: 6px 30px 6px 30px;
+    -fx-font-size: 16;
+    -fx-font-weight: 700;
+    
+}
 
 .left-navbar-btn{
     -fx-background-color: transparent;

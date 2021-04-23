@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
@@ -21,6 +22,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import pidev_java.services.ToExcel;
 import pidev_java.utils.MaConnection;
 
 /**
@@ -56,6 +59,8 @@ public class StatistiqueController implements Initializable {
     private NumberAxis y_demande;
     @FXML
     private CategoryAxis x_demande;
+    @FXML
+    private Button ExportExcel;
 
     /**
      * Initializes the controller class.
@@ -71,27 +76,13 @@ public class StatistiqueController implements Initializable {
             XYChart.Series demandeEmploi = new XYChart.Series<>();
             XYChart.Series demandeStage = new XYChart.Series<>();
 
-            String reqFreelancer = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM freelancer "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqSociete = "SELECT MONTH(date_creation) mois ,COUNT(*) count"
-                    + " FROM societe "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqReclamation = "SELECT DATE_FORMAT(date_reclamation,'%M') mois ,COUNT(*) count"
-                    + " FROM reclamation "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqOffreEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM offre_emploi "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqOffreStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM offre_stage "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqDemandeEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM demande_emploi "
-                    + "GROUP BY mois ORDER BY mois ASC;";
-            String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count"
-                    + " FROM demande_stage "
-                    + "GROUP BY mois ORDER BY mois ASC;";
+            String reqFreelancer = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM freelancer GROUP BY mois;";
+            String reqSociete = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM societe GROUP BY mois;";
+            String reqReclamation = "SELECT DATE_FORMAT(date_reclamation,'%M') mois ,COUNT(*) count FROM reclamation GROUP BY mois;";
+            String reqOffreEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_emploi GROUP BY mois;";
+            String reqOffreStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_stage GROUP BY mois;";
+            String reqDemandeEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_emploi GROUP BY mois;";
+            String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_stage GROUP BY mois;";
 
             //Statestique reclamation dans LineChart
             Statement stReclamation = cnx.createStatement();
@@ -235,71 +226,72 @@ public class StatistiqueController implements Initializable {
             Statement stSociete = cnx.createStatement();
             ResultSet rsSociete = stSociete.executeQuery(reqSociete);
 
-            int Societejanvier = 0;
-            int Societefevrier = 0;
-            int Societemars = 0;
-            int Societeavril = 0;
-            int Societemai = 0;
-            int Societejuin = 0;
-            int Societejuillet = 0;
-            int Societeaout = 0;
-            int Societeseptemebre = 0;
-            int Societeoctobre = 0;
-            int Societenovembre = 0;
-            int Societedecembre = 0;
-            while (rsSociete.next()) {
-                if (rsSociete.getString("mois").equals("January")){
-                    Societejanvier = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("February")){
-                    Societefevrier = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("March")){
-                    Societemars = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("April")){
-                    Societeavril = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("Mai")){
-                    Societemai = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("June")){
-                    Societejuin = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("July")){
-                    Societejuillet = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("August")){
-                    Societeaout = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("September")){
-                    Societeseptemebre = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("October")){
-                    Societeoctobre = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("November")){
-                    Societenovembre = rsSociete.getInt("count");
-                }
-                if (rsSociete.getString("mois").equals("December")){
-                    Societedecembre = rsSociete.getInt("count");
-                }
-            }
-            societe.getData().add(new XYChart.Data<>("Janvier", Societejanvier));
-            societe.getData().add(new XYChart.Data<>("Fevrier", Societefevrier));
-            societe.getData().add(new XYChart.Data<>("Mars", Societemars));
-            societe.getData().add(new XYChart.Data<>("Avril", Societeavril));
-            societe.getData().add(new XYChart.Data<>("Mai", Societemai));
-            societe.getData().add(new XYChart.Data<>("Juin", Societejuin));
-            societe.getData().add(new XYChart.Data<>("Juillet", Societejuillet));
-            societe.getData().add(new XYChart.Data<>("Aout", Societeaout));
-            societe.getData().add(new XYChart.Data<>("Septembre", Societeseptemebre));
-            societe.getData().add(new XYChart.Data<>("Octobre", Societeoctobre));
-            societe.getData().add(new XYChart.Data<>("Novembre", Societenovembre));
-            societe.getData().add(new XYChart.Data<>("Decembre", Societedecembre));
-
-            rsSociete.close();
-            BarChartUser.getData().addAll(freelancer, societe);
+//            int Societejanvier = 0;
+//            int Societefevrier = 0;
+//            int Societemars = 0;
+//            int Societeavril = 0;
+//            int Societemai = 0;
+//            int Societejuin = 0;
+//            int Societejuillet = 0;
+//            int Societeaout = 0;
+//            int Societeseptemebre = 0;
+//            int Societeoctobre = 0;
+//            int Societenovembre = 0;
+//            int Societedecembre = 0;
+//            while (rsSociete.next()) {
+//                if (rsSociete.getString("mois").equals("January")){
+//                    Societejanvier = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("February")){
+//                    Societefevrier = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("March")){
+//                    Societemars = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("April")){
+//                    Societeavril = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("Mai")){
+//                    Societemai = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("June")){
+//                    Societejuin = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("July")){
+//                    Societejuillet = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("August")){
+//                    Societeaout = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("September")){
+//                    Societeseptemebre = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("October")){
+//                    Societeoctobre = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("November")){
+//                    Societenovembre = rsSociete.getInt("count");
+//                }
+//                if (rsSociete.getString("mois").equals("December")){
+//                    Societedecembre = rsSociete.getInt("count");
+//                }
+//            }
+//            societe.getData().add(new XYChart.Data<>("Janvier", Societejanvier));
+//            societe.getData().add(new XYChart.Data<>("Fevrier", Societefevrier));
+//            societe.getData().add(new XYChart.Data<>("Mars", Societemars));
+//            societe.getData().add(new XYChart.Data<>("Avril", Societeavril));
+//            societe.getData().add(new XYChart.Data<>("Mai", Societemai));
+//            societe.getData().add(new XYChart.Data<>("Juin", Societejuin));
+//            societe.getData().add(new XYChart.Data<>("Juillet", Societejuillet));
+//            societe.getData().add(new XYChart.Data<>("Aout", Societeaout));
+//            societe.getData().add(new XYChart.Data<>("Septembre", Societeseptemebre));
+//            societe.getData().add(new XYChart.Data<>("Octobre", Societeoctobre));
+//            societe.getData().add(new XYChart.Data<>("Novembre", Societenovembre));
+//            societe.getData().add(new XYChart.Data<>("Decembre", Societedecembre));
+//
+//            rsSociete.close();
+//            BarChartUser.getData().addAll(freelancer, societe);
+            BarChartUser.getData().addAll(freelancer);
 
             //Statesstique offre emploi et stage dans areachart
             Statement stOffreEmploi = cnx.createStatement();
@@ -439,7 +431,7 @@ public class StatistiqueController implements Initializable {
             rsOffreStage.close();
             AriaChartOffre.getData().addAll(offreEmploi, offreStage);
 
-            //Statesstique demande emploi et stage dans areachart
+            //Statesstique demande emploi et stage dans LineChart
             Statement stDemandeEmploi = cnx.createStatement();
             ResultSet rsDemandeEmploi = stDemandeEmploi.executeQuery(reqDemandeEmploi);
 
@@ -581,6 +573,12 @@ public class StatistiqueController implements Initializable {
             Logger.getLogger(StatistiqueController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @FXML
+    private void ExportToExcel(ActionEvent event) {
+        ToExcel excel = new ToExcel();
+        excel.excelfile();
     }
 
 }

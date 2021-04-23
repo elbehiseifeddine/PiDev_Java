@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreEmploi.AjoutoffreEmploiController">
+   <children>
+      <Label layoutX="82.0" layoutY="83.0" text="Nom de projet">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="82.0" layoutY="143.0" text="Compétences aquises">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="84.0" layoutY="206.0" text="Description de projet">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="89.0" layoutY="338.0" text="Domaine">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="89.0" layoutY="402.0" text="salaire">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="84.0" layoutY="473.0" text="Date d'expiration">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="tfNom" layoutX="341.0" layoutY="83.0" prefHeight="37.0" prefWidth="352.0" promptText="saisir le nom de projet" />
+      <TextField fx:id="tfCompetences" layoutX="341.0" layoutY="143.0" prefHeight="37.0" prefWidth="352.0" promptText="saisir les compétences" />
+      <TextArea fx:id="tfDescription" layoutX="341.0" layoutY="206.0" prefHeight="89.0" prefWidth="352.0" promptText="saisir la description de projet" />
+      <ComboBox fx:id="cmbDomaine" layoutX="341.0" layoutY="333.0" prefHeight="37.0" prefWidth="352.0" promptText="-- choisir un domaine--" visibleRowCount="6" />
+      <DatePicker fx:id="dtExpiration" layoutX="341.0" layoutY="468.0" prefHeight="37.0" prefWidth="352.0" />
+      <TextField fx:id="tfsalaire" layoutX="341.0" layoutY="397.0" prefHeight="37.0" prefWidth="352.0" promptText="saisir le salaire" />
+      <Button fx:id="btnAjout" layoutX="383.0" layoutY="578.0" mnemonicParsing="false" onMouseClicked="#ajouterEmploi" prefHeight="37.0" prefWidth="78.0" text="Ajouter" />
+      <Button layoutX="562.0" layoutY="578.0" mnemonicParsing="false" onAction="#AnnulerEmploi" prefHeight="37.0" prefWidth="72.0" text="Annuler" />
+      <Label layoutX="66.0" layoutY="14.0" text="Ajouter un offre d'emploi" textFill="#f54444">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

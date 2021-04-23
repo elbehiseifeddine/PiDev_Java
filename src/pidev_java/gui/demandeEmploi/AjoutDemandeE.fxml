@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="597.0" prefWidth="769.0" style="-fx-background-color: #CA226B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.AjoutDemandeEController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="6.0" prefHeight="575.0" prefWidth="745.0" style="-fx-background-color: #E5E4E2;">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="179.0" layoutX="283.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/Logo%20complet%20(1).png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="tfDescription" layoutX="202.0" layoutY="95.0" prefHeight="25.0" prefWidth="388.0" promptText="Description" />
+            <TextField fx:id="tfDomaine" layoutX="229.0" layoutY="140.0" prefHeight="25.0" prefWidth="234.0" promptText="domaine" />
+            <TextField fx:id="tfDiplome" layoutX="210.0" layoutY="258.0" prefHeight="25.0" prefWidth="219.0" promptText="diplome" />
+            <Label layoutX="82.0" layoutY="88.0" prefHeight="40.0" prefWidth="134.0" text="Description :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="133.0" prefHeight="40.0" prefWidth="146.0" text="Votre domaine :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="192.0" prefHeight="40.0" prefWidth="179.0" text="Salaire demandé :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="251.0" prefHeight="40.0" prefWidth="179.0" text="Diplome en :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="356.0" layoutY="192.0" prefHeight="40.0" prefWidth="110.0" text="Deposer cv :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="309.0" prefHeight="40.0" prefWidth="187.0" text="Lettre de motivation :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="tflettre" layoutX="272.0" layoutY="317.0" prefHeight="162.0" prefWidth="455.0" promptText="ecrivez ici ...." text="&#10;&#10;&#10;" />
+            <TextField fx:id="tfSalaire" layoutX="239.0" layoutY="200.0" prefHeight="25.0" prefWidth="60.0" promptText="0" />
+            <Label layoutX="306.0" layoutY="200.0" prefHeight="25.0" prefWidth="27.0" text="DT">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnEnvoyerDemande" layoutX="279.0" layoutY="515.0" mnemonicParsing="false" onAction="#AjoutDemandeE" prefHeight="25.0" prefWidth="187.0" style="-fx-background-color: #C12869;" text="Envoyer " textFill="#e4e4e4">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFile" layoutX="478.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #C12869;" text="fichier" textAlignment="CENTER" textFill="#e4e4e4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

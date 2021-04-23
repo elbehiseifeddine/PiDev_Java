@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.bases.BaseGuiSocieteController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.bases.BaseGuiSocieteController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <menus>
@@ -49,9 +48,7 @@
                      <graphic>
                         <Circle fx:id="myCircle" fill="DODGERBLUE" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
                      </graphic>
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
+                    
                   </Button>
                   <Label fx:id="nom" text="Label">
                      <padding>
@@ -70,23 +67,17 @@
                      </font>
                   </Label>
                   <Line endX="176.89292907714844" endY="-0.6213112473487854" startX="-100.0">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
+                     
                   </Line>
                   <Button fx:id="btn_home" mnemonicParsing="false" onAction="#Publication" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                              
                               </FontAwesomeIconView>
                               <Label text="Accueil" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                                
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -94,23 +85,17 @@
                            </children>
                         </HBox>
                      </graphic>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
+                     
                   </Button>
                   <Button fx:id="btn_evenments" layoutX="10.0" layoutY="206.0" mnemonicParsing="false" onAction="#Evenement" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                               
                               </FontAwesomeIconView>
                               <Label text="Evenements" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                               
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -124,14 +109,10 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                                
                               </FontAwesomeIconView>
                               <Label text="Formations" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                               
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -145,14 +126,24 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                               
                               </FontAwesomeIconView>
                               <Label text="Créer Offre Emploi" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                                
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_emploi111" mnemonicParsing="false" onAction="#ConsulterDemandeE" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18" />
+                              <Label text="Consulter les Demandes d'emploi" textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -166,14 +157,10 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                                
                               </FontAwesomeIconView>
                               <Label text="Consulter Offre Emploi" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                               
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -187,14 +174,24 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                               
                               </FontAwesomeIconView>
                               <Label text="Créer Offre Stage" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                              
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_emploi1111" layoutX="10.0" layoutY="380.0" mnemonicParsing="false" onAction="#ConsulterDemandeS" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18" />
+                              <Label text="Consulter les Demandes de stage" textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -208,11 +205,9 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                                
                               </FontAwesomeIconView>
-                              <Label text="Consulter Offre Stage" textFill="#4e4e4e">
+                              <Label onMouseClicked="#ConsulterOffreStage" text="Consulter Offre Stage" textFill="#4e4e4e">
                                  <HBox.margin>
                                     <Insets left="20.0" top="7.0" />
                                  </HBox.margin>
@@ -229,14 +224,10 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
+                                
                               </FontAwesomeIconView>
                               <Label text="Reclamation" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
+                               
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -246,18 +237,14 @@
                      </graphic>
                   </Button>
                   <Line endX="176.89292907714844" endY="-0.6213112473487854" layoutX="122.0" layoutY="210.0" startX="-100.0">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
+                   
                   </Line>
                   <Button fx:id="sign_out_btn" layoutX="10.0" layoutY="452.0" mnemonicParsing="false" onAction="#Deconnect" prefHeight="38.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <Label text="Sign Out" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="3.0" />
-                                 </HBox.margin>
+                               
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -278,14 +265,10 @@
                <image>
                   <Image url="@../../assets/Logo_Compact.png" />
                </image>
-               <HBox.margin>
-                  <Insets left="20.0" top="2.0" />
-               </HBox.margin>
+               
             </ImageView>
             <Label text="© 2021 PowerDev. All Rights Reserved." textFill="WHITE">
-               <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </HBox.margin>
+          
             </Label>
          </children>
       </HBox>

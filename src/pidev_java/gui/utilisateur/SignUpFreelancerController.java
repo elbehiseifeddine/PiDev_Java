@@ -86,14 +86,14 @@ public class SignUpFreelancerController implements Initializable {
                     }
                     
                 }else{
-                    String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+                    String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
                     Freelancer f= new Freelancer();
                     f.setNom(tf_nom.getText());
                     f.setPrenom(tf_prenom.getText());
                     f.setEmail(tf_email.getText());
                     f.setMot_de_passe(tf_pwd.getText());
                     f.setAdresse("Add Adresse");
-                    f.setPhoto_de_profile("img-1.jpg");
+                    f.setPhoto_de_profile("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets\\img-1.jpg");
                     f.setSexe("Add sexe");
                     f.setCompetences("Add Competence");
                     f.setLangues("Add Langues");
@@ -103,11 +103,12 @@ public class SignUpFreelancerController implements Initializable {
                     f.setViews_nb(0);
                     f.setEtat(1);
                     f.setDate_creation(date);
+                    
                     boolean test=new FreelancerService().add(f);
                     if(test){
-                        compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
-                        compte_validator.setVisible(true); 
                         try {
+                            compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");
+                            compte_validator.setVisible(true); 
                             JavaMail.sendMail(tf_email.getText(),"EmailConfirmation");
                         } catch (Exception ex) {
                             Logger.getLogger(SignUpFreelancerController.class.getName()).log(Level.SEVERE, null, ex);
