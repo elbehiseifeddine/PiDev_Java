@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pidev_java.entities.Admin;
 import pidev_java.interfaces.IAdminEmploiService;
+import pidev_java.utils.JavaMail;
 import pidev_java.utils.MaConnection;
 
 /**
@@ -69,6 +70,11 @@ public class AdminEmploiService implements IAdminEmploiService{
                     st.setInt(2, idOffreEmploi);
                     st.executeUpdate();
                 }
+                
+                JavaMail mail = new JavaMail();
+                mail.recipient=admin.getLogin();
+                mail.type="EmailOffreEmploi";
+                mail.start();
             }
 
         } catch (SQLException ex) {
@@ -120,6 +126,11 @@ public class AdminEmploiService implements IAdminEmploiService{
                     st.setInt(2, idOffreStage);
                     st.executeUpdate();
                 }
+                
+                JavaMail mail = new JavaMail();
+                mail.recipient=admin.getLogin();
+                mail.type="EmailOffreStage";
+                mail.start();
             }
 
         } catch (SQLException ex) {

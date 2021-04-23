@@ -125,7 +125,20 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
 
   
     
-    
+    public int maxId(){
+        int max = 0;
+         try {
+             Statement stmt = cnx.createStatement();
+             String sql = "SELECT MAX(id) FROM offre_emploi;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             max=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             Logger.getLogger(stageService.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        return max;
+    }
 
    
     

@@ -113,7 +113,9 @@ public class CreateAdminController implements Initializable {
                                     if (service.AdminExiste(login.getText())) {
                                         JOptionPane.showMessageDialog(null, "Admin existe déja !");
                                     } else {
+                                        int idAdmin = service.maxId()+1;
                                         Admin a = new Admin();
+                                        a.setId(idAdmin);
                                         a.setNom(nom.getText());
                                         a.setPrenom(prenom.getText());
                                         a.setLogin(login.getText());
@@ -130,6 +132,7 @@ public class CreateAdminController implements Initializable {
                                         JOptionPane.showMessageDialog(null, "Admin Ajouté avec succes!");
                                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                         stage.close();
+                                        System.out.println(a.getId());
                                     }
                                 }
                             }

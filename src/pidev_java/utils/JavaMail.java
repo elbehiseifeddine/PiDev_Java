@@ -29,7 +29,20 @@ import javax.mail.internet.MimeMultipart;
  *
  * @author seifeddine
  */
-public class JavaMail {
+public class JavaMail extends Thread{
+    public String recipient,type;
+
+    @Override
+    public void run() {
+        try {
+            super.run(); //To change body of generated methods, choose Tools | Templates.
+            sendMail(recipient, type);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(JavaMail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     public static void sendMail(String recepient,String type) throws Exception{
         System.out.println("preparing to");
         Properties properties=new Properties();
