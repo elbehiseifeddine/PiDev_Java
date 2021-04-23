@@ -74,7 +74,7 @@ public class commentairesListViewCell extends ListCell<Commentaires> {
 
             }
 
-            lb_util_id.setText(String.valueOf(commentaires.getFreelancer_id()));
+            lb_util_id.setText(String.valueOf(commentaires.getNomUtil()) + " " + String.valueOf(commentaires.getPrenomUtil()));
             lb_com_desc.setText(commentaires.getDescription());
             
             lb_com_date.setText(commentaires.getDate_commentaire());
@@ -84,9 +84,13 @@ public class commentairesListViewCell extends ListCell<Commentaires> {
 
             setText(null);
             setGraphic(gridPane);
+            Freelancer f = Freelancer.getInstance();
+            if (commentaires.getFreelancer_id() != f.getId()){
+                btn_com_supp.setVisible(false) ;
+                btn_com_edit.setVisible(false);
+            }
             
             btn_com_supp.setOnAction(e->{
-                Freelancer f = Freelancer.getInstance();
                 
                 if (commentaires.getFreelancer_id() == f.getId()){
                 
@@ -109,7 +113,6 @@ public class commentairesListViewCell extends ListCell<Commentaires> {
             });
             
             btn_com_edit.setOnAction(e->{
-                Freelancer f = Freelancer.getInstance();
                 Stage stage = new Stage();
                 
                 

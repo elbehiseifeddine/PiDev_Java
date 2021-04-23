@@ -17,6 +17,8 @@ public class Commentaires {
     private int id_pub;
     private int freelancer_id;
     private int societe_id;
+    private String nom_util;
+    private String prenom_util;
     
     public Commentaires(String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id) {
         this.description = description;
@@ -26,13 +28,15 @@ public class Commentaires {
         this.societe_id = societe_id;
     }
     
-    public Commentaires(int id ,String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id) {
+    public Commentaires(int id ,String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id, String nom_util, String prenom_util) {
         this.id = id;
         this.description = description;
         this.date_commentaire = date_commentaire;
         this.id_pub = id_pub;
         this.freelancer_id = freelancer_id;
         this.societe_id = societe_id;
+        this.nom_util = nom_util;
+        this.prenom_util = prenom_util;
     }
 
     public Commentaires() {}
@@ -85,9 +89,25 @@ public class Commentaires {
         this.societe_id = societe_id;
     }
     
+    public String getNomUtil() {
+        return nom_util;
+    }
+
+    public void setNomUtil(String nom_util) {
+        this.nom_util = nom_util;
+    }
+    
+    public String getPrenomUtil() {
+        return prenom_util;
+    }
+
+    public void setPrenomUtil(String prenom_util) {
+        this.prenom_util = prenom_util;
+    }
+    
     @Override
     public String toString() {
-        return "Commentaires{" + "id=" + id + ", description=" + description + ", id_pub=" + id_pub + ", date_commentaire=" + date_commentaire + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + '}';
+        return "Commentaires{" + "id=" + id + ", description=" + description + ", id_pub=" + id_pub + ", date_commentaire=" + date_commentaire + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + ", nom_util=" + nom_util + ", prenom_util=" + prenom_util + '}';
     }
     
 }

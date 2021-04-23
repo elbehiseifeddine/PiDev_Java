@@ -29,7 +29,7 @@
             <Font size="14.0" />
          </font></Label>
       <Label fx:id="lb_pub_date" prefHeight="17.0" prefWidth="179.0" text="Label" GridPane.rowIndex="3" />
-      <Label fx:id="lb_user_id" prefHeight="27.0" prefWidth="89.0" text="id">
+      <Label fx:id="lb_user_id" prefHeight="35.0" prefWidth="439.0" text="id">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Label>
