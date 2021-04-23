@@ -17,6 +17,7 @@ import pidev_java.entities.Admin;
 import pidev_java.entities.Reclamation;
 import pidev_java.utils.MaConnection;
 import pidev_java.interfaces.IAdminReclamationService;
+import pidev_java.utils.JavaMail;
 
 /**
  *
@@ -50,6 +51,11 @@ public class AdminReclamationService implements IAdminReclamationService{
                 st.setInt(1, admin.getId());
                 st.setInt(2, idReclamation);
                 st.executeUpdate();
+                
+                JavaMail mail = new JavaMail();
+                mail.recipient=admin.getLogin();
+                mail.type="EmailReclamation";
+                mail.start();
             }
 
         } catch (SQLException ex) {
