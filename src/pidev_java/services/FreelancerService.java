@@ -136,7 +136,6 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         return (false);
     }
 
-
     public ArrayList<Freelancer> getAll() {
 
         ArrayList<Freelancer> ListeFreelancers = new ArrayList<>();

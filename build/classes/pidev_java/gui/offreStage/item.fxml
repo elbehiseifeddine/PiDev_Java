@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="292.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ItemController">
+   <children>
+      <Label layoutX="47.0" layoutY="15.0" text="Projet" textFill="#46a6f5">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label layoutX="58.0" layoutY="97.0" text="Compétences" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="56.0" layoutY="172.0" text="Description" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="288.0" layoutY="97.0" text="Domaine" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="288.0" layoutY="172.0" text="Durée" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="467.0" layoutY="97.0" text="Type de stage" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="467.0" layoutY="172.0" text="Date d'expiration" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idNom" layoutX="180.0" layoutY="16.0" text="Label">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label fx:id="idComp" layoutX="59.0" layoutY="133.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idDesc" layoutX="59.0" layoutY="211.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idDuree" layoutX="291.0" layoutY="211.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idType" layoutX="467.0" layoutY="133.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idDTexpr" layoutX="467.0" layoutY="211.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="idDomaine" layoutX="291.0" layoutY="133.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <FontAwesomeIconView fx:id="iconEdit" fill="#17e451" fontSmoothingType="LCD" glyphName="EDIT" layoutX="683.0" layoutY="143.0" onMouseClicked="#editoStage" size="30" />
+      <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="686.0" layoutY="182.0" onMouseClicked="#DeleteoStage" size="30" text="" />
+      <Line endX="659.0" layoutX="137.0" layoutY="291.0" startX="-100.0" />
+   </children>
+</AnchorPane>

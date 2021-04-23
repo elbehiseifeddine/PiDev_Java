@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -152,7 +153,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void OffreEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/offreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/AjoutoffreEmploi.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -163,7 +164,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void ConsulterOffreEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/consulterOffreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreEmploi/ConsulterOffreEmploi.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -174,7 +175,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void OffreStage(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/offreStage.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/AjoutoffreStage.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -185,7 +186,7 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private void ConsulterOffreStage(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/consulterOffreStage.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -202,6 +203,16 @@ public class BaseGuiSocieteController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void ConsulterOffreStage(MouseEvent event) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
     }
 
 }
