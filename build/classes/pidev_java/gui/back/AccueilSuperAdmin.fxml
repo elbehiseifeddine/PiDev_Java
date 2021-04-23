@@ -34,7 +34,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="recherche" layoutX="31.0" layoutY="121.0" onKeyTyped="#rechercheAdmin" prefHeight="30.0" prefWidth="1222.0" promptText="Chercher un admin" style="-fx-border-radius: 15px;">
+                  <TextField fx:id="recherche" layoutX="31.0" layoutY="121.0" onKeyReleased="#rechercheAdmin" prefHeight="30.0" prefWidth="1222.0" promptText="Chercher un admin" style="-fx-border-radius: 15px;">
                      <font>
                         <Font size="14.0" />
                      </font>

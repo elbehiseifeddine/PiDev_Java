@@ -36,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -407,7 +408,15 @@ public class AccueilSuperAdminController implements Initializable {
 
     @FXML
     private void rechercheAdmin(KeyEvent event) {
+        if (recherche.getText().isEmpty()){
+            refrechpage();
+        }else{
+        recherche(recherche.getText());
+        }
+        
+    }
 
+    public void recherche(String nom){
         Admins.getChildren().setAll();
         System.out.println(recherche.getText());
         AdminService adminService = new AdminService();
@@ -447,6 +456,38 @@ public class AccueilSuperAdminController implements Initializable {
                         + "-glyph-size:28px;"
                         + "-fx-fill:#00E676;"
                 );
+                
+                deletebtn.setOnMouseClicked((MouseEvent event) -> {
+
+                    int reponse = JOptionPane.showConfirmDialog(null, "Vous voulez vraiment supprimer " + admin.getNom() + " " + admin.getPrenom() + "?", "Select an Option...",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+                    if (reponse == JOptionPane.YES_OPTION) {
+                        adminService.delete(admin);
+                        refrechpage();
+                    }
+                });
+                editbtn.setOnMouseClicked((event) -> {
+
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/pidev_java/gui/back/CreateAdmin.fxml"));
+                    try {
+                        loader.load();
+                    } catch (IOException ex) {
+                        Logger.getLogger(AccueilSuperAdminController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    CreateAdminController createAdminController = loader.getController();
+                    createAdminController.setUpdate(true);
+                    createAdminController.setTextField(admin);
+                    Parent parent = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(parent));
+                    stage.setTitle("Modifier admin");
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+
+                });
+                
+                
                 HBox managebtn = new HBox(editbtn, deletebtn);
                 managebtn.setStyle("-fx-alignment:center");
                 HBox.setMargin(deletebtn, new Insets(2, 2, 0, 3));
@@ -464,7 +505,7 @@ public class AccueilSuperAdminController implements Initializable {
         } else {
             Label erreur = new Label("Admin n'existe pas !");
 
-            erreur.setStyle("-fx-fill:#e10707;"
+            erreur.setStyle("-fx-text-fill:#e70707;"
                     + "-fx-font-weight : Bold ;");
             Admins.getChildren().add(erreur);
         }
