@@ -23,14 +23,20 @@ public class Formation {
     public String Domaine;
     public float Montant;
     public boolean Etat;
-    public long Lng;
-    public long Lat;
+    public double Lng;
+    public double Lat;
     public String imageF;
 
+    public Formation(int id) {
+        this.id = id;
+    }
+
+    
+    
     public Formation() {
     }
 
-    public Formation(int id, String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, float Montant, boolean Etat, long Lng, long Lat,String image) {
+    public Formation(int id, String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, float Montant, boolean Etat, double Lng, double Lat,String image) {
         this.id = id;
         this.Labelle = Labelle;
         this.Description = Description;
@@ -45,7 +51,7 @@ public class Formation {
         this.imageF=image;
     }
 
-    public Formation(String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, float Montant, boolean Etat, long Lng, long Lat,String image) {
+    public Formation(String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, float Montant, boolean Etat, double Lng, double Lat,String image) {
         this.Labelle = Labelle;
         this.Description = Description;
         this.Lieu = Lieu;
@@ -131,19 +137,19 @@ public class Formation {
         this.Etat = Etat;
     }
 
-    public long getLng() {
+    public double getLng() {
         return Lng;
     }
 
-    public void setLng(long Lng) {
+    public void setLng(double Lng) {
         this.Lng = Lng;
     }
 
-    public long getLat() {
+    public double getLat() {
         return Lat;
     }
 
-    public void setLat(long Lat) {
+    public void setLat(double Lat) {
         this.Lat = Lat;
     }
 

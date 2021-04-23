@@ -39,8 +39,8 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setFloat(7, e.getNbParticipant());
                 preparedStmt.setString(8, e.getLabelle());
                 preparedStmt.setBoolean(9, e.isEtat());
-                preparedStmt.setLong(10, 1);
-                preparedStmt.setLong(11, 1);
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLng());
                 preparedStmt.setInt(12, 1);
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
@@ -56,6 +56,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
             PreparedStatement preparedStmt = con.prepareStatement(" delete from event_loisir where id= ?");
 	    preparedStmt.setInt(1,e.getId());
             preparedStmt.executeUpdate();
+              System.out.println("suppresion avec succes");
             } 
         catch (Exception ex) {
 	    System.err.println(ex.getMessage());
@@ -111,7 +112,67 @@ public class EventService implements IServiceEvent<EventLoisir> {
         }
         return res;
     }
-
     
+    
+      public ArrayList<EventLoisir> ListerparU(int idu) {
+         ArrayList<EventLoisir> res = new ArrayList<EventLoisir>();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id_fr_id="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nbParticipant=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
+                res.add(Ev);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+
+    public EventLoisir FindParId(int idf) {
+       EventLoisir E=new EventLoisir();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id="+idf;
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt("id");
+                
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nb=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                 E = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nb,true,lng,lat,image);
+                
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return E;
+    }
     
 }

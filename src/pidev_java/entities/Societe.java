@@ -17,6 +17,12 @@ public class Societe {
     public Societe() {
     }
 
+    public Societe(int id) {
+        this.id = id;
+    }
+    
+    
+
     public Societe(String nom, String adresse, String email, String mot_de_pass, String photo_de_profile, String status_juridique, String date_creation, int id, int etat, int views_nb) {
         this.nom = nom;
         this.adresse = adresse;

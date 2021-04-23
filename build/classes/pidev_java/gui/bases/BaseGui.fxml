@@ -93,8 +93,15 @@
                               <FontAwesomeIconView glyphName="HOME" size="18">
                                  
                               </FontAwesomeIconView>
+<<<<<<< HEAD
                               <Label text="Evenements" textFill="#4e4e4e">
                                 
+=======
+                              <Label onMouseClicked="#Evenement" text="Evenements" textFill="#4e4e4e">
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="7.0" />
+                                 </HBox.margin>
+>>>>>>> Gestion_Event
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -232,7 +239,7 @@
    <center>
       <ScrollPane fx:id="scroll_pane" prefHeight="656.0" prefWidth="974.0" BorderPane.alignment="CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="974.0" />
         </content>
       </ScrollPane>
    </center>
