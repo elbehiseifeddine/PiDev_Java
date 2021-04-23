@@ -93,7 +93,7 @@ public class SignUpFreelancerController implements Initializable {
                     f.setEmail(tf_email.getText());
                     f.setMot_de_passe(tf_pwd.getText());
                     f.setAdresse("Add Adresse");
-                    f.setPhoto_de_profile("img-1.jpg");
+                    f.setPhoto_de_profile("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets\\img-1.jpg");
                     f.setSexe("Add sexe");
                     f.setCompetences("Add Competence");
                     f.setLangues("Add Langues");

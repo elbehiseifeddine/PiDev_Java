@@ -26,7 +26,11 @@ import pidev_java.entities.Societe;
  *
  * @author seifeddine
  */
-public class PdfGeneration {
+public class PdfGeneration extends Thread{
+    @Override
+    public void run() {
+        System.out.println("Hello from a thread!");
+    }
 
     public static void FreelancerListPdf(ArrayList<Freelancer> List) {
         try {
