@@ -78,7 +78,7 @@ public class BaseGuiController implements Initializable {
             nom.setText(Freelancer.getInstance().getNom());
             email.setText(Freelancer.getInstance().getEmail());
             File file= new File(Freelancer.getInstance().getPhoto_de_profile());
-            Image img = new Image(file.toURI().toString());
+            Image img = new Image("ftp://user:123456789@192.168.1.52/"+Freelancer.getInstance().getPhoto_de_profile());
             myCircle.setFill(new ImagePattern(img));
             System.out.println("FreelancerProfile.fxmlaaaaaaaaaaaaaaa");
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/utilisateur/FreelancerProfile.fxml"));
