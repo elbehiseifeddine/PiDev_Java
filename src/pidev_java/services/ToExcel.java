@@ -84,7 +84,7 @@ public class ToExcel {
                 if (rsReclamation.getString("mois").equals("April")) {
                     Reclamationavril = rsReclamation.getInt("count");
                 }
-                if (rsReclamation.getString("mois").equals("Mai")) {
+                if (rsReclamation.getString("mois").equals("May")) {
                     Reclamationmai = rsReclamation.getInt("count");
                 }
                 if (rsReclamation.getString("mois").equals("June")) {
@@ -212,7 +212,7 @@ public class ToExcel {
                 if (rsOffreEmploi.getString("mois").equals("April")) {
                     OffreEmploiavril = rsOffreEmploi.getInt("count");
                 }
-                if (rsOffreEmploi.getString("mois").equals("Mai")) {
+                if (rsOffreEmploi.getString("mois").equals("May")) {
                     OffreEmploimai = rsOffreEmploi.getInt("count");
                 }
                 if (rsOffreEmploi.getString("mois").equals("June")) {
@@ -267,7 +267,7 @@ public class ToExcel {
                 if (rsOffreStage.getString("mois").equals("April")) {
                     OffreStageavril = rsOffreStage.getInt("count");
                 }
-                if (rsOffreStage.getString("mois").equals("Mai")) {
+                if (rsOffreStage.getString("mois").equals("May")) {
                     OffreStagemai = rsOffreStage.getInt("count");
                 }
                 if (rsOffreStage.getString("mois").equals("June")) {
@@ -416,7 +416,7 @@ public class ToExcel {
                 if (rsOffreStage.getString("mois").equals("April")) {
                     OffreStageavril = rsOffreStage.getInt("count");
                 }
-                if (rsOffreStage.getString("mois").equals("Mai")) {
+                if (rsOffreStage.getString("mois").equals("May")) {
                     OffreStagemai = rsOffreStage.getInt("count");
                 }
                 if (rsOffreStage.getString("mois").equals("June")) {
@@ -531,7 +531,7 @@ public class ToExcel {
                 if (rsFreelancer.getString("mois").equals("April")) {
                     Freelanceravril = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("Mai")) {
+                if (rsFreelancer.getString("mois").equals("May")) {
                     Freelancermai = rsFreelancer.getInt("count");
                 }
                 if (rsFreelancer.getString("mois").equals("June")) {
@@ -646,7 +646,7 @@ public class ToExcel {
                 if (rsSociete.getString("mois").equals("April")) {
                     Societeavril = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("Mai")) {
+                if (rsSociete.getString("mois").equals("May")) {
                     Societemai = rsSociete.getInt("count");
                 }
                 if (rsSociete.getString("mois").equals("June")) {
@@ -762,7 +762,7 @@ public class ToExcel {
                 if (rsDemandeEmploi.getString("mois").equals("April")) {
                     DemandeEmploiavril = rsDemandeEmploi.getInt("count");
                 }
-                if (rsDemandeEmploi.getString("mois").equals("Mai")) {
+                if (rsDemandeEmploi.getString("mois").equals("May")) {
                     DemandeEmploimai = rsDemandeEmploi.getInt("count");
                 }
                 if (rsDemandeEmploi.getString("mois").equals("June")) {
@@ -818,7 +818,7 @@ public class ToExcel {
                 if (rsDemandeStage.getString("mois").equals("April")) {
                     DemandeStageavril = rsDemandeStage.getInt("count");
                 }
-                if (rsDemandeStage.getString("mois").equals("Mai")) {
+                if (rsDemandeStage.getString("mois").equals("May")) {
                     DemandeStagemai = rsDemandeStage.getInt("count");
                 }
                 if (rsDemandeStage.getString("mois").equals("June")) {
@@ -967,7 +967,7 @@ public class ToExcel {
                 if (rsDemandeStage.getString("mois").equals("April")) {
                     DemandeStageavril = rsDemandeStage.getInt("count");
                 }
-                if (rsDemandeStage.getString("mois").equals("Mai")) {
+                if (rsDemandeStage.getString("mois").equals("May")) {
                     DemandeStagemai = rsDemandeStage.getInt("count");
                 }
                 if (rsDemandeStage.getString("mois").equals("June")) {
