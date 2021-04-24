@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +25,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.emploiService;
 
@@ -141,6 +146,7 @@ public class ConsulterOffreEmploiController implements Initializable {
                gridEmploi.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane, new Insets(10));
+                
             }
         } catch (Exception e) {
                         System.out.println(e.getMessage());
@@ -148,6 +154,7 @@ public class ConsulterOffreEmploiController implements Initializable {
            }
     }
     
+     
     
-    
+
 }

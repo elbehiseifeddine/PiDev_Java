@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ItemAllstagesController">
+<AnchorPane id="AnchorPane" prefHeight="374.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ItemAllstagesController">
    <children>
       <Label layoutX="57.0" layoutY="25.0" text="Projet" textFill="#46a6f5">
          <font>
@@ -15,75 +15,74 @@
       </Label>
       <Label layoutX="68.0" layoutY="107.0" text="Compétences" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="66.0" layoutY="182.0" text="Description" textFill="#6c89a1">
+      <Label layoutX="66.0" layoutY="167.0" text="Description" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="298.0" layoutY="107.0" text="Domaine" textFill="#6c89a1">
+      <Label layoutX="434.0" layoutY="108.0" text="Domaine" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="298.0" layoutY="182.0" text="Durée" textFill="#6c89a1">
+      <Label layoutX="428.0" layoutY="193.0" text="Durée" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="477.0" layoutY="107.0" text="Type de stage" textFill="#6c89a1">
+      <Label layoutX="428.0" layoutY="147.0" text="Type de stage" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="477.0" layoutY="182.0" text="Date d'expiration" textFill="#6c89a1">
+      <Label layoutX="511.0" layoutY="33.0" text="Date d'expiration" textFill="#6c89a1">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="idNom" layoutX="190.0" layoutY="26.0" text="Label">
+      <Label fx:id="idNom" layoutX="153.0" layoutY="25.0" text="Label">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="idComp" layoutX="69.0" layoutY="143.0" text="Label">
+      <Label fx:id="idComp" layoutX="101.0" layoutY="130.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idDesc" layoutX="69.0" layoutY="221.0" text="Label">
+      <Label fx:id="idDesc" layoutX="101.0" layoutY="189.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idDuree" layoutX="301.0" layoutY="221.0" text="Label">
+      <Label fx:id="idDuree" layoutX="494.0" layoutY="190.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idType" layoutX="477.0" layoutY="143.0" text="Label">
+      <Label fx:id="idType" layoutX="543.0" layoutY="144.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idDTexpr" layoutX="477.0" layoutY="221.0" text="Label">
+      <Label fx:id="idDTexpr" layoutX="633.0" layoutY="30.0" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="idDomaine" layoutX="511.0" layoutY="104.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idDomaine" layoutX="301.0" layoutY="143.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="157.0" layoutY="316.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="144.0" style="-fx-background-color: green;" text="Demander l'offre" textFill="#fffdfd">
+      <Button layoutX="267.0" layoutY="261.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: green;" text="Demander l'offre de stage" textFill="#fffdfd">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Line endX="482.0" layoutX="143.0" layoutY="398.0" startX="-100.0" />
-      <Button fx:id="id_reclamation" layoutX="402.0" layoutY="316.0" mnemonicParsing="false" onAction="#rclamatin" prefHeight="36.0" prefWidth="144.0" style="-fx-background-color: green;" text="Envoyer Reclamation" textFill="WHITE" />
+      <Line endX="482.0" layoutX="122.0" layoutY="343.0" startX="-100.0" />
    </children>
 </AnchorPane>

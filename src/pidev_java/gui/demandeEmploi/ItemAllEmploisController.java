@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev_java.gui.offreEmploi;
+package pidev_java.gui.demandeEmploi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pidev_java.entities.offreEmploi;
+import pidev_java.gui.offreEmploi.ConsulterOffreEmploiController;
 import pidev_java.services.emploiService;
 
 /**
@@ -21,10 +22,6 @@ import pidev_java.services.emploiService;
  * @author Ghassen Riahi
  */
 public class ItemAllEmploisController implements Initializable {
-    
-    emploiService ss=new emploiService();
-    ConsulterOffreEmploiController co;
-    private offreEmploi offre;
 
     @FXML
     private Label idNom;
@@ -43,13 +40,21 @@ public class ItemAllEmploisController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * 
+     * 
+     *
      */
+    emploiService ss=new emploiService();
+    ConsulterEmploiFreelancerController co;
+    private offreEmploi offre;
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }  
+    }   
     
-     public void setData(offreEmploi os,ConsulterOffreEmploiController fc) {
+    public void setData(offreEmploi os,ConsulterEmploiFreelancerController fc) {
          this.co=fc;
         this.offre = os;
         
