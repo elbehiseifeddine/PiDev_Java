@@ -5,9 +5,10 @@
  */
 package pidev_java.services;
 
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,13 +18,28 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Chart;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.charts.*;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFChart;
+import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.charts.XSSFChartAxis;
+import org.apache.poi.xssf.usermodel.charts.XSSFChartLegend;
+import org.apache.poi.xssf.usermodel.charts.XSSFScatterChartData;
+import org.apache.poi.xssf.usermodel.charts.XSSFValueAxis;
 import pidev_java.utils.MaConnection;
 
 /**
@@ -108,31 +124,33 @@ public class ToExcel {
             cellStyle.setAlignment(HorizontalAlignment.CENTER);
 
 // Create a Row
-            Row headerRow = sheet.createRow(0);
+            imageheader(sheet, workbook);
+            Row headerRow = sheet.createRow(4);
 
-            for (int i = 0; i < columns.length; i++) {
+            for (int i = 1; i < columns.length + 1; i++) {
                 Cell cell = headerRow.createCell(i);
-                cell.setCellValue(columns[i]);
+                cell.setCellValue(columns[i - 1]);
                 cell.setCellStyle(headerCellStyle);
             }
 
-            int rowNum = 1;
+            int rowNum = 5;
 
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(Reclamationjanvier);
-            row.createCell(1).setCellValue(Reclamationfevrier);
-            row.createCell(2).setCellValue(Reclamationmars);
-            row.createCell(3).setCellValue(Reclamationavril);
-            row.createCell(4).setCellValue(Reclamationmai);
-            row.createCell(5).setCellValue(Reclamationjuin);
-            row.createCell(6).setCellValue(Reclamationjuillet);
-            row.createCell(7).setCellValue(Reclamationaout);
-            row.createCell(8).setCellValue(Reclamationseptemebre);
-            row.createCell(9).setCellValue(Reclamationoctobre);
-            row.createCell(10).setCellValue(Reclamationnovembre);
-            row.createCell(11).setCellValue(Reclamationdecembre);
+            row.createCell(0).setCellValue("Nombre reclamation");
+            row.createCell(1).setCellValue(Reclamationjanvier);
+            row.createCell(2).setCellValue(Reclamationfevrier);
+            row.createCell(3).setCellValue(Reclamationmars);
+            row.createCell(4).setCellValue(Reclamationavril);
+            row.createCell(5).setCellValue(Reclamationmai);
+            row.createCell(6).setCellValue(Reclamationjuin);
+            row.createCell(7).setCellValue(Reclamationjuillet);
+            row.createCell(8).setCellValue(Reclamationaout);
+            row.createCell(9).setCellValue(Reclamationseptemebre);
+            row.createCell(10).setCellValue(Reclamationoctobre);
+            row.createCell(11).setCellValue(Reclamationnovembre);
+            row.createCell(12).setCellValue(Reclamationdecembre);
 
-            row.getCell(0).setCellStyle(cellStyle);
+            row.getCell(0).setCellStyle(headerCellStyle);
             row.getCell(1).setCellStyle(cellStyle);
             row.getCell(2).setCellStyle(cellStyle);
             row.getCell(3).setCellStyle(cellStyle);
@@ -144,10 +162,12 @@ public class ToExcel {
             row.getCell(9).setCellStyle(cellStyle);
             row.getCell(10).setCellStyle(cellStyle);
             row.getCell(11).setCellStyle(cellStyle);
-            // Resize all columns to fit the content size
-            for (int i = 0; i < columns.length; i++) {
+            row.getCell(12).setCellStyle(cellStyle);
+//            // Resize all columns to fit the content size
+            for (int i = 0; i < columns.length + 1; i++) {
                 sheet.autoSizeColumn(i);
             }
+            ReclamationLineChart(sheet, workbook);
 //            FileOutputStream fileOut = new FileOutputStream("Historique.xlsx");
 //            workbook.write(fileOut);
 //            fileOut.close();
@@ -160,7 +180,7 @@ public class ToExcel {
         }
     }
 
-    public void OffreEmploiExcel(Workbook workbook) throws IOException {
+    public void OffreExcel(Workbook workbook) throws IOException {
         try {
             String reqOffreEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_emploi GROUP BY mois;";
 
@@ -218,7 +238,62 @@ public class ToExcel {
                 }
             }
 
-            Sheet sheet = workbook.createSheet("Historique Offre Emploi");
+            String reqOffreStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM offre_stage GROUP BY mois;";
+            Statement stOffreStage = cnx.createStatement();
+            ResultSet rsOffreStage = stOffreStage.executeQuery(reqOffreStage);
+
+            int OffreStagejanvier = 0;
+            int OffreStagefevrier = 0;
+            int OffreStagemars = 0;
+            int OffreStageavril = 0;
+            int OffreStagemai = 0;
+            int OffreStagejuin = 0;
+            int OffreStagejuillet = 0;
+            int OffreStageaout = 0;
+            int OffreStageseptemebre = 0;
+            int OffreStageoctobre = 0;
+            int OffreStagenovembre = 0;
+            int OffreStagedecembre = 0;
+            while (rsOffreStage.next()) {
+                if (rsOffreStage.getString("mois").equals("January")) {
+                    OffreStagejanvier = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("February")) {
+                    OffreStagefevrier = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("March")) {
+                    OffreStagemars = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("April")) {
+                    OffreStageavril = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("Mai")) {
+                    OffreStagemai = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("June")) {
+                    OffreStagejuin = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("July")) {
+                    OffreStagejuillet = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("August")) {
+                    OffreStageaout = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("September")) {
+                    OffreStageseptemebre = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("October")) {
+                    OffreStageoctobre = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("November")) {
+                    OffreStagenovembre = rsOffreStage.getInt("count");
+                }
+                if (rsOffreStage.getString("mois").equals("December")) {
+                    OffreStagedecembre = rsOffreStage.getInt("count");
+                }
+            }
+
+            Sheet sheet = workbook.createSheet("Historique Offre ");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
             headerFont.setFontHeightInPoints((short) 14);
@@ -229,32 +304,34 @@ public class ToExcel {
             CellStyle headerCellStyle = workbook.createCellStyle();
             headerCellStyle.setFont(headerFont);
 
+            imageheader(sheet, workbook);
 // Create a Row
-            Row headerRow = sheet.createRow(0);
+            Row headerRow = sheet.createRow(4);
 
-            for (int i = 0; i < columns.length; i++) {
+            for (int i = 1; i < columns.length + 1; i++) {
                 Cell cell = headerRow.createCell(i);
-                cell.setCellValue(columns[i]);
+                cell.setCellValue(columns[i - 1]);
                 cell.setCellStyle(headerCellStyle);
             }
 
-            int rowNum = 1;
+            int rowNum = 5;
 
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(OffreEmploijanvier);
-            row.createCell(1).setCellValue(OffreEmploifevrier);
-            row.createCell(2).setCellValue(OffreEmploimars);
-            row.createCell(3).setCellValue(OffreEmploiavril);
-            row.createCell(4).setCellValue(OffreEmploimai);
-            row.createCell(5).setCellValue(OffreEmploijuin);
-            row.createCell(6).setCellValue(OffreEmploijuillet);
-            row.createCell(7).setCellValue(OffreEmploiaout);
-            row.createCell(8).setCellValue(OffreEmploiseptemebre);
-            row.createCell(9).setCellValue(OffreEmploioctobre);
-            row.createCell(10).setCellValue(OffreEmploinovembre);
-            row.createCell(11).setCellValue(OffreEmploidecembre);
+            row.createCell(0).setCellValue("Offre Emploi");
+            row.createCell(1).setCellValue(OffreEmploijanvier);
+            row.createCell(2).setCellValue(OffreEmploifevrier);
+            row.createCell(3).setCellValue(OffreEmploimars);
+            row.createCell(4).setCellValue(OffreEmploiavril);
+            row.createCell(5).setCellValue(OffreEmploimai);
+            row.createCell(6).setCellValue(OffreEmploijuin);
+            row.createCell(7).setCellValue(OffreEmploijuillet);
+            row.createCell(8).setCellValue(OffreEmploiaout);
+            row.createCell(9).setCellValue(OffreEmploiseptemebre);
+            row.createCell(10).setCellValue(OffreEmploioctobre);
+            row.createCell(11).setCellValue(OffreEmploinovembre);
+            row.createCell(12).setCellValue(OffreEmploidecembre);
 
-            row.getCell(0).setCellStyle(cellStyle);
+            row.getCell(0).setCellStyle(headerCellStyle);
             row.getCell(1).setCellStyle(cellStyle);
             row.getCell(2).setCellStyle(cellStyle);
             row.getCell(3).setCellStyle(cellStyle);
@@ -266,12 +343,43 @@ public class ToExcel {
             row.getCell(9).setCellStyle(cellStyle);
             row.getCell(10).setCellStyle(cellStyle);
             row.getCell(11).setCellStyle(cellStyle);
+            row.getCell(12).setCellStyle(cellStyle);
+
+            Row row2 = sheet.createRow(rowNum++);
+            row2.createCell(0).setCellValue("Offre Stage");
+
+            row2.createCell(1).setCellValue(OffreStagejanvier);
+            row2.createCell(2).setCellValue(OffreStagefevrier);
+            row2.createCell(3).setCellValue(OffreStagemars);
+            row2.createCell(4).setCellValue(OffreStageavril);
+            row2.createCell(5).setCellValue(OffreStagemai);
+            row2.createCell(6).setCellValue(OffreStagejuin);
+            row2.createCell(7).setCellValue(OffreStagejuillet);
+            row2.createCell(8).setCellValue(OffreStageaout);
+            row2.createCell(9).setCellValue(OffreStageseptemebre);
+            row2.createCell(10).setCellValue(OffreStageoctobre);
+            row2.createCell(11).setCellValue(OffreStagenovembre);
+            row2.createCell(12).setCellValue(OffreStagedecembre);
+
+            row2.getCell(0).setCellStyle(headerCellStyle);
+            row2.getCell(1).setCellStyle(cellStyle);
+            row2.getCell(2).setCellStyle(cellStyle);
+            row2.getCell(3).setCellStyle(cellStyle);
+            row2.getCell(4).setCellStyle(cellStyle);
+            row2.getCell(5).setCellStyle(cellStyle);
+            row2.getCell(6).setCellStyle(cellStyle);
+            row2.getCell(7).setCellStyle(cellStyle);
+            row2.getCell(8).setCellStyle(cellStyle);
+            row2.getCell(9).setCellStyle(cellStyle);
+            row2.getCell(10).setCellStyle(cellStyle);
+            row2.getCell(11).setCellStyle(cellStyle);
+            row2.getCell(12).setCellStyle(cellStyle);
 
 // Resize all columns to fit the content size
             for (int i = 0; i < columns.length; i++) {
                 sheet.autoSizeColumn(i);
             }
-
+            EmploiScatterChart(sheet, workbook);
         } catch (SQLException ex) {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -391,8 +499,8 @@ public class ToExcel {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void FreelancerExcel(Workbook workbook){
+
+    public void FreelancerExcel(Workbook workbook) {
         try {
             String reqFreelancer = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM freelancer GROUP BY mois;";
             Statement stFreelancer = cnx.createStatement();
@@ -411,44 +519,44 @@ public class ToExcel {
             int Freelancernovembre = 0;
             int Freelancerdecembre = 0;
             while (rsFreelancer.next()) {
-                if (rsFreelancer.getString("mois").equals("January")){
+                if (rsFreelancer.getString("mois").equals("January")) {
                     Freelancerjanvier = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("February")){
+                if (rsFreelancer.getString("mois").equals("February")) {
                     Freelancerfevrier = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("March")){
+                if (rsFreelancer.getString("mois").equals("March")) {
                     Freelancermars = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("April")){
+                if (rsFreelancer.getString("mois").equals("April")) {
                     Freelanceravril = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("Mai")){
+                if (rsFreelancer.getString("mois").equals("Mai")) {
                     Freelancermai = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("June")){
+                if (rsFreelancer.getString("mois").equals("June")) {
                     Freelancerjuin = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("July")){
+                if (rsFreelancer.getString("mois").equals("July")) {
                     Freelancerjuillet = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("August")){
+                if (rsFreelancer.getString("mois").equals("August")) {
                     Freelanceraout = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("September")){
+                if (rsFreelancer.getString("mois").equals("September")) {
                     Freelancerseptemebre = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("October")){
+                if (rsFreelancer.getString("mois").equals("October")) {
                     Freelanceroctobre = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("November")){
+                if (rsFreelancer.getString("mois").equals("November")) {
                     Freelancernovembre = rsFreelancer.getInt("count");
                 }
-                if (rsFreelancer.getString("mois").equals("December")){
+                if (rsFreelancer.getString("mois").equals("December")) {
                     Freelancerdecembre = rsFreelancer.getInt("count");
                 }
             }
-            
+
             Sheet sheet = workbook.createSheet("Historique Freelancer");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
@@ -506,8 +614,8 @@ public class ToExcel {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void SocieteExcel(Workbook workbook){
+
+    public void SocieteExcel(Workbook workbook) {
         try {
             String reqSociete = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM freelancer GROUP BY mois;";
             Statement stSociete = cnx.createStatement();
@@ -526,44 +634,44 @@ public class ToExcel {
             int Societenovembre = 0;
             int Societedecembre = 0;
             while (rsSociete.next()) {
-                if (rsSociete.getString("mois").equals("January")){
+                if (rsSociete.getString("mois").equals("January")) {
                     Societejanvier = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("February")){
+                if (rsSociete.getString("mois").equals("February")) {
                     Societefevrier = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("March")){
+                if (rsSociete.getString("mois").equals("March")) {
                     Societemars = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("April")){
+                if (rsSociete.getString("mois").equals("April")) {
                     Societeavril = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("Mai")){
+                if (rsSociete.getString("mois").equals("Mai")) {
                     Societemai = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("June")){
+                if (rsSociete.getString("mois").equals("June")) {
                     Societejuin = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("July")){
+                if (rsSociete.getString("mois").equals("July")) {
                     Societejuillet = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("August")){
+                if (rsSociete.getString("mois").equals("August")) {
                     Societeaout = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("September")){
+                if (rsSociete.getString("mois").equals("September")) {
                     Societeseptemebre = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("October")){
+                if (rsSociete.getString("mois").equals("October")) {
                     Societeoctobre = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("November")){
+                if (rsSociete.getString("mois").equals("November")) {
                     Societenovembre = rsSociete.getInt("count");
                 }
-                if (rsSociete.getString("mois").equals("December")){
+                if (rsSociete.getString("mois").equals("December")) {
                     Societedecembre = rsSociete.getInt("count");
                 }
             }
-            
+
             Sheet sheet = workbook.createSheet("Historique Societe");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
@@ -622,7 +730,7 @@ public class ToExcel {
         }
     }
 
-    public void DemandeEmploiExcel(Workbook workbook) throws IOException {
+    public void DemandeExcel(Workbook workbook) throws IOException {
         try {
             String reqDemandeEmploi = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_emploi GROUP BY mois;";
 
@@ -680,6 +788,62 @@ public class ToExcel {
                 }
             }
 
+            String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_emploi GROUP BY mois;";
+
+            Statement stDemandeStage = cnx.createStatement();
+            ResultSet rsDemandeStage = stDemandeStage.executeQuery(reqDemandeStage);
+
+            int DemandeStagejanvier = 0;
+            int DemandeStagefevrier = 0;
+            int DemandeStagemars = 0;
+            int DemandeStageavril = 0;
+            int DemandeStagemai = 0;
+            int DemandeStagejuin = 0;
+            int DemandeStagejuillet = 0;
+            int DemandeStageaout = 0;
+            int DemandeStageseptemebre = 0;
+            int DemandeStageoctobre = 0;
+            int DemandeStagenovembre = 0;
+            int DemandeStagedecembre = 0;
+            while (rsDemandeStage.next()) {
+                if (rsDemandeStage.getString("mois").equals("January")) {
+                    DemandeStagejanvier = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("February")) {
+                    DemandeStagefevrier = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("March")) {
+                    DemandeStagemars = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("April")) {
+                    DemandeStageavril = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("Mai")) {
+                    DemandeStagemai = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("June")) {
+                    DemandeStagejuin = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("July")) {
+                    DemandeStagejuillet = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("August")) {
+                    DemandeStageaout = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("September")) {
+                    DemandeStageseptemebre = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("October")) {
+                    DemandeStageoctobre = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("November")) {
+                    DemandeStagenovembre = rsDemandeStage.getInt("count");
+                }
+                if (rsDemandeStage.getString("mois").equals("December")) {
+                    DemandeStagedecembre = rsDemandeStage.getInt("count");
+                }
+            }
+
             Sheet sheet = workbook.createSheet("Historique Demande Emploi");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
@@ -691,32 +855,34 @@ public class ToExcel {
             CellStyle headerCellStyle = workbook.createCellStyle();
             headerCellStyle.setFont(headerFont);
 
+            imageheader(sheet, workbook);
 // Create a Row
-            Row headerRow = sheet.createRow(0);
+            Row headerRow = sheet.createRow(4);
 
-            for (int i = 0; i < columns.length; i++) {
+            for (int i = 1; i < columns.length + 1; i++) {
                 Cell cell = headerRow.createCell(i);
-                cell.setCellValue(columns[i]);
+                cell.setCellValue(columns[i - 1]);
                 cell.setCellStyle(headerCellStyle);
             }
 
-            int rowNum = 1;
+            int rowNum = 5;
 
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(DemandeEmploijanvier);
-            row.createCell(1).setCellValue(DemandeEmploifevrier);
-            row.createCell(2).setCellValue(DemandeEmploimars);
-            row.createCell(3).setCellValue(DemandeEmploiavril);
-            row.createCell(4).setCellValue(DemandeEmploimai);
-            row.createCell(5).setCellValue(DemandeEmploijuin);
-            row.createCell(6).setCellValue(DemandeEmploijuillet);
-            row.createCell(7).setCellValue(DemandeEmploiaout);
-            row.createCell(8).setCellValue(DemandeEmploiseptemebre);
-            row.createCell(9).setCellValue(DemandeEmploioctobre);
-            row.createCell(10).setCellValue(DemandeEmploinovembre);
-            row.createCell(11).setCellValue(DemandeEmploidecembre);
+            row.createCell(0).setCellValue("Demande Emploi");
+            row.createCell(1).setCellValue(DemandeEmploijanvier);
+            row.createCell(2).setCellValue(DemandeEmploifevrier);
+            row.createCell(3).setCellValue(DemandeEmploimars);
+            row.createCell(4).setCellValue(DemandeEmploiavril);
+            row.createCell(5).setCellValue(DemandeEmploimai);
+            row.createCell(6).setCellValue(DemandeEmploijuin);
+            row.createCell(7).setCellValue(DemandeEmploijuillet);
+            row.createCell(8).setCellValue(DemandeEmploiaout);
+            row.createCell(9).setCellValue(DemandeEmploiseptemebre);
+            row.createCell(10).setCellValue(DemandeEmploioctobre);
+            row.createCell(11).setCellValue(DemandeEmploinovembre);
+            row.createCell(12).setCellValue(DemandeEmploidecembre);
 
-            row.getCell(0).setCellStyle(cellStyle);
+            row.getCell(0).setCellStyle(headerCellStyle);
             row.getCell(1).setCellStyle(cellStyle);
             row.getCell(2).setCellStyle(cellStyle);
             row.getCell(3).setCellStyle(cellStyle);
@@ -728,18 +894,48 @@ public class ToExcel {
             row.getCell(9).setCellStyle(cellStyle);
             row.getCell(10).setCellStyle(cellStyle);
             row.getCell(11).setCellStyle(cellStyle);
+            row.getCell(12).setCellStyle(cellStyle);
+            
+            Row row2 = sheet.createRow(rowNum++);
+            row2.createCell(0).setCellValue("Demande stage");
+            row2.createCell(1).setCellValue(DemandeStagejanvier);
+            row2.createCell(2).setCellValue(DemandeStagefevrier);
+            row2.createCell(3).setCellValue(DemandeStagemars);
+            row2.createCell(4).setCellValue(DemandeStageavril);
+            row2.createCell(5).setCellValue(DemandeStagemai);
+            row2.createCell(6).setCellValue(DemandeStagejuin);
+            row2.createCell(7).setCellValue(DemandeStagejuillet);
+            row2.createCell(8).setCellValue(DemandeStageaout);
+            row2.createCell(9).setCellValue(DemandeStageseptemebre);
+            row2.createCell(10).setCellValue(DemandeStageoctobre);
+            row2.createCell(11).setCellValue(DemandeStagenovembre);
+            row2.createCell(12).setCellValue(DemandeStagedecembre);
+
+            row2.getCell(0).setCellStyle(headerCellStyle);
+            row2.getCell(1).setCellStyle(cellStyle);
+            row2.getCell(2).setCellStyle(cellStyle);
+            row2.getCell(3).setCellStyle(cellStyle);
+            row2.getCell(4).setCellStyle(cellStyle);
+            row2.getCell(5).setCellStyle(cellStyle);
+            row2.getCell(6).setCellStyle(cellStyle);
+            row2.getCell(7).setCellStyle(cellStyle);
+            row2.getCell(8).setCellStyle(cellStyle);
+            row2.getCell(9).setCellStyle(cellStyle);
+            row2.getCell(10).setCellStyle(cellStyle);
+            row2.getCell(11).setCellStyle(cellStyle);
+            row2.getCell(12).setCellStyle(cellStyle);
 
 // Resize all columns to fit the content size
             for (int i = 0; i < columns.length; i++) {
                 sheet.autoSizeColumn(i);
             }
-
+            DemandeLineChart(sheet, workbook);
         } catch (SQLException ex) {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public void DemandeStageExcel(Workbook workbook) throws IOException {
+
+    public void DemandeStageExcel(Workbook workbook) throws IOException {
         try {
             String reqDemandeStage = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM demande_emploi GROUP BY mois;";
 
@@ -855,37 +1051,210 @@ public class ToExcel {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void excelfile() {
         try {
-            
+
             Workbook workbook = new XSSFWorkbook();
             ReclamationExcel(workbook);
-            OffreEmploiExcel(workbook);
-            OffreStageExcel(workbook);
+            OffreExcel(workbook);
+
             FreelancerExcel(workbook);
             SocieteExcel(workbook);
-            DemandeEmploiExcel(workbook);
-            DemandeStageExcel(workbook);
+            DemandeExcel(workbook);
+            
 
-            
-            
-             JFileChooser f = new JFileChooser();
-             f.setDialogTitle("save : ");
-        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); 
-        
-        f.showSaveDialog(null);
-        if(f.getSelectedFile()!=null){
-            FileOutputStream fileOut = new FileOutputStream(f.getCurrentDirectory()+"\\Historique.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-            workbook.close();
-        System.out.println(f.getSelectedFile());
-        }
+            JFileChooser f = new JFileChooser();
+            f.setDialogTitle("save : ");
+            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            f.showSaveDialog(null);
+            if (f.getSelectedFile() != null) {
+                FileOutputStream fileOut = new FileOutputStream(f.getSelectedFile() + "\\Historique.xlsx");
+                workbook.write(fileOut);
+                fileOut.close();
+                workbook.close();
+                System.out.println(f.getSelectedFile());
+            }
 
         } catch (IOException ex) {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-   
+    public void ReclamationLineChart(Sheet sheet, Workbook workbook) {
+
+        Drawing drawing = sheet.createDrawingPatriarch();
+
+        ClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 5, 9, 15, 19);
+
+        Chart chart = drawing.createChart(anchor);
+        ((XSSFChart) chart).setTitleText("Nombre de reclamation par mois");
+
+//set "the title overlays the plot area" to false explicitly
+        ((XSSFChart) chart).getCTChart().getTitle().addNewOverlay().setVal(false);
+
+        //set font style for title - low level
+        //add run properties to title's first paragraph and first text run. Set bold.
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).addNewRPr().setB(true);
+        //set italic
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setI(true);
+        //set font size 20pt
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setSz(1000);
+        //add type face for latin and complex script characters
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewLatin().setTypeface("Times New Roman");
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewCs().setTypeface("Times New Roman");
+
+        ChartLegend legend = chart.getOrCreateLegend();
+
+        legend.setPosition(LegendPosition.TOP_RIGHT);
+
+        LineChartData data = chart.getChartDataFactory().createLineChartData();
+
+// Use a category axis for the bottom axis.
+        ChartAxis bottomAxis = chart.getChartAxisFactory().createCategoryAxis(AxisPosition.BOTTOM);
+
+        ValueAxis leftAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.LEFT);
+
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(4, 4, 1, 12));
+
+        ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(5, 5, 1, 12));
+
+        //ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(2, 2, 0, 11));
+        LineChartSeries series = data.addSeries(xs, ys1);
+
+        series.setTitle("Reclamation/mois");
+        //data.addSeries(xs, ys2);
+
+        chart.plot(data, bottomAxis, leftAxis);
+
+    }
+
+    public void EmploiScatterChart(Sheet sheet, Workbook workbook) {
+        XSSFDrawing drawing = (XSSFDrawing) sheet.createDrawingPatriarch();
+        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 5, 9, 15, 19);
+
+        XSSFChart chart = drawing.createChart(anchor);
+        XSSFChartLegend legend = chart.getOrCreateLegend();
+        legend.setPosition(LegendPosition.TOP_RIGHT);
+
+        ((XSSFChart) chart).setTitleText("Nombre de Offre d'emploi/stage par mois");
+
+//set "the title overlays the plot area" to false explicitly
+        ((XSSFChart) chart).getCTChart().getTitle().addNewOverlay().setVal(false);
+
+        //set font style for title - low level
+        //add run properties to title's first paragraph and first text run. Set bold.
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).addNewRPr().setB(true);
+        //set italic
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setI(true);
+        //set font size 20pt
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setSz(1000);
+        //add type face for latin and complex script characters
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewLatin().setTypeface("Times New Roman");
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewCs().setTypeface("Times New Roman");
+
+        XSSFChartAxis bottomAxis = chart.getChartAxisFactory().createCategoryAxis(AxisPosition.BOTTOM);
+        XSSFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        //CellRangeAddress crXData = new CellRangeAddress(4, 4, 1, 12);
+        //CellRangeAddress crYData1 = new CellRangeAddress(5, 5, 1, 12);
+        //CellRangeAddress crYData2 = new CellRangeAddress(6, 6, 1, 12);
+        ChartDataSource<Number> dsXData = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(4, 4, 1, 12));
+        ChartDataSource<Number> dsYData1 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(5, 5, 1, 12));
+        ChartDataSource<Number> dsYData2 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(6, 6, 1, 12));
+
+        XSSFScatterChartData data = chart.getChartDataFactory().createScatterChartData();
+        ScatterChartSeries seriesTitler1 = data.addSerie(dsXData, dsYData1);
+
+        ScatterChartSeries seriesTitler2 = data.addSerie(dsXData, dsYData2);
+
+        seriesTitler1.setTitle("Offre Emploi/mois");
+        seriesTitler2.setTitle("Offre Stage/mois");
+        chart.plot(data, bottomAxis, leftAxis);
+    }
+
+    public void imageheader(Sheet sheet, Workbook workbook) {
+        try {
+            InputStream inputStream = new FileInputStream("C:\\xampp\\htdocs\\PiDev_Java\\src\\pidev_java\\assets\\Logo complet (1).png");
+
+            byte[] imageBytes = IOUtils.toByteArray(inputStream);
+
+            int pictureureIdx = workbook.addPicture(imageBytes, Workbook.PICTURE_TYPE_PNG);
+
+            inputStream.close();
+
+            sheet.addMergedRegion(new CellRangeAddress(0, 2, 0, 2));
+            CreationHelper helper = workbook.getCreationHelper();
+
+            Drawing drawingPicture = sheet.createDrawingPatriarch();
+
+            XSSFClientAnchor anchorPicture = (XSSFClientAnchor) helper.createClientAnchor();
+
+            anchorPicture.setCol1(3);
+            anchorPicture.setRow1(3);
+
+            drawingPicture.createPicture(anchorPicture, pictureureIdx);
+            sheet.autoSizeColumn(0);
+        } catch (IOException ex) {
+            Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void DemandeLineChart(Sheet sheet, Workbook workbook) {
+
+        Drawing drawing = sheet.createDrawingPatriarch();
+
+        ClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 5, 9, 15, 19);
+
+        Chart chart = drawing.createChart(anchor);
+        ((XSSFChart) chart).setTitleText("Nombre de demande d'emploi/stage par mois");
+
+//set "the title overlays the plot area" to false explicitly
+        ((XSSFChart) chart).getCTChart().getTitle().addNewOverlay().setVal(false);
+
+        //set font style for title - low level
+        //add run properties to title's first paragraph and first text run. Set bold.
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).addNewRPr().setB(true);
+        //set italic
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setI(true);
+        //set font size 20pt
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setSz(1000);
+        //add type face for latin and complex script characters
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewLatin().setTypeface("Times New Roman");
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewCs().setTypeface("Times New Roman");
+
+        ChartLegend legend = chart.getOrCreateLegend();
+
+        legend.setPosition(LegendPosition.TOP_RIGHT);
+
+        LineChartData data = chart.getChartDataFactory().createLineChartData();
+
+// Use a category axis for the bottom axis.
+        ChartAxis bottomAxis = chart.getChartAxisFactory().createCategoryAxis(AxisPosition.BOTTOM);
+
+        ValueAxis leftAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.LEFT);
+
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(4, 4, 1, 12));
+
+        ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(5, 5, 1, 12));
+
+        ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(6, 6, 1, 12));
+
+        LineChartSeries series1 = data.addSeries(xs, ys1);
+
+        series1.setTitle("Demande Emploi/mois");
+        LineChartSeries series2 = data.addSeries(xs, ys2);
+
+        series2.setTitle("Demande Stage/mois");
+        data.addSeries(xs, ys2);
+
+        chart.plot(data, bottomAxis, leftAxis);
+
+    }
 }
