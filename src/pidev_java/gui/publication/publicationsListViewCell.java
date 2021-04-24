@@ -80,7 +80,7 @@ public class publicationsListViewCell extends ListCell<Publications> {
 
             lb_user_id.setText(String.valueOf(publications.getNomUtil()) + " " + String.valueOf(publications.getPrenomUtil()) );
             lb_pub_desc.setText(publications.getDescription());
-            img_pub.setImage(new Image( publications.getImage()));
+            img_pub.setImage(new Image("ftp://user:123456789@192.168.1.52/"+publications.getImage()));
             lb_pub_date.setText(publications.getDate_publication());
             btn_show_coms.setOnAction(e->{
                 Stage stage = new Stage();

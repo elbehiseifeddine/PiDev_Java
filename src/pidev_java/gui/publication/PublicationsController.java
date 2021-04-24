@@ -39,6 +39,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import pidev_java.entities.Freelancer;
+import pidev_java.utils.FTPConnection;
 
 /**
  * FXML Controller class
@@ -59,7 +60,7 @@ public class PublicationsController implements Initializable {
     private ImageView img;
     @FXML
     private ListView<Publications> list_pub;
-    
+    String nom;
     
 
     /**
@@ -92,7 +93,7 @@ public class PublicationsController implements Initializable {
                 
                 p.setFreelancer_id(f.getId());
                 if(file != null){
-                    p.setImage(file.toURI().toString());
+                    p.setImage(nom);
                 }
 
                 new PublicationsService().ajouter(p);
@@ -114,6 +115,10 @@ public class PublicationsController implements Initializable {
         
         
         file = fileChooserr.showOpenDialog(img.getScene().getWindow());
+        String files=file.getAbsolutePath().replace("\\", "\\\\");
+        nom=file.getName();
+        FTPConnection cnx=new FTPConnection();
+        cnx.Upload(files,nom);
         Image image = new Image(file.toURI().toString());
         img.setImage(image);
     }
@@ -133,8 +138,8 @@ public class PublicationsController implements Initializable {
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     

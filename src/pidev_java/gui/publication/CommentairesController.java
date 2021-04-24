@@ -67,8 +67,8 @@ public class CommentairesController implements Initializable {
                     ps.getInt("id_pub_id"),
                     ps.getInt("id_util_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     

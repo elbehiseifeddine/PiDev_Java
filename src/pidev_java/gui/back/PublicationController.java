@@ -48,6 +48,7 @@ import pidev_java.entities.Commentaires;
 import pidev_java.entities.Publications;
 import pidev_java.services.CommentairesService;
 import pidev_java.services.PublicationsService;
+import pidev_java.utils.FTPConnection;
 
 /**
  * FXML Controller class
@@ -173,8 +174,8 @@ public class PublicationController implements Initializable {
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
             ));
                     
         }
@@ -197,8 +198,8 @@ public class PublicationController implements Initializable {
                     ps.getInt("id_pub_id"),
                     ps.getInt("id_util_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     
@@ -228,10 +229,11 @@ public class PublicationController implements Initializable {
         Document doc = new Document();
         
         try {
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\ksemt\\Desktop\\Publications.pdf"));
+            String desktopPath = System.getProperty("user.home") + "/Desktop";
+            PdfWriter.getInstance(doc, new FileOutputStream(desktopPath+"\\Publication.pdf"));
             doc.open();
             
-            Image img = Image.getInstance("C:\\Users\\ksemt\\Desktop\\rightjob\\PiDev_Java\\src\\pidev_java\\assets\\Logo complet (1).png");
+            Image img = Image.getInstance("ftp://user:123456789@192.168.1.52/Logo complet (1).png");
             
             float documentWidth = doc.getPageSize().getWidth() - doc.leftMargin() - doc.rightMargin();
             float documentHeight = doc.getPageSize().getHeight() - doc.topMargin() - doc.bottomMargin();
@@ -240,13 +242,16 @@ public class PublicationController implements Initializable {
             WritableImage image = barchart2.snapshot(new SnapshotParameters(), null);
             File file = new File("chart.png");
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-            Image img2 = Image.getInstance("C:\\Users\\ksemt\\Desktop\\rightjob\\PiDev_Java\\chart.png");
+            FTPConnection cnx=new FTPConnection();
+            cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart.png","chart.png");
+            Image img2 = Image.getInstance("ftp://user:123456789@192.168.1.52/chart.png");
             img2.scaleToFit(documentWidth, documentHeight);
             
             WritableImage image2 = barchart.snapshot(new SnapshotParameters(), null);
             File file2 = new File("chart2.png");
             ImageIO.write(SwingFXUtils.fromFXImage(image2, null), "png", file2);
-            Image img3 = Image.getInstance("C:\\Users\\ksemt\\Desktop\\rightjob\\PiDev_Java\\chart2.png");
+            cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart2.png","chart2.png");
+            Image img3 = Image.getInstance("ftp://user:123456789@192.168.1.52/chart2.png");
             img3.scaleToFit(documentWidth, documentHeight);
 
             doc.add(img);
@@ -264,7 +269,7 @@ public class PublicationController implements Initializable {
             
             
             doc.close();
-            Desktop.getDesktop().open(new File ("C:\\Users\\ksemt\\Desktop\\Publications.pdf"));
+            Desktop.getDesktop().open(new File(desktopPath+"\\Publication.pdf"));
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PublicationController.class.getName()).log(Level.SEVERE, null, ex);

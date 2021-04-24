@@ -31,6 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -167,13 +168,13 @@ public class FreelancerProfileController implements Initializable {
 
     @FXML
     private void AttachPic(ActionEvent event) {
-        JFileChooser chooser= new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f=chooser.getSelectedFile();
-        String file=f.getAbsolutePath();
-        name=f.getName();
+        FileChooser chooser= new FileChooser();
+        File file = chooser.showOpenDialog(null);
+        
+        String files=file.getAbsolutePath();
+        name=file.getName();
          
-        url=file.replace("\\", "\\\\");
+        url=files.replace("\\", "\\\\");
         
         pic.setText(name);
         
