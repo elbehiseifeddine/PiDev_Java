@@ -30,7 +30,7 @@ import pidev_java.entities.Freelancer;
 import pidev_java.entities.Societe;
 import pidev_java.services.FreelancerService;
 import pidev_java.services.SocieteService;
-import pidev_java.utils.PdfGeneration;
+//import pidev_java.utils.PdfGeneration;
 
 /**
  * FXML Controller class
@@ -170,7 +170,7 @@ public class ListeSocieteSuperAdminController implements Initializable {
     private void PDFGenerator(ActionEvent event) {
         SocieteService societeService = new SocieteService();
         ArrayList<Societe> List = societeService.getAll();
-        PdfGeneration.SocieteListPdf(List);
+        //PdfGeneration.SocieteListPdf(List);
         pdfLab.setVisible(true);
     }
     

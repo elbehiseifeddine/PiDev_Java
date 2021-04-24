@@ -50,7 +50,7 @@ import pidev_java.entities.Freelancer;
 import pidev_java.gui.utilisateur.FreelancerProfileController;
 import pidev_java.services.AdminService;
 import pidev_java.services.FreelancerService;
-import pidev_java.utils.PdfGeneration;
+//import pidev_java.utils.PdfGeneration;
 
 /**
  * FXML Controller class
@@ -202,7 +202,7 @@ public class ListeFreelancersSuperAdminController implements Initializable {
     private void PDFGenerator(ActionEvent event) {
         FreelancerService freelancerService = new FreelancerService();
         ArrayList<Freelancer> List = freelancerService.getAll();
-        PdfGeneration.FreelancerListPdf(List);
+        //PdfGeneration.FreelancerListPdf(List);
         pdfLab.setVisible(true);
     }
     

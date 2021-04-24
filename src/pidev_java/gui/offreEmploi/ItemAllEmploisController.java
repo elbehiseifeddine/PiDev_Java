@@ -7,8 +7,10 @@ package pidev_java.gui.offreEmploi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.emploiService;
@@ -36,6 +38,8 @@ public class ItemAllEmploisController implements Initializable {
     private Label idDTexpr;
     @FXML
     private Label idDomaine;
+    @FXML
+    private Button id_reclamation;
 
     /**
      * Initializes the controller class.
@@ -57,5 +61,9 @@ public class ItemAllEmploisController implements Initializable {
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
      }
+
+    @FXML
+    private void reclamation(ActionEvent event) {
+    }
     
 }

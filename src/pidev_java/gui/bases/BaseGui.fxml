@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.bases.BaseGuiController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.5.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.bases.BaseGuiController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <menus>
@@ -48,6 +50,7 @@
                      <graphic>
                         <Circle fx:id="myCircle" fill="DODGERBLUE" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
                      </graphic>
+                     
                   </Button>
                   <Label fx:id="nom" text="Label">
                      <padding>
@@ -66,14 +69,14 @@
                      </font>
                   </Label>
                   <Line endX="176.89292907714844" endY="-0.6213112473487854" startX="-100.0">
-                    
+                     
                   </Line>
                   <Button fx:id="btn_home" mnemonicParsing="false" onAction="#Publication" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                               
+                                
                               </FontAwesomeIconView>
                               <Label text="Accueil" textFill="#4e4e4e">
                                 
@@ -91,17 +94,10 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                 
+                                
                               </FontAwesomeIconView>
-<<<<<<< HEAD
                               <Label text="Evenements" textFill="#4e4e4e">
                                 
-=======
-                              <Label onMouseClicked="#Evenement" text="Evenements" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
->>>>>>> Gestion_Event
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -116,7 +112,7 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                              
+                                
                               </FontAwesomeIconView>
                               <Label text="Formations" textFill="#4e4e4e">
                                
@@ -127,17 +123,17 @@
                            </children>
                         </HBox>
                      </graphic>
-                    
+                   
                   </Button>
-                  <Button fx:id="btn_emploi" layoutX="10.0" layoutY="283.0" mnemonicParsing="false" onAction="#ConsulterEmploi" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_emploi" layoutX="10.0" layoutY="283.0" mnemonicParsing="false" onAction="#DemandeEmploi" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                
+                               
                               </FontAwesomeIconView>
                               <Label text="Consulter tous les Emploi" textFill="#4e4e4e">
-                               
+                              
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -147,12 +143,12 @@
                      </graphic>
                    
                   </Button>
-                  <Button fx:id="btn_stage" layoutX="10.0" layoutY="321.0" mnemonicParsing="false" onAction="#ConsulterStage" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_stage" layoutX="10.0" layoutY="321.0" mnemonicParsing="false" onAction="#DemandeStage" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                
+                               
                               </FontAwesomeIconView>
                               <Label text="Consulter tous les Stages" textFill="#4e4e4e">
                               
@@ -163,17 +159,17 @@
                            </children>
                         </HBox>
                      </graphic>
-                  
+                   
                   </Button>
-                  <Button fx:id="btn_demande" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onAction="#demandeA" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_demande" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                                
+                                 
                               </FontAwesomeIconView>
                               <Label text="Consulter mes Demande" textFill="#4e4e4e">
-                                
+                                 
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -187,10 +183,10 @@
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18">
-                               
+                                 
                               </FontAwesomeIconView>
                               <Label text="Reclamation" textFill="#4e4e4e">
-                                
+                                 
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -200,14 +196,14 @@
                      </graphic>
                   </Button>
                   <Line endX="176.89292907714844" endY="-0.6213112473487854" layoutX="122.0" layoutY="210.0" startX="-100.0">
-                   
+                     
                   </Line>
                   <Button fx:id="sign_out_btn" layoutX="10.0" layoutY="452.0" mnemonicParsing="false" onAction="#Deconnect" prefHeight="38.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <Label text="Sign Out" textFill="#4e4e4e">
-                              
+                                
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -228,7 +224,7 @@
                <image>
                   <Image url="@../../assets/Logo_Compact.png" />
                </image>
-             
+              
             </ImageView>
             <Label text="© 2021 PowerDev. All Rights Reserved." textFill="WHITE">
             
@@ -239,7 +235,7 @@
    <center>
       <ScrollPane fx:id="scroll_pane" prefHeight="656.0" prefWidth="974.0" BorderPane.alignment="CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="974.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
         </content>
       </ScrollPane>
    </center>

@@ -157,10 +157,9 @@ public class BaseGuiController implements Initializable {
 
     }
 
-    @FXML
     private void ConsulterEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/OffreEmploi/OffreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/DemandeEmploi/itemAllEmploi.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -168,7 +167,6 @@ public class BaseGuiController implements Initializable {
 
     }
 
-    @FXML
     private void ConsulterStage(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/ConsulterOffreFreelancer.fxml"));
@@ -179,7 +177,6 @@ public class BaseGuiController implements Initializable {
 
     }
     
-       @FXML
     private void demandeA(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/demandeEmploi.fxml"));
@@ -199,6 +196,14 @@ public class BaseGuiController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void DemandeEmploi(ActionEvent event) {
+    }
+
+    @FXML
+    private void DemandeStage(ActionEvent event) {
     }
 
 }

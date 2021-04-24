@@ -23,7 +23,6 @@ Connection cnx = MaConnection.getInstance().getCnx();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void supprimer(DemandeStage t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -35,6 +34,11 @@ Connection cnx = MaConnection.getInstance().getCnx();
 
     @Override
     public List<DemandeStage> afficher() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void supprimer(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

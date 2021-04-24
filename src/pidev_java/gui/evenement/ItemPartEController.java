@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import pidev_java.entities.EventLoisir;
 import pidev_java.entities.Formation;
-import pidev_java.gui.formation.FormationController;
+//import pidev_java.gui.formation.FormationController;
 import pidev_java.services.ParticipantService;
 
 /**
