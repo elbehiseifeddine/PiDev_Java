@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pidev_java.services.FreelancerService;
+import pidev_java.utils.FTPConnection;
 import pidev_java.utils.JavaMail;
 import pidev_java.utils.PdfGeneration;
 
