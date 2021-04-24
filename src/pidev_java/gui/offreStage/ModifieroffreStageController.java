@@ -13,9 +13,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -35,6 +38,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreStage;
 import pidev_java.services.stageService;
 
@@ -111,8 +116,8 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         this.cmbType.setValue(String.valueOf(F.getTypeStage()));
         this.dtExpiration.setValue(LocalDate.parse(F.getDateExpiration().toString()));
      //   BtnAjoutF.setText("Update");
-        this.btnmodifer.setText("Modifier");
-                
+      //  this.btnmodifer.setText("Modifier");
+      //          
        
     }
 
@@ -181,14 +186,16 @@ dtExpiration.setDayCellFactory(dayCellFactory);
            
         Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
         
-        offreStage e = new offreStage(this.os.getId(),tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),this.cmbDomaine.getSelectionModel().getSelectedItem(),this.cmbDuree.getSelectionModel().getSelectedItem(),this.cmbDomaine.getSelectionModel().getSelectedItem(),dateC,dateE);
+        offreStage e = new offreStage(this.os.getId(),tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),this.cmbDomaine.getSelectionModel().getSelectedItem(),this.cmbDuree.getSelectionModel().getSelectedItem(),this.cmbType.getSelectionModel().getSelectedItem(),dateC,dateE);
        
         new stageService().update(e);
         this.cs.updateList();
+       
         Window window =   ((Node)(event.getSource())).getScene().getWindow(); 
             if (window instanceof Stage){
                 ((Stage) window).close();
             }
+             notificationEdit();
         }
            
     }
@@ -218,6 +225,24 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.cmbType.setValue("-- choisir un type --");
    // this.dtCreation.setValue(null);
     this.dtExpiration.setValue(null);
+    
+    }
+      public void notificationEdit(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés de modification")
+                .text("votre offre a été modifier avec succés")
+               .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
     
     }
     
