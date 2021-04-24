@@ -6,7 +6,7 @@
 package pidev_java.services;
 
 import pidev_java.entities.Quiz;
-import pidev_java.utils.Singleton;
+//import pidev_java.utils.Singleton;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,7 +20,7 @@ public class QuizService {
     Connection conn;
     
     public QuizService(){
-        conn = Singleton.getConn();
+        //conn = Singleton.getConn();
     }
     
     

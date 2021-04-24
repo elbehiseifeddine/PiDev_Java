@@ -26,7 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-//import org.controlsfx.control.Notifications;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreStage;
 import pidev_java.services.stageService;
 

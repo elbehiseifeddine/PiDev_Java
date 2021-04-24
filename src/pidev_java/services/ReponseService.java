@@ -5,7 +5,7 @@
  */
 package pidev_java.services;
 import pidev_java.entities.Reponse;
-import pidev_java.utils.Singleton;
+//import pidev_java.utils.Singleton;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,8 @@ public class ReponseService {
    Connection conn;
     
     public ReponseService(){
-         conn = Singleton.getConn();    }
+         //conn = Singleton.getConn();    
+    }
     
     
     public void addReponse(Reponse reponse){
