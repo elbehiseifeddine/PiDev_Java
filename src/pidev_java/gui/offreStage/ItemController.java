@@ -102,6 +102,7 @@ public class ItemController implements Initializable {
                    
                   ModifieroffreStageController afc=loader1.getController();
                  afc.initUpdate(this.co,this.offre);
+                // notificationEdit();
                 
              } catch (Exception ex) {
                 System.out.println("erreur");
@@ -159,4 +160,6 @@ public class ItemController implements Initializable {
        
     
     }
+    
+    
 }
