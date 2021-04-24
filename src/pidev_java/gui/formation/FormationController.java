@@ -41,13 +41,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.DateCell;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
+
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
+
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import jdk.internal.dynalink.support.TypeConverterFactory;
+import pidev_java.entities.EventLoisir;
+import pidev_java.entities.Freelancer;
+import pidev_java.entities.Participant;
+import pidev_java.entities.Societe;
+
 import pidev_java.services.FormationService;
+import pidev_java.services.FreelancerService;
+import pidev_java.services.ParticipantService;
+import pidev_java.services.SocieteService;
+import pidev_java.utils.Javamailform;
+import pidev_java.utils.TwilioSMS;
 
 /**
  * FXML Controller class
@@ -77,76 +99,50 @@ public class FormationController implements Initializable {
     @FXML
     private TextField textmontant;
     @FXML
-    private TableView<Formation> tableformation;
+    private GridPane gridPartF;
     @FXML
-    private TableColumn<Formation, String> labelle;
-    @FXML
-    private TableColumn<Formation, String> description;
-    @FXML
-    private TableColumn<Formation, Date> dated;
-    @FXML
-    private TableColumn<Formation, Date> datef;
-    @FXML
-    private TableColumn<Formation, String> lieu;
-    @FXML
-    private TableColumn<Formation, String> domaine;
-    @FXML
-    private TableColumn<Formation, Float> montant;
-    @FXML
-    private Label textid;
-    @FXML
-    private DatePicker textdatedeb;
-    @FXML
-    private DatePicker textdatefin;
-    @FXML
-    private TableColumn<Formation, String> action;
-    @FXML
-    private TextField textimage;
-    @FXML
-    private Label labellabel;
-    @FXML
-    private Label labeldesc;
-    @FXML
-    private Label labeldatedeb;
-    @FXML
-    private Label labelheuredeb;
-    @FXML
-    private Label labeldatefin;
-    @FXML
-    private Label labelheurefin;
-    @FXML
-    private Label labellieu;
-    @FXML
-    private Label labeldaomaine;
-    @FXML
-    private Label labelmontant;
-    @FXML
-    private Label labelimage;
-
-    /**
-     * Initializes the controller class.
-     */
+    private Button btnFormationAux;
+    
+    private Freelancer Fcon;
+    private Societe Scon;
+    private int iducon;
+    private String typeucon;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        FormationService fs = new FormationService();
-        DatePicker minDate = new DatePicker(); // DatePicker, used to define max date available, you can also create another for minimum date
-minDate.setValue(LocalDate.now()); // Max date available will be 2015-01-01
-final Callback<DatePicker, DateCell> dayCellFactory;
-
-dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
-    @Override
-    public void updateItem(LocalDate item, boolean empty) {
-        super.updateItem(item, empty);
-        if (item.isBefore(minDate.getValue())) { //Disable all dates after required date
-            setDisable(true);
-            setStyle("-fx-background-color: #ffc0cb;"); //To set background on different color
+        
+        Fcon=Freelancer.getInstance();
+        Scon=Societe.getInstance();
+        if(Fcon != null){
+            iducon=Fcon.getId();
+            typeucon="freelancer";
         }
-    }
-};
-//Finally, we just need to update our DatePicker cell factory as follow:
-textdatedeb.setDayCellFactory(dayCellFactory);
-textdatefin.setDayCellFactory(dayCellFactory);
+        else{
+            iducon=Scon.getId();
+            typeucon="societe";
+        }
       
+            scrolPartF.setVisible(true);
+            gridPartF.getChildren().clear();
+            scrolFormation.setVisible(true);
+         gridFormation.getChildren().clear();
+         
+         scrolMesFormation.setVisible(true);
+         gridMesFormation.getChildren().clear();
+         int columnMesForm = 0;
+        int rowMesForm = 1;
+         int columnForm = 0;
+        int rowForm = 1;
+         int columnPartF = 0;
+        int rowPartF = 1;
+        
+         try {
+            
+           List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
+            for (int i = 0; i < MesFormation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
         List<Formation> lf = fs.Lister();
 
@@ -162,8 +158,16 @@ textdatefin.setDayCellFactory(dayCellFactory);
         dated.setCellValueFactory(
                 new PropertyValueFactory<>("DateDebut"));
 
-        datef.setCellValueFactory(
-                new PropertyValueFactory<>("DateFin"));
+           }
+         
+         
+         try {
+            
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
+            for (int i = 0; i < Formation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
         lieu.setCellValueFactory(
                 new PropertyValueFactory<>("Lieu"));
@@ -200,11 +204,23 @@ textdatefin.setDayCellFactory(dayCellFactory);
                         );
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
-                            try {
-                                Formation t = tableformation.getSelectionModel().getSelectedItem();
-                                FormationService fs = new FormationService();
-                                fs.Supprimer(t);
-                                List<Formation> lf = fs.Lister();
+           }
+         
+         
+         try {
+            List<Formation> MesPartF=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister(typeucon,"formation",1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+              
+            Formation F=fs.FindParId(MesParticipation.get(i).getFormation().getId());
+         
+            MesPartF.add(F);
+            }
+            for (int i = 0; i < MesPartF.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemPartF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
                                 ObservableList<Formation> data
                                         = FXCollections.observableArrayList(lf);
@@ -239,6 +255,51 @@ textdatefin.setDayCellFactory(dayCellFactory);
 
                         });
 
+           }
+         
+         
+         
+         
+         
+    }
+    
+    public void delete(Formation Form){
+        ParticipantService pser=new ParticipantService();
+        FreelancerService FS=new FreelancerService();
+        SocieteService SS=new SocieteService();
+        String email="";
+        List<Participant> Part=pser.ListerParEvent("formation", Form.getId());
+        if(Part != null){
+            for(int l=0;l<Part.size();l++){
+                if(Part.get(l).getTypeU().equals("freelancer")){
+                    email=FS.FindparID(Part.get(l).getF().getId()).getEmail();
+                }
+                else{
+                    email=SS.FindparID(Part.get(l).getS().getId()).getEmail();
+                }
+                
+                //envoie du l'email
+                
+            }
+            pser.SupprimerParEvent("formation", Form.getId());
+            
+        }
+        
+         fs.Supprimer(Form);
+         gridMesFormation.getChildren().clear();
+         gridFormation.getChildren().clear();
+         int columnMesForm = 0;
+        int rowMesForm = 1;
+         int columnForm = 0;
+        int rowForm = 1;
+        
+        try {
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
+          
+            for (int i = 0; i < MesFormation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
                         HBox managebtn = new HBox(editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");
@@ -249,7 +310,36 @@ textdatefin.setDayCellFactory(dayCellFactory);
 
                         setText(null);
 
-                    }
+                //set grid height
+                gridMesFormation.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridMesFormation.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridMesFormation.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+            
+        }
+        
+        
+        
+          try {
+            
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
+            for (int i = 0; i < Formation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemFController itemFController = fxmlLoader.getController();
+                System.out.println(Formation.get(i).getLabelle());
+                itemFController.setData(Formation.get(i),this);
+
+                 if (columnForm == 2) {
+                    columnForm = 0;
+                    rowForm++;
                 }
 
             };
@@ -261,6 +351,24 @@ textdatefin.setDayCellFactory(dayCellFactory);
         tableformation.setItems(data);
         
     }
+    
+    
+     public void Ajouter(Formation Form){
+         fs.Ajouter(Form,iducon,typeucon);
+         gridMesFormation.getChildren().clear();
+          gridFormation.getChildren().clear();
+         int columnMesForm = 0;
+        int rowMesForm = 1;
+         int columnForm = 0;
+        int rowForm = 1;
+        
+        try {
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
+          
+            for (int i = 0; i < MesFormation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     @FXML
     private void ajouterformation(MouseEvent event) {
@@ -278,13 +386,21 @@ textdatefin.setDayCellFactory(dayCellFactory);
         String DateDeb = textdatedeb.getValue().toString().replace('/', '-') + " " + textedated.getText();
         String DateFin = textdatefin.getValue().toString().replace('/', '-') + " " + textdatef.getText();
         
-                if(Timestamp.valueOf(DateFin).before(Timestamp.valueOf(DateDeb))){
-                    Alert alert1 = new Alert(Alert.AlertType.WARNING);
-        alert1.setTitle("erreur");
-        
-        alert1.setContentText("date debut supperieur à la date fin"); 
-        alert1.showAndWait();
-                    
+          try {
+            
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
+            for (int i = 0; i < Formation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemFController itemFController = fxmlLoader.getController();
+                System.out.println(Formation.get(i).getLabelle());
+                itemFController.setData(Formation.get(i),this);
+
+                 if (columnForm == 2) {
+                    columnForm = 0;
+                    rowForm++;
                 }
                 else{
         FormationService fs = new FormationService();
@@ -318,9 +434,21 @@ textdatefin.setDayCellFactory(dayCellFactory);
                     Alert alert1 = new Alert(Alert.AlertType.WARNING);
         alert1.setTitle("erreur");
         
-        alert1.setContentText("date debut supperieur à la date fin"); 
-        alert1.showAndWait();
-                    
+        try {
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
+          
+            for (int i = 0; i < MesFormation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+       
+                itemController.setData(MesFormation.get(i),this);
+
+                 if (columnMesForm == 2) {
+                    columnMesForm = 0;
+                    rowMesForm++;
                 }
                 else{
         FormationService fs = new FormationService();
@@ -333,7 +461,14 @@ textdatefin.setDayCellFactory(dayCellFactory);
         tableformation.setItems(data);
         initForm();
         }
-        }
+        
+          try {
+            
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
+            for (int i = 0; i < Formation.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     }
 
@@ -366,6 +501,39 @@ textdatefin.setDayCellFactory(dayCellFactory);
         textdatefin.setValue(LocalDate.parse(t.getDateFin().toString().split(" ")[0]));
         textimage.setText(t.getImageF());
     }
+    
+    public void participate(Formation F){
+          int columnPartF = 0;
+        int rowPartF = 1;
+        gridPartF.getChildren().clear();
+        ParticipantService ps=new ParticipantService();
+        EventLoisir el=new EventLoisir();
+        Societe s=new Societe();
+        Freelancer Fr=new Freelancer();
+       
+        if(typeucon.equals("freelancer")){
+             Fr=new Freelancer(iducon);
+        }
+        else{
+                s=new Societe(iducon);
+        }
+       
+        Participant P=new Participant("formation", typeucon, Fr, s, F, el);
+        ps.Ajouter(P);
+         try {
+            List<Formation> MesPartF=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister(typeucon,"formation",1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+              
+            Formation Fo=fs.FindParId(MesParticipation.get(i).getFormation().getId());
+         
+            MesPartF.add(Fo);
+            }
+            for (int i = 0; i < MesPartF.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemPartF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     private void initForm() {
         textid.setText("");
@@ -402,6 +570,26 @@ textdatefin.setDayCellFactory(dayCellFactory);
             textimage.setText(selected.getName());
         }
     }
+    
+    public void deleteP(Formation Fo){
+         int columnPartF = 0;
+        int rowPartF = 1;
+        gridPartF.getChildren().clear();
+        Participant P=new Participant("formation", typeucon, new Freelancer(1), new Societe(), Fo, new EventLoisir());
+        ps.Supprimer(P);
+         try {
+            List<Formation> MesPartF=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister("freelancer",typeucon,1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+            
+            Formation F=fs.FindParId(MesParticipation.get(i).getFormation().getId());
+            MesPartF.add(F);
+            }
+            for (int i = 0; i < MesPartF.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemPartF.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     @FXML
     private void controlemontant(KeyEvent event) {
@@ -417,6 +605,27 @@ textdatefin.setDayCellFactory(dayCellFactory);
             labelmontant.setText("entrer un entier");
         }
     }
+    }
+
+    @FXML
+    private void showFormationAux(MouseEvent event) {
+        List<Formation> MesFormationD=fs.ListerParDate();
+          try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/formation/MapFaux.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                  MapFauxController auxc=loader1.getController();
+                 auxc.inti(MesFormationD,this);
+                
+             } catch (IOException ex) {
+                 Logger.getLogger(FormationController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
     }
 
 }

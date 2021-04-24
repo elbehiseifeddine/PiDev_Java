@@ -37,6 +37,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import pidev_java.services.EventService;
+import pidev_java.services.FreelancerService;
+import pidev_java.services.ParticipantService;
+import pidev_java.services.SocieteService;
+import pidev_java.utils.Javamailform;
+import pidev_java.utils.TwilioSMS;
 
 /**
  * FXML Controller class
@@ -64,34 +69,17 @@ public class EvenementController implements Initializable {
     @FXML
     private TableColumn<EventLoisir, String> description;
     @FXML
-    private TableColumn<EventLoisir, Timestamp> dated;
+    private GridPane gridPartE;
+    
+    private EventService evs=new EventService();
     @FXML
-    private TableColumn<EventLoisir, Timestamp> datef;
-    @FXML
-    private TableColumn<EventLoisir, String> lieu;
-    @FXML
-    private TableColumn<EventLoisir, String> domaine;
-    @FXML
-    private TableColumn<EventLoisir, Integer> nbPart;
-    @FXML
-    private TableView<EventLoisir> tableevent;
-    @FXML
-    private Button btnajouterE;
-    @FXML
-    private Button btnmodifierE;
-    @FXML
-    private Button btnsuppE;
-    @FXML
-    private Label textidE;
-    @FXML
-    private DatePicker textdatefine;
-    @FXML
-    private DatePicker textdatedebE;
-    @FXML
-    private TextField textimageE;
-    @FXML
-    private TableColumn<EventLoisir, String> action;
-  
+    private Button btnEventAux;
+    
+      
+    private Freelancer Fcon;
+    private Societe Scon;
+    private int iducon;
+    private String typeucon;
 
     /**
      * Initializes the controller class.
@@ -119,42 +107,36 @@ textdatefine.setDayCellFactory(dayCellFactory);
 
          List<EventLoisir> le = es.Lister();
         
-          ObservableList<EventLoisir> data =
-                 FXCollections.observableArrayList(le); 
-        
-        labelle.setCellValueFactory(
-                new PropertyValueFactory<>("Labelle"));
-          
-        description.setCellValueFactory(
-                new PropertyValueFactory<>("Description"));
- 
-       
-        dated.setCellValueFactory(
-                new PropertyValueFactory<>("DateDebut"));
- 
+            Fcon=Freelancer.getInstance();
+        Scon=Societe.getInstance();
+        if(Fcon != null){
+            iducon=Fcon.getId();
+            typeucon="freelancer";
+        }
+        else{
+            iducon=Scon.getId();
+            typeucon="societe";
+        }
+          scrollMesEvent.setVisible(true);
+         gridMesevent.getChildren().clear();
+           scrolEvent.setVisible(true);
+         gridEvent.getChildren().clear();
+         
+    ParticipantService ps=new ParticipantService();
+         int columnPartF = 0;
+        int rowPartF = 1;
+        gridPartE.getChildren().clear();
         
         datef.setCellValueFactory(
                 new PropertyValueFactory<>("DateFin"));
         
-        
-        
-        lieu.setCellValueFactory(
-                new PropertyValueFactory<>("Lieu"));
-         domaine.setCellValueFactory(
-                new PropertyValueFactory<>("Domaine"));
-       nbPart.setCellValueFactory(
-                new PropertyValueFactory<>("nbParticipant"));
-       
-        Callback<TableColumn<EventLoisir, String>, TableCell<EventLoisir, String>> cellFoctory = (TableColumn<EventLoisir, String> param) -> {
-            // make cell containing buttons
-            final TableCell<EventLoisir, String> cell = new TableCell<EventLoisir, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
+         try {
+            
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
+            for (int i = 0; i < MesEvent.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
                     } else {
 
@@ -184,9 +166,14 @@ textdatefine.setDayCellFactory(dayCellFactory);
                                 tableevent.setItems(data);
                                 initForm();
 
-                            } catch (Exception ex) {
-                                System.out.println("erreur");
-                            }
+           }
+           try {
+            
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
+            for (int i = 0; i < Event.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
@@ -219,7 +206,22 @@ textdatefine.setDayCellFactory(dayCellFactory);
                         HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
                         HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
 
-                        setGraphic(managebtn);
+           }
+         
+         
+         try {
+            List<EventLoisir> MesPartE=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+            
+            EventLoisir E=evs.FindParId(MesParticipation.get(i).getEl().getId());
+            MesPartE.add(E);
+            }
+            for (int i = 0; i < MesPartE.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemPartE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
                         setText(null);
 
@@ -274,40 +276,273 @@ textdatefine.setDayCellFactory(dayCellFactory);
         }
         }
     }
-
-    @FXML
-    private void modifierEvent(MouseEvent event) {
-         if((textlabelle.getText().isEmpty())||(textdecription.getText().isEmpty())||(textdomaine.getText().isEmpty()
-                )||(textlieu.getText().isEmpty())||(textnb.getText().isEmpty())||(textimageE.getText().isEmpty())){
-             Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("erreur");
-        
-        alert.setContentText("veuillez remplir tous les champs"); 
-        alert.showAndWait();
-        }
-         else{
-        String DateDeb=textdatedebE.getValue().toString().replace('/', '-')+" "+textedated.getText();
-        String DateFin=textdatefine.getValue().toString().replace('/', '-')+" "+textdatef.getText();
-         if(Timestamp.valueOf(DateFin).before(Timestamp.valueOf(DateDeb))){
-                    Alert alert1 = new Alert(Alert.AlertType.WARNING);
-        alert1.setTitle("erreur");
-        
-        alert1.setContentText("date debut supperieur à la date fin"); 
-        alert1.showAndWait();
-                    
+    
+    
+    
+     public void delete(EventLoisir event){
+          ParticipantService pser=new ParticipantService();
+        FreelancerService FS=new FreelancerService();
+        SocieteService SS=new SocieteService();
+        String email="";
+        List<Participant> Part=pser.ListerParEvent("evenement", event.getId());
+        if(Part != null){
+            for(int l=0;l<Part.size();l++){
+                if(Part.get(l).getTypeU().equals("freelancer")){
+                    email=FS.FindparID(Part.get(l).getF().getId()).getEmail();
                 }
                 else{
-          EventService es = new EventService();
-        EventLoisir Ev=new EventLoisir(Integer.parseInt(textidE.getText()),textlabelle.getText(),textdecription.getText(),textlieu.getText(),Timestamp.valueOf(DateDeb),Timestamp.valueOf(DateFin),textdomaine.getText(),Integer.parseInt(textnb.getText()),true,1,1,textimageE.getText());
-        es.Modifier(Ev);
+                    email=SS.FindparID(Part.get(l).getS().getId()).getEmail();
+                }
+                
+                //envoie du l'email
+                
+            }
+            pser.SupprimerParEvent("evenement", event.getId());
+            
+        }
+         es.Supprimer(event);
+         gridMesevent.getChildren().clear();
+           gridEvent.getChildren().clear();
+         
+           int columnMesEvent = 0;
+        int rowMesEvent = 1;
+         int columnEvent = 0;
+        int rowEvent = 1;
         
-        List<EventLoisir> le = es.Lister();
-        ObservableList<EventLoisir> data =
-        FXCollections.observableArrayList(le); 
-         tableevent.setItems(data);
-         initForm();
-         }
-         }
+         try {
+            
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
+            for (int i = 0; i < MesEvent.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEventController itemeController = fxmlLoader.getController();
+                
+                itemeController.setData(MesEvent.get(i),this);
+
+                 if (columnMesEvent == 2) {
+                    columnMesEvent = 0;
+                    rowMesEvent++;
+                }
+
+                gridMesevent.add(anchorPane, columnMesEvent, rowMesEvent++); //(child,column,row)
+                //set grid width
+                gridMesevent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridMesevent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridMesevent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+           try {
+            
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
+            for (int i = 0; i < Event.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEController itemEController = fxmlLoader.getController();
+                
+                itemEController.setData(Event.get(i),this);
+
+                 if (columnEvent == 2) {
+                    columnEvent = 0;
+                    rowEvent++;
+                }
+
+                gridEvent.add(anchorPane, columnEvent, rowEvent++); //(child,column,row)
+                //set grid width
+                gridEvent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridEvent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridEvent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+    }
+    
+    
+     public void Ajouter(EventLoisir event){
+         es.Ajouter(event,iducon,typeucon);
+         gridMesevent.getChildren().clear();
+                  gridEvent.getChildren().clear();
+          
+            int columnMesEvent = 0;
+        int rowMesEvent = 1;
+         int columnEvent = 0;
+        int rowEvent = 1;
+        
+         try {
+            
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
+            for (int i = 0; i < MesEvent.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEventController itemeController = fxmlLoader.getController();
+                
+                itemeController.setData(MesEvent.get(i),this);
+
+                 if (columnMesEvent == 2) {
+                    columnMesEvent = 0;
+                    rowMesEvent++;
+                }
+
+                gridMesevent.add(anchorPane, columnMesEvent, rowMesEvent++); //(child,column,row)
+                //set grid width
+                gridMesevent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridMesevent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridMesevent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+         
+         
+           try {
+            
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
+            for (int i = 0; i < Event.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEController itemEController = fxmlLoader.getController();
+                
+                itemEController.setData(Event.get(i),this);
+
+                 if (columnEvent == 2) {
+                    columnEvent = 0;
+                    rowEvent++;
+                }
+
+                gridEvent.add(anchorPane, columnEvent, rowEvent++); //(child,column,row)
+                //set grid width
+                gridEvent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridEvent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridEvent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+         
+    }
+     
+     
+     
+     
+      public void Update(EventLoisir event){
+         es.Modifier(event);
+         gridMesevent.getChildren().clear();
+                  gridEvent.getChildren().clear();
+             int columnMesEvent = 0;
+        int rowMesEvent = 1;
+         int columnEvent = 0;
+        int rowEvent = 1;
+        
+         try {
+            
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
+            for (int i = 0; i < MesEvent.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEventController itemeController = fxmlLoader.getController();
+                
+                itemeController.setData(MesEvent.get(i),this);
+
+                 if (columnMesEvent == 2) {
+                    columnMesEvent = 0;
+                    rowMesEvent++;
+                }
+
+                gridMesevent.add(anchorPane, columnMesEvent, rowMesEvent++); //(child,column,row)
+                //set grid width
+                gridMesevent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridMesevent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridMesevent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridMesevent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+           try {
+            
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
+            for (int i = 0; i < Event.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEController itemEController = fxmlLoader.getController();
+                
+                itemEController.setData(Event.get(i),this);
+
+                 if (columnEvent == 2) {
+                    columnEvent = 0;
+                    rowEvent++;
+                }
+
+                gridEvent.add(anchorPane, columnEvent, rowEvent++); //(child,column,row)
+                //set grid width
+                gridEvent.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridEvent.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridEvent.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridEvent.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridEvent.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
     }
 
     @FXML
@@ -321,6 +556,27 @@ textdatefine.setDayCellFactory(dayCellFactory);
          tableevent.setItems(data);
          initForm();
     }
+    
+    public void deleteP(EventLoisir ev){
+        ParticipantService ps=new ParticipantService();
+         int columnPartF = 0;
+        int rowPartF = 1;
+        gridPartE.getChildren().clear();
+        Participant P=new Participant("evenement", typeucon, new Freelancer(1), new Societe(), new Formation(), ev);
+        ps.Supprimer(P);
+         try {
+            List<EventLoisir> MesPartE=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+            
+            EventLoisir E=evs.FindParId(MesParticipation.get(i).getEl().getId());
+            MesPartE.add(E);
+            }
+            for (int i = 0; i < MesPartE.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemPartE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     @FXML
     private void afficherEvent(MouseEvent event) {
@@ -338,19 +594,39 @@ textdatefine.setDayCellFactory(dayCellFactory);
         textimageE.setText(t.getImageE());
     }
     
-    private void initForm(){
-          textidE.setText("");
-        textlabelle.setText("");
-        textdecription.setText("");
-        textlieu.setText("");
-        textedated.setText("");
-        textdatef.setText("");
-        textdomaine.setText("");
-        textnb.setText("");
-         textdatedebE.setValue(null);
-        textdatefine.setValue(null);
-        textimageE.setText("");
-    }
+    
+    
+     public void participate(EventLoisir E){
+       
+         int columnPartF = 0;
+        int rowPartF = 1;
+        gridPartE.getChildren().clear();
+        ParticipantService ps=new ParticipantService();
+        Formation F=new Formation();
+        Societe s=new Societe();
+        Freelancer Fr=new Freelancer();
+         if(typeucon.equals("freelancer")){
+             Fr=new Freelancer(iducon);
+        }
+        else{
+                s=new Societe(iducon);
+        }
+       
+        Participant P=new Participant("evenement", typeucon, Fr, s, F, E);
+        ps.Ajouter(P);
+         try {
+            List<EventLoisir> MesPartE=new ArrayList<>();
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
+            for (int i = 0; i < MesParticipation.size(); i++) {
+            
+            EventLoisir Ev=evs.FindParId(MesParticipation.get(i).getEl().getId());
+            MesPartE.add(Ev);
+            }
+            for (int i = 0; i < MesPartE.size(); i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemPartE.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
     @FXML
     private void importimage(MouseEvent event) {
@@ -372,6 +648,26 @@ textdatefine.setDayCellFactory(dayCellFactory);
             }else
             textimageE.setText(selected.getName());
         }
+    }
+
+    @FXML
+    private void showEventAux(MouseEvent event) {
+         List<EventLoisir> MesEventAux=es.ListerParDate();
+          try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/evenement/MapEAux.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                  MapEAuxController auxc=loader1.getController();
+                 auxc.inti(MesEventAux,this);
+                
+             } catch (IOException ex) {
+                System.out.println("erreur");
+             }
     }
     
 }
