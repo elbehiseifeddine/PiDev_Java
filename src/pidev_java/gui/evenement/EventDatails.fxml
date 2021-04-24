@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.evenement.ItemEController">
+<AnchorPane prefHeight="34.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.evenement.EventDatailsController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="10.0" prefHeight="172.0" prefWidth="209.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -19,7 +19,7 @@
             </ImageView>
          </children>
       </VBox>
-      <Label fx:id="labelle" layoutX="371.0" layoutY="26.0" prefHeight="31.0" prefWidth="137.0" text="labelle">
+      <Label fx:id="labelle" layoutX="367.0" layoutY="22.0" prefHeight="31.0" prefWidth="137.0" text="labelle">
          <font>
             <Font size="20.0" />
          </font>
@@ -34,9 +34,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-     
+      
 
-      <Label fx:id="description" layoutX="367.0" layoutY="56.0" prefHeight="34.0" prefWidth="333.0" text="Description">
+      <Label fx:id="description" layoutX="367.0" layoutY="56.0" prefHeight="34.0" prefWidth="276.0" text="Description">
          <font>
             <Font size="18.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="133.0" text="nb " textFill="#6c89a1">
+      <Label layoutX="230.0" layoutY="133.0" text="nombre" textFill="#6c89a1">
          <font>
             <Font size="18.0" />
          </font>
@@ -76,21 +76,21 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="167.0" text="Leiu" textFill="#6c89a1">
+      <Label layoutX="230.0" layoutY="167.0" text="Lieu" textFill="#6c89a1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lieu" layoutX="367.0" layoutY="167.0" text="Label">
+      <Label fx:id="lieu" layoutX="367.0" layoutY="167.0" prefHeight="27.0" prefWidth="230.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="230.0" layoutY="28.0" prefHeight="17.0" prefWidth="72.0" text="Labelle" textFill="#6c89a1">
+      <Label layoutX="229.0" layoutY="24.0" prefHeight="17.0" prefWidth="72.0" text="Labelle" textFill="#6c89a1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnParticiperE" layoutX="585.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#ParticiperE" text="participer" />
+      <Button fx:id="btnParticiperF" layoutX="557.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#ParticiperForm" text="participer" />
    </children>
 </AnchorPane>

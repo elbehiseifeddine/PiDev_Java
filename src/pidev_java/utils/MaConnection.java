@@ -25,8 +25,9 @@ public class MaConnection {
     
     private MaConnection(){
         try{
+            String unicode= "?useUnicode=yes&characterEncoding=UTF-8";
             Class.forName("com.mysql.jdbc.Driver");
-            cnx= DriverManager.getConnection(url,userName,password);
+            cnx= DriverManager.getConnection(url+unicode,userName,password);
             System.out.println("connection établie");
         }catch(Exception ex){
             Logger.getLogger(MaConnection.class.getName()).log(Level.SEVERE,null,ex);

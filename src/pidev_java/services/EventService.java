@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import pidev_java.interfaces.IServiceEvent;
 import pidev_java.utils.MaConnection;
@@ -40,7 +42,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setString(8, e.getLabelle());
                 preparedStmt.setBoolean(9, e.isEtat());
                 preparedStmt.setDouble(10, e.getLng());
-                preparedStmt.setDouble(11, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, 1);
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
@@ -48,6 +50,56 @@ public class EventService implements IServiceEvent<EventLoisir> {
         catch (Exception ex) { 
                 ex.printStackTrace();
 	           } 
+    }
+    
+     public void Ajouter(EventLoisir e,int idu,String typeU) {
+         if(typeU.equals("freelancer")){
+              try{
+		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_fr_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		preparedStmt.setString(1,e.getDescription());
+		preparedStmt.setTimestamp(2,e.getDateDebut());
+                preparedStmt.setTimestamp(3,e.getDateFin());
+		preparedStmt.setString(4,e.getLieu());
+		preparedStmt.setString(5,e.getDomaine());
+                preparedStmt.setString(6,e.getImageE());
+                preparedStmt.setFloat(7, e.getNbParticipant());
+                preparedStmt.setString(8, e.getLabelle());
+                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
+                preparedStmt.setInt(12, idu);
+                preparedStmt.execute();
+                System.out.println("Insertion Avec Succes");
+            }
+        catch (Exception ex) { 
+                ex.printStackTrace();
+	           } 
+             
+         }
+         else if(typeU.equals("societe")){
+              try{
+		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_so_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		preparedStmt.setString(1,e.getDescription());
+		preparedStmt.setTimestamp(2,e.getDateDebut());
+                preparedStmt.setTimestamp(3,e.getDateFin());
+		preparedStmt.setString(4,e.getLieu());
+		preparedStmt.setString(5,e.getDomaine());
+                preparedStmt.setString(6,e.getImageE());
+                preparedStmt.setFloat(7, e.getNbParticipant());
+                preparedStmt.setString(8, e.getLabelle());
+                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
+                preparedStmt.setInt(12, idu);
+                preparedStmt.execute();
+                System.out.println("Insertion Avec Succes");
+            }
+        catch (Exception ex) { 
+                ex.printStackTrace();
+	           } 
+             
+         }
+        
     }
 
     @Override
@@ -66,7 +118,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
     @Override
     public void Modifier(EventLoisir e) {
           try {
-            PreparedStatement preparedStmt = con.prepareStatement("update event_loisir set  description=? ,date_debut=?,date_fin=? ,lieu=? ,labelle=? ,domaine=? ,nb_participant=? ,imagee=?  where id=?");
+            PreparedStatement preparedStmt = con.prepareStatement("update event_loisir set  description=? ,date_debut=?,date_fin=? ,lieu=? ,labelle=? ,domaine=? ,nb_participant=? ,imagee=? ,lng=? ,lat=?  where id=?");
 	    preparedStmt.setString(1,e.getDescription());
 	    preparedStmt.setTimestamp(2,e.getDateDebut());
 	    preparedStmt.setTimestamp(3,e.getDateFin());
@@ -75,7 +127,9 @@ public class EventService implements IServiceEvent<EventLoisir> {
             preparedStmt.setString(6, e.getDomaine());
             preparedStmt.setFloat(7, e.getNbParticipant());
             preparedStmt.setString(8, e.getImageE());
-            preparedStmt.setInt(9, e.getId());
+            preparedStmt.setDouble(9, e.getLng());
+            preparedStmt.setDouble(10, e.getLat());
+            preparedStmt.setInt(11, e.getId());
             preparedStmt.execute();
             } catch (Exception ex) {
 	    System.err.println(ex.getMessage());
@@ -114,9 +168,74 @@ public class EventService implements IServiceEvent<EventLoisir> {
     }
     
     
-      public ArrayList<EventLoisir> ListerparU(int idu) {
+    
+     public ArrayList<EventLoisir> Lister(int idu,String typeU) {
          ArrayList<EventLoisir> res = new ArrayList<EventLoisir>();
-        try {
+         if(typeU.equals("freelancer")){
+              try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id_fr_id !="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nbParticipant=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
+                res.add(Ev);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+             
+         }
+         else if(typeU.equals("societe")){
+                try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id_so_id !="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nbParticipant=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
+                res.add(Ev);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+             
+         }
+       
+        return res;
+    }
+    
+    
+      public ArrayList<EventLoisir> ListerparU(int idu,String typeU) {
+         ArrayList<EventLoisir> res = new ArrayList<EventLoisir>();
+         if(typeU.equals("freelancer")){
+             try {
             Statement stmt = con.createStatement();
             String sql = "SELECT * FROM event_loisir where id_fr_id="+idu;
             ResultSet rs = stmt.executeQuery(sql);
@@ -141,6 +260,36 @@ public class EventService implements IServiceEvent<EventLoisir> {
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
+         }
+         else{
+             try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id_so_id="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nbParticipant=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
+                res.add(Ev);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+             
+         }
+        
         return res;
     }
 
@@ -173,6 +322,44 @@ public class EventService implements IServiceEvent<EventLoisir> {
             System.err.println(e.getMessage());
         }
         return E;
+    }
+    
+    
+    
+     public ArrayList<EventLoisir> ListerParDate() {
+         ArrayList<EventLoisir> res = new ArrayList<EventLoisir>();
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime after = LocalDateTime.now().plusDays(7);
+         String d1=dtf.format(now);  
+         String d2=dtf.format(after); 
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where date_debut between '"+d1+"' and '"+d2+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nbParticipant=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
+                res.add(Ev);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
     }
     
 }

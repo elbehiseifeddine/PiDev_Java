@@ -193,5 +193,40 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
 
     }
+    
+    
+      public Freelancer FindparID(int id) {
+        Freelancer f = new Freelancer();
+        String req = "SELECT * FROM Freelancer WHERE id="+id;
+
+        try {
+            if (req != null) {
+                Statement st = cnx.createStatement();
+                ResultSet rst = st.executeQuery(req);
+                if (rst.next()) {
+                    f.setId(rst.getInt("id"));
+                    f.setNom(rst.getString("nom"));
+                    f.setPrenom(rst.getString("prenom"));
+                    f.setEmail(rst.getString("email"));
+                    f.setMot_de_passe(rst.getString("mot_de_passe"));
+                    f.setAdresse(rst.getString("adresse"));
+                    f.setPhoto_de_profile(rst.getString("photo_de_profile"));
+                    f.setSexe(rst.getString("sexe"));
+                    f.setCompetences(rst.getString("competences"));
+                    f.setLangues(rst.getString("langues"));
+                    f.setCompte_facebook(rst.getString("compte_facebook"));
+                    f.setCompte_linkedin(rst.getString("compte_linkedin"));
+                    f.setCompte_twitter(rst.getString("compte_twitter"));
+                    f.setViews_nb(rst.getInt("views_nb"));
+                    f.setEtat(rst.getInt("etat"));
+                    f.setDate_creation(rst.getString("date_creation"));
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MaConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (f);
+    }
 
 }

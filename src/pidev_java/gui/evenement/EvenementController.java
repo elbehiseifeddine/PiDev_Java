@@ -53,7 +53,9 @@ import pidev_java.entities.Participant;
 import pidev_java.entities.Societe;
 import pidev_java.gui.formation.ItemPartFController;
 import pidev_java.services.EventService;
+import pidev_java.services.FreelancerService;
 import pidev_java.services.ParticipantService;
+import pidev_java.services.SocieteService;
 import pidev_java.utils.Javamailform;
 import pidev_java.utils.TwilioSMS;
 
@@ -88,6 +90,14 @@ public class EvenementController implements Initializable {
     private GridPane gridPartE;
     
     private EventService evs=new EventService();
+    @FXML
+    private Button btnEventAux;
+    
+      
+    private Freelancer Fcon;
+    private Societe Scon;
+    private int iducon;
+    private String typeucon;
 
     /**
      * Initializes the controller class.
@@ -95,7 +105,16 @@ public class EvenementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+            Fcon=Freelancer.getInstance();
+        Scon=Societe.getInstance();
+        if(Fcon != null){
+            iducon=Fcon.getId();
+            typeucon="freelancer";
+        }
+        else{
+            iducon=Scon.getId();
+            typeucon="societe";
+        }
           scrollMesEvent.setVisible(true);
          gridMesevent.getChildren().clear();
            scrolEvent.setVisible(true);
@@ -113,7 +132,7 @@ public class EvenementController implements Initializable {
         
          try {
             
-           List<EventLoisir> MesEvent=es.ListerparU(1);
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
             for (int i = 0; i < MesEvent.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
@@ -147,7 +166,7 @@ public class EvenementController implements Initializable {
            }
            try {
             
-           List<EventLoisir> Event=es.Lister();
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
             for (int i = 0; i < Event.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
@@ -183,7 +202,7 @@ public class EvenementController implements Initializable {
          
          try {
             List<EventLoisir> MesPartE=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","evenement",1);
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
             for (int i = 0; i < MesParticipation.size(); i++) {
             
             EventLoisir E=evs.FindParId(MesParticipation.get(i).getEl().getId());
@@ -229,6 +248,26 @@ public class EvenementController implements Initializable {
     
     
      public void delete(EventLoisir event){
+          ParticipantService pser=new ParticipantService();
+        FreelancerService FS=new FreelancerService();
+        SocieteService SS=new SocieteService();
+        String email="";
+        List<Participant> Part=pser.ListerParEvent("evenement", event.getId());
+        if(Part != null){
+            for(int l=0;l<Part.size();l++){
+                if(Part.get(l).getTypeU().equals("freelancer")){
+                    email=FS.FindparID(Part.get(l).getF().getId()).getEmail();
+                }
+                else{
+                    email=SS.FindparID(Part.get(l).getS().getId()).getEmail();
+                }
+                
+                //envoie du l'email
+                
+            }
+            pser.SupprimerParEvent("evenement", event.getId());
+            
+        }
          es.Supprimer(event);
          gridMesevent.getChildren().clear();
            gridEvent.getChildren().clear();
@@ -240,7 +279,7 @@ public class EvenementController implements Initializable {
         
          try {
             
-           List<EventLoisir> MesEvent=es.ListerparU(1);
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
             for (int i = 0; i < MesEvent.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
@@ -274,7 +313,7 @@ public class EvenementController implements Initializable {
            }
            try {
             
-           List<EventLoisir> Event=es.Lister();
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
             for (int i = 0; i < Event.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
@@ -310,7 +349,7 @@ public class EvenementController implements Initializable {
     
     
      public void Ajouter(EventLoisir event){
-         es.Ajouter(event);
+         es.Ajouter(event,iducon,typeucon);
          gridMesevent.getChildren().clear();
                   gridEvent.getChildren().clear();
           
@@ -321,7 +360,7 @@ public class EvenementController implements Initializable {
         
          try {
             
-           List<EventLoisir> MesEvent=es.ListerparU(1);
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
             for (int i = 0; i < MesEvent.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
@@ -357,7 +396,7 @@ public class EvenementController implements Initializable {
          
            try {
             
-           List<EventLoisir> Event=es.Lister();
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
             for (int i = 0; i < Event.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
@@ -406,7 +445,7 @@ public class EvenementController implements Initializable {
         
          try {
             
-           List<EventLoisir> MesEvent=es.ListerparU(1);
+           List<EventLoisir> MesEvent=es.ListerparU(iducon,typeucon);
             for (int i = 0; i < MesEvent.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemEvent.fxml"));
@@ -440,7 +479,7 @@ public class EvenementController implements Initializable {
            }
            try {
             
-           List<EventLoisir> Event=es.Lister();
+           List<EventLoisir> Event=es.Lister(iducon,typeucon);
             for (int i = 0; i < Event.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/evenement/itemE.fxml"));
@@ -498,11 +537,11 @@ public class EvenementController implements Initializable {
          int columnPartF = 0;
         int rowPartF = 1;
         gridPartE.getChildren().clear();
-        Participant P=new Participant("evenement", "freelancer", new Freelancer(1), new Societe(), new Formation(), ev);
+        Participant P=new Participant("evenement", typeucon, new Freelancer(1), new Societe(), new Formation(), ev);
         ps.Supprimer(P);
          try {
             List<EventLoisir> MesPartE=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","evenement",1);
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
             for (int i = 0; i < MesParticipation.size(); i++) {
             
             EventLoisir E=evs.FindParId(MesParticipation.get(i).getEl().getId());
@@ -552,13 +591,19 @@ public class EvenementController implements Initializable {
         ParticipantService ps=new ParticipantService();
         Formation F=new Formation();
         Societe s=new Societe();
-        Freelancer Fr=new Freelancer(1);
+        Freelancer Fr=new Freelancer();
+         if(typeucon.equals("freelancer")){
+             Fr=new Freelancer(iducon);
+        }
+        else{
+                s=new Societe(iducon);
+        }
        
-        Participant P=new Participant("evenement", "freelancer", Fr, s, F, E);
+        Participant P=new Participant("evenement", typeucon, Fr, s, F, E);
         ps.Ajouter(P);
          try {
             List<EventLoisir> MesPartE=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","evenement",1);
+           List<Participant> MesParticipation=ps.Lister(typeucon,"evenement",1);
             for (int i = 0; i < MesParticipation.size(); i++) {
             
             EventLoisir Ev=evs.FindParId(MesParticipation.get(i).getEl().getId());
@@ -604,6 +649,26 @@ public class EvenementController implements Initializable {
          
          
          
+    }
+
+    @FXML
+    private void showEventAux(MouseEvent event) {
+         List<EventLoisir> MesEventAux=es.ListerParDate();
+          try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/evenement/MapEAux.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                  MapEAuxController auxc=loader1.getController();
+                 auxc.inti(MesEventAux,this);
+                
+             } catch (IOException ex) {
+                System.out.println("erreur");
+             }
     }
     
 }

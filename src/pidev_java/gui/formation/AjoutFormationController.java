@@ -79,6 +79,7 @@ public class AjoutFormationController implements Initializable {
     private Formation form;
     private double lat=0;
     private double lng=0;
+    private String place;
     @FXML
     private ImageView btnimage;
 
@@ -157,12 +158,15 @@ textdatef.setDayCellFactory(dayCellFactory);
                 if(BtnAjoutF.getText().equals("Ajouter")){
                     
              
-                Formation F = new Formation(labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
+                Formation F = new Formation(labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
                 fcontroller.Ajouter(F);
                 }
                 else if(BtnAjoutF.getText().equals("Update")){
-                                    Formation F = new Formation(this.form.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, (long)this.lng, (long)this.lat, image.getText());
-
+                  Formation F = new Formation(this.form.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, (long)this.lng, (long)this.lat, image.getText());
+                    if((F.getDateDebut().compareTo(this.form.getDateDebut()) !=0) || (F.getDateFin().compareTo(this.form.getDateFin()) !=0)
+                            || !(F.getLieu().equals(this.form.getLieu()))){
+                                
+                    }
                     fcontroller.Update(F);
                     
                 }
@@ -266,10 +270,11 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
              }
     }
     
-    public void setCoordnate(double lat,double lng){
+    public void setCoordnate(double lat,double lng,String place){
         this.lat=lat;
         this.lng=lng;
-        lieu.setText("tunis");
+        this.place=place;
+        lieu.setText(place);
     }
     
     

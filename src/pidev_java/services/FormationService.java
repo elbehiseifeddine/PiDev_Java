@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import pidev_java.interfaces.IServiceEvent;
 import pidev_java.utils.MaConnection;
@@ -50,6 +52,64 @@ public class FormationService implements IServiceEvent<Formation>{
                 ex.printStackTrace();
 	           } 
     }
+    
+    
+     public void Ajouter(Formation e,int idu,String typeu) {
+         if(typeu.equals("freelancer")){
+              try{
+		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_fr_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		
+                preparedStmt.setString(1,e.getDescription());
+                 preparedStmt.setTimestamp(2,e.getDateDebut());
+                preparedStmt.setTimestamp(3,e.getDateFin());
+		preparedStmt.setString(4,e.getLieu());
+		preparedStmt.setString(5,e.getDomaine());
+                
+                preparedStmt.setFloat(6, e.getMontant());
+                preparedStmt.setString(7,e.getImageF());
+                preparedStmt.setString(8, e.getLabelle());
+                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
+                preparedStmt.setInt(12, idu);
+              
+                preparedStmt.execute();
+                System.out.println("Insertion Avec Succes");
+            }
+        catch (Exception ex) { 
+                ex.printStackTrace();
+	           } 
+             
+         }
+         else if(typeu.equals("societe")){
+              try{
+		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_so_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		
+                preparedStmt.setString(1,e.getDescription());
+                 preparedStmt.setTimestamp(2,e.getDateDebut());
+                preparedStmt.setTimestamp(3,e.getDateFin());
+		preparedStmt.setString(4,e.getLieu());
+		preparedStmt.setString(5,e.getDomaine());
+                
+                preparedStmt.setFloat(6, e.getMontant());
+                preparedStmt.setString(7,e.getImageF());
+                preparedStmt.setString(8, e.getLabelle());
+                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setDouble(10, e.getLng());
+                preparedStmt.setDouble(11, e.getLat());
+                preparedStmt.setInt(12, idu);
+              
+                preparedStmt.execute();
+                System.out.println("Insertion Avec Succes");
+            }
+        catch (Exception ex) { 
+                ex.printStackTrace();
+	           } 
+             
+         }
+       
+    }
+    
 
     @Override
     public void Supprimer(Formation e) {
@@ -66,7 +126,7 @@ public class FormationService implements IServiceEvent<Formation>{
     @Override
     public void Modifier(Formation e) {
         try {
-            PreparedStatement preparedStmt = con.prepareStatement("update formation set  description=? ,date_debut=?,date_fin=? ,lieu=? ,labelle=? ,domaine=? ,montant=? ,image=?  where id=?");
+            PreparedStatement preparedStmt = con.prepareStatement("update formation set  description=? ,date_debut=?,date_fin=? ,lieu=? ,labelle=? ,domaine=? ,montant=? ,image=? ,lng=? ,lat=?  where id=?");
 	    preparedStmt.setString(1,e.getDescription());
 	   preparedStmt.setTimestamp(2,e.getDateDebut());
                 preparedStmt.setTimestamp(3,e.getDateFin());
@@ -75,7 +135,9 @@ public class FormationService implements IServiceEvent<Formation>{
             preparedStmt.setString(6, e.getDomaine());
             preparedStmt.setFloat(7, e.getMontant());
             preparedStmt.setString(8, e.getImageF());
-            preparedStmt.setInt(9,e.getId());
+            preparedStmt.setDouble(9, e.getLng());
+             preparedStmt.setDouble(10, e.getLat());
+            preparedStmt.setInt(11,e.getId());
             preparedStmt.execute();
             } catch (Exception ex) {
 	    System.err.println(ex.getMessage());
@@ -112,6 +174,76 @@ public class FormationService implements IServiceEvent<Formation>{
         }
         return res;
     }
+    
+    
+        public ArrayList<Formation> Lister(int idu,String type) {
+        ArrayList<Formation> res = new ArrayList<Formation>();
+        if(type.equals("freelancer")){
+            try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where id_fr_id !="+idu+" or id_fr_id is null";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("image");
+                
+                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+            
+        }
+        else if(type.equals("societe")){
+      
+              try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where id_so_id !="+idu+" or  id_so_id is null";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("image");
+                
+                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+            
+        }
+        
+        return res;
+    }
+    
+    
+    
+    
+    
+    
     public boolean estUnEntier(String chaine) {
 		try {
 			Integer.parseInt(chaine);
@@ -124,9 +256,10 @@ public class FormationService implements IServiceEvent<Formation>{
     
     
         
-    public ArrayList<Formation> ListerparU(int idu) {
+    public ArrayList<Formation> ListerparU(int idu,String type) {
         ArrayList<Formation> res = new ArrayList<Formation>();
-        try {
+        if(type.equals("freelancer")){
+             try {
             Statement stmt = con.createStatement();
             String sql = "SELECT * FROM formation where id_fr_id="+idu;
             ResultSet rs = stmt.executeQuery(sql);
@@ -151,6 +284,38 @@ public class FormationService implements IServiceEvent<Formation>{
         catch (Exception e) {
             System.err.println(e.getMessage());
         }
+            
+        }
+        else if(type.equals("societe")){
+             try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where id_so_id="+idu;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("image");
+                
+                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+            
+        }
+        
+       
         return res;
     }
     
@@ -184,6 +349,42 @@ public class FormationService implements IServiceEvent<Formation>{
             System.err.println(e.getMessage());
         }
         return F;
+    }
+     
+     public ArrayList<Formation> ListerParDate(){
+        ArrayList<Formation> result = new ArrayList<Formation>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime after = LocalDateTime.now().plusDays(7);
+         String d1=dtf.format(now);  
+         String d2=dtf.format(after); 
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM formation where date_debut between '"+d1+"' and '"+d2+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                float montant=rs.getFloat("montant");
+                double lat=rs.getDouble("lat");
+                double lng=rs.getDouble("lng");
+                String image=rs.getString("image");
+                
+                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                result.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return result;
+        
     }
 
    

@@ -144,6 +144,7 @@ public class BaseGuiSocieteController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/formation/Formation.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
+            e.printStackTrace();
 
         }
 

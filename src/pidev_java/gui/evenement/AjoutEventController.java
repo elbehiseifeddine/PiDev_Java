@@ -21,8 +21,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
@@ -39,6 +42,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import pidev_java.entities.EventLoisir;
 import pidev_java.gui.formation.AjoutFormationController;
 import static pidev_java.gui.formation.AjoutFormationController.saveToFileImageNormal;
+import pidev_java.gui.formation.FormationController;
+import pidev_java.gui.formation.MapFController;
 import pidev_java.services.EventService;
 
 /**
@@ -131,6 +136,23 @@ textdatef.setDayCellFactory(dayCellFactory);
 
     @FXML
     private void sjhowMap(MouseEvent event) {
+         try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/evenement/MapE.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                  MapEController mc=loader1.getController();
+                 mc.init(this);
+                
+             } catch (IOException ex) {
+              System.out.println("erreur");
+             }
+        
+        
     }
 
 
@@ -212,8 +234,11 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
                 Econtroller.Ajouter(E);
                 }
                 else if(BtnAjoutE.getText().equals("Update")){
-                                    EventLoisir E = new EventLoisir(this.event.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Integer.parseInt(nbpart.getText()), true, this.lng, this.lat, image.getText());
-
+                      EventLoisir E = new EventLoisir(this.event.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Integer.parseInt(nbpart.getText()), true, this.lng, this.lat, image.getText());
+if((E.getDateDebut().compareTo(this.event.getDateDebut()) !=0) || (E.getDateFin().compareTo(this.event.getDateFin()) !=0)
+                            || !(E.getLieu().equals(this.event.getLieu()))){
+                                
+                    }
                     Econtroller.Update(E);
                     
                 }
@@ -235,10 +260,10 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
             }
     }
     
-    public void setCoordnate(double lat,double lng){
+    public void setCoordnate(double lat,double lng,String place){
         this.lat=lat;
         this.lng=lng;
-        lieu.setText("tunis");
+        lieu.setText(place);
     }
     
     

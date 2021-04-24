@@ -27,6 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 
 import javafx.scene.control.ScrollPane;
@@ -41,13 +42,16 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import jdk.internal.dynalink.support.TypeConverterFactory;
 import pidev_java.entities.EventLoisir;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.Participant;
 import pidev_java.entities.Societe;
 
 import pidev_java.services.FormationService;
+import pidev_java.services.FreelancerService;
 import pidev_java.services.ParticipantService;
+import pidev_java.services.SocieteService;
 import pidev_java.utils.Javamailform;
 import pidev_java.utils.TwilioSMS;
 
@@ -88,9 +92,27 @@ public class FormationController implements Initializable {
     private ScrollPane scrolPartF;
     @FXML
     private GridPane gridPartF;
+    @FXML
+    private Button btnFormationAux;
+    
+    private Freelancer Fcon;
+    private Societe Scon;
+    private int iducon;
+    private String typeucon;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        Fcon=Freelancer.getInstance();
+        Scon=Societe.getInstance();
+        if(Fcon != null){
+            iducon=Fcon.getId();
+            typeucon="freelancer";
+        }
+        else{
+            iducon=Scon.getId();
+            typeucon="societe";
+        }
       
             scrolPartF.setVisible(true);
             gridPartF.getChildren().clear();
@@ -108,7 +130,7 @@ public class FormationController implements Initializable {
         
          try {
             
-           List<Formation> MesFormation=fs.ListerparU(1);
+           List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
             for (int i = 0; i < MesFormation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/item.fxml"));
@@ -144,7 +166,7 @@ public class FormationController implements Initializable {
          
          try {
             
-           List<Formation> Formation=fs.Lister();
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
             for (int i = 0; i < Formation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
@@ -180,7 +202,7 @@ public class FormationController implements Initializable {
          
          try {
             List<Formation> MesPartF=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","formation",1);
+           List<Participant> MesParticipation=ps.Lister(typeucon,"formation",1);
             for (int i = 0; i < MesParticipation.size(); i++) {
               
             Formation F=fs.FindParId(MesParticipation.get(i).getFormation().getId());
@@ -227,6 +249,27 @@ public class FormationController implements Initializable {
     }
     
     public void delete(Formation Form){
+        ParticipantService pser=new ParticipantService();
+        FreelancerService FS=new FreelancerService();
+        SocieteService SS=new SocieteService();
+        String email="";
+        List<Participant> Part=pser.ListerParEvent("formation", Form.getId());
+        if(Part != null){
+            for(int l=0;l<Part.size();l++){
+                if(Part.get(l).getTypeU().equals("freelancer")){
+                    email=FS.FindparID(Part.get(l).getF().getId()).getEmail();
+                }
+                else{
+                    email=SS.FindparID(Part.get(l).getS().getId()).getEmail();
+                }
+                
+                //envoie du l'email
+                
+            }
+            pser.SupprimerParEvent("formation", Form.getId());
+            
+        }
+        
          fs.Supprimer(Form);
          gridMesFormation.getChildren().clear();
          gridFormation.getChildren().clear();
@@ -236,7 +279,7 @@ public class FormationController implements Initializable {
         int rowForm = 1;
         
         try {
-             List<Formation> MesFormation=fs.ListerparU(1);
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
           
             for (int i = 0; i < MesFormation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -275,7 +318,7 @@ public class FormationController implements Initializable {
         
           try {
             
-           List<Formation> Formation=fs.Lister();
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
             for (int i = 0; i < Formation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
@@ -312,7 +355,7 @@ public class FormationController implements Initializable {
     
     
      public void Ajouter(Formation Form){
-         fs.Ajouter(Form);
+         fs.Ajouter(Form,iducon,typeucon);
          gridMesFormation.getChildren().clear();
           gridFormation.getChildren().clear();
          int columnMesForm = 0;
@@ -321,7 +364,7 @@ public class FormationController implements Initializable {
         int rowForm = 1;
         
         try {
-             List<Formation> MesFormation=fs.ListerparU(1);
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
           
             for (int i = 0; i < MesFormation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -359,7 +402,7 @@ public class FormationController implements Initializable {
         
           try {
             
-           List<Formation> Formation=fs.Lister();
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
             for (int i = 0; i < Formation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
@@ -407,7 +450,7 @@ public class FormationController implements Initializable {
         int rowForm = 1;
         
         try {
-             List<Formation> MesFormation=fs.ListerparU(1);
+             List<Formation> MesFormation=fs.ListerparU(iducon,typeucon);
           
             for (int i = 0; i < MesFormation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -444,7 +487,7 @@ public class FormationController implements Initializable {
         
           try {
             
-           List<Formation> Formation=fs.Lister();
+           List<Formation> Formation=fs.Lister(iducon,typeucon);
             for (int i = 0; i < Formation.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/formation/itemF.fxml"));
@@ -506,13 +549,20 @@ public class FormationController implements Initializable {
         ParticipantService ps=new ParticipantService();
         EventLoisir el=new EventLoisir();
         Societe s=new Societe();
-        Freelancer Fr=new Freelancer(1);
+        Freelancer Fr=new Freelancer();
        
-        Participant P=new Participant("formation", "freelancer", Fr, s, F, el);
+        if(typeucon.equals("freelancer")){
+             Fr=new Freelancer(iducon);
+        }
+        else{
+                s=new Societe(iducon);
+        }
+       
+        Participant P=new Participant("formation", typeucon, Fr, s, F, el);
         ps.Ajouter(P);
          try {
             List<Formation> MesPartF=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","formation",1);
+           List<Participant> MesParticipation=ps.Lister(typeucon,"formation",1);
             for (int i = 0; i < MesParticipation.size(); i++) {
               
             Formation Fo=fs.FindParId(MesParticipation.get(i).getFormation().getId());
@@ -565,11 +615,11 @@ public class FormationController implements Initializable {
          int columnPartF = 0;
         int rowPartF = 1;
         gridPartF.getChildren().clear();
-        Participant P=new Participant("formation", "freelancer", new Freelancer(1), new Societe(), Fo, new EventLoisir());
+        Participant P=new Participant("formation", typeucon, new Freelancer(1), new Societe(), Fo, new EventLoisir());
         ps.Supprimer(P);
          try {
             List<Formation> MesPartF=new ArrayList<>();
-           List<Participant> MesParticipation=ps.Lister("freelancer","formation",1);
+           List<Participant> MesParticipation=ps.Lister("freelancer",typeucon,1);
             for (int i = 0; i < MesParticipation.size(); i++) {
             
             Formation F=fs.FindParId(MesParticipation.get(i).getFormation().getId());
@@ -607,6 +657,27 @@ public class FormationController implements Initializable {
                         System.out.println(e.getMessage());
 
            }
+    }
+
+    @FXML
+    private void showFormationAux(MouseEvent event) {
+        List<Formation> MesFormationD=fs.ListerParDate();
+          try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/formation/MapFaux.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                  MapFauxController auxc=loader1.getController();
+                 auxc.inti(MesFormationD,this);
+                
+             } catch (IOException ex) {
+                 Logger.getLogger(FormationController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
     }
 
 }
