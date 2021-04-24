@@ -160,7 +160,7 @@ public class BaseGuiController implements Initializable {
     @FXML
     private void ConsulterEmploi(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/OffreEmploi/OffreEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/consulterEmploiFreelancer.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 

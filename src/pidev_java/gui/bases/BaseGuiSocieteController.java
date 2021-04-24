@@ -226,14 +226,14 @@ public class BaseGuiSocieteController implements Initializable {
 
     }
 
-    @FXML
-    private void ConsulterOffreStage(MouseEvent event) {
-        try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
-            scroll_pane.setContent(fxml);
-        } catch (IOException e) {
-
-        }
-    }
+//    @FXML
+//    private void ConsulterOffreStage(MouseEvent event) {
+//        try {
+//            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreStage.fxml"));
+//            scroll_pane.setContent(fxml);
+//        } catch (IOException e) {
+//
+//        }
+//    }
 
 }

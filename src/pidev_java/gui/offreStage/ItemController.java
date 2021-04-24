@@ -102,6 +102,7 @@ public class ItemController implements Initializable {
                    
                   ModifieroffreStageController afc=loader1.getController();
                  afc.initUpdate(this.co,this.offre);
+                // notificationEdit();
                 
              } catch (Exception ex) {
                 System.out.println("erreur");
@@ -140,23 +141,25 @@ public class ItemController implements Initializable {
 }
     
     
-//    public void notification(){
-//      // Image img = new Image("tt.png");
-//        Notifications notificationBuilder = Notifications.create()
-//                .title("Succés de suppression")
-//                .text("votre offre a été supprimer")
-//               .graphic(null)
-//                .hideAfter(Duration.seconds(5))
-//                .position(Pos.TOP_RIGHT)
-//                .onAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                 System.out.println("clicked on notification");
-//            }
-//        });
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.showInformation();
-//       
-//    
-//    }
+    public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés de suppression")
+                .text("votre offre a été supprimer")
+               .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
+    
+    }
+    
+    
 }

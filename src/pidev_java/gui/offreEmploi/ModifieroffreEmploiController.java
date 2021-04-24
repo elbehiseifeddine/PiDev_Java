@@ -100,8 +100,18 @@ dtExpiration.setDayCellFactory(dayCellFactory);
      }
     @FXML
     private void AnnulerEmploi(ActionEvent event) {
+        reset();
     }
-
+    
+     public void reset(){
+    this.tfNom.setText("");
+    this.tfCompetences.setText("");
+    this.tfDescription.setText("");
+    this.tfsalaire.setText("");
+    this.cmbDomaine.setValue("-- choisir un domaine --");
+    
+    this.dtExpiration.setValue(null);
+     }
     @FXML
     private void modifierEmploi(MouseEvent event) {
         
@@ -175,6 +185,9 @@ dtExpiration.setDayCellFactory(dayCellFactory);
 
     @FXML
     private void AnnulerEmploi(MouseEvent event) {
+        reset();
+        
     }
+     
     
 }
