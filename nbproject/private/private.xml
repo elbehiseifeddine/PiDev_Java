@@ -10,13 +10,17 @@
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/JavaMail.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/StatistiqueController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/ConsulterOffreStageController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/emploiService.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminEmploiService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/BaseGui.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/Launcher.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiSuperAdminController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminReclamatonController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/MaConnection.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminEmploiService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreEmploi/ConsulterOffreEmploiController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdmin.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpSocieteController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/stageService.java</file>

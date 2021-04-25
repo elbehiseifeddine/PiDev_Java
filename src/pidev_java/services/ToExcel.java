@@ -1179,7 +1179,8 @@ public class ToExcel {
 
     public void imageheader(Sheet sheet, Workbook workbook) {
         try {
-            InputStream inputStream = new FileInputStream("C:\\xampp\\htdocs\\PiDev_Java\\src\\pidev_java\\assets\\Logo complet (1).png");
+            //InputStream inputStream = new FileInputStream("C:\\xampp\\htdocs\\PiDev_Java\\src\\pidev_java\\assets\\Logo complet (1).png");
+            InputStream inputStream = new FileInputStream("/pidev_java/assets/Logo complet (1).png");
 
             byte[] imageBytes = IOUtils.toByteArray(inputStream);
 
