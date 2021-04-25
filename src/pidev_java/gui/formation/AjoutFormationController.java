@@ -30,9 +30,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -82,6 +85,9 @@ public class AjoutFormationController implements Initializable {
     private String place;
     @FXML
     private ImageView btnimage;
+    @FXML
+    private Label labelerreur;
+    private boolean valide=true;
 
     /**
      * Initializes the controller class.
@@ -142,7 +148,14 @@ textdatef.setDayCellFactory(dayCellFactory);
             alert.setContentText("veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
-            
+            if(!valide){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("erreur");
+
+            alert.setContentText("entrer des données valide");
+            alert.showAndWait();
+            }
+            else{
                
             String DateDeb = textdated.getValue().toString().replace('/', '-') + " " + heured.getValue().toString().split(" ")[0]+":00";
             String DateFin = textdatef.getValue().toString().replace('/', '-') + " " + heuref.getValue().toString().split(" ")[0]+":00";
@@ -158,7 +171,7 @@ textdatef.setDayCellFactory(dayCellFactory);
                 if(BtnAjoutF.getText().equals("Ajouter")){
                     
              
-                Formation F = new Formation(labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
+                Formation F = new Formation(labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
                 fcontroller.Ajouter(F);
                 }
                 else if(BtnAjoutF.getText().equals("Update")){
@@ -177,6 +190,7 @@ textdatef.setDayCellFactory(dayCellFactory);
                
             
             }
+        }
         }
 
     }
@@ -298,6 +312,27 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
             throw new RuntimeException(e);
         }
         return name1;
+    }
+
+    @FXML
+    private void ControleFloat(KeyEvent event) {
+        FormationService forms=new FormationService();
+        if(montant.getText().isEmpty()){
+            labelerreur.setText("");
+            valide=false;
+        }
+        else{
+            if(forms.estUnEntier(montant.getText())){
+                labelerreur.setText("valide");
+                labelerreur.setTextFill(Color.web("#00ff09", 1.0));
+                valide=true;
+            }
+            else{
+                   labelerreur.setText("non valide");
+                labelerreur.setTextFill(Color.web("#ff0000", 1.0));
+                valide=false;
+            }
+        }
     }
   
 

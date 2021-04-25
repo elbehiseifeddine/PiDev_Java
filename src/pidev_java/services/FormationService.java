@@ -246,7 +246,7 @@ public class FormationService implements IServiceEvent<Formation>{
     
     public boolean estUnEntier(String chaine) {
 		try {
-			Integer.parseInt(chaine);
+			Float.parseFloat(chaine);
 		} catch (NumberFormatException e){
 			return false;
 		}

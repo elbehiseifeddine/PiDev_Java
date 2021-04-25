@@ -30,9 +30,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -85,6 +88,10 @@ public class AjoutEventController implements Initializable {
     private double lng=0;
     @FXML
     private ImageView btnimage;
+    @FXML
+    private Label labelerreur;
+    
+    private boolean valide=false;
 
     /**
      * Initializes the controller class.
@@ -216,7 +223,14 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
             alert.setContentText("veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
-            
+             if(!valide){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("erreur");
+
+            alert.setContentText("entrer des données valide");
+            alert.showAndWait();
+            }
+            else{
                
             String DateDeb = textdated.getValue().toString().replace('/', '-') + " " + heured.getValue().toString().split(" ")[0]+":00";
             String DateFin = textdatef.getValue().toString().replace('/', '-') + " " + heuref.getValue().toString().split(" ")[0]+":00";
@@ -250,6 +264,7 @@ if((E.getDateDebut().compareTo(this.event.getDateDebut()) !=0) || (E.getDateFin(
             
             }
         }
+           }
     }
 
     @FXML
@@ -285,4 +300,25 @@ if((E.getDateDebut().compareTo(this.event.getDateDebut()) !=0) || (E.getDateFin(
             throw new RuntimeException(e);
         }
         return name1;}
+
+    @FXML
+    private void ControleNb(KeyEvent event) {
+        EventService Es=new EventService();
+        if(nbpart.getText().isEmpty()){
+            labelerreur.setText("");
+            valide=false;
+        }
+        else{
+            if(Es.estUnEntier(nbpart.getText())){
+                labelerreur.setText("valide");
+                labelerreur.setTextFill(Color.web("#00ff09", 1.0));
+                valide=true;
+            }
+            else{
+                   labelerreur.setText("non valide");
+                labelerreur.setTextFill(Color.web("#ff0000", 1.0));
+                valide=false;
+            }
+        }
+    }
 }

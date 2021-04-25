@@ -71,7 +71,7 @@
                   <Font name="Britannic Bold" size="29.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="montant" layoutX="42.0" layoutY="404.0" prefHeight="26.0" prefWidth="267.0" />
+            <JFXTextField fx:id="montant" layoutX="42.0" layoutY="404.0" onKeyTyped="#ControleFloat" prefHeight="26.0" prefWidth="267.0" />
             <Button fx:id="BtnAjoutF" layoutX="283.0" layoutY="495.0" mnemonicParsing="false" onMouseClicked="#AjouterFormation" text="Ajouter" />
             <Button fx:id="btnAnnuler" layoutX="410.0" layoutY="495.0" mnemonicParsing="false" onMouseClicked="#AnnulerF" text="Annuler" />
             <Label layoutX="560.0" layoutY="364.0" text="Image" textFill="DODGERBLUE">
@@ -81,6 +81,7 @@
             </Label>
             <JFXTextField fx:id="image" layoutX="560.0" layoutY="405.0" onMouseClicked="#uploadImage" prefHeight="25.0" prefWidth="267.0" />
             <ImageView fx:id="btnimage" fitHeight="1.0" fitWidth="1.0" layoutX="350.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelerreur" layoutX="42.0" layoutY="451.0" textFill="RED" />
          </children>
       </AnchorPane>
    </children>

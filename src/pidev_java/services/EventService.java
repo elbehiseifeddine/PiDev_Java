@@ -361,5 +361,15 @@ public class EventService implements IServiceEvent<EventLoisir> {
         }
         return res;
     }
+     
+      public boolean estUnEntier(String chaine) {
+		try {
+			Integer.parseInt(chaine);
+		} catch (NumberFormatException e){
+			return false;
+		}
+ 
+		return true;
+	}
     
 }
