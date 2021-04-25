@@ -122,9 +122,7 @@ private Connection con = MaConnection.getInstance().getCnx();
              }
              
              
-            PreparedStatement preparedStmt = con.prepareStatement(" delete from participant where id_p= ?");
-	    preparedStmt.setInt(1,e.getId());
-            preparedStmt.executeUpdate();
+            
             } 
         catch (Exception ex) {
 	    System.err.println(ex.getMessage());
@@ -133,6 +131,37 @@ private Connection con = MaConnection.getInstance().getCnx();
         
         
     }
+    
+    
+     public void SupprimerParEvent(String TypeE,int ide) {
+         try {
+           
+                 if(TypeE.equals("formation")){
+                       PreparedStatement preparedStmt = con.prepareStatement(" delete from participant where id_fo_id=? and type_e=?");
+	    preparedStmt.setInt(1,ide);
+            preparedStmt.setString(2,TypeE);
+            preparedStmt.executeUpdate();
+                 }
+                 else if(TypeE.equals("evenement")){
+                     PreparedStatement preparedStmt = con.prepareStatement(" delete from participant where id_e_id=? and type_e=?");
+	    preparedStmt.setInt(1,ide);
+            preparedStmt.setString(2,TypeE);
+            preparedStmt.executeUpdate();
+                 }
+             
+        
+             
+             
+          
+            } 
+        catch (Exception ex) {
+	    System.err.println(ex.getMessage());
+            }
+        
+        
+        
+    }
+
 
     @Override
     public void Modifier(Participant e) {
@@ -163,6 +192,49 @@ private Connection con = MaConnection.getInstance().getCnx();
              }
              
          }
+        try {
+            Statement stmt = con.createStatement();
+           
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt("id_p");
+                int idf = rs.getInt("id_f_id");
+                int ids = rs.getInt("id_s_id");
+                int idev = rs.getInt("id_e_id");
+                int idfo=rs.getInt("id_fo_id");
+                String typeUs=rs.getString("type_u");
+                String typeEv=rs.getString("type_e");
+                
+                Formation F=new Formation(idfo);
+                EventLoisir Ev=new EventLoisir(idev);
+                Freelancer Fr=new Freelancer(idf);
+                Societe S=new Societe(ids);
+                Participant P=new Participant(id, typeEv, typeUs, Fr, S, F, Ev);
+                res.add(P);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+    
+    
+    
+     public ArrayList<Participant> ListerParEvent(String typeE,int idu) {
+         ArrayList<Participant> res = new ArrayList<Participant>();
+         String sql="";
+         
+             if(typeE.equals("formation")){
+                  sql = "SELECT * FROM participant where id_fo_id="+idu+" and type_e='formation'";
+                 
+             }
+             else{
+                  sql = "SELECT * FROM participant where id_e_id="+idu+" and type_e='evenement'";
+             }
+         
+    
         try {
             Statement stmt = con.createStatement();
            

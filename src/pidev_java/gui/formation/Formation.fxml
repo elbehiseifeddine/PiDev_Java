@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -47,6 +48,7 @@
                   </GridPane>
                </content>
             </ScrollPane>
+                  <Button fx:id="btnFormationAux" layoutX="34.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#showFormationAux" text="Formations aux" />
               </children>
             </AnchorPane>
          </content>
@@ -55,7 +57,7 @@
          <content>
                 <AnchorPane prefHeight="180.0" prefWidth="900.0">
                <children>
-            <ScrollPane fx:id="scrolPartF"  layoutX="26.0" layoutY="101.0"  prefHeight="656.0" prefWidth="900.0">
+            <ScrollPane fx:id="scrolPartF" layoutX="26.0" layoutY="101.0" prefHeight="656.0" prefWidth="900.0">
                <content>
                   <GridPane fx:id="gridPartF" prefHeight="434.0" prefWidth="700.0">
                      <rowConstraints>

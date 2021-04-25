@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="292.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.ItemController">
+<AnchorPane prefHeight="292.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.ItemController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="10.0" prefHeight="172.0" prefWidth="209.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -34,8 +34,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <FontAwesomeIconView fx:id="deleteForm" fill="#f00000" glyphName="TRASH" layoutX="585.0" layoutY="204.0" onMouseClicked="#deleteForm" size="30" />
-      <FontAwesomeIconView fx:id="updateForm" fill="#1ec62f" glyphName="EDIT" layoutX="582.0" layoutY="156.0" onMouseClicked="#updateForm" size="30" text="" />
+      <FontAwesomeIconView fx:id="deleteForm" fill="#f00000" glyphName="TRASH" layoutX="597.0" layoutY="254.0" onMouseClicked="#deleteForm" size="30" />
+      <FontAwesomeIconView fx:id="updateForm" fill="#1ec62f" glyphName="EDIT" layoutX="594.0" layoutY="225.0" onMouseClicked="#updateForm" size="30" text="" />
       <Label fx:id="description" layoutX="367.0" layoutY="56.0" prefHeight="34.0" prefWidth="333.0" text="Description">
          <font>
             <Font size="18.0" />
@@ -81,7 +81,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lieu" layoutX="367.0" layoutY="167.0" prefHeight="27.0" prefWidth="230.0" text="Label">
+      <Label fx:id="lieu" layoutX="367.0" layoutY="167.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
