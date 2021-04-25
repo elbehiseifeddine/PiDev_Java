@@ -71,5 +71,6 @@
       <FontAwesomeIconView fx:id="iconEdit" fill="#17e451" fontSmoothingType="LCD" glyphName="EDIT" layoutX="703.0" layoutY="163.0" onMouseClicked="#editoStage" size="30" />
       <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="706.0" layoutY="202.0" onMouseClicked="#DeleteoStage" size="30" text="" />
       <Line endX="440.0" layoutX="116.0" layoutY="289.0" startX="-100.0" />
+      <Label fx:id="idDevise" layoutX="543.0" layoutY="198.0" text="Label" />
    </children>
 </AnchorPane>

@@ -17,37 +17,20 @@ public class offreEmploi {
     private String competence;
     private String description;
     private String domaine;
-    private String salaire;
+    private Float salaire;
     private Date dateCreation;
     private Date dateExpiration;
     private int etat;
+    private int idSociete;
+    private String devise;
 
     public offreEmploi() {
     }
 
     
-    public offreEmploi(String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration) {
-        this.nomProjet = nomProjet;
-        this.competence = competence;
-        this.description = description;
-        this.domaine = domaine;
-        this.salaire = salaire;
-        this.dateCreation = dateCreation;
-        this.dateExpiration = dateExpiration;
-    }
+   
 
-    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration) {
-        this.id = id;
-        this.nomProjet = nomProjet;
-        this.competence = competence;
-        this.description = description;
-        this.domaine = domaine;
-        this.salaire = salaire;
-        this.dateCreation = dateCreation;
-        this.dateExpiration = dateExpiration;
-    }
-
-    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration, int etat) {
+    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat) {
         this.id = id;
         this.nomProjet = nomProjet;
         this.competence = competence;
@@ -59,7 +42,7 @@ public class offreEmploi {
         this.etat = etat;
     }
 
-    public offreEmploi(String nomProjet, String competence, String description, String domaine, String salaire, Date dateCreation, Date dateExpiration, int etat) {
+    public offreEmploi(String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat) {
         this.nomProjet = nomProjet;
         this.competence = competence;
         this.description = description;
@@ -69,6 +52,83 @@ public class offreEmploi {
         this.dateExpiration = dateExpiration;
         this.etat = etat;
     }
+
+    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat, int idSociete, String devise) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.idSociete = idSociete;
+        this.devise = devise;
+    }
+
+    public offreEmploi(String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat, int idSociete, String devise) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.idSociete = idSociete;
+        this.devise = devise;
+    }
+
+    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat, String devise) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.devise = devise;
+    }
+
+    public offreEmploi(String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat, String devise) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.devise = devise;
+    }
+
+    public offreEmploi(int id, String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, String devise) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.devise = devise;
+    }
+
+    public offreEmploi(String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, String devise) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.salaire = salaire;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.devise = devise;
+    }
+    
+    
 
     public int getEtat() {
         return etat;
@@ -120,11 +180,11 @@ public class offreEmploi {
         this.domaine = domaine;
     }
 
-    public String getSalaire() {
+    public Float getSalaire() {
         return salaire;
     }
 
-    public void setSalaire(String salaire) {
+    public void setSalaire(Float salaire) {
         this.salaire = salaire;
     }
 
@@ -143,7 +203,21 @@ public class offreEmploi {
     public void setDateExpiration(Date dateExpiration) {
         this.dateExpiration = dateExpiration;
     }
-    
+
+    public int getIdSociete() {
+        return idSociete;
+    }
+
+    public void setIdSociete(int idSociete) {
+        this.idSociete = idSociete;
+    }
+ public String getDevise() {
+        return devise;
+    }
+
+    public void setDevise(String devise) {
+        this.devise = devise;
+    }    
     
     
     
