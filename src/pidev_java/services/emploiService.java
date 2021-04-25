@@ -31,8 +31,8 @@ public class emploiService implements IServiceOffre<offreEmploi>{
     public void add(offreEmploi entity) {
         try{
         
-        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire, date_creation, date_expiration,etat)"
-                + " values (?, ?, ?, ?,?, ?, ?,?,?)";
+        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire,devise, date_creation, date_expiration,etat)"
+                + " values (?, ?, ?, ?,?, ?, ?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());
@@ -40,10 +40,11 @@ public class emploiService implements IServiceOffre<offreEmploi>{
             ps.setString(3, entity.getDescription());
             ps.setString(4, entity.getDomaine());
             ps.setString(5, "fichier");
-            ps.setString(6, entity.getSalaire());
-            ps.setDate(7,  entity.getDateCreation());
-            ps.setDate(8,  entity.getDateExpiration());
-            ps.setInt(9,0);
+            ps.setFloat(6, entity.getSalaire());
+            ps.setString(7, entity.getDevise());
+            ps.setDate(8,  entity.getDateCreation());
+            ps.setDate(9,  entity.getDateExpiration());
+            ps.setInt(10,0);
            
            
             ps.executeUpdate();
@@ -86,12 +87,13 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
                 String comp = rs.getString("competences");
                 String description = rs.getString("description");
                 String domaine=rs.getString("domaine");
-                String salaire=rs.getString("salaire");
+                Float salaire=rs.getFloat("salaire");
                 Date dtc=rs.getDate("date_creation");
                 Date dtE=rs.getDate("date_expiration");
+                String devise=rs.getString("devise");
                
                 
-                offreEmploi F = new offreEmploi (id,nom,comp,description,domaine,salaire,dtc,dtE);
+                offreEmploi F = new offreEmploi (id,nom,comp,description,domaine,salaire,dtc,dtE,devise);
                 res.add(F);
             }
             rs.close();
@@ -104,13 +106,16 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
     @Override
     public void update(offreEmploi entity) {
          try {
-            PreparedStatement preparedStmt = cnx.prepareStatement("update offre_emploi set  nom_projet=? ,competences=?,description=?,domaine=?,salaire=?,date_expiration=?   where id=?");
+            PreparedStatement preparedStmt = cnx.prepareStatement("update offre_emploi set  nom_projet=? ,competences=?,description=?,domaine=?,salaire=?,devise=?,date_expiration=?  where id=?");
 	    preparedStmt.setString(1,entity.getNomProjet());
-	   preparedStmt.setString(2,entity.getCompetence());
+	    preparedStmt.setString(2,entity.getCompetence());
             preparedStmt.setString(3,entity.getDescription());
             preparedStmt.setString(4,entity.getDomaine());
-            preparedStmt.setString(5,entity.getSalaire());
-            preparedStmt.setDate(6,entity.getDateExpiration());
+            preparedStmt.setFloat(5,entity.getSalaire());
+            preparedStmt.setString(6,entity.getDevise());
+            preparedStmt.setDate(7,entity.getDateExpiration());
+            // preparedStmt.setInt(7, 0);
+            preparedStmt.setInt(8, entity.getId());
 	   
             preparedStmt.execute();
             } catch (Exception ex) {

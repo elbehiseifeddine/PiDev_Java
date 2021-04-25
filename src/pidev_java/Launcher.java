@@ -28,7 +28,7 @@ public class Launcher extends Application {
         //
         if (rootname.equals("main")) {
             Image img = new Image("pidev_java/assets/Logo_Compact.png");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/utilisateur/Main.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/utilisateur/main.fxml"));
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/bases/BaseGuiSuperAdmin.fxml"));
 
             Parent root = loader.load();

@@ -43,6 +43,8 @@ public class ItemAllEmploisController implements Initializable {
     emploiService ss=new emploiService();
     ConsulterEmploiFreelancerController co;
     private offreEmploi offre;
+    @FXML
+    private Label idDevise;
     
     
     @Override
@@ -59,7 +61,7 @@ public class ItemAllEmploisController implements Initializable {
         this.idDesc.setText(os.getDescription());
         this.idDomaine.setText(String.valueOf(os.getDomaine()));
         this.idSalaire.setText(String.valueOf(os.getSalaire()));
-        
+       this.idDevise.setText(String.valueOf(os.getDevise()));
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
      }
     

@@ -40,7 +40,7 @@
       <TextArea fx:id="tfDescription" layoutX="400.0" layoutY="274.0" prefHeight="89.0" prefWidth="390.0" promptText="saisir la description de projet" />
       <ComboBox fx:id="cmbDomaine" layoutX="402.0" layoutY="403.0" prefHeight="45.0" prefWidth="390.0" promptText="                                         -- choisir un domaine--" visibleRowCount="6" />
       <DatePicker fx:id="dtExpiration" layoutX="402.0" layoutY="543.0" prefHeight="45.0" prefWidth="390.0" />
-      <TextField fx:id="tfsalaire" layoutX="402.0" layoutY="474.0" prefHeight="45.0" prefWidth="390.0" promptText="saisir le salaire" />
+      <TextField fx:id="tfsalaire" layoutX="402.0" layoutY="474.0" prefHeight="45.0" prefWidth="223.0" promptText="                  saisir le salaire" />
       <Button fx:id="btnAjout" layoutX="459.0" layoutY="639.0" mnemonicParsing="false" onMouseClicked="#ajouterEmploi" prefHeight="37.0" prefWidth="78.0" text="Ajouter" />
       <Button layoutX="683.0" layoutY="639.0" mnemonicParsing="false" onAction="#AnnulerEmploi" prefHeight="37.0" prefWidth="72.0" text="Annuler" />
       <Label layoutX="66.0" layoutY="14.0" text="Ajouter un offre d'emploi" textFill="#f54444">
@@ -48,5 +48,6 @@
             <Font size="22.0" />
          </font>
       </Label>
+      <ComboBox fx:id="cmbDevises" layoutX="644.0" layoutY="474.0" onMouseClicked="#cmbDevise" prefHeight="45.0" prefWidth="150.0" promptText="          -- Devise --" />
    </children>
 </AnchorPane>

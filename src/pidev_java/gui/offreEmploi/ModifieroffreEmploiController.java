@@ -41,7 +41,9 @@ import pidev_java.services.emploiService;
 public class ModifieroffreEmploiController implements Initializable {
     
       ObservableList<String> List = FXCollections.observableArrayList("Informatique","Design","jeux vidéo","Artisanat");
-private offreEmploi os;
+  ObservableList<String> ListDevise = FXCollections.observableArrayList("Euros","Dollars","Dinars");
+      
+      private offreEmploi os;
 private ConsulterOffreEmploiController cs;
 
     @FXML
@@ -58,6 +60,8 @@ private ConsulterOffreEmploiController cs;
     private TextField tfsalaire;
     @FXML
     private Button btnmodifier;
+    @FXML
+    private ComboBox<String> cmbDevises;
 
     /**
      * Initializes the controller class.
@@ -66,6 +70,7 @@ private ConsulterOffreEmploiController cs;
     public void initialize(URL url, ResourceBundle rb) {
  
         this.cmbDomaine.setItems(List);
+        this.cmbDevises.setItems(this.ListDevise);
          DatePicker minDate = new DatePicker(); // DatePicker, used to define max date available, you can also create another for minimum date
 minDate.setValue(LocalDate.now().plusDays(5)); // Max date available will be 2015-01-01
 final Callback<DatePicker, DateCell> dayCellFactory;
@@ -92,7 +97,8 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         this.tfCompetences.setText(F.getCompetence());
         this.tfDescription.setText(F.getDescription());
         this.cmbDomaine.setValue(String.valueOf(F.getDomaine()));
-        this.tfsalaire.setText(F.getSalaire());
+        this.tfsalaire.setText(String.valueOf(F.getSalaire()));
+        this.cmbDevises.setValue(String.valueOf(F.getDevise()));
         this.dtExpiration.setValue(LocalDate.parse(F.getDateExpiration().toString()));
      //   BtnAjoutF.setText("Update");
       //  this.btnmodifer.setText("Modifier");
@@ -109,7 +115,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.tfDescription.setText("");
     this.tfsalaire.setText("");
     this.cmbDomaine.setValue("-- choisir un domaine --");
-    
+    this.cmbDevises.setValue("-- Devise--");
     this.dtExpiration.setValue(null);
      }
     @FXML
@@ -160,6 +166,12 @@ dtExpiration.setDayCellFactory(dayCellFactory);
                             new MenuItem("saisir un salaire"));
                     usernameValidator.show(tfsalaire, Side.RIGHT, 10, 0);
                 }
+        else if (this.cmbDevises.getValue().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("choisir votre devise"));
+                    usernameValidator.show(cmbDomaine, Side.RIGHT, 10, 0);
+                }
        
                 
         else if (this.dtExpiration.getValue()==null) {
@@ -172,7 +184,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         else{
            
         Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
-        offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),tfsalaire.getText(),dateC,dateE);
+        offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,cmbDevises.getSelectionModel().getSelectedItem());
       
         new emploiService().update(e);
         this.cs.updateList();
