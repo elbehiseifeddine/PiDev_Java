@@ -6,11 +6,13 @@
 package pidev_java.services;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import pidev_java.entities.Admin;
 import pidev_java.entities.offreEmploi;
@@ -23,7 +25,7 @@ import pidev_java.utils.MaConnection;
  *
  * @author ahmed
  */
-public class AdminEmploiService implements IAdminEmploiService{
+public class AdminEmploiService implements IAdminEmploiService {
 
     Connection cnx = MaConnection.getInstance().getCnx();
 
@@ -39,7 +41,7 @@ public class AdminEmploiService implements IAdminEmploiService{
         ArrayList<Admin> ListAdminEmploi = adminService.getAllAdminEmploi();
 
         try {
-           
+
             for (Admin admin : ListAdminEmploi) {
 
                 String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + admin.getNonApprouve() + 1 + " WHERE id=" + admin.getId();
@@ -71,16 +73,16 @@ public class AdminEmploiService implements IAdminEmploiService{
                     st.setInt(2, idOffreEmploi);
                     st.executeUpdate();
                 }
-                
+
                 JavaMail mail = new JavaMail();
-                mail.recipient=admin.getLogin();
-                mail.type="EmailOffreEmploi";
+                mail.recipient = admin.getLogin();
+                mail.type = "EmailOffreEmploi";
                 mail.start();
             }
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
 
     }
 
@@ -96,7 +98,7 @@ public class AdminEmploiService implements IAdminEmploiService{
         ArrayList<Admin> ListAdminEmploi = adminService.getAllAdminEmploi();
 
         try {
-            
+
             for (Admin admin : ListAdminEmploi) {
 
                 String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + admin.getNonApprouve() + 1 + " WHERE id=" + admin.getId();
@@ -127,16 +129,16 @@ public class AdminEmploiService implements IAdminEmploiService{
                     st.setInt(2, idOffreStage);
                     st.executeUpdate();
                 }
-                
+
                 JavaMail mail = new JavaMail();
-                mail.recipient=admin.getLogin();
-                mail.type="EmailOffreStage";
+                mail.recipient = admin.getLogin();
+                mail.type = "EmailOffreStage";
                 mail.start();
             }
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
 
     }
 
@@ -146,11 +148,9 @@ public class AdminEmploiService implements IAdminEmploiService{
      * @param offreEmploi
      * @param admin
      */
-    
     @Override
     public void ActivateOffreEmploi(offreEmploi offreEmploi, Admin admin) {
         try {
-            
 
             String req1 = "UPDATE offre_emploi SET etat=1 WHERE id=" + offreEmploi.getId();
             String req2 = "UPDATE admin_emploi SET id_offre_emploi=" + null + " WHERE id_a_r <>" + admin.getId();
@@ -161,7 +161,7 @@ public class AdminEmploiService implements IAdminEmploiService{
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
     }
 
     /**
@@ -173,7 +173,7 @@ public class AdminEmploiService implements IAdminEmploiService{
     @Override
     public void ActivateOffreStage(offreStage offreStage, Admin admin) {
         try {
-            
+
             String req1 = "UPDATE offre_stage SET etat=1 WHERE id=" + offreStage.getId();
             String req2 = "UPDATE admin_emploi SET id_offre_stage=" + null + " WHERE id_a_r <>" + admin.getId();
             Statement st = cnx.createStatement();
@@ -183,7 +183,7 @@ public class AdminEmploiService implements IAdminEmploiService{
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
     }
 
     /**
@@ -210,7 +210,7 @@ public class AdminEmploiService implements IAdminEmploiService{
             }
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
     }
 
     /**
@@ -221,7 +221,7 @@ public class AdminEmploiService implements IAdminEmploiService{
     @Override
     public void DeactivateOffreStage(offreStage offreStage) {
         try {
-            
+
             String req1 = "DELETE FROM offre_stage WHERE id=" + offreStage.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req1);
@@ -237,7 +237,7 @@ public class AdminEmploiService implements IAdminEmploiService{
             }
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
     }
 
     /**
@@ -250,7 +250,7 @@ public class AdminEmploiService implements IAdminEmploiService{
     public ArrayList<offreEmploi> historiqueOffreEmploi(Admin admin) {
         ArrayList<offreEmploi> historique = new ArrayList<>();
         try {
-            
+
             String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId() + " AND id_offre_emploi <> null";
             Statement st = cnx.createStatement();
 
@@ -268,7 +268,7 @@ public class AdminEmploiService implements IAdminEmploiService{
                 emploi.setCompetence(rs2.getString("competences"));
                 emploi.setDescription(rs2.getString("description"));
                 emploi.setDomaine(rs2.getString("domaine"));
-                emploi.setSalaire(rs2.getString("salaire"));
+                emploi.setSalaire(rs2.getFloat("salaire"));
                 emploi.setDateCreation(rs2.getDate("date_creation"));
                 emploi.setDateExpiration(rs2.getDate("date_expiration"));
 
@@ -279,7 +279,7 @@ public class AdminEmploiService implements IAdminEmploiService{
             rs.close();
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
         return historique;
     }
 
@@ -293,7 +293,7 @@ public class AdminEmploiService implements IAdminEmploiService{
     public ArrayList<offreStage> historiqueOffreStage(Admin admin) {
         ArrayList<offreStage> historique = new ArrayList<>();
         try {
-            
+
             String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId() + " AND id_offre_stage <> null";
             Statement st = cnx.createStatement();
 
@@ -323,8 +323,36 @@ public class AdminEmploiService implements IAdminEmploiService{
             rs.close();
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
-        } 
+        }
         return historique;
     }
 
+    public List<offreEmploi> getAllNonApprouve() {
+        ArrayList<offreEmploi> res;
+        res = new ArrayList<>();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_emploi";
+            ResultSet rs0 = stmt.executeQuery(sql);
+            while (rs0.next()) {
+
+                int id = rs0.getInt("id");
+                String nom = rs0.getString("nom_projet");
+                String comp = rs0.getString("competences");
+                String description = rs0.getString("description");
+                String domaine = rs0.getString("domaine");
+                Float salaire = rs0.getFloat("salaire");
+                Date dtc = rs0.getDate("date_creation");
+                Date dtE = rs0.getDate("date_expiration");
+                String devise = rs0.getString("devise");
+
+                offreEmploi F = new offreEmploi(id, nom, comp, description, domaine, salaire, dtc, dtE, devise);
+                res.add(F);
+            }
+            rs0.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
 }

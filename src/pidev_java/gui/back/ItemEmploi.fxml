@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="312.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.ItemEmploiController">
+   <children>
+      <Label layoutX="68.0" layoutY="14.0" text="Projet" textFill="#46a6f5">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="117.0" text="Compétences aquises" textFill="#6c89a1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="192.0" text="Description de projet" textFill="#6c89a1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="401.0" layoutY="124.0" text="Domaine" textFill="#6c89a1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="401.0" layoutY="193.0" text="Salaire" textFill="#6c89a1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="523.0" layoutY="25.0" text="Date d'expiration" textFill="#6c89a1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="idNom" layoutX="180.0" layoutY="14.0" text="Label">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="idComp" layoutX="79.0" layoutY="153.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="idDesc" layoutX="79.0" layoutY="231.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="idSalaire" layoutX="479.0" layoutY="193.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="idDTexpr" layoutX="653.0" layoutY="28.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="idDomaine" layoutX="500.0" layoutY="131.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fx:id="iconEdit" fill="#17e451" fontSmoothingType="LCD" glyphName="CHECK" layoutX="703.0" layoutY="163.0" onMouseClicked="#Approuver" size="30" />
+      <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="706.0" layoutY="202.0" onMouseClicked="#Supprimer" size="30" text="" />
+      <Line endX="440.0" layoutX="116.0" layoutY="289.0" startX="-100.0" />
+      <Label fx:id="idDevise" layoutX="543.0" layoutY="198.0" text="Label" />
+      <Label fx:id="id_Offre_Emploi" layoutX="353.0" layoutY="16.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>

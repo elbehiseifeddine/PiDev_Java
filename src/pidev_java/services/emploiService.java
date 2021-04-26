@@ -128,7 +128,36 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-  
+    public offreEmploi FindById(int idOffre){
+      offreEmploi F = new offreEmploi();
+      try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_emploi where id ="+idOffre;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                 
+    
+                int id = rs.getInt("id");
+                F.setNomProjet(rs.getString("nom_projet"));
+                F.setCompetence(rs.getString("competences"));
+                F.setDescription(rs.getString("description"));
+                F.setDomaine(rs.getString("domaine"));
+                F.setSalaire(rs.getFloat("salaire"));
+                F.setDateCreation(rs.getDate("date_creation"));
+                F.setDateExpiration(rs.getDate("date_expiration"));
+                F.setDevise(rs.getString("devise"));
+               
+                
+                
+                
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+      return F;
+  }
     
     public int maxId(){
         int max = 0;

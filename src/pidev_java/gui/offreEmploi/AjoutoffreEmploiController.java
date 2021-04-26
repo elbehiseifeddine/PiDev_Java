@@ -157,7 +157,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         
        emploiService service = new emploiService();
        int idOffreEmploi = service.maxId()+1;
-        offreEmploi e = new offreEmploi(idOffreEmploi,tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),tfsalaire.getText(),dateC,dateE);
+        offreEmploi e = new offreEmploi(idOffreEmploi,tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,0);
       
         new emploiService().add(e);
         
@@ -191,30 +191,30 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.dtExpiration.setValue(null);
     
     }
-//     public void notification(){
-//      // Image img = new Image("tt.png");
-//        Notifications notificationBuilder = Notifications.create()
-//                .title("Succés d'ajout")
-//                .text("votre offre a été ajouter avec succés")
-//              //  .graphic(new ImageView(img))
-//                .hideAfter(Duration.seconds(5))
-//                .position(Pos.TOP_RIGHT)
-//                .onAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                 System.out.println("clicked on notification");
-//            }
-//        });
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.showInformation();
-//       
-//    
-//    }
+     public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés d'ajout")
+                .text("votre offre a été ajouter avec succés")
+              //  .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
     
     }
-
     @FXML
     private void cmbDevise(MouseEvent event) {
     }
+    }
+
     
-}
+    
+

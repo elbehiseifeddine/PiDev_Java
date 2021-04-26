@@ -4,34 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/offreEmploi.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/AjoutoffreStageController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/offreStage.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/JavaMail.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/StatistiqueController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/ConsulterOffreStageController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/emploiService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminEmploiService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/BaseGui.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/Launcher.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/bases/BaseGuiSuperAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminReclamatonController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/utils/MaConnection.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/interfaces/IAdminEmploiService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreEmploi/ConsulterOffreEmploiController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdmin.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpSocieteController.java</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/stageService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdminController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemStage.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/FreelancerService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/AdminReclamationService.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/ToExcel.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/ItemController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/CreateAdminController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreEmploi/AjoutoffreEmploiController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/ModifieroffreStageController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilSuperAdminController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminOffre.fxml</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/offreStage.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/SocieteService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminOffreController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/ConsulterOffreStageController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemEmploiController.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/services/emploiService.java</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/offreStage/item.fxml</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemStageController.java</file>
         </group>
     </open-files>
 </project-private>

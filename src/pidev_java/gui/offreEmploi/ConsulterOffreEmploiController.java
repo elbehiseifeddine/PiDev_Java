@@ -84,7 +84,7 @@ public class ConsulterOffreEmploiController implements Initializable {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
                         System.out.println(e.getMessage());
 
            }

@@ -170,4 +170,33 @@ public class stageService implements IServiceOffre<offreStage> {
         return max;
     }
     
+    public offreStage FindById(int idStage){
+        offreStage F = new offreStage();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_stage";
+            ResultSet rs11 = stmt.executeQuery(sql);
+            while (rs11.next()) {
+                 
+    
+                F.setId(rs11.getInt("id"));
+                F.setNomProjet(rs11.getString("nom_projet"));
+                F.setCompetence(rs11.getString("competences"));
+                F.setDescription(rs11.getString("description"));
+                F.setDomaine(rs11.getString("domaine"));
+                F.setDuree(rs11.getString("duree"));
+                F.setTypeStage(rs11.getString("type_stage"));
+                F.setDateCreation(rs11.getDate("date_creation"));
+                F.setDateExpiration(rs11.getDate("date_expiration"));
+               
+                
+                
+            }
+            rs11.close();
+            } 
+        catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return F;
+    }
 }
