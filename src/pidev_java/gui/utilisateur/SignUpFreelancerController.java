@@ -86,7 +86,7 @@ public class SignUpFreelancerController implements Initializable {
                     }
                     
                 }else{
-                    String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+                    String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
                     Freelancer f= new Freelancer();
                     f.setNom(tf_nom.getText());
                     f.setPrenom(tf_prenom.getText());
@@ -103,6 +103,7 @@ public class SignUpFreelancerController implements Initializable {
                     f.setViews_nb(0);
                     f.setEtat(1);
                     f.setDate_creation(date);
+                    
                     boolean test=new FreelancerService().add(f);
                     if(test){
                         compte_validator.setText("Compte a été créer, un e-mail a été envoyé pour la vérification");

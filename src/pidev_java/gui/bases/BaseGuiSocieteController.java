@@ -75,7 +75,7 @@ public class BaseGuiSocieteController implements Initializable {
         try {
             nom.setText(Societe.getInstance().getNom());
             email.setText(Societe.getInstance().getEmail());
-            Image im=new Image("/pidev_java/assets/"+Societe.getInstance().getPhoto_de_profile(),false);
+            Image im=new Image("ftp://user:123456789@192.168.1.52/"+Societe.getInstance().getPhoto_de_profile(),false);
             myCircle.setFill(new ImagePattern(im));
             System.out.println("SocieteProfile.fxmlaaaaaaaaaaaaaaa");
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/utilisateur/SocieteProfile.fxml"));
@@ -145,6 +145,7 @@ public class BaseGuiSocieteController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/formation/Formation.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
+            e.printStackTrace();
 
         }
 
@@ -192,6 +193,27 @@ public class BaseGuiSocieteController implements Initializable {
 
         }
 
+    }
+    @FXML
+    private void ConsulterDemandeE (){
+        
+         try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/demandeEmploi.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
+    }
+    
+     @FXML
+    private void ConsulterDemandeS(){
+        
+         try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/demandeStage.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
     }
 
     @FXML

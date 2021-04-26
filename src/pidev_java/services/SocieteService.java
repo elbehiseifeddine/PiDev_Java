@@ -179,6 +179,42 @@ public class SocieteService implements UtilisateurInterface<Societe> {
         }
 
     }
+    
+    
+     public Societe FindparID(int id){
+        Societe s= new Societe();
+        String req="SELECT * FROM Societe WHERE id="+id;
+        
+        try{
+            if(req!=null){
+             
+                Statement st=cnx.createStatement();
+                ResultSet rst=st.executeQuery(req);
+             
+                if(rst.next()){
+                    s.setId(rst.getInt("id"));
+                    s.setNom(rst.getString("nom"));
+                    s.setEmail(rst.getString("email"));
+                    s.setMot_de_pass(rst.getString("mot_de_pass"));
+                    s.setAdresse(rst.getString("adresse"));
+                    s.setStatus_juridique(rst.getString("status_juridique"));
+                    s.setPhoto_de_profile(rst.getString("photo_de_profile"));
+                    s.setViews_nb(rst.getInt("views_nb"));
+                    s.setEtat(rst.getInt("etat"));
+                    s.setDate_creation(rst.getString("date_creation"));
+                   
+            }
+                }
+           
+        }catch(SQLException ex){
+            Logger.getLogger(MaConnection.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return(s);
+    }
+    
+    
+    
+    
 
     public Societe FindparID(int id) {
         Societe s = new Societe();

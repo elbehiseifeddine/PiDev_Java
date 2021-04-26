@@ -39,6 +39,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import pidev_java.entities.Freelancer;
+import pidev_java.utils.FTPConnection;
 
 /**
  * FXML Controller class
@@ -59,7 +60,7 @@ public class PublicationsController implements Initializable {
     private ImageView img;
     @FXML
     private ListView<Publications> list_pub;
-    
+    String nom;
     
 
     /**
@@ -81,17 +82,29 @@ public class PublicationsController implements Initializable {
 
     @FXML
     private void ajouterP(ActionEvent event) throws SQLException {
-        Freelancer f = Freelancer.getInstance();
-        Publications p = new Publications();
-            p.setDescription(tf_pub_desc.getText());
-            p.setImage(file.toURI().toString());
-            p.setFreelancer_id(f.getId());
+        if(tf_pub_desc.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "La description est obligatoire !");
             
-            new PublicationsService().ajouter(p);
-            tf_pub_desc.setText("");
-            img.setImage(null);
+        }
+        else {
+            Freelancer f = Freelancer.getInstance();
+            Publications p = new Publications();
+                p.setDescription(tf_pub_desc.getText());
+                
+                p.setFreelancer_id(f.getId());
+                if(file != null){
+                    p.setImage(nom);
+                }
+
+                new PublicationsService().ajouter(p);
+                tf_pub_desc.setText("");
+                img.setImage(null);
+                
+                JOptionPane.showMessageDialog(null, "Publication ajoutée !");
+        }
             
             loadE();
+            
     }
 
     @FXML
@@ -102,6 +115,10 @@ public class PublicationsController implements Initializable {
         
         
         file = fileChooserr.showOpenDialog(img.getScene().getWindow());
+        String files=file.getAbsolutePath().replace("\\", "\\\\");
+        nom=file.getName();
+        FTPConnection cnx=new FTPConnection();
+        cnx.Upload(files,nom);
         Image image = new Image(file.toURI().toString());
         img.setImage(image);
     }
@@ -120,7 +137,9 @@ public class PublicationsController implements Initializable {
                     ps.getString("image"),
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
-                    ps.getInt("societe_id")
+                    ps.getInt("societe_id"),
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     

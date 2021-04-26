@@ -5,6 +5,7 @@
  */
 package pidev_java.gui.utilisateur;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,8 +17,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javax.swing.JFileChooser;
 import pidev_java.entities.Societe;
 import pidev_java.services.SocieteService;
+import pidev_java.utils.FTPConnection;
 
 /**
  * FXML Controller class
@@ -51,6 +54,8 @@ public class SocieteProfileController implements Initializable {
     private Label pic;
     @FXML
     private Button btn_save;
+    private String name;
+    private String url;
 
     /**
      * Initializes the controller class.
@@ -60,7 +65,7 @@ public class SocieteProfileController implements Initializable {
         // TODO
         Societe s=Societe.getInstance();
         
-        Image im = new Image("/pidev_java/assets/" + s.getPhoto_de_profile(), false);
+        Image im = new Image("ftp://user:123456789@192.168.1.52/" + s.getPhoto_de_profile());
         image.setFill(new ImagePattern(im));
         //image.setEffect(new DropShadow(+10d, 0d, +2d, Color.BLACK));
         nomprenom.setText(s.getNom());
@@ -79,20 +84,38 @@ public class SocieteProfileController implements Initializable {
     @FXML
     private void Save(ActionEvent event) {
         Societe se=  Societe.getInstance();
+        FTPConnection cnx=new FTPConnection();
+        cnx.Upload(url,name);
         boolean test= new SocieteService().UpdateSociete(tf_nom.getText()
         ,tf_email.getText(),tf_adresse.getText(),tf_status.getText(),pic.getText());
         
         Societe s=new Societe(tf_nom.getText(),
         tf_adresse.getText(),tf_email.getText(),pic.getText()
         ,tf_status.getText(),se.getId(),se.getViews_nb());
+        Image img = new Image("ftp://user:123456789@192.168.1.52/"+s.getPhoto_de_profile());
+        image.setFill(new ImagePattern(img));
         if(test==true){
             Societe.setInstance(s);
             nomprenom.setText(tf_nom.getText());
             email.setText(tf_email.getText());
             adresse.setText(tf_adresse.getText());
             status.setText(tf_status.getText());
-            vues.setText(String.valueOf(s.getViews_nb()));            
+            vues.setText(String.valueOf(s.getViews_nb()));  
+            image.setFill(new ImagePattern(img));
         }
     }
     
+    @FXML
+    private void AttachPic(ActionEvent event) {
+        JFileChooser chooser= new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f=chooser.getSelectedFile();
+        String file=f.getAbsolutePath();
+        name=f.getName();
+         
+        url=file.replace("\\", "\\\\");
+        
+        pic.setText(name);
+        
+    }
 }

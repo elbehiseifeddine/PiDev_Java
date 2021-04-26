@@ -66,7 +66,9 @@ public class CommentairesController implements Initializable {
                     ps.getString("date_com"),
                     ps.getInt("id_pub_id"),
                     ps.getInt("id_util_id"),
-                    ps.getInt("societe_id")
+                    ps.getInt("societe_id"),
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     
@@ -87,14 +89,20 @@ public class CommentairesController implements Initializable {
             }
         Freelancer f = Freelancer.getInstance();
         btn_com_add.setOnAction(e->{
-            Commentaires c = new Commentaires();
-            c.setDescription(tf_com_add.getText());
-            c.setId_pub(id_pub);
-            c.setFreelancer_id(f.getId());
-            
-            new CommentairesService().ajouter(c);
-            JOptionPane.showMessageDialog(null, "commentaire Ajouté !");
-            tf_com_add.setText("");
+            if(tf_com_add.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "La description est obligatoire !");
+                
+            }
+            else {
+                Commentaires c = new Commentaires();
+                c.setDescription(tf_com_add.getText());
+                c.setId_pub(id_pub);
+                c.setFreelancer_id(f.getId());
+
+                new CommentairesService().ajouter(c);
+                JOptionPane.showMessageDialog(null, "commentaire Ajouté !");
+                tf_com_add.setText("");
+            }
             
             
         });

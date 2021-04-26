@@ -157,6 +157,7 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
                 a.setDate_creation(rs.getString("date_creation"));
                 a.setCompetences(rs.getString("competences"));
                 a.setSexe(rs.getString("sexe"));
+                a.setPhoto_de_profile(rs.getString("photo_de_profile"));
 
                 ListeFreelancers.add(a);
             }
@@ -192,10 +193,11 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
 
     }
-
-    public Freelancer FindparID(int id) {
+    
+    
+      public Freelancer FindparID(int id) {
         Freelancer f = new Freelancer();
-        String req = "SELECT * FROM Freelancer WHERE id=" + id;
+        String req = "SELECT * FROM Freelancer WHERE id="+id;
 
         try {
             if (req != null) {
@@ -226,4 +228,5 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         }
         return (f);
     }
+
 }

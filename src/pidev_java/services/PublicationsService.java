@@ -75,7 +75,25 @@ public class PublicationsService implements PublicationService<Publications> {
     public ResultSet getPublication() throws SQLException{
         st = cnx.createStatement();
         ResultSet ps = st.executeQuery(
-                "SELECT id,description,image,date_publication,freelancer_id,societe_id FROM publications");
+                "SELECT p.id, p.description, p.image, p.date_publication, p.freelancer_id, p.societe_id,f.nom nom,f.prenom prenom FROM publications p INNER JOIN freelancer f ON p.freelancer_id=f.id ");
+       
+        return ps;
+    }
+    
+    
+    
+    public ResultSet getNbCom() throws SQLException{
+        st = cnx.createStatement();
+        ResultSet ps = st.executeQuery(
+                "SELECT COUNT(id), id_pub_id FROM `commentaires` GROUP By id_pub_id");
+       
+        return ps;
+    }
+    
+    public ResultSet getNbPub() throws SQLException{
+        st = cnx.createStatement();
+        ResultSet ps = st.executeQuery(
+                "SELECT COUNT(id),DATE(date_publication) AS date FROM `publications` GROUP BY date");
        
         return ps;
     }
@@ -86,10 +104,18 @@ public class PublicationsService implements PublicationService<Publications> {
         st.executeUpdate(requeteDelete);
     }
     
+    public void supprimer(Publications p) throws SQLException {
+        st = cnx.createStatement();
+        String requeteDelete = "DELETE FROM `Publications` WHERE `id` ='" + p.getId()+ "';";
+        st.executeUpdate(requeteDelete);
+    }
+    
     public void update(int id_pub,String desc) throws SQLException {
         st = cnx.createStatement();
         String requeteUpdate = "UPDATE `publications` SET `description` = '" + desc + "' WHERE `publications`.`id` = '" + id_pub + "' ;";
         st.executeUpdate(requeteUpdate);
     }
+
+    
     
 }

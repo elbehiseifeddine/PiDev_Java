@@ -13,8 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pidev_java.services.FreelancerService;
 import pidev_java.services.ToExcel;
 import pidev_java.utils.JavaMail;
+import pidev_java.utils.PdfGeneration;
 
 /**
  *
@@ -119,6 +121,10 @@ public class Launcher extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private Object FreelancerService() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -90,12 +90,12 @@ public class JavaMail extends Thread{
             Message message=new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("My first email from Java App");
+            message.setSubject("RightJob Email Confirmation");
             MimeMultipart multipart = new MimeMultipart("related");
             BodyPart messageBodyPart = new MimeBodyPart();
             String htmlText = 
                 "<center>" +
-                "   <img src=\"https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f&fbclid=IwAR2gV_UhBG8KriaZyMAXg3SgKGkj1xG6w3-PsW25O3wUgDUZYyu-wstZLTk\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
+                "   <img src=\"https://firebasestorage.googleapis.com/v0/b/atast-9e29a.appspot.com/o/Logo%20complet.png?alt=media&token=d2068295-a4b1-4ebc-a2e6-f1db57344c8f\" alt=\"RightJob\" height=\"175\" width=\"400\" />" +
                 "   <br>" +
                 "   <h1>Bienvenu dans notre site RightJob </h1>" +
                 "   <p>Votre adhesion est effectuer avec succés , j'espère vous trouvez ce que vous chercher, nous vous souhaitons nos chèrs salutation</p>" +

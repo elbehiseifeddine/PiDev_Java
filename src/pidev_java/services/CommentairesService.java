@@ -76,7 +76,15 @@ public class CommentairesService implements CommentaireService<Commentaires> {
     public ResultSet getCommentaires(int id_pub) throws SQLException{
         st = cnx.createStatement();
         ResultSet ps = st.executeQuery(
-                "SELECT id,description,date_com,id_pub_id,id_util_id,societe_id FROM commentaires where id_pub_id='" + id_pub + "' ;");
+                "SELECT c.id,c.description,c.date_com,c.id_pub_id,c.id_util_id,c.societe_id,f.nom nom,f.prenom prenom FROM commentaires c INNER JOIN freelancer f ON c.id_util_id=f.id where c.id_pub_id='" + id_pub + "' ;");
+       
+        return ps;
+    }
+    
+    public ResultSet getComs() throws SQLException{
+        st = cnx.createStatement();
+        ResultSet ps = st.executeQuery(
+                "SELECT c.id,c.description,c.date_com,c.id_pub_id,c.id_util_id,c.societe_id,f.nom nom,f.prenom FROM commentaires c INNER JOIN freelancer f ON c.id_util_id=f.id");
        
         return ps;
     }
@@ -84,6 +92,12 @@ public class CommentairesService implements CommentaireService<Commentaires> {
     public void delete(int id) throws SQLException {
         st = cnx.createStatement();
         String requeteDelete = "DELETE FROM `Commentaires` WHERE `id` ='" + id+ "';";
+        st.executeUpdate(requeteDelete);
+    }
+    
+    public void supprimer(Commentaires c) throws SQLException {
+        st = cnx.createStatement();
+        String requeteDelete = "DELETE FROM `commentaires` WHERE `id` ='" + c.getId()+ "';";
         st.executeUpdate(requeteDelete);
     }
     

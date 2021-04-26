@@ -26,7 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-//import org.controlsfx.control.Notifications;
+import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreStage;
 import pidev_java.services.stageService;
 
@@ -141,23 +141,25 @@ public class ItemController implements Initializable {
 }
     
     
-//    public void notification(){
-//      // Image img = new Image("tt.png");
-//        Notifications notificationBuilder = Notifications.create()
-//                .title("Succés de suppression")
-//                .text("votre offre a été supprimer")
-//               .graphic(null)
-//                .hideAfter(Duration.seconds(5))
-//                .position(Pos.TOP_RIGHT)
-//                .onAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                 System.out.println("clicked on notification");
-//            }
-//        });
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.showInformation();
-//       
-//    
-//    }
+    public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés de suppression")
+                .text("votre offre a été supprimer")
+               .graphic(null)
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
+    
+    }
+    
+    
 }
