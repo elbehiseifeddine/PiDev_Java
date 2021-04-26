@@ -7,9 +7,13 @@ package pidev_java.gui.demandeEmploi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import org.controlsfx.control.Rating;
 import pidev_java.entities.offreEmploi;
 import pidev_java.gui.offreEmploi.ConsulterOffreEmploiController;
 import pidev_java.services.emploiService;
@@ -45,6 +49,8 @@ public class ItemAllEmploisController implements Initializable {
     private offreEmploi offre;
     @FXML
     private Label idDevise;
+    @FXML
+    private Rating ratingEmploi;
     
     
     @Override
@@ -64,5 +70,10 @@ public class ItemAllEmploisController implements Initializable {
        this.idDevise.setText(String.valueOf(os.getDevise()));
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
      }
+
+    @FXML
+    private void Rating(MouseEvent event) {
+        this.ratingEmploi.getRating();
+    }
     
 }

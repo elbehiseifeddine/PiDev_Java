@@ -55,7 +55,7 @@
       <Line endX="572.0" layoutX="142.0" layoutY="276.0" startX="-100.0" />
       <Label layoutX="210.0" layoutY="70.0" text="Chez vous" />
       <Label fx:id="idDevise" layoutX="358.0" layoutY="70.0" text="Label" />
-      <Rating layoutX="543.0" layoutY="-30.0" prefHeight="30.0" prefWidth="152.0" />
+      <Rating fx:id="ratingEmploi" layoutX="543.0" layoutY="-30.0" onMouseClicked="#Rating" prefHeight="30.0" prefWidth="152.0" rating="0.0" />
       <FontAwesomeIconView glyphName="EURO" layoutX="291.0" layoutY="83.0" size="15.0" />
       <FontAwesomeIconView glyphName="STAR" layoutX="62.0" layoutY="85.0" size="15.0" />
       <FontAwesomeIconView glyphName="MAP_MARKER" layoutX="192.0" layoutY="84.0" size="15.0" />
