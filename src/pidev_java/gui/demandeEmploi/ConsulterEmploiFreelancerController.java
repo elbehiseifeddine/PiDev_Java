@@ -48,7 +48,7 @@ public class ConsulterEmploiFreelancerController implements Initializable {
            List<offreEmploi> MesOffre=ss.getAll();
             for (int i = 0; i < MesOffre.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/demandeEmploi/itemAllEmplois.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/demandeEmploi/AAA.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemAllEmploisController itemEmpController = fxmlLoader.getController();
