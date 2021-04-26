@@ -18,7 +18,7 @@ public class DemandeStage {
     private int offre_stage_id;
     private String description;
     private String lettre;
-     private LocalDate date_creation;
+     private Date date_creation;
       private String domaine;
       private String type;
       private int duree;
@@ -30,7 +30,7 @@ public class DemandeStage {
         this.etat=0;
     }
 
-    public DemandeStage(int id, String description, LocalDate date_creation, String domaine, String type, int duree, String etude, String nom_societe) {
+    public DemandeStage(int id, String description, Date date_creation, String domaine, String type, int duree, String etude, String nom_societe) {
         this.id = id;
         this.description = description;
         this.date_creation = date_creation;
@@ -73,11 +73,11 @@ public class DemandeStage {
         this.description = description;
     }
 
-    public LocalDate getDate_creation() {
+    public Date getDate_creation() {
         return date_creation;
     }
 
-    public void setDate_creation(LocalDate date_creation) {
+    public void setDate_creation(Date date_creation) {
         this.date_creation = date_creation;
     }
 
@@ -121,10 +121,37 @@ public class DemandeStage {
         this.nom_societe = nom_societe;
     }
 
-    @Override
-    public String toString() {
-        return "DemandeStage{" + "description=" + description + ", date_creation=" + date_creation + ", domaine=" + domaine + ", type=" + type + ", duree=" + duree + ", etude=" + etude + ", nom_societe=" + nom_societe + '}';
+    public String getLettre() {
+        return lettre;
     }
+
+    public void setLettre(String lettre) {
+        this.lettre = lettre;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    public DemandeStage(int id, int freelancer_id, int offre_stage_id, String description, String lettre, Date date_creation, String domaine, String type, int duree, String etude) {
+        this.id = id;
+        this.freelancer_id = freelancer_id;
+        this.offre_stage_id = offre_stage_id;
+        this.description = description;
+        this.lettre = lettre;
+        this.date_creation = date_creation;
+        this.domaine = domaine;
+        this.type = type;
+        this.duree = duree;
+        this.etude = etude;
+       
+    }
+
+   
        
        
          public Date convertUtilToSql(java.util.Date uDate) {

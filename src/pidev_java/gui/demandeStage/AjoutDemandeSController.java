@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pidev_java.gui.demandeEmploi;
+package pidev_java.gui.demandeStage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -21,57 +20,60 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 import pidev_java.entities.DemandeEmploi;
+import pidev_java.entities.DemandeStage;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.offreEmploi;
+import pidev_java.entities.offreStage;
 import pidev_java.services.DemandeEmploiService;
+import pidev_java.services.DemandeStageService;
 
 /**
  * FXML Controller class
  *
  * @author ely
  */
-public class AjoutDemandeEController implements Initializable {
+public class AjoutDemandeSController implements Initializable {
 
+    @FXML
+    private VBox Vboxadd;
     @FXML
     private TextField tfDescription;
     @FXML
     private TextField tfDomaine;
     @FXML
-    private TextField tfDiplome;
-     @FXML
-    private TextField tfid;
+    private TextField tfEtude;
     @FXML
     private TextArea tflettre;
     @FXML
-    private TextField tfSalaire;
+    private TextField tfDuree;
     @FXML
     private Button btnEnvoyerDemande;
     @FXML
-    private Button btnFile;
-     @FXML
-    private VBox Vboxadd ;
- DemandeEmploi d = new DemandeEmploi();
+    private TextField tfid;
+    @FXML
+    private TextField tfType;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
+        // TODO
     }    
 
-    
     @FXML
-    private void AjoutDemandeE(ActionEvent event)throws IOException  {
-          Alert alert = new Alert(Alert.AlertType.WARNING);
+    private void AjoutDemandeS(ActionEvent event) {
+        
+           Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Form non valide !");
             alert.setContentText("verifie les champs !");
         Label labelresponse= new Label();
         Freelancer f = Freelancer.getInstance();
-        DemandeEmploiService sd = new DemandeEmploiService();
+        DemandeStageService sd = new DemandeStageService();
       
         
-       
+        DemandeStage d = new DemandeStage();
         d.setFreelancer_id(f.getId());
         d.setDate_creation(Date.valueOf(LocalDate.MAX));
         Boolean valid =true;
@@ -82,8 +84,8 @@ public class AjoutDemandeEController implements Initializable {
             labelresponse.setText("la description entrée est non valide");
             Vboxadd.getChildren().add(labelresponse);
         }
-        if(!(tfDiplome.getText().isEmpty())){
-           d.setDiplome(tfDiplome.getText()); 
+        if(!(tfType.getText().isEmpty())){
+           d.setType(tfType.getText()); 
         }else
         {
             valid=false;
@@ -100,41 +102,47 @@ public class AjoutDemandeEController implements Initializable {
             valid=false;
         }
             
-       if(!tfSalaire.getText().isEmpty()){
-            String s = tfSalaire.getText();
+       if(!tfDuree.getText().isEmpty()){
+            String s = tfDuree.getText();
             try {
               
-                d.setSalaire(Float.parseFloat(s));
+                d.setDuree(Integer.parseInt(s));
            } catch (NumberFormatException  e) {
                valid=false;
            }
-       
        }else
+       {
+           valid=false;
+       }
+            if(!tfEtude.getText().isEmpty()){
+                
+                d.setEtude(tfEtude.getText());
+            }
+       
+       else
        {
            valid=false;
        }
        
        if(valid==true){
            
-           d.setOffre_emploi_id(Integer.valueOf(tfid.getText()));
+           d.setOffre_stage_id(Integer.valueOf(tfid.getText()));
           sd.ajouter(d); 
            tfDescription.setText("");
-        tfDiplome.setText("");
+        tfEtude.setText("");
         tfDomaine.setText("");
         tflettre.setText("");
-        tfSalaire.setText("");
+        tfDuree.setText("");
         JOptionPane.showMessageDialog(null, "Demande Envoyer !");
        }else
        {
            alert.showAndWait();
        }
-        
-       
-        
     }
     
-    public void setOffreE(offreEmploi e) throws NullPointerException{
+     public void setOffreE(offreStage e) throws NullPointerException{
         
         this.tfid.setText(Integer.toString(e.getId()));
     }
+    
 }

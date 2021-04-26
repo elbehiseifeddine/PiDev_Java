@@ -99,8 +99,8 @@ public class ItemAllEmploisController implements Initializable {
         Scene Scene = new Scene(parent);
          AjoutDemandeEController ajout = fxmlLoader.getController();
             offreEmploi o = new offreEmploi();
-            o.setId(77);
-        ajout.setOffreE(o);
+            
+        ajout.setOffreE(offre);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
         window.setScene(Scene);
