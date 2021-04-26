@@ -174,6 +174,20 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
         return max;
     }
 
+    int countOffreEmploiNonApprouve() {
+int count = 0;
+         try {
+             Statement stmt = cnx.createStatement();
+             String sql = "SELECT COUNT(*) FROM offre_emploi where etat = 0;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             count=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             Logger.getLogger(stageService.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        return count;    }
+
    
     
 }

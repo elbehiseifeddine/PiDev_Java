@@ -153,11 +153,11 @@ public class AdminEmploiService implements IAdminEmploiService {
         try {
 
             String req1 = "UPDATE offre_emploi SET etat=1 WHERE id=" + offreEmploi.getId();
-            String req2 = "UPDATE admin_emploi SET id_offre_emploi=" + null + " WHERE id_a_r <>" + admin.getId();
+//            String req2 = "UPDATE admin_emploi SET id_offre_emploi=" + null + " WHERE id_a_e <>" + admin.getId();
             Statement st = cnx.createStatement();
 
             st.executeUpdate(req1);
-            st.executeUpdate(req2);
+//            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
@@ -175,11 +175,11 @@ public class AdminEmploiService implements IAdminEmploiService {
         try {
 
             String req1 = "UPDATE offre_stage SET etat=1 WHERE id=" + offreStage.getId();
-            String req2 = "UPDATE admin_emploi SET id_offre_stage=" + null + " WHERE id_a_r <>" + admin.getId();
+//            String req2 = "UPDATE admin_emploi SET id_offre_stage=" + null + " WHERE id_a_e <>" + admin.getId();
             Statement st = cnx.createStatement();
 
             st.executeUpdate(req1);
-            st.executeUpdate(req2);
+//            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
             System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
@@ -327,12 +327,12 @@ public class AdminEmploiService implements IAdminEmploiService {
         return historique;
     }
 
-    public List<offreEmploi> getAllNonApprouve() {
+    public ArrayList<offreEmploi> getAllEmploiNonApprouve() {
         ArrayList<offreEmploi> res;
         res = new ArrayList<>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_emploi";
+            String sql = "SELECT * FROM offre_emploi where etat = 0";
             ResultSet rs0 = stmt.executeQuery(sql);
             while (rs0.next()) {
 
@@ -355,4 +355,33 @@ public class AdminEmploiService implements IAdminEmploiService {
         }
         return res;
     }
+
+    public ArrayList<offreStage> getAllStageNonApprouve() {
+        ArrayList<offreStage> res;
+        res = new ArrayList<>();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_stage where etat = 0";
+            ResultSet rs0 = stmt.executeQuery(sql);
+            while (rs0.next()) {
+                offreStage F = new offreStage();
+                F.setId(rs0.getInt("id"));
+                F.setNomProjet(rs0.getString("nom_projet"));
+                F.setCompetence(rs0.getString("competences"));
+                F.setDescription(rs0.getString("description"));
+                F.setDomaine(rs0.getString("domaine"));
+                F.setDuree(rs0.getString("duree"));
+                F.setTypeStage(rs0.getString("type_stage"));
+                F.setDateCreation(rs0.getDate("date_creation"));
+                F.setDateExpiration(rs0.getDate("date_expiration"));
+
+                res.add(F);
+            }
+            rs0.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;
+    }
+
 }

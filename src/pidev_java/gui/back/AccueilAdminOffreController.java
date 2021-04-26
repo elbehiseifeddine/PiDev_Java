@@ -95,11 +95,13 @@ public class AccueilAdminOffreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        loadEmploiDate();
+        //loadStageDate();
     }    
     
     void refreshEmploi(){
         ListoffreEmploi.clear();
-        ListoffreEmploi.addAll(new AdminEmploiService().getAllNonApprouve());
+        ListoffreEmploi.addAll(new AdminEmploiService().getAllEmploiNonApprouve());
     }
     void loadEmploiDate(){
         refreshEmploi();
@@ -138,7 +140,7 @@ public class AccueilAdminOffreController implements Initializable {
                     } else {
                         FontAwesomeIconView deletebtn = new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT);
                 FontAwesomeIconView editbtn = new FontAwesomeIconView(FontAwesomeIcon.CHECK);
-                FontAwesomeIconView viewbtn = new FontAwesomeIconView(FontAwesomeIcon.EYE_SLASH);
+                FontAwesomeIconView viewbtn = new FontAwesomeIconView(FontAwesomeIcon.EYE);
                         deletebtn.setStyle(
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
@@ -185,6 +187,7 @@ public class AccueilAdminOffreController implements Initializable {
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(deletebtn, new Insets(2, 2, 0, 3));
                         HBox.setMargin(editbtn, new Insets(2, 3, 0, 2));
+                        HBox.setMargin(viewbtn, new Insets(2, 3, 0, 2));
                         setGraphic(managebtn);
 
                         setText(null);
@@ -283,6 +286,7 @@ public class AccueilAdminOffreController implements Initializable {
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(deletebtn, new Insets(2, 2, 0, 3));
                         HBox.setMargin(editbtn, new Insets(2, 3, 0, 2));
+                        HBox.setMargin(viewbtn, new Insets(2, 3, 0, 2));
                         setGraphic(managebtn);
 
                         setText(null);
@@ -297,7 +301,8 @@ public class AccueilAdminOffreController implements Initializable {
     }
 
     private void refreshStage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ListoffreStage.clear();
+        ListoffreStage.addAll(new AdminEmploiService().getAllStageNonApprouve()); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

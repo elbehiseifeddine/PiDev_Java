@@ -199,7 +199,7 @@ public class SocieteService implements UtilisateurInterface<Societe> {
                     s.setStatus_juridique(rst.getString("status_juridique"));
                     s.setPhoto_de_profile(rst.getString("photo_de_profile"));
                     s.setViews_nb(rst.getInt("views_nb"));
-                    s.setEtat(rst.getInt("etat"));
+                    //s.setEtat(rst.getInt("etat"));
                     s.setDate_creation(rst.getString("date_creation"));
 
                 }

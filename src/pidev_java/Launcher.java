@@ -24,7 +24,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String rootname = "baseSuperAdmin";
+        String rootname = "main";
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         switch (rootname) {
             case "main":
