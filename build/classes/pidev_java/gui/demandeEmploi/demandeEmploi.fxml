@@ -7,19 +7,35 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.DemandeEmploiController">
    <children>
       <AnchorPane prefHeight="1048.0" prefWidth="1601.0">
          <children>
-            <Label layoutX="32.0" layoutY="28.0" prefHeight="31.0" prefWidth="321.0" text="Mes Demande d'emploi envoyer" textFill="#c12869">
+            <Label layoutX="70.0" layoutY="44.0" prefHeight="71.0" prefWidth="444.0" text="Mes Demandes d'emploi envoyer" underline="true">
                <font>
-                  <Font name="System Bold Italic" size="21.0" />
-               </font></Label>
-            <ListView fx:id="listDemande" layoutX="14.0" layoutY="107.0" prefHeight="450.0" prefWidth="677.0" />
-            <Button fx:id="btnModifier" layoutX="389.0" layoutY="579.0" mnemonicParsing="false" onAction="#modifierDemande" prefHeight="33.0" prefWidth="179.0" text="modifier" />
-            <Button fx:id="btnsupp" layoutX="93.0" layoutY="579.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" text="Supprimer" />
+                  <Font name="System Bold Italic" size="27.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5111111111111111" centerY="0.7142857142857143" radius="0.5">
+                     <stops>
+                        <Stop color="#a1a0a0" />
+                        <Stop color="#bf286aa1" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill></Label>
+            <ListView fx:id="listDemande" layoutX="14.0" layoutY="170.0" prefHeight="450.0" prefWidth="677.0" />
+            <Button fx:id="btnModifier" layoutX="392.0" layoutY="635.0" mnemonicParsing="false" onAction="#modifierDemande" prefHeight="33.0" prefWidth="179.0" style="-fx-background-color: #C12869;" text="modifier" textFill="#e3e3e3">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="btnsupp" layoutX="100.0" layoutY="635.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" style="-fx-background-color: #C12869;" text="Supprimer" textFill="#e3e3e3">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
             <AnchorPane layoutX="895.0" layoutY="96.0" prefHeight="539.0" prefWidth="692.0">
                <children>
                   <TextField fx:id="tfDescription" layoutX="138.0" layoutY="33.0" prefHeight="25.0" prefWidth="388.0" promptText="Description" />
