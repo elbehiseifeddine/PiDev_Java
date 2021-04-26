@@ -133,8 +133,8 @@ public class PublicationsController implements Initializable {
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     

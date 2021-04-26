@@ -17,8 +17,8 @@ public class Commentaires {
     private int id_pub;
     private int freelancer_id;
     private int societe_id;
-    private String nom_util;
-    private String prenom_util;
+    private String NomUtil;
+    private String PrenomUtil;
     
     public Commentaires(String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id) {
         this.description = description;
@@ -28,15 +28,15 @@ public class Commentaires {
         this.societe_id = societe_id;
     }
     
-    public Commentaires(int id ,String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id, String nom_util, String prenom_util) {
+    public Commentaires(int id ,String description, String date_commentaire, int id_pub, int freelancer_id, int societe_id, String NomUtil, String PrenomUtil) {
         this.id = id;
         this.description = description;
         this.date_commentaire = date_commentaire;
         this.id_pub = id_pub;
         this.freelancer_id = freelancer_id;
         this.societe_id = societe_id;
-        this.nom_util = nom_util;
-        this.prenom_util = prenom_util;
+        this.NomUtil = NomUtil;
+        this.PrenomUtil = PrenomUtil;
     }
 
     public Commentaires() {}
@@ -90,24 +90,24 @@ public class Commentaires {
     }
     
     public String getNomUtil() {
-        return nom_util;
+        return NomUtil;
     }
 
-    public void setNomUtil(String nom_util) {
-        this.nom_util = nom_util;
+    public void setNomUtil(String NomUtil) {
+        this.NomUtil = NomUtil;
     }
     
     public String getPrenomUtil() {
-        return prenom_util;
+        return PrenomUtil;
     }
 
-    public void setPrenomUtil(String prenom_util) {
-        this.prenom_util = prenom_util;
+    public void setPrenomUtil(String PrenomUtil) {
+        this.PrenomUtil = PrenomUtil;
     }
     
     @Override
     public String toString() {
-        return "Commentaires{" + "id=" + id + ", description=" + description + ", id_pub=" + id_pub + ", date_commentaire=" + date_commentaire + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + ", nom_util=" + nom_util + ", prenom_util=" + prenom_util + '}';
+        return "Commentaires{" + "id=" + id + ", description=" + description + ", id_pub=" + id_pub + ", date_commentaire=" + date_commentaire + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + ", NomUtil=" + NomUtil + ", PrenomUtil=" + PrenomUtil + '}';
     }
     
 }

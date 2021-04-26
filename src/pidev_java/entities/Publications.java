@@ -17,8 +17,8 @@ public class Publications {
     private String date_publication;
     private int freelancer_id;
     private int societe_id;
-    private String nom_util;
-    private String prenom_util;
+    private String NomUtil;
+    private String PrenomUtil;
     
     public Publications(String description, String image, String date_publication, int freelancer_id, int societe_id) {
         this.description = description;
@@ -28,15 +28,15 @@ public class Publications {
         this.societe_id = societe_id;
     }
     
-    public Publications(int id ,String description, String image, String date_publication, int freelancer_id, int societe_id , String nom_util, String prenom_util) {
+    public Publications(int id ,String description, String image, String date_publication, int freelancer_id, int societe_id , String NomUtil, String PrenomUtil) {
         this.id = id;
         this.description = description;
         this.image = image;
         this.date_publication = date_publication;
         this.freelancer_id = freelancer_id;
         this.societe_id = societe_id;
-        this.nom_util = nom_util;
-        this.prenom_util = prenom_util;
+        this.NomUtil = NomUtil;
+        this.PrenomUtil = PrenomUtil;
     }
 
     public Publications() {}
@@ -58,19 +58,19 @@ public class Publications {
     }
     
     public String getNomUtil() {
-        return nom_util;
+        return NomUtil;
     }
 
-    public void setNomUtil(String nom_util) {
-        this.nom_util = nom_util;
+    public void setNomUtil(String NomUtil) {
+        this.NomUtil = NomUtil;
     }
     
     public String getPrenomUtil() {
-        return prenom_util;
+        return PrenomUtil;
     }
 
-    public void setPrenomUtil(String prenom_util) {
-        this.prenom_util = prenom_util;
+    public void setPrenomUtil(String PrenomUtil) {
+        this.PrenomUtil = PrenomUtil;
     }
     
     public String getImage() {
@@ -107,7 +107,7 @@ public class Publications {
     
     @Override
     public String toString() {
-        return "Publications{" + "id=" + id + ", description=" + description + ", image=" + image + ", date_publication=" + date_publication + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + ", nom_util=" + nom_util + ", prenom_util=" + prenom_util + '}';
+        return "Publications{" + "id=" + id + ", description=" + description + ", image=" + image + ", date_publication=" + date_publication + ", freelancer_id=" + freelancer_id + ", societe_id=" + societe_id + ", NomUtil=" + NomUtil + ", prenom_util=" + PrenomUtil + '}';
     }
     
 }

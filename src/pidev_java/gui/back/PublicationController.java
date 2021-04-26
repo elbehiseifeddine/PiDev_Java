@@ -79,6 +79,14 @@ public class PublicationController implements Initializable {
     private BarChart<String, Integer> barchart;
     @FXML
     private BarChart<String, Integer> barchart2;
+    @FXML
+    private TableColumn<Publications, String> col_nom_pub;
+    @FXML
+    private TableColumn<Publications, String> col_prenom_pub;
+    @FXML
+    private TableColumn<Publications, String> col_nom_com;
+    @FXML
+    private TableColumn<Publications, String> col_prenom_com;
 
     /**
      * Initializes the controller class.
@@ -95,10 +103,14 @@ public class PublicationController implements Initializable {
         col_desc_pub.setCellValueFactory(new PropertyValueFactory<>("description"));
         col_img_pub.setCellValueFactory(new PropertyValueFactory<>("image"));
         col_date_pub.setCellValueFactory(new PropertyValueFactory<>("date_publication"));
+        col_nom_pub.setCellValueFactory(new PropertyValueFactory<>("NomUtil" ));
+        col_prenom_pub.setCellValueFactory(new PropertyValueFactory<>("PrenomUtil" ));
         
         col_id_com.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_desc_com.setCellValueFactory(new PropertyValueFactory<>("description"));
         col_date_com.setCellValueFactory(new PropertyValueFactory<>("date_commentaire"));
+        col_nom_com.setCellValueFactory(new PropertyValueFactory<>("NomUtil" ));
+        col_prenom_com.setCellValueFactory(new PropertyValueFactory<>("PrenomUtil" ));
         
         
         PublicationsService ser = new PublicationsService();
@@ -173,8 +185,8 @@ public class PublicationController implements Initializable {
                     ps.getString("date_publication"),
                     ps.getInt("freelancer_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
             ));
                     
         }
@@ -197,8 +209,8 @@ public class PublicationController implements Initializable {
                     ps.getInt("id_pub_id"),
                     ps.getInt("id_util_id"),
                     ps.getInt("societe_id"),
-                    ps.getString("esm"),
-                    ps.getString("la9ab")
+                    ps.getString("nom"),
+                    ps.getString("prenom")
                     
             ));
                     

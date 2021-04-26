@@ -75,7 +75,7 @@ public class PublicationsService implements PublicationService<Publications> {
     public ResultSet getPublication() throws SQLException{
         st = cnx.createStatement();
         ResultSet ps = st.executeQuery(
-                "SELECT p.id, p.description, p.image, p.date_publication, p.freelancer_id, p.societe_id,f.nom esm,f.prenom la9ab FROM publications p INNER JOIN freelancer f ON p.freelancer_id=f.id ");
+                "SELECT p.id, p.description, p.image, p.date_publication, p.freelancer_id, p.societe_id,f.nom nom,f.prenom prenom FROM publications p INNER JOIN freelancer f ON p.freelancer_id=f.id ");
        
         return ps;
     }
