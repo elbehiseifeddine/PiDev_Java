@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -86,6 +87,10 @@ public class AccueilAdminOffreController implements Initializable {
 
     ObservableList<offreEmploi> ListoffreEmploi = FXCollections.observableArrayList();
     ObservableList<offreStage> ListoffreStage = FXCollections.observableArrayList();
+    @FXML
+    private Label EmploiVide;
+    @FXML
+    private Label StageVide;
     
    
     
@@ -105,6 +110,13 @@ public class AccueilAdminOffreController implements Initializable {
     }
     void loadEmploiDate(){
         refreshEmploi();
+        if (ListoffreEmploi.isEmpty()){
+            EmploiVide.setVisible(true);
+            TabOffreEmploi.setVisible(false);
+        }else{
+            TabOffreEmploi.setVisible(true);
+            EmploiVide.setVisible(false);
+        
         SocieteService sos = new SocieteService();
         Id_Offre_Emploi.setCellValueFactory(new PropertyValueFactory<>("id"));
 //        ownerEmploi.setCellValueFactory(new Callback<CellDataFeatures<offreEmploi,Integer>,ObservableValue<String>>(){
@@ -198,11 +210,18 @@ public class AccueilAdminOffreController implements Initializable {
                 };
         actionsEmploi.setCellFactory(cellFactory);
         TabOffreEmploi.setItems(ListoffreEmploi);
-
+        }
     }
     
      void loadStageDate(){
         refreshStage();
+        if(ListoffreStage.isEmpty()){
+            StageVide.setVisible(true);
+            TabOffreStage.setVisible(false);
+        }else{
+            StageVide.setVisible(false);
+            TabOffreStage.setVisible(true);
+        
         SocieteService sos = new SocieteService();
         id_offre_stage.setCellValueFactory(new PropertyValueFactory<>("id"));
 //        ownerStage.setCellValueFactory(new Callback<CellDataFeatures<offreStage,Integer>,ObservableValue<String>>(){
@@ -297,7 +316,7 @@ public class AccueilAdminOffreController implements Initializable {
                 };
         actionsStage.setCellFactory(cellFactory);
         TabOffreStage.setItems(ListoffreStage);
-
+        }
     }
 
     private void refreshStage() {

@@ -251,12 +251,13 @@ public class AdminEmploiService implements IAdminEmploiService {
         ArrayList<offreEmploi> historique = new ArrayList<>();
         try {
 
-            String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId() + " AND id_offre_emploi <> null";
+            String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId();
             Statement st = cnx.createStatement();
 
             ResultSet rs = st.executeQuery(req1);
             while (rs.next()) {
-                String getReclamation = "SELECT * FROM offre_emploi WHERE id =" + rs.getInt("id_offre_emploi");
+                if (rs.getInt("id_offre_emploi")!=0){
+                String getReclamation = "SELECT * FROM offre_emploi WHERE id =" + rs.getInt("id_offre_emploi")+" AND etat=1";
                 Statement st2 = cnx.createStatement();
 
                 ResultSet rs2 = st2.executeQuery(getReclamation);
@@ -274,7 +275,10 @@ public class AdminEmploiService implements IAdminEmploiService {
 
                 historique.add(emploi);
 
+            
+                }
             }
+            
 
             rs.close();
         } catch (SQLException ex) {
@@ -294,12 +298,13 @@ public class AdminEmploiService implements IAdminEmploiService {
         ArrayList<offreStage> historique = new ArrayList<>();
         try {
 
-            String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId() + " AND id_offre_stage <> null";
+            String req1 = "SELECT * FROM admin_emploi WHERE id_a_e=" + admin.getId();
             Statement st = cnx.createStatement();
 
             ResultSet rs = st.executeQuery(req1);
             while (rs.next()) {
-                String getReclamation = "SELECT * FROM offre_stage WHERE id =" + rs.getInt("id_offre_stage");
+                if (rs.getInt("id_offre_stage")!= 0){
+                String getReclamation = "SELECT * FROM offre_stage WHERE id =" + rs.getInt("id_offre_stage")+" AND etat=1";
                 Statement st2 = cnx.createStatement();
 
                 ResultSet rs2 = st2.executeQuery(getReclamation);
@@ -318,6 +323,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 
                 historique.add(stage);
 
+                }
             }
 
             rs.close();

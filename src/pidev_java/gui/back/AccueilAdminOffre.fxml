@@ -22,6 +22,14 @@
             <Insets left="15.0" top="50.0" />
          </VBox.margin>
       </Label>
+      <Label fx:id="EmploiVide" text="Aucune offre d'emploi pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="10.0" />
+         </VBox.margin>
+      </Label>
       <TableView fx:id="TabOffreEmploi" prefHeight="222.0" prefWidth="1602.0">
         <columns>
           <TableColumn fx:id="Id_Offre_Emploi" prefWidth="75.0" text="Id" visible="false" />
@@ -48,6 +56,14 @@
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
+      </Label>
+      <Label fx:id="StageVide" text="Aucune offre de stage pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="15.0" />
+         </VBox.margin>
       </Label>
       <TableView fx:id="TabOffreStage" prefHeight="200.0" prefWidth="200.0">
         <columns>

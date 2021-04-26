@@ -70,7 +70,7 @@ public class ReclamationService {
     
     public ArrayList<Reclamation> getAllNonApprouve()
     {
-        ArrayList<Reclamation> list = new ArrayList<Reclamation>();
+        ArrayList<Reclamation> list = new ArrayList<>();
         try {
             
             String req = "SELECT * FROM reclamation WHERE etat = 0;";
