@@ -44,7 +44,7 @@ public class emploiService implements IServiceOffre<offreEmploi>{
             ps.setString(7, entity.getDevise());
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
-            ps.setInt(10,0);
+            ps.setInt(10,1);
            
            
             ps.executeUpdate();
@@ -77,7 +77,7 @@ public class emploiService implements IServiceOffre<offreEmploi>{
 ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_emploi";
+            String sql = "SELECT * FROM offre_emploi where etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  

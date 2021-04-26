@@ -45,7 +45,7 @@ public class stageService implements IServiceOffre<offreStage> {
              ps.setString(7, entity.getTypeStage());
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
-            ps.setInt(10,0);
+            ps.setInt(10,1);
            
            
             ps.executeUpdate();
@@ -77,7 +77,7 @@ public class stageService implements IServiceOffre<offreStage> {
         ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_stage";
+            String sql = "SELECT * FROM offre_stage where etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  
