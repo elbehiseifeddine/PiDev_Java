@@ -71,6 +71,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="tfid" layoutX="529.0" layoutY="503.0" />
                </children>
             </AnchorPane>
          </children>

@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
 import pidev_java.entities.DemandeEmploi;
 import pidev_java.entities.Freelancer;
+import pidev_java.entities.offreEmploi;
 import pidev_java.services.DemandeEmploiService;
 
 /**
@@ -37,6 +38,8 @@ public class AjoutDemandeEController implements Initializable {
     private TextField tfDomaine;
     @FXML
     private TextField tfDiplome;
+     @FXML
+    private TextField tfid_o;
     @FXML
     private TextArea tflettre;
     @FXML
@@ -66,6 +69,8 @@ public class AjoutDemandeEController implements Initializable {
         Label labelresponse= new Label();
         Freelancer f = Freelancer.getInstance();
         DemandeEmploiService sd = new DemandeEmploiService();
+      
+        
         DemandeEmploi d = new DemandeEmploi();
         d.setFreelancer_id(f.getId());
         d.setDate_creation(Date.valueOf(LocalDate.MAX));
@@ -110,6 +115,8 @@ public class AjoutDemandeEController implements Initializable {
        }
        
        if(valid==true){
+           
+           d.setOffre_emploi_id(Integer.valueOf(tfid_o.getText()));
           sd.ajouter(d); 
            tfDescription.setText("");
         tfDiplome.setText("");
@@ -126,4 +133,8 @@ public class AjoutDemandeEController implements Initializable {
         
     }
     
+    public void setOffreE(offreEmploi e) throws NullPointerException{
+        
+        this.tfid_o.setText(Integer.toString(e.getId()));
+    }
 }
