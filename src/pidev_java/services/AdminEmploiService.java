@@ -264,7 +264,7 @@ public class AdminEmploiService implements IAdminEmploiService {
                 rs2.first();
                 offreEmploi emploi = new offreEmploi();
                 emploi.setId(rs2.getInt("id"));
-                //emploi.setSociete_id(rs2.getString("societe_id"));
+                emploi.setIdSociete(rs2.getInt("societe_id"));
                 emploi.setNomProjet(rs2.getString("nom_projet"));
                 emploi.setCompetence(rs2.getString("competences"));
                 emploi.setDescription(rs2.getString("description"));
@@ -311,7 +311,7 @@ public class AdminEmploiService implements IAdminEmploiService {
                 rs2.first();
                 offreStage stage = new offreStage();
                 stage.setId(rs2.getInt("id"));
-                //stage.setSociete_id(rs2.getString("societe_id"));
+                stage.setIdSociete(rs2.getInt("societe_id"));
                 stage.setNomProjet(rs2.getString("nom_projet"));
                 stage.setCompetence(rs2.getString("competences"));
                 stage.setDescription(rs2.getString("description"));
@@ -372,6 +372,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             while (rs0.next()) {
                 offreStage F = new offreStage();
                 F.setId(rs0.getInt("id"));
+                F.setIdSociete(rs0.getInt("societe_id"));
                 F.setNomProjet(rs0.getString("nom_projet"));
                 F.setCompetence(rs0.getString("competences"));
                 F.setDescription(rs0.getString("description"));

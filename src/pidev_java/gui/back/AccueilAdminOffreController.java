@@ -101,7 +101,7 @@ public class AccueilAdminOffreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         loadEmploiDate();
-        //loadStageDate();
+        loadStageDate();
     }    
     
     void refreshEmploi(){
