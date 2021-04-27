@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -49,5 +50,6 @@
       <Label fx:id="idDevise" layoutX="318.0" layoutY="79.0" text="Label" />
       <FontAwesomeIconView glyphName="EURO" layoutX="253.0" layoutY="91.0" size="15.0" />
       <FontAwesomeIconView glyphName="STAR" layoutX="79.0" layoutY="90.0" size="15.0" />
+      <ImageView fx:id="aa" fitHeight="84.0" fitWidth="95.0" layoutX="480.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

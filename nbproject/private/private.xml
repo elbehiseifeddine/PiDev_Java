@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/demandeEmploi/ConsulterEmploiFreelancerController.java</file>
             <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/offreEmploi/AjoutoffreEmploiController.java</file>
+            <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/offreStage/ItemAllstagesController.java</file>
+            <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/stageService.java</file>
             <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/offreEmploi/ItemEmpController.java</file>
+            <file>file:/C:/Users/Ghassen%20Riahi/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/demandeEmploi/ItemAllEmploisController.java</file>
         </group>
     </open-files>
 </project-private>

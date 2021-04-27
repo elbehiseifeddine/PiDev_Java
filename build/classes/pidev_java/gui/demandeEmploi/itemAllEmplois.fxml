@@ -3,10 +3,10 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="291.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.ItemAllEmploisController">
    <children>
@@ -55,9 +55,9 @@
       <Line endX="572.0" layoutX="142.0" layoutY="276.0" startX="-100.0" />
       <Label layoutX="210.0" layoutY="70.0" text="Chez vous" />
       <Label fx:id="idDevise" layoutX="358.0" layoutY="70.0" text="Label" />
-      <Rating fx:id="ratingEmploi" layoutX="543.0" layoutY="-30.0" onMouseClicked="#Rating" prefHeight="30.0" prefWidth="152.0" rating="0.0" />
       <FontAwesomeIconView glyphName="EURO" layoutX="291.0" layoutY="83.0" size="15.0" />
       <FontAwesomeIconView glyphName="STAR" layoutX="62.0" layoutY="85.0" size="15.0" />
       <FontAwesomeIconView glyphName="MAP_MARKER" layoutX="192.0" layoutY="84.0" size="15.0" />
+      <ImageView fx:id="aa" fitHeight="88.0" fitWidth="103.0" layoutX="583.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

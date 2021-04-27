@@ -82,7 +82,7 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
             String sql = "SELECT * FROM offre_emploi where etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                 
+                 int idSoc = rs.getInt("societe_id");
     
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom_projet");
@@ -96,6 +96,7 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
                
                 
                 offreEmploi F = new offreEmploi (id,nom,comp,description,domaine,salaire,dtc,dtE,devise);
+                F.setIdSociete(idSoc);
                 res.add(F);
             }
             rs.close();
@@ -126,8 +127,37 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
     }
 
     @Override
-    public List<offreEmploi> getOwn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<offreEmploi> getOwn(int ids) {
+       ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
+        try {
+            
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * FROM offre_emploi where societe_id="+ids;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                 int idSoc = rs.getInt("societe_id");
+    
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom_projet");
+                String comp = rs.getString("competences");
+                String description = rs.getString("description");
+                String domaine=rs.getString("domaine");
+                Float salaire=rs.getFloat("salaire");
+                Date dtc=rs.getDate("date_creation");
+                Date dtE=rs.getDate("date_expiration");
+                String devise=rs.getString("devise");
+               
+                
+                offreEmploi F = new offreEmploi (id,nom,comp,description,domaine,salaire,dtc,dtE,devise);
+                F.setIdSociete(idSoc);
+                res.add(F);
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return res;   
     }
 
   

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import pidev_java.services.Create_QR;
 import pidev_java.utils.JavaMail;
 
 /**
@@ -27,6 +28,7 @@ public class Launcher extends Application {
         //Parent root = FXMLLoader.load(getClass().getResource("/pidev_java.gui/Main.fxml"));        
         //
         if (rootname.equals("main")) {
+           
             Image img = new Image("pidev_java/assets/Logo_Compact.png");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/utilisateur/main.fxml"));
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/bases/BaseGuiSuperAdmin.fxml"));

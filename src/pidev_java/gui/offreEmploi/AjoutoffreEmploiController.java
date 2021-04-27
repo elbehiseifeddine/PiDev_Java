@@ -35,6 +35,7 @@ import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Notifications;
 import pidev_java.entities.Societe;
 import pidev_java.entities.offreEmploi;
+import pidev_java.services.Create_QR;
 import pidev_java.services.emploiService;
 
 /**
@@ -100,6 +101,8 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     private void ajouterEmploi(MouseEvent event) {
         
         Societe s = Societe.getInstance();
+        Create_QR q = new Create_QR();
+        q.gene(s.getId(),s.getEmail());
         ContextMenu usernameValidator = new ContextMenu();
         usernameValidator.setAutoHide(false);
         final ContextMenu passValidator = new ContextMenu();

@@ -77,12 +77,13 @@ public class stageService implements IServiceOffre<offreStage> {
         
         ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
+             
             Statement stmt = cnx.createStatement();
             String sql = "SELECT * FROM offre_stage where etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  
-    
+    int idSoc = rs.getInt("societe_id");
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom_projet");
                 String comp = rs.getString("competences");
@@ -95,6 +96,7 @@ public class stageService implements IServiceOffre<offreStage> {
                
                 
                 offreStage F = new offreStage (id,nom,comp,description,domaine,duree,type,dtc,dtE);
+                F.setIdSociete(idSoc);
                 res.add(F);
             }
             rs.close();
@@ -125,11 +127,11 @@ public class stageService implements IServiceOffre<offreStage> {
     }
 
     @Override
-    public List<offreStage> getOwn() {
+    public List<offreStage> getOwn(int ids) {
          ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_stage  where societe_id=9";
+            String sql = "SELECT * FROM offre_stage  where societe_id="+ids;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  

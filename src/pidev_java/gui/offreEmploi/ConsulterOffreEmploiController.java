@@ -27,6 +27,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import pidev_java.entities.Societe;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.emploiService;
 
@@ -54,13 +55,14 @@ public class ConsulterOffreEmploiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Societe s = Societe.getInstance();
           scrolEmploi.setVisible(true);
          gridEmploi.getChildren().clear();
          int columnMesForm = 0;
         int rowMesForm = 1;
          try {
             
-           List<offreEmploi> MesOffre=ss.getAll();
+           List<offreEmploi> MesOffre=ss.getOwn(s.getId());
             for (int i = 0; i < MesOffre.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/offreEmploi/itemEmp.fxml"));
