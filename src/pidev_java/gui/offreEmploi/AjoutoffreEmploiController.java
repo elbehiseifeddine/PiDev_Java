@@ -31,10 +31,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Notifications;
-//import org.controlsfx.control.Notifications;
+import pidev_java.entities.Societe;
 import pidev_java.entities.offreEmploi;
-import pidev_java.services.AdminEmploiService;
+import pidev_java.services.Create_QR;
 import pidev_java.services.emploiService;
 
 /**
@@ -44,7 +45,8 @@ import pidev_java.services.emploiService;
  */
 public class AjoutoffreEmploiController implements Initializable {
               ObservableList<String> List = FXCollections.observableArrayList("Informatique","Design","jeux vidéo","Artisanat");
-private ConsulterOffreEmploiController cs;
+               ObservableList<String> ListDevise = FXCollections.observableArrayList("Euros","Dollars","Dinars");
+               private ConsulterOffreEmploiController cs;
 
     @FXML
     private TextField tfNom;
@@ -60,6 +62,9 @@ private ConsulterOffreEmploiController cs;
     private TextField tfsalaire;
     @FXML
     private Button btnAjout;
+   // private CheckComboBox<String> cmbDevise;
+    @FXML
+    private ComboBox<String> cmbDevises;
 
     /**
      * Initializes the controller class.
@@ -67,6 +72,8 @@ private ConsulterOffreEmploiController cs;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.cmbDomaine.setItems(List);
+        this.cmbDevises.setItems(this.ListDevise);
+       // this.cmbDevises.setIems(this.ListDevise);
          DatePicker minDate = new DatePicker(); // DatePicker, used to define max date available, you can also create another for minimum date
 minDate.setValue(LocalDate.now().plusDays(5)); // Max date available will be 2015-01-01
 final Callback<DatePicker, DateCell> dayCellFactory;
@@ -93,6 +100,9 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     @FXML
     private void ajouterEmploi(MouseEvent event) {
         
+        Societe s = Societe.getInstance();
+        Create_QR q = new Create_QR();
+        q.gene(s.getId(),s.getEmail());
         ContextMenu usernameValidator = new ContextMenu();
         usernameValidator.setAutoHide(false);
         final ContextMenu passValidator = new ContextMenu();
@@ -140,13 +150,19 @@ dtExpiration.setDayCellFactory(dayCellFactory);
                             new MenuItem("saisir une date d'expiration"));
                     usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
          }
+           else if (this.cmbDevises.getValue().equals("")) {
+                    usernameValidator.getItems().clear();
+                    usernameValidator.getItems().add(
+                            new MenuItem("choisir votre devise"));
+                    usernameValidator.show(cmbDomaine, Side.RIGHT, 10, 0);
+                }
           else{
          Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
         
        emploiService service = new emploiService();
        int idOffreEmploi = service.maxId()+1;
-        offreEmploi e = new offreEmploi(idOffreEmploi,tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),tfsalaire.getText(),dateC,dateE);
-      
+        offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,cmbDevises.getSelectionModel().getSelectedItem());
+      e.setIdSociete(s.getId());
         new emploiService().add(e);
          notification();
         new AdminEmploiService().SendOffreEmploiToAdminEmploi(e.getId());
@@ -175,7 +191,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.tfDescription.setText("");
     this.tfsalaire.setText("");
     this.cmbDomaine.setValue("-- choisir un domaine --");
-    
+    this.cmbDevises.setValue("--Devise--");
     this.dtExpiration.setValue(null);
     
     }
@@ -197,6 +213,10 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         notificationBuilder.showInformation();
        
     
+    }
+
+    @FXML
+    private void cmbDevise(MouseEvent event) {
     }
     
 }

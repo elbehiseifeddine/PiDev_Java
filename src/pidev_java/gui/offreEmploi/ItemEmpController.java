@@ -21,6 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -57,6 +59,10 @@ public class ItemEmpController implements Initializable {
     emploiService ss=new emploiService();
     ConsulterOffreEmploiController co;
     private offreEmploi offre;
+    @FXML
+    private Label idDevise;
+    @FXML
+    private ImageView aa;
         
 
     /**
@@ -71,14 +77,19 @@ public class ItemEmpController implements Initializable {
      public void setData(offreEmploi os,ConsulterOffreEmploiController fc) {
          this.co=fc;
         this.offre = os;
-        
+        String t = String.valueOf(os.getIdSociete());
+        System.out.println("/pidev_java/"+t+".png");
+        Image i = new Image("/pidev_java/"+t+".png");
+         
         this.idNom.setText(os.getNomProjet());
         this.idComp.setText(os.getCompetence());
         this.idDesc.setText(os.getDescription());
         this.idDomaine.setText(String.valueOf(os.getDomaine()));
         this.idSalaire.setText(String.valueOf(os.getSalaire()));
+        this.idDevise.setText(String.valueOf(os.getDevise()));
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
+        this.aa.setImage(i);
      }
     
     @FXML

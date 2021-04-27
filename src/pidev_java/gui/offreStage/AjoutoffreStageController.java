@@ -40,7 +40,7 @@ import javafx.stage.Window;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-//import org.controlsfx.control.Notifications;
+import pidev_java.entities.Societe;
 import pidev_java.entities.offreStage;
 import pidev_java.services.AdminEmploiService;
 import pidev_java.services.emploiService;
@@ -116,6 +116,8 @@ public class AjoutoffreStageController implements Initializable {
 
     @FXML
     private void ajouterEmploi(MouseEvent event) {
+        Societe s = Societe.getInstance();
+        
         ContextMenu usernameValidator = new ContextMenu();
         usernameValidator.setAutoHide(false);
         final ContextMenu passValidator = new ContextMenu();
@@ -169,7 +171,7 @@ public class AjoutoffreStageController implements Initializable {
            Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
 
         offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbType.getSelectionModel().getSelectedItem(), dateC, dateE);
-            
+            e.setIdSociete(s.getId());
             new stageService().add(e);
             notification();
             new AdminEmploiService().SendOffreStageToAdminEmploi(e.getId());

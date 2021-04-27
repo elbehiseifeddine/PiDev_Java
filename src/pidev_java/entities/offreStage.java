@@ -23,6 +23,7 @@ public class offreStage {
     private Date dateCreation;
     private Date dateExpiration;
 private int etat;
+private int idSociete;
     public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration) {
         this.nomProjet = nomProjet;
         this.competence = competence;
@@ -70,6 +71,33 @@ private int etat;
         this.dateExpiration = dateExpiration;
     }
 
+    public offreStage(int id, String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration, int etat, int idSociete) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.duree = duree;
+        this.typeStage = typeStage;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.idSociete = idSociete;
+    }
+
+    public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration, int etat, int idSociete) {
+        this.nomProjet = nomProjet;
+        this.competence = competence;
+        this.description = description;
+        this.domaine = domaine;
+        this.duree = duree;
+        this.typeStage = typeStage;
+        this.dateCreation = dateCreation;
+        this.dateExpiration = dateExpiration;
+        this.etat = etat;
+        this.idSociete = idSociete;
+    }
+
     
     
 
@@ -115,6 +143,14 @@ private int etat;
 
     public void setEtat(int etat) {
         this.etat = etat;
+    }
+
+    public int getIdSociete() {
+        return idSociete;
+    }
+
+    public void setIdSociete(int idSociete) {
+        this.idSociete = idSociete;
     }
     
     

@@ -32,8 +32,8 @@ public class stageService implements IServiceOffre<offreStage> {
     public void add(offreStage entity) {
        try{
         
-        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat)"
-                + " values (?, ?, ?, ?,?, ?, ?,?,?,?)";
+        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat,societe_id)"
+                + " values (?, ?, ?, ?,?, ?, ?,?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());
@@ -45,7 +45,8 @@ public class stageService implements IServiceOffre<offreStage> {
              ps.setString(7, entity.getTypeStage());
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
-            ps.setInt(10,0);
+            ps.setInt(10,1);
+            ps.setInt(11,entity.getIdSociete());
            
            
             ps.executeUpdate();
@@ -76,12 +77,13 @@ public class stageService implements IServiceOffre<offreStage> {
         
         ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
+             
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_stage";
+            String sql = "SELECT * FROM offre_stage where etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  
-    
+    int idSoc = rs.getInt("societe_id");
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom_projet");
                 String comp = rs.getString("competences");
@@ -94,6 +96,7 @@ public class stageService implements IServiceOffre<offreStage> {
                
                 
                 offreStage F = new offreStage (id,nom,comp,description,domaine,duree,type,dtc,dtE);
+                F.setIdSociete(idSoc);
                 res.add(F);
             }
             rs.close();
@@ -124,11 +127,11 @@ public class stageService implements IServiceOffre<offreStage> {
     }
 
     @Override
-    public List<offreStage> getOwn() {
+    public List<offreStage> getOwn(int ids) {
          ArrayList<offreStage> res = new ArrayList<offreStage>();
         try {
             Statement stmt = cnx.createStatement();
-            String sql = "SELECT * FROM offre_stage  where societe_id=9";
+            String sql = "SELECT * FROM offre_stage  where societe_id="+ids;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                  
