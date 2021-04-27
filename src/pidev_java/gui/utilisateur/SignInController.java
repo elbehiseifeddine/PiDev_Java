@@ -21,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pidev_java.entities.Admin;
 import pidev_java.entities.Freelancer;
@@ -36,18 +38,24 @@ import pidev_java.services.SocieteService;
  */
 public class SignInController implements Initializable {
 
-    @FXML
     Stage primaryStage;
     @FXML
     private TextField tf_email;
     @FXML
-    private PasswordField tf_pwd;
-    @FXML
     private Label email_validator;
     @FXML
-    private Label pwd_validator;
-    @FXML
     private Label compte_validator;
+    @FXML
+    private Label compte_validator1;
+    @FXML
+    private Label compte_validator11;
+    @FXML
+    private VBox vbox;
+    private Parent fxml;
+    @FXML
+    private PasswordField tf_pwd;
+    @FXML
+    private Label pwd_validator;
 
     /**
      * Initializes the controller class.
@@ -154,7 +162,7 @@ public class SignInController implements Initializable {
                                         } catch (IOException e) {
                                             System.err.println(e);
                                         }
-                                    }else if (a.getType().equals("Admin des events")) {
+                                    } else if (a.getType().equals("Admin des events")) {
                                         try {
                                             Image img = new Image("pidev_java/assets/Logo_Compact.png");
                                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiEventAdmin.fxml"));
@@ -170,7 +178,7 @@ public class SignInController implements Initializable {
                                         } catch (IOException e) {
                                             System.err.println(e);
                                         }
-                                    }else if (a.getType().equals("Admin des emplois")) {
+                                    } else if (a.getType().equals("Admin des emplois")) {
                                         try {
                                             Image img = new Image("pidev_java/assets/Logo_Compact.png");
                                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiOffreAdmin.fxml"));
@@ -187,7 +195,7 @@ public class SignInController implements Initializable {
                                             System.err.println(e);
                                         }
                                     }
-                                }else{
+                                } else {
                                     compte_validator.setText("Compte Desactiver");
                                     compte_validator.setVisible(true);
                                 }
@@ -195,23 +203,23 @@ public class SignInController implements Initializable {
                         } else {
                             if (new AdminService().findSuperAdminByEmail(tf_email.getText()).getLogin() != null) {
                                 if (new AdminService().findSuperAdminByEmail(tf_email.getText()).getPass().equals(tf_pwd.getText())) {
-                                        try {
-                                            Image img = new Image("pidev_java/assets/Logo_Compact.png");
-                                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiSuperAdmin.fxml"));
-                                            Parent root = (Parent) fxmlLoader.load();
-                                            Stage stage = new Stage();
-                                            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                                            primaryStage.close();
-                                            stage.setScene(new Scene(root));
-                                            stage.setMaximized(true);
-                                            stage.getIcons().add(img);
-                                            stage.setTitle("RightJob");
-                                            stage.show();
-                                        } catch (IOException e) {
-                                            System.err.println(e);
-                                        }
+                                    try {
+                                        Image img = new Image("pidev_java/assets/Logo_Compact.png");
+                                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev_java/gui/bases/BaseGuiSuperAdmin.fxml"));
+                                        Parent root = (Parent) fxmlLoader.load();
+                                        Stage stage = new Stage();
+                                        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                        primaryStage.close();
+                                        stage.setScene(new Scene(root));
+                                        stage.setMaximized(true);
+                                        stage.getIcons().add(img);
+                                        stage.setTitle("RightJob");
+                                        stage.show();
+                                    } catch (IOException e) {
+                                        System.err.println(e);
+                                    }
                                 }
-                            }else{
+                            } else {
                                 compte_validator.setText("Email n'exist pas");
                                 compte_validator.setVisible(true);
                             }
@@ -230,6 +238,13 @@ public class SignInController implements Initializable {
                 pwd_validator.setVisible(true);
             }
         }
+    }
+
+    @FXML
+    private void PasswordForget(MouseEvent event) throws IOException {
+        fxml = FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
+        vbox.getChildren().removeAll();
+        vbox.getChildren().setAll(fxml);
     }
 
 }

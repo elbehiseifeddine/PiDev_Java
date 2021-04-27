@@ -6,9 +6,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.evenement.EvenementController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1615.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.evenement.EvenementController">
   <tabs>
     <Tab fx:id="tabmesEvent" text="Mes evenement">
          <content>
@@ -19,7 +21,7 @@
                         <FontAwesomeIconView fx:id="iconAjoutEvent" fill="#0017ff" glyphName="PLUS" layoutX="36.0" layoutY="64.0" onMouseClicked="#AjoutEvent" size="45" />
                      </children>
                   </Pane>
-                  <ScrollPane fx:id="scrollMesEvent" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
+                  <ScrollPane fx:id="scrollMesEvent" layoutX="26.0" layoutY="101.0" prefHeight="740.0" prefWidth="1550.0">
                      <content>
                         <GridPane fx:id="gridMesevent" prefHeight="512.0" prefWidth="900.0">
                           <rowConstraints>
@@ -36,7 +38,7 @@
          <content>
              <AnchorPane prefHeight="180.0" prefWidth="900.0">
                <children>
-            <ScrollPane fx:id="scrolEvent" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
+            <ScrollPane fx:id="scrolEvent" layoutX="26.0" layoutY="101.0" prefHeight="740.0" prefWidth="1550.0">
                <content>
                   <GridPane fx:id="gridEvent" prefHeight="656.0" prefWidth="900.0">
                     <rowConstraints>
@@ -54,7 +56,7 @@
          <content>
              <AnchorPane prefHeight="180.0" prefWidth="900.0">
                <children>
-            <ScrollPane fx:id="scrolPartE" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
+            <ScrollPane fx:id="scrolPartE" layoutX="26.0" layoutY="101.0" prefHeight="740.0" prefWidth="1550.0">
                <content>
                   <GridPane fx:id="gridPartE" prefHeight="656.0" prefWidth="974.0">
                      <rowConstraints>

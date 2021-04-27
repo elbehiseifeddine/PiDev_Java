@@ -40,7 +40,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setString(6,e.getImageE());
                 preparedStmt.setFloat(7, e.getNbParticipant());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, 1);
@@ -64,7 +64,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setString(6,e.getImageE());
                 preparedStmt.setFloat(7, e.getNbParticipant());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
@@ -87,7 +87,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setString(6,e.getImageE());
                 preparedStmt.setFloat(7, e.getNbParticipant());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
@@ -108,6 +108,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
             PreparedStatement preparedStmt = con.prepareStatement(" delete from event_loisir where id= ?");
 	    preparedStmt.setInt(1,e.getId());
             preparedStmt.executeUpdate();
+              System.out.println("suppresion avec succes");
             } 
         catch (Exception ex) {
 	    System.err.println(ex.getMessage());
@@ -173,7 +174,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          if(typeU.equals("freelancer")){
               try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_fr_id !="+idu;
+            String sql = "SELECT * FROM event_loisir where id_fr_id !="+idu+" or id_fr_id is null and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -201,7 +202,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          else if(typeU.equals("societe")){
                 try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_so_id !="+idu;
+            String sql = "SELECT * FROM event_loisir where id_so_id !="+idu+" or id_so_id is null and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -236,7 +237,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          if(typeU.equals("freelancer")){
              try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_fr_id="+idu;
+            String sql = "SELECT * FROM event_loisir where id_fr_id="+idu+" and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -263,7 +264,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          else{
              try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_so_id="+idu;
+            String sql = "SELECT * FROM event_loisir where id_so_id="+idu+" and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -292,6 +293,36 @@ public class EventService implements IServiceEvent<EventLoisir> {
         return res;
     }
 
+    public EventLoisir FindParId(int idf) {
+       EventLoisir E=new EventLoisir();
+        try {
+            Statement stmt = con.createStatement();
+            String sql = "SELECT * FROM event_loisir where id="+idf;
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                int id = rs.getInt("id");
+                
+                String labelle = rs.getString("labelle");
+                String lieu = rs.getString("lieu");
+                String domaine = rs.getString("domaine");
+                String description=rs.getString("description");
+                Timestamp dateDebut=rs.getTimestamp("date_debut");
+                Timestamp dateFin=rs.getTimestamp("date_fin");
+                int nb=rs.getInt("nb_participant");
+                long lat=rs.getLong("lat");
+                long lng=rs.getLong("lng");
+                String image=rs.getString("imagee");
+                
+                 E = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nb,true,lng,lat,image);
+                
+            }
+            rs.close();
+            } 
+        catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return E;
+    }
     
     
     
@@ -330,5 +361,14 @@ public class EventService implements IServiceEvent<EventLoisir> {
         }
         return res;
     }
-    
+ public boolean estUnEntier(String chaine) {
+		try {
+			Integer.parseInt(chaine);
+		} catch (NumberFormatException e){
+			return false;
+		}
+ 
+		return true;
+	}    
+
 }

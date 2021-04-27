@@ -246,7 +246,7 @@ public class FormationService implements IServiceEvent<Formation>{
     
     public boolean estUnEntier(String chaine) {
 		try {
-			Integer.parseInt(chaine);
+			Float.parseFloat(chaine);
 		} catch (NumberFormatException e){
 			return false;
 		}
@@ -375,7 +375,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 double lng=rs.getDouble("lng");
                 String image=rs.getString("image");
                 
-                Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
+                Formation F = new Formation(id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
                 result.add(F);
             }
             rs.close();

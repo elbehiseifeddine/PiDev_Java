@@ -67,7 +67,7 @@ public class MapFauxController implements Initializable {
         this.Fc=fc;
         for(int i=0;i<FormationsAux.size();i++){
             try {
-                this.resize("C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets\\"+FormationsAux.get(i).getImageF(), "C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets\\im"+FormationsAux.get(i).getImageF(), 30, 30);         
+                this.resize("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets"+FormationsAux.get(i).getImageF(), "C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets\\im"+FormationsAux.get(i).getImageF(), 30, 30);         
             } catch (IOException ex) {
                             System.out.println("mochkla f taswira");
             }

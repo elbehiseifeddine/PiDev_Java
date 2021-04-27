@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="733.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.ConsulterEmploiFreelancerController">
+<AnchorPane id="AnchorPane" prefHeight="1000.0" prefWidth="1914.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.ConsulterEmploiFreelancerController">
    <children>
       <AnchorPane layoutX="-25.0" minHeight="0.0" minWidth="0.0" prefHeight="770.0" prefWidth="1054.0">
          <children>
-            <ScrollPane fx:id="scrollEmploiFreelancer" layoutX="143.0" layoutY="50.0" prefHeight="673.0" prefWidth="796.0">
+            <ScrollPane fx:id="scrollEmploiFreelancer" layoutX="192.0" layoutY="50.0" prefHeight="916.0" prefWidth="1234.0">
                <content>
                   <GridPane fx:id="gridEmploiFreelancer" prefHeight="326.0" prefWidth="707.0">
                      <rowConstraints>

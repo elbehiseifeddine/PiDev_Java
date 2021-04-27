@@ -22,14 +22,18 @@ public class EventLoisir {
     public String Domaine;
     public int nbParticipant;
     public boolean Etat;
-    public long Lng;
-    public long Lat;
+    public double Lng;
+    public double Lat;
     private String imageE;
 
     public EventLoisir() {
     }
 
-    public EventLoisir(int id, String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, long Lng, long Lat,String image) {
+    public EventLoisir(int id) {
+        this.id = id;
+    }
+
+    public EventLoisir(int id, String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.id = id;
         this.Labelle = Labelle;
         this.Description = Description;
@@ -44,7 +48,7 @@ public class EventLoisir {
         this.imageE=image;
     }
 
-    public EventLoisir(String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, long Lng, long Lat,String image) {
+    public EventLoisir(String Labelle, String Description, String Lieu, Timestamp DateDebut, Timestamp DateFin, String Domaine, int nbParticipant, boolean Etat, double Lng, double Lat,String image) {
         this.Labelle = Labelle;
         this.Description = Description;
         this.Lieu = Lieu;
@@ -130,19 +134,19 @@ public class EventLoisir {
         this.Etat = Etat;
     }
 
-    public long getLng() {
+    public double getLng() {
         return Lng;
     }
 
-    public void setLng(long Lng) {
+    public void setLng(double Lng) {
         this.Lng = Lng;
     }
 
-    public long getLat() {
+    public double getLat() {
         return Lat;
     }
 
-    public void setLat(long Lat) {
+    public void setLat(double Lat) {
         this.Lat = Lat;
     }
 

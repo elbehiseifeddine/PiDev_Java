@@ -10,11 +10,17 @@ package pidev_java.entities;
  * @author seifeddine
  */
 public class Freelancer {
+    
     private String nom,prenom,adresse,email,mot_de_passe,photo_de_profile,sexe,competences
             	,langues,compte_facebook,compte_linkedin,compte_twitter,date_creation;
     private int id,etat,views_nb;
     private static Freelancer instance;
+    
     public Freelancer() {
+    }
+    
+      public Freelancer(int id) {
+        this.id = id;
     }
 
     public Freelancer(String nom, String prenom, String adresse, String email, String mot_de_passe, String photo_de_profile, String sexe, String competences, String langues, String compte_facebook, String compte_linkedin, String compte_twitter, String date_creation, int etat, int views_nb) {

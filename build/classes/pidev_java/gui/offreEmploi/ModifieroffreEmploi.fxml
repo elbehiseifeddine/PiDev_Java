@@ -7,22 +7,64 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="627.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreEmploi.ModifieroffreEmploiController">
+<AnchorPane id="AnchorPane" prefHeight="627.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreEmploi.ModifieroffreEmploiController">
    <children>
-      <Label layoutX="93.0" layoutY="72.0" text="Nom de projet" />
-      <Label layoutX="93.0" layoutY="111.0" text="Compétences aquises" />
-      <Label layoutX="93.0" layoutY="151.0" text="Description de projet" />
-      <Label layoutX="93.0" layoutY="213.0" text="Domaine" />
-      <Label layoutX="93.0" layoutY="268.0" text="salaire" />
-      <Label layoutX="87.0" layoutY="324.0" text="Date d'expiration" />
-      <TextField fx:id="tfNom" layoutX="256.0" layoutY="68.0" prefHeight="25.0" prefWidth="198.0" promptText="saisir le nom de projet" />
-      <TextField fx:id="tfCompetences" layoutX="256.0" layoutY="107.0" prefHeight="25.0" prefWidth="198.0" promptText="saisir les compétences" />
-      <TextArea fx:id="tfDescription" layoutX="256.0" layoutY="148.0" prefHeight="49.0" prefWidth="198.0" promptText="saisir la description de projet" />
-      <ComboBox fx:id="cmbDomaine" layoutX="255.0" layoutY="218.0" prefHeight="25.0" prefWidth="198.0" promptText="-- choisir un domaine--" visibleRowCount="6" />
-      <DatePicker fx:id="dtExpiration" layoutX="256.0" layoutY="320.0" prefHeight="25.0" prefWidth="198.0" />
-      <TextField fx:id="tfsalaire" layoutX="255.0" layoutY="264.0" prefHeight="25.0" prefWidth="198.0" promptText="saisir le salaire" />
-      <Button fx:id="btnmodifier" layoutX="160.0" layoutY="403.0" mnemonicParsing="false" onMouseClicked="#modifierEmploi" prefHeight="37.0" prefWidth="78.0" text="Modifier" />
-      <Button layoutX="284.0" layoutY="403.0" mnemonicParsing="false" onAction="#AnnulerEmploi" onMouseClicked="#AnnulerEmploi" prefHeight="37.0" prefWidth="72.0" text="Annuler" />
+      <Label layoutX="92.0" layoutY="74.0" text="Nom de projet">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="93.0" layoutY="132.0" text="Compétences aquises">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="95.0" layoutY="195.0" text="Description de projet">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="93.0" layoutY="300.0" text="Domaine">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="93.0" layoutY="376.0" text="salaire">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="95.0" layoutY="450.0" text="Date d'expiration">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField fx:id="tfNom" layoutX="308.0" layoutY="68.0" prefHeight="38.0" prefWidth="342.0" promptText="saisir le nom de projet">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TextField fx:id="tfCompetences" layoutX="308.0" layoutY="126.0" prefHeight="38.0" prefWidth="342.0" promptText="saisir les compétences">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <TextArea fx:id="tfDescription" layoutX="308.0" layoutY="195.0" prefHeight="71.0" prefWidth="342.0" promptText="saisir la description de projet">
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
+      <ComboBox fx:id="cmbDomaine" layoutX="308.0" layoutY="294.0" prefHeight="38.0" prefWidth="342.0" promptText="-- choisir un domaine--" visibleRowCount="6" />
+      <DatePicker fx:id="dtExpiration" layoutX="308.0" layoutY="440.0" prefHeight="38.0" prefWidth="342.0" />
+      <TextField fx:id="tfsalaire" layoutX="308.0" layoutY="370.0" prefHeight="38.0" prefWidth="342.0" promptText="saisir le salaire">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <Button fx:id="btnmodifier" layoutX="293.0" layoutY="539.0" mnemonicParsing="false" onMouseClicked="#modifierEmploi" prefHeight="49.0" prefWidth="104.0" style="-fx-background-color: A8A9FC;" text="Modifier">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button layoutX="445.0" layoutY="538.0" mnemonicParsing="false" onAction="#AnnulerEmploi" onMouseClicked="#AnnulerEmploi" prefHeight="50.0" prefWidth="163.0" style="-fx-background-color: E7E761;" text="vider les champs">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="22.0" layoutY="14.0" text="Modifier un offre d'emploi" textFill="#f45f5f">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

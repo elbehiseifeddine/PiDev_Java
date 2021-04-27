@@ -9,57 +9,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ModifieroffreStageController">
+<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ModifieroffreStageController">
    <children>
-      <Label layoutX="68.0" layoutY="61.0" text="Nom de projet">
+      <Label layoutX="82.0" layoutY="71.0" text="Nom de projet">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="101.0" text="Compétences aquises">
+      <Label layoutX="68.0" layoutY="136.0" text="Compétences aquises">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="69.0" layoutY="146.0" text="Description de projet">
+      <Label layoutX="69.0" layoutY="203.0" text="Description de projet">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="69.0" layoutY="211.0" text="Domaine">
+      <Label layoutX="72.0" layoutY="309.0" text="Domaine">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="67.0" layoutY="257.0" text="Durée de stage">
+      <Label layoutX="67.0" layoutY="384.0" text="Durée de stage">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="72.0" layoutY="309.0" text="type de stage">
+      <Label layoutX="72.0" layoutY="453.0" text="type de stage">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="72.0" layoutY="359.0" text="Date d'expiration">
+      <Label layoutX="82.0" layoutY="538.0" text="Date d'expiration">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="tfNom" layoutX="240.0" layoutY="58.0" prefHeight="25.0" prefWidth="209.0" promptText="saisir le nom de projet" />
-      <TextField fx:id="tfCompetences" layoutX="240.0" layoutY="97.0" prefHeight="25.0" prefWidth="209.0" promptText="saisir les compétences" />
-      <TextArea fx:id="tfDescription" layoutX="239.0" layoutY="146.0" prefHeight="49.0" prefWidth="209.0" promptText="saisir la description de projet" />
-      <ComboBox fx:id="cmbDomaine" layoutX="239.0" layoutY="208.0" prefHeight="25.0" prefWidth="209.0" promptText="-- choisir un domaine--" visibleRowCount="6" />
-      <DatePicker fx:id="dtExpiration" layoutX="243.0" layoutY="356.0" prefHeight="25.0" prefWidth="209.0" promptText="saisir date" />
-      <Button fx:id="btnmodifer" layoutX="239.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#modifierStage" prefHeight="37.0" prefWidth="72.0" text="modifier" />
-      <ComboBox fx:id="cmbType" layoutX="242.0" layoutY="306.0" prefHeight="25.0" prefWidth="209.0" promptText="-- choisir un type de stage --" />
+      <TextField fx:id="tfNom" layoutX="287.0" layoutY="56.0" prefHeight="50.0" prefWidth="402.0" promptText="saisir le nom de projet" />
+      <TextField fx:id="tfCompetences" layoutX="287.0" layoutY="131.0" prefHeight="50.0" prefWidth="402.0" promptText="saisir les compétences" />
+      <TextArea fx:id="tfDescription" layoutX="288.0" layoutY="203.0" prefHeight="74.0" prefWidth="402.0" promptText="saisir la description de projet" />
+      <ComboBox fx:id="cmbDomaine" layoutX="287.0" layoutY="294.0" prefHeight="50.0" prefWidth="402.0" promptText="-- choisir un domaine--" visibleRowCount="6" />
+      <DatePicker fx:id="dtExpiration" layoutX="288.0" layoutY="523.0" prefHeight="50.0" prefWidth="401.0" promptText="saisir date" />
+      <Button fx:id="btnmodifer" layoutX="316.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#modifierStage" prefHeight="50.0" prefWidth="94.0" style="-fx-background-color: A2B4FC;" text="modifier">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <ComboBox fx:id="cmbType" layoutX="287.0" layoutY="448.0" prefHeight="50.0" prefWidth="402.0" promptText="-- choisir un type de stage --" />
       <Label fx:id="textid" layoutX="136.0" layoutY="23.0" textFill="WHITE" />
-      <Button layoutX="366.0" layoutY="430.0" mnemonicParsing="false" onMouseClicked="#viderStage" prefHeight="37.0" prefWidth="131.0" text="Vider les champs" />
-      <Label layoutX="13.0" layoutY="8.0" text="Modifier un offre de stage">
+      <Button layoutX="498.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#viderStage" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: FAFC7B;" text="Vider les champs">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="13.0" layoutY="8.0" text="Modifier un offre de stage" textFill="#fa7474">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbDuree" layoutX="242.0" layoutY="255.0" prefHeight="25.0" prefWidth="209.0" promptText="-- choisir une durée --" />
+      <ComboBox fx:id="cmbDuree" layoutX="287.0" layoutY="369.0" prefHeight="50.0" prefWidth="402.0" promptText="-- choisir une durée --" />
    </children>
 </AnchorPane>

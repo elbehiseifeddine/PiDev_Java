@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="680.0" styleClass="blue-panel" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.utilisateur.SignInController">
+<VBox fx:id="vbox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="680.0" styleClass="blue-panel" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.utilisateur.SignInController">
    <children>
       <ImageView fitHeight="90.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -72,10 +72,30 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Label fx:id="compte_validator" alignment="CENTER" layoutX="24.0" layoutY="412.0" prefHeight="58.0" prefWidth="402.0" text="label" textFill="RED" visible="false">
+      <Label fx:id="compte_validator" alignment="CENTER" layoutX="24.0" layoutY="412.0" prefHeight="46.0" prefWidth="402.0" text="label" textFill="RED" visible="false">
          <padding>
-            <Insets top="40.0" />
+            <Insets top="20.0" />
          </padding>
       </Label>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="compte_validator1" alignment="CENTER" prefHeight="40.0" prefWidth="26.0" text="Ou">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="compte_validator11" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#PasswordForget" prefHeight="40.0" prefWidth="134.0" style="-fx-cursor: hand;" text="mot de passe oublié?" textFill="#2a70f2">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </VBox>

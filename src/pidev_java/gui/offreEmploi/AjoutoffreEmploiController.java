@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 //import org.controlsfx.control.Notifications;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.AdminEmploiService;
@@ -147,9 +148,9 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         offreEmploi e = new offreEmploi(idOffreEmploi,tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),tfsalaire.getText(),dateC,dateE);
       
         new emploiService().add(e);
-        
+         notification();
         new AdminEmploiService().SendOffreEmploiToAdminEmploi(e.getId());
-        //notification();
+       
         reset();
     }
     }
@@ -178,24 +179,24 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     this.dtExpiration.setValue(null);
     
     }
-//     public void notification(){
-//      // Image img = new Image("tt.png");
-//        Notifications notificationBuilder = Notifications.create()
-//                .title("Succés d'ajout")
-//                .text("votre offre a été ajouter avec succés")
-//              //  .graphic(new ImageView(img))
-//                .hideAfter(Duration.seconds(5))
-//                .position(Pos.TOP_RIGHT)
-//                .onAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                 System.out.println("clicked on notification");
-//            }
-//        });
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.showInformation();
-//       
-//    
-//    }
+     public void notification(){
+      // Image img = new Image("tt.png");
+        Notifications notificationBuilder = Notifications.create()
+                .title("Succés d'ajout")
+                .text("votre offre a été ajouter avec succés")
+              //  .graphic(new ImageView(img))
+                .hideAfter(Duration.seconds(5))
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 System.out.println("clicked on notification");
+            }
+        });
+        notificationBuilder.darkStyle();
+        notificationBuilder.showInformation();
+       
+    
+    }
     
 }

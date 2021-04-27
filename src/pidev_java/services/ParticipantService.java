@@ -25,8 +25,39 @@ import pidev_java.utils.MaConnection;
  */
 public class ParticipantService implements IServiceEvent<Participant>{
 private Connection con = MaConnection.getInstance().getCnx();
-    @Override
-    public void Ajouter(Participant e) {
+    
+    public boolean AjouterP(Participant e) {
+        String sql="";
+         try {
+             if(e.getTypeU().equals("freelancer")){
+                 if(e.getTypeE().equals("formation")){
+                     sql="select * from participant where id_f_id="+e.getF().getId()+" and id_fo_id="+e.getFormation().getId();
+                 }
+                 else{
+                                          sql="select * from participant where id_f_id="+e.getF().getId()+" and id_e_id="+e.getEl().getId();
+
+                 }
+             }
+             else{
+                  if(e.getTypeE().equals("formation")){
+                     sql="select * from participant where id_s_id="+e.getS().getId()+" and id_fo_id="+e.getFormation().getId();
+                 }
+                 else{
+                                          sql="select * from participant where id_s_id="+e.getS().getId()+" and id_e_id="+e.getEl().getId();
+
+                 }
+             }
+            Statement stmt = con.createStatement();
+           
+            ResultSet rs = stmt.executeQuery(sql);
+                if(rs.next()){
+                    return false;
+                }
+            } 
+        catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+       
         try{
             if(e.getTypeU().equals("freelancer")){
                 if(e.getTypeE().equals("formation")){
@@ -86,6 +117,7 @@ private Connection con = MaConnection.getInstance().getCnx();
         catch (Exception ex) { 
                 ex.printStackTrace();
 	           } 
+        return true;
         
     }
 
@@ -108,15 +140,16 @@ private Connection con = MaConnection.getInstance().getCnx();
              }
              else if(e.getTypeU().equals("societe")){
                  if(e.getTypeE().equals("formation")){
+                    
                      PreparedStatement preparedStmt = con.prepareStatement(" delete from participant where id_s_id= ? and  id_fo_id=?");
-	    preparedStmt.setInt(1,e.getF().getId());
+	    preparedStmt.setInt(1,e.getS().getId());
             preparedStmt.setInt(2,e.getFormation().getId());
             preparedStmt.executeUpdate();
                  }
                  else if(e.getTypeE().equals("evenement")){
                      PreparedStatement preparedStmt = con.prepareStatement(" delete from participant where id_s_id= ? and  id_e_id=?");
-	    preparedStmt.setInt(1,e.getF().getId());
-            preparedStmt.setInt(2,e.getFormation().getId());
+	    preparedStmt.setInt(1,e.getS().getId());
+            preparedStmt.setInt(2,e.getEl().getId());
             preparedStmt.executeUpdate();
                  }
              }
@@ -266,6 +299,11 @@ private Connection con = MaConnection.getInstance().getCnx();
     @Override
     public ArrayList<Participant> Lister() {
        return null;
+    }
+
+    @Override
+    public void Ajouter(Participant e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
