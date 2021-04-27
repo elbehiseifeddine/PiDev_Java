@@ -33,6 +33,7 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Notifications;
+import pidev_java.entities.Societe;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.emploiService;
 
@@ -98,6 +99,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     @FXML
     private void ajouterEmploi(MouseEvent event) {
         
+        Societe s = Societe.getInstance();
         ContextMenu usernameValidator = new ContextMenu();
         usernameValidator.setAutoHide(false);
         final ContextMenu passValidator = new ContextMenu();
@@ -156,7 +158,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         
        
         offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,cmbDevises.getSelectionModel().getSelectedItem());
-      
+      e.setIdSociete(s.getId());
         new emploiService().add(e);
         notification();
         reset();

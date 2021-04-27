@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,9 +10,9 @@
    <children>
   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="644.0" prefWidth="990.0">
          <children>
-            <ScrollPane fx:id="scrollfree" layoutX="143.0" layoutY="137.0" prefHeight="572.0" prefWidth="796.0">
+            <ScrollPane fx:id="scrollfree" layoutX="143.0" layoutY="75.0" prefHeight="634.0" prefWidth="796.0">
                <content>
-                  <GridPane fx:id="gridfree" prefHeight="443.0" prefWidth="802.0">
+                  <GridPane fx:id="gridfree" prefHeight="525.0" prefWidth="802.0">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
@@ -23,8 +22,6 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Button layoutX="143.0" layoutY="55.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="148.0" text="Prix par ordre croissant" />
-            <Button layoutX="343.0" layoutY="55.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="148.0" text="Prix par orde décroissant" />
          </children>
       </AnchorPane>
    </children>

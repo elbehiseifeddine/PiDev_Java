@@ -23,8 +23,8 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <Button layoutX="166.0" layoutY="46.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="148.0" text="Prix par ordre croissant" />
-            <Button layoutX="366.0" layoutY="46.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="148.0" text="Prix par orde décroissant" />
+            <Button layoutX="166.0" layoutY="46.0" mnemonicParsing="false" onAction="#Croissant" prefHeight="40.0" prefWidth="148.0" text="Prix par ordre croissant" />
+            <Button layoutX="366.0" layoutY="46.0" mnemonicParsing="false" onAction="#decroissant" prefHeight="40.0" prefWidth="148.0" text="Prix par orde décroissant" />
          </children>
       </AnchorPane>
    </children>

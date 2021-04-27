@@ -31,8 +31,8 @@ public class emploiService implements IServiceOffre<offreEmploi>{
     public void add(offreEmploi entity) {
         try{
         
-        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire,devise, date_creation, date_expiration,etat)"
-                + " values (?, ?, ?, ?,?, ?, ?,?,?,?)";
+        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire,devise, date_creation, date_expiration,etat,societe_id)"
+                + " values (?,?, ?, ?, ?,?, ?, ?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());
@@ -45,6 +45,8 @@ public class emploiService implements IServiceOffre<offreEmploi>{
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
             ps.setInt(10,1);
+            ps.setInt(11,entity.getIdSociete());
+            
            
            
             ps.executeUpdate();
@@ -129,9 +131,42 @@ ArrayList<offreEmploi> res = new ArrayList<offreEmploi>();
     }
 
   
+    public List<offreEmploi> Trie(String ord){
+        List<offreEmploi> listC = new ArrayList();
+        
+        try{
+             Statement stmt = cnx.createStatement();
+        String sql="select * from offre_emploi order by salaire "+ord;
+        ResultSet rs = stmt.executeQuery(sql);
+         
+            while (rs.next()) {
+                 
     
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom_projet");
+                String comp = rs.getString("competences");
+                String description = rs.getString("description");
+                String domaine=rs.getString("domaine");
+                Float salaire=rs.getFloat("salaire");
+                Date dtc=rs.getDate("date_creation");
+                Date dtE=rs.getDate("date_expiration");
+                String devise=rs.getString("devise");
+               
+                
+                offreEmploi F = new offreEmploi (id,nom,comp,description,domaine,salaire,dtc,dtE,devise);
+                listC.add(F);
+            }
+            rs.close();
+            } catch(Exception ex){
+                System.out.println(ex.getMessage());
+            
+            }
+        return listC;
+    }
+    
+    }
     
 
    
     
-}
+

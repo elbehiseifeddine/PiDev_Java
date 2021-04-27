@@ -32,8 +32,8 @@ public class stageService implements IServiceOffre<offreStage> {
     public void add(offreStage entity) {
        try{
         
-        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat)"
-                + " values (?, ?, ?, ?,?, ?, ?,?,?,?)";
+        String sql = "insert into offre_stage (nom_projet, competences, description, domaine,fichier, duree, type_stage,date_creation, date_expiration,etat,societe_id)"
+                + " values (?, ?, ?, ?,?, ?, ?,?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());
@@ -46,6 +46,7 @@ public class stageService implements IServiceOffre<offreStage> {
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
             ps.setInt(10,1);
+            ps.setInt(11,entity.getIdSociete());
            
            
             ps.executeUpdate();
@@ -154,5 +155,7 @@ public class stageService implements IServiceOffre<offreStage> {
         }
         return res;    
     }
+    
+
     
 }
