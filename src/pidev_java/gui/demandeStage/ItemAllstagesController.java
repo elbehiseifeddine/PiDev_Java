@@ -98,6 +98,8 @@ public class ItemAllstagesController implements Initializable {
             
         } catch (IOException ex) {
             Logger.getLogger(DemandeStageController.class.getName()).log(Level.SEVERE, null, ex);
+            
+                System.out.println("error");
         }  
            
            

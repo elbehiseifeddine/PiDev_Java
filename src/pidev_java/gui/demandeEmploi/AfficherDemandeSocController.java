@@ -40,6 +40,7 @@ import pidev_java.entities.offreEmploi;
 import pidev_java.entities.offreStage;
 import pidev_java.gui.demandeStage.DemandeStageController;
 import pidev_java.services.DemandeEmploiService;
+import pidev_java.services.DemandeStageService;
 import pidev_java.utils.MaConnection;
 
 /**
@@ -163,6 +164,37 @@ public class AfficherDemandeSocController implements Initializable {
          
          
          });
+         
+            btnApprouver.setOnAction(xx->{
+        
+        
+             try {
+                 appDemande();
+             } catch (SQLException ex) {
+                 Logger.getLogger(AfficherDemandeSocController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+         
+         
+         
+         
+         });
+            
+            btnDissaprouve.setOnAction(xx->{
+        
+        
+             try {
+                 RejetDemande();
+             } catch (SQLException ex) {
+                 Logger.getLogger(AfficherDemandeSocController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+         
+         
+         
+         
+         });
+            
          /*   btnDissaprouve.setOnAction(xx->{
          Optional<ButtonType> result = alert.showAndWait();
          if(result.get() == yesButton)
@@ -463,5 +495,61 @@ return DemandeList2;
           listDemande.getItems().add(h);
         }
         } 
+    }
+    
+        private void appDemande() throws SQLException {
+        ObservableList<HBox> selectedRows, allDemande;
+        allDemande = listDemande.getItems();
+        
+        //this gives us the rows that were selected
+        selectedRows = listDemande.getSelectionModel().getSelectedItems();
+        
+        //loop over the selected rows and remove the Person objects from the table
+          for (HBox d: selectedRows)
+        {
+           Label l=(Label) d.getChildren().get(3);
+            
+        allDemande.remove(d);
+        DemandeStageService Cls = DemandeStageService.getInstance();
+        DemandeEmploiService Cl = DemandeEmploiService.getInstance();
+        int id =Integer.valueOf(l.getText());
+      
+         Cl.app(id);  
+       
+        
+        Cls.app(id);
+        
+        }
+        
+     
+    
+    }
+        
+         private void RejetDemande() throws SQLException {
+        ObservableList<HBox> selectedRows, allDemande;
+        allDemande = listDemande.getItems();
+        
+        //this gives us the rows that were selected
+        selectedRows = listDemande.getSelectionModel().getSelectedItems();
+        
+        //loop over the selected rows and remove the Person objects from the table
+          for (HBox d: selectedRows)
+        {
+           Label l=(Label) d.getChildren().get(3);
+            
+        allDemande.remove(d);
+        DemandeStageService Cls = DemandeStageService.getInstance();
+        DemandeEmploiService Cl = DemandeEmploiService.getInstance();
+        int id =Integer.valueOf(l.getText());
+      
+         Cl.dapp(id);  
+       
+        
+        Cls.dapp(id);
+        
+        }
+        
+     
+    
     }
 }

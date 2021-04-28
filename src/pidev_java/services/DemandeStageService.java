@@ -140,5 +140,40 @@ Date date = Date.valueOf(locald);
          
 
     }
+    public void app(int id) throws SQLException{
+           try {
+               
+            String requete = "UPDATE demande_stage SET etat=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, id);
+            pst.setInt(1, 1);
+          
+           
+            
+            pst.executeUpdate();
+            System.out.println("Demande approuver !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    
+     public void dapp(int id) throws SQLException{
+           try {
+               
+            String requete = "UPDATE demande_stage SET etat=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, id);
+            pst.setInt(1, -1);
+          
+           
+            
+            pst.executeUpdate();
+            System.out.println("Demande approuver !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
     
 }

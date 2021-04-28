@@ -41,7 +41,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="361.0" layoutY="192.0" prefHeight="40.0" prefWidth="179.0" text="Etude :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                        <Label layoutX="361.0" layoutY="192.0" prefHeight="40.0" prefWidth="69.0" text="Etude :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -65,7 +65,7 @@
                         </Button>
                         <TextField fx:id="tfid" layoutX="529.0" layoutY="503.0" opacity="0.0" />
                         <TextField fx:id="tfType" layoutX="160.0" layoutY="258.0" prefHeight="25.0" prefWidth="219.0" promptText="type" />
-                        <Label layoutX="82.0" layoutY="250.0" prefHeight="40.0" prefWidth="179.0" text="Type :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                        <Label layoutX="82.0" layoutY="250.0" prefHeight="40.0" prefWidth="69.0" text="Type :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>

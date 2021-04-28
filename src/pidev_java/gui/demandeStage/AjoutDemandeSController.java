@@ -19,7 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javax.swing.JOptionPane;
-import pidev_java.entities.DemandeEmploi;
+
 import pidev_java.entities.DemandeStage;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.offreEmploi;
@@ -34,8 +34,7 @@ import pidev_java.services.DemandeStageService;
  */
 public class AjoutDemandeSController implements Initializable {
 
-    @FXML
-    private VBox Vboxadd;
+   
     @FXML
     private TextField tfDescription;
     @FXML
@@ -81,8 +80,7 @@ public class AjoutDemandeSController implements Initializable {
             d.setDescription(tfDescription.getText());
         }else{
             valid=false;
-            labelresponse.setText("la description entrée est non valide");
-            Vboxadd.getChildren().add(labelresponse);
+           
         }
         if(!(tfType.getText().isEmpty())){
            d.setType(tfType.getText()); 
@@ -140,7 +138,7 @@ public class AjoutDemandeSController implements Initializable {
        }
     }
     
-     public void setOffreE(offreStage e) throws NullPointerException{
+     public void setOffreE(offreStage e) {
         
         this.tfid.setText(Integer.toString(e.getId()));
     }
