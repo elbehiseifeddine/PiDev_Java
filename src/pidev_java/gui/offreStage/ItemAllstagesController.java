@@ -70,7 +70,6 @@ public class ItemAllstagesController implements Initializable {
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
     }
 
-    @FXML
     private void rclamatin(ActionEvent event) {
         try {
                  FXMLLoader loader1 = new FXMLLoader ();
@@ -86,5 +85,26 @@ public class ItemAllstagesController implements Initializable {
                  System.out.println("erreur");
              }
     }
+
+    @FXML
+    private void reclamation(ActionEvent event) {
     
+         try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/reclamation/Reclamation.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                
+             } catch (IOException ex) {
+                 System.out.println("erreur");
+                
+//                ReclamationController controller = loader.getController();
+//                controller.SetIdOffreEmploi(idEmploi.gettext);
+    }
+    
+}
 }

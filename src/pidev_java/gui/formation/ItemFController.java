@@ -77,7 +77,7 @@ public class ItemFController implements Initializable {
     private void ParticiperF(MouseEvent event) {
         Formation For=new Formation(this.form.getId());
         
-        this.fcontroller.participate(For);
+        this.fcontroller.participate(For,this.form.getLabelle());
     }
     
 }

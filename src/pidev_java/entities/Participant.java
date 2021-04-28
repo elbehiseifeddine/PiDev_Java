@@ -27,6 +27,9 @@ public class Participant {
         this.el = el;
     }
 
+    public Participant() {
+    }
+
     public Participant(int id, String typeE, String typeU, Freelancer F, Societe S, Formation formation, EventLoisir el) {
         this.id = id;
         this.typeE = typeE;

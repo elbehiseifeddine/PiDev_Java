@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.ItemAllEmploisController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.ItemAllEmploisController">
    <children>
       <Label layoutX="47.0" layoutY="18.0" text="Projet" textFill="#46a6f5">
          <font>
@@ -68,11 +68,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="278.0" layoutY="293.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: green;" text="Demander l'offre d'emploi" textFill="#fffdfd">
+      <Button layoutX="94.0" layoutY="291.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: green;" text="Demander l'offre d'emploi" textFill="#fffdfd">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
       <Line endX="425.0" layoutX="142.0" layoutY="374.0" startX="-100.0" />
+      <Button fx:id="id_reclamation" layoutX="421.0" layoutY="291.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: green;" text="Envoyer Reclamation" textFill="WHITE" />
    </children>
 </AnchorPane>

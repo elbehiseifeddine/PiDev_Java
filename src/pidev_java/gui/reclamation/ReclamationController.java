@@ -21,7 +21,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import pidev_java.entities.Freelancer;
 import pidev_java.entities.Reclamation_1;
+import pidev_java.services.AdminReclamationService;
 import pidev_java.services.ReclamationService;
 import pidev_java.services.ReclamationService_1;
 
@@ -128,8 +130,11 @@ public class ReclamationController implements Initializable {
         
         
         ReclamationService_1 rs = new ReclamationService_1();
-        Reclamation_1 Rc=new Reclamation_1(texttype.getText(),texttext.getText(),date,"aa@aa","ghaith",true);
+        
+        int idReclamation = rs.maxId();
+        Reclamation_1 Rc=new Reclamation_1(idReclamation+1,texttype.getText(),texttext.getText(),date,Freelancer.getInstance().getEmail(),Freelancer.getInstance().getNom()+" "+Freelancer.getInstance().getPrenom() ,true);
         rs.Ajouter(Rc);
+        new AdminReclamationService().SendToAdminReclamation(idReclamation);
          List<Reclamation_1> lr = rs.Lister();
         
           ObservableList<Reclamation_1> data =

@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,6 +59,8 @@ public class ItemController implements Initializable {
     private FontAwesomeIconView deleteForm;
     @FXML
     private FontAwesomeIconView updateForm;
+    @FXML
+    private Button id_reclamation;
 
     /**
      * Initializes the controller class.
@@ -121,6 +124,26 @@ public class ItemController implements Initializable {
                  Logger.getLogger(FormationController.class.getName()).log(Level.SEVERE, null, ex);
              }
         
+    }
+
+    @FXML
+    private void reclamation(ActionEvent event) {
+         try {
+                 FXMLLoader loader1 = new FXMLLoader ();
+                 loader1.setLocation(getClass().getResource("/pidev_java/gui/reclamation/Reclamation.fxml"));
+                
+                 Parent  parent = (Parent)loader1.load();
+                  Stage stage = new Stage();
+                 stage.setScene(new Scene(parent));
+                  stage.show();
+                   
+                
+             } catch (IOException ex) {
+                 System.out.println("erreur");
+                
+//                ReclamationController controller = loader.getController();
+//                controller.SetIdOffreEmploi(idEmploi.gettext);
+    }
     }
 
   

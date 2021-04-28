@@ -3,7 +3,7 @@
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.
 // */
-//package pidev_java.gui.formation;
+package pidev_java.gui.formation;
 //
 //import com.sothawo.mapjfx.Coordinate;
 //import com.sothawo.mapjfx.MapView;
@@ -167,7 +167,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import pidev_java.entities.Formation;
-
+import pidev_java.gui.formation.AjoutFormationController;
 
 /**
  * FXML Controller class

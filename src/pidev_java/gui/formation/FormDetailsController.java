@@ -77,7 +77,7 @@ public class FormDetailsController implements Initializable {
     private void ParticiperForm(MouseEvent event) {
         Formation For=new Formation(this.F.getId());
         
-        this.fc.participate(For);
+        this.fc.participate(For,this.F.getLabelle());
     }
     
 }

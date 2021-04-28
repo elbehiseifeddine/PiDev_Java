@@ -174,7 +174,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          if(typeU.equals("freelancer")){
               try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_fr_id !="+idu;
+            String sql = "SELECT * FROM event_loisir where id_fr_id !="+idu+" or id_fr_id is null";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -202,7 +202,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          else if(typeU.equals("societe")){
                 try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM event_loisir where id_so_id !="+idu;
+            String sql = "SELECT * FROM event_loisir where id_so_id !="+idu+" or id_so_id is null";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");

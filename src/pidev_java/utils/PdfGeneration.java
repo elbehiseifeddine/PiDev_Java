@@ -35,16 +35,16 @@
 //    public static void FreelancerListPdf(ArrayList<Freelancer> List) {
 //        try {
 //            Document document = new Document();
-//            //Simple Paragraph Pdf
+//            Simple Paragraph Pdf
 //            String desktopPath = System.getProperty("user.home") + "/Desktop";
 //            System.out.print(desktopPath.replace("\\", "/"));
 //            PdfWriter.getInstance(document, new FileOutputStream(desktopPath+"\\FreelancerList.pdf"));
 //            document.open();
-//            //document.add(new Paragraph("exemple"));
-//            //document.close();
+//            document.add(new Paragraph("exemple"));
+//            document.close();
 //
-//            //-------------------------------------------------------
-//            //Add Table
+//            -------------------------------------------------------
+//            Add Table
 //            Font font = new Font();
 //            font.setColor(new BaseColor(255, 255, 255));
 //            font.setSize(10);
@@ -142,16 +142,16 @@
 //    public static void SocieteListPdf(ArrayList<Societe> List) {
 //        try {
 //            Document document = new Document();
-//            //Simple Paragraph Pdf
+//            Simple Paragraph Pdf
 //            String desktopPath = System.getProperty("user.home") + "/Desktop";
 //            System.out.print(desktopPath.replace("\\", "/"));
 //            PdfWriter.getInstance(document, new FileOutputStream(desktopPath+"\\SocieteList.pdf"));
 //            document.open();
-//            //document.add(new Paragraph("exemple"));
-//            //document.close();
+//            document.add(new Paragraph("exemple"));
+//            document.close();
 //
-//            //-------------------------------------------------------
-//            //Add Table
+//            -------------------------------------------------------
+//            Add Table
 //            Font font = new Font();
 //            font.setColor(new BaseColor(255, 255, 255));
 //            font.setSize(10);

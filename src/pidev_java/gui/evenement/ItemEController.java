@@ -76,7 +76,7 @@ public class ItemEController implements Initializable {
     private void ParticiperE(MouseEvent event) {
          EventLoisir Ev=new EventLoisir(this.event.getId());
         
-        this.econtroller.participate(Ev);
+        this.econtroller.participate(Ev,this.event.getLabelle());
     }
     
 }

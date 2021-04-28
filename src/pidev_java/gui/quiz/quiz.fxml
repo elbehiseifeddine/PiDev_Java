@@ -5,14 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.quiz.QuizController">
    <children>
-      <TextField layoutX="293.0" layoutY="74.0" />
-      <TextField layoutX="295.0" layoutY="212.0" />
+      <TextField fx:id="lb_nom_quiz" layoutX="293.0" layoutY="74.0" />
+      <TextField fx:id="lb_nb_ques" layoutX="295.0" layoutY="212.0" />
       <Text fill="#b54343" layoutX="133.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de la QUIZ" />
       <Text fill="#b54343" layoutX="127.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre des questions" />
       <Text fill="#ff0aa9" layoutX="289.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUIZ" />
-      <Button layoutX="257.0" layoutY="300.0" mnemonicParsing="false" text="Creer la QUIZ" />
+      <Button layoutX="257.0" layoutY="300.0" mnemonicParsing="false" onAction="#creer_quiz" text="Creer la QUIZ" />
    </children>
 </AnchorPane>

@@ -33,7 +33,9 @@ public class Launcher extends Application {
                 {
                     Image img = new Image("pidev_java/assets/Logo_Compact.png");
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/utilisateur/Main.fxml"));
-                    //FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/bases/BaseGuiSuperAdmin.fxml"));
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/formation/payer.fxml")); 
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/quiz/takeQuiz.fxml"));
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("./gui/quiz/quiz.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     scene.setFill(Color.TRANSPARENT);
