@@ -167,14 +167,14 @@ public class DemandeStageController implements Initializable {
            Label l=(Label) d.getChildren().get(3);
             
        
-        DemandeStageService Cls = DemandeStageService.getInstance();
+     
         int id =Integer.valueOf(l.getText());
            D= searchDemande(id);
            
           tfDescription.setText(D.getDescription());
         tfType.setText(D.getType());
         tfDomaine.setText(D.getDomaine());
-        
+        tfEtude.setText(D.getEtude());
        tfDuree.setText(String.valueOf(D.getDuree()));
        tflettre.setText(D.getLettre());
         } 
@@ -209,10 +209,12 @@ public class DemandeStageController implements Initializable {
                         resultSet.getString("description"), 
                         resultSet.getString("lettre"),
                         resultSet.getDate("date_creation"),
+                        
                         resultSet.getString("domaine") ,
                         resultSet.getString("type") ,
                         resultSet.getInt("duree"),
-                        resultSet.getString("etude")
+                        resultSet.getString("etude"),
+                        resultSet.getString("nom_societe")
                 ));
                         
                         

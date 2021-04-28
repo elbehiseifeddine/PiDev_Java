@@ -214,7 +214,9 @@ public class DemandeEmploiController implements Initializable {
                         resultSet.getDate("date_creation"),
                         resultSet.getString("domaine") ,
                         resultSet.getString("diplome") ,
-                        resultSet.getFloat("salaire")
+                        resultSet.getFloat("salaire"),
+                        resultSet.getInt("offre_emploi_id")
+                    
                 ));
                         
                         

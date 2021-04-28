@@ -196,10 +196,10 @@ public class BaseGuiSocieteController implements Initializable {
     private void ConsulterDemandeE (){
         
          try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/demandeEmploi.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/AfficherDemandeSoc.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
-
+             System.out.println("eroorr");
         }
     }
     

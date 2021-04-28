@@ -165,8 +165,22 @@
                               <FontAwesomeIconView glyphName="HOME" size="18">
                                 
                               </FontAwesomeIconView>
-                              <Label text="Consulter mes Demande" textFill="#4e4e4e">
+                              <Label text="Consulter mes Demandes d'emploi" textFill="#4e4e4e">
                                 
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_demande2" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onAction="#demandeS" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                     <graphic>
+                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
+                           <children>
+                              <FontAwesomeIconView glyphName="HOME" size="18" />
+                              <Label text="Consulter mes Demandes de stage" textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

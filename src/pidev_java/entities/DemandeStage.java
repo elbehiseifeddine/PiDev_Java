@@ -137,7 +137,7 @@ public class DemandeStage {
         this.etat = etat;
     }
 
-    public DemandeStage(int id, int freelancer_id, int offre_stage_id, String description, String lettre, Date date_creation, String domaine, String type, int duree, String etude) {
+    public DemandeStage(int id, int freelancer_id, int offre_stage_id, String description, String lettre, Date date_creation, String domaine, String type, int duree, String etude,String nom_societe) {
         this.id = id;
         this.freelancer_id = freelancer_id;
         this.offre_stage_id = offre_stage_id;
@@ -148,6 +148,7 @@ public class DemandeStage {
         this.type = type;
         this.duree = duree;
         this.etude = etude;
+        this.nom_societe= nom_societe;
        
     }
 

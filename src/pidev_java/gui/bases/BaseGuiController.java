@@ -187,6 +187,17 @@ public class BaseGuiController implements Initializable {
         }
 
     }
+    
+       @FXML
+    private void demandeS(ActionEvent event) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/demandeStage.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
+
+    }
 
     @FXML
     private void Publication(ActionEvent event) {

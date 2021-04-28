@@ -42,6 +42,12 @@ public class offreEmploi {
         this.etat = etat;
     }
 
+    public offreEmploi(int id, String nomProjet) {
+        this.id = id;
+        this.nomProjet = nomProjet;
+    }
+    
+
     public offreEmploi(String nomProjet, String competence, String description, String domaine, Float salaire, Date dateCreation, Date dateExpiration, int etat) {
         this.nomProjet = nomProjet;
         this.competence = competence;
