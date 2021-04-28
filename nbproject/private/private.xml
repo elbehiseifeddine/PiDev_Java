@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/bases/BaseGuiSocieteController.java</file>
             <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/AfficherDemandeSocController.java</file>
             <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/bases/BaseGuiController.java</file>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/entities/DemandeEmploi.java</file>
             <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeEmploi/DemandeEmploiController.java</file>
-            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/entities/offreEmploi.java</file>
+            <file>file:/C:/Users/ely/Desktop/esprit%20y3/semestre%202/project/javaFX/PiDev_Java/src/pidev_java/gui/demandeStage/DemandeStageController.java</file>
         </group>
     </open-files>
 </project-private>

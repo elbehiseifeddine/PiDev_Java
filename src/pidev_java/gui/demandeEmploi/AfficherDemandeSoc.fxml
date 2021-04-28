@@ -13,7 +13,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="btnDissaprouve" layoutX="815.0" layoutY="553.0" mnemonicParsing="false" onAction="#rejeter" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #C12869;" text="Rejeter" textFill="#e3e3e3">
+      <Button fx:id="btnDissaprouve" layoutX="815.0" layoutY="553.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #C12869;" text="Rejeter" textFill="#e3e3e3">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

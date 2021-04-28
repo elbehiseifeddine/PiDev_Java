@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -189,26 +189,12 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_emploi111" mnemonicParsing="false" onAction="#ConsulterDemandeE" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_emploi111" mnemonicParsing="false" onAction="#ConsulterDemandeEE" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
                               <FontAwesomeIconView glyphName="HOME" size="18" />
-                              <Label text="Consulter les Demandes d'emploi" textFill="#4e4e4e">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btn_emploi1111" layoutX="10.0" layoutY="380.0" mnemonicParsing="false" onAction="#ConsulterDemandeS" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18" />
-                              <Label text="Consulter les Demandes de stage" textFill="#4e4e4e">
+                              <Label text="Consulter les Demandes " textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

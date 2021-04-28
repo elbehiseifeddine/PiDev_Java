@@ -193,7 +193,7 @@ public class BaseGuiSocieteController implements Initializable {
 
     }
     @FXML
-    private void ConsulterDemandeE (){
+    private void ConsulterDemandeEE (){
         
          try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/AfficherDemandeSoc.fxml"));
