@@ -74,7 +74,17 @@ public class AdminReclamationService implements IAdminReclamationService{
     @Override
     public void Activate(Reclamation reclamation, Admin admin) {
         try {
+           for (Admin admin1 : new AdminService().getAllAdminReclamation()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
            
+           int approuve = admin.getApprouve()+1;
+            String NonApprouve = "UPDATE admin SET approuve =" + approuve + " WHERE id=" + admin.getId();
+                PreparedStatement st00 = cnx.prepareStatement(NonApprouve);
+                st00.executeUpdate();
             String req1 = "UPDATE reclamation SET etat=1 WHERE id=" + reclamation.getId();
             String req2 = "DELETE FROM admin_reclamation WHERE id_reclamation=" + reclamation.getId() + " AND id_a_r <>" + admin.getId();
             Statement st = cnx.createStatement();
@@ -95,7 +105,12 @@ public class AdminReclamationService implements IAdminReclamationService{
     @Override
     public void Deactivate(Reclamation reclamation) {
         try {
-            
+            for (Admin admin1 : new AdminService().getAllAdminReclamation()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
             String req1 = "DELETE FROM reclamation WHERE id=" + reclamation.getId();
             String req2 = "DELETE FROM admin_reclamation WHERE id_reclamation=" + reclamation.getId();
             Statement st = cnx.createStatement();

@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -55,7 +56,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
      public void Ajouter(EventLoisir e,int idu,String typeU) {
          if(typeU.equals("freelancer")){
               try{
-		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_fr_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_fr_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		preparedStmt.setString(1,e.getDescription());
 		preparedStmt.setTimestamp(2,e.getDateDebut());
                 preparedStmt.setTimestamp(3,e.getDateFin());
@@ -68,6 +69,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
+                preparedStmt.setInt(13, e.getId());
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
             }
@@ -78,7 +80,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
          }
          else if(typeU.equals("societe")){
               try{
-		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_so_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement preparedStmt = con.prepareStatement("insert into event_loisir (description,date_debut,date_fin,lieu,domaine,imagee,nb_participant,labelle,etat,lng,lat,id_so_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		preparedStmt.setString(1,e.getDescription());
 		preparedStmt.setTimestamp(2,e.getDateDebut());
                 preparedStmt.setTimestamp(3,e.getDateFin());
@@ -91,6 +93,7 @@ public class EventService implements IServiceEvent<EventLoisir> {
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
+                preparedStmt.setInt(13, e.getId());
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
             }
@@ -371,4 +374,30 @@ public class EventService implements IServiceEvent<EventLoisir> {
 		return true;
 	}    
 
+     public int maxId(){
+        int max = 0;
+         try {
+             Statement stmt = con.createStatement();
+             String sql = "SELECT MAX(id) FROM event_loisir;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             max=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             System.out.println("this is max Id in eventLoisirService");         }
+        return max;
+    }
+    int countEventsLoisirNonApprouve() {
+int count = 0;
+         try {
+             Statement stmt = con.createStatement();
+             String sql = "SELECT COUNT(*) FROM event_loisir where etat = 0;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             count=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             System.out.println(" this is Count event loisir dans eventLoisirService");         }
+    
+        return count;    }
 }

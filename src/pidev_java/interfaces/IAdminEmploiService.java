@@ -7,6 +7,8 @@ package pidev_java.interfaces;
 
 import java.util.ArrayList;
 import pidev_java.entities.Admin;
+import pidev_java.entities.offreEmploi;
+import pidev_java.entities.offreStage;
 
 /**
  *
@@ -18,15 +20,15 @@ public interface IAdminEmploiService {
 
     public void SendOffreStageToAdminEmploi(int idOffreStage);
 
-//    public void ActivateOffreEmploi(OffreEmploi offreEmploi, Admin admin);
-//
-//    public void DeactivateOffreEmploi(OffreEmploi offreEmploi);
-//
-//    public void ActivateOffreStage(OffreStage offreStage, Admin admin);
-//
-//    public void DeactivateOffreStage(OffreStage offreStage);
-//
-//    public ArrayList<OffreEmploi> historiqueOffreEmploi(Admin admin);
-//
-//    public ArrayList<OffreStage> historiqueOffreStage(Admin admin);
+    public void ActivateOffreEmploi(offreEmploi offreEmploi, Admin admin);
+
+    public void DeactivateOffreEmploi(offreEmploi offreEmploi);
+
+    public void ActivateOffreStage(offreStage offreStage, Admin admin);
+
+    public void DeactivateOffreStage(offreStage offreStage);
+
+    public ArrayList<offreEmploi> historiqueOffreEmploi(Admin admin);
+
+    public ArrayList<offreStage> historiqueOffreStage(Admin admin);
 }

@@ -228,7 +228,6 @@ public class AjoutEventController implements Initializable {
                 } else {
                     if (BtnAjoutE.getText().equals("Ajouter")) {
 
-                        EventLoisir E = new EventLoisir(labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Integer.parseInt(nbpart.getText()), true, this.lng, this.lat, image.getText());
                         Econtroller.Ajouter(E);
                     } else if (BtnAjoutE.getText().equals("Update")) {
                         System.out.println("test1");
@@ -255,6 +254,7 @@ public class AjoutEventController implements Initializable {
                         }
                         Econtroller.Update(E);
 
+                        EventLoisir E = new EventLoisir(labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Integer.parseInt(nbpart.getText()), true, this.lng, this.lat, image.getText());
                     }
                     Window window = ((Node) (event.getSource())).getScene().getWindow();
                     if (window instanceof Stage) {

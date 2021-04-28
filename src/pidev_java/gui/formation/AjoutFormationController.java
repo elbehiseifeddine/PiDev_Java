@@ -176,8 +176,8 @@ textdatef.setDayCellFactory(dayCellFactory);
             } else {
                 if(BtnAjoutF.getText().equals("Ajouter")){
                     
-             
-                Formation F = new Formation(labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
+             int IdFormation = fs.maxId()+1;
+                Formation F = new Formation(IdFormation,labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
                 fcontroller.Ajouter(F);
                 }
                 else if(BtnAjoutF.getText().equals("Update")){

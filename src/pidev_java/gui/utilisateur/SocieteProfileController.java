@@ -85,7 +85,7 @@ public class SocieteProfileController implements Initializable {
     private void Save(ActionEvent event) {
         Societe se=  Societe.getInstance();
         FTPConnection cnx=new FTPConnection();
-        cnx.Upload(url,name);
+        //cnx.Upload(url,name);
         boolean test= new SocieteService().UpdateSociete(tf_nom.getText()
         ,tf_email.getText(),tf_adresse.getText(),tf_status.getText(),pic.getText());
         

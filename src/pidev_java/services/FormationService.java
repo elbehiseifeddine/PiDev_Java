@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -57,7 +58,7 @@ public class FormationService implements IServiceEvent<Formation>{
      public void Ajouter(Formation e,int idu,String typeu) {
          if(typeu.equals("freelancer")){
               try{
-		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_fr_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_fr_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		
                 preparedStmt.setString(1,e.getDescription());
                  preparedStmt.setTimestamp(2,e.getDateDebut());
@@ -72,6 +73,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
+                preparedStmt.setInt(13, e.getId());
               
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
@@ -83,7 +85,7 @@ public class FormationService implements IServiceEvent<Formation>{
          }
          else if(typeu.equals("societe")){
               try{
-		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_so_id) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement preparedStmt = con.prepareStatement("insert into formation (description,date_debut,date_fin,lieu,domaine,montant,image,labelle,etat,lng,lat,id_so_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		
                 preparedStmt.setString(1,e.getDescription());
                  preparedStmt.setTimestamp(2,e.getDateDebut());
@@ -98,6 +100,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
+                preparedStmt.setInt(13, e.getId());
               
                 preparedStmt.execute();
                 System.out.println("Insertion Avec Succes");
@@ -387,5 +390,33 @@ public class FormationService implements IServiceEvent<Formation>{
         
     }
 
+     
+      public int maxId(){
+        int max = 0;
+         try {
+             Statement stmt = con.createStatement();
+             String sql = "SELECT MAX(id) FROM formation;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             max=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             System.out.println("this is max id in formationservice |"+ex.getMessage());         }
+        return max;
+    }
+
+    int countFormationNonApprouve() {
+int count = 0;
+         try {
+             Statement stmt = con.createStatement();
+             String sql = "SELECT COUNT(*) FROM formation where etat = 0;";
+             ResultSet rs6 = stmt.executeQuery(sql);
+             rs6.first();
+             count=rs6.getInt(1);
+             rs6.close();
+         } catch (SQLException ex) {
+             System.out.println("this is count formation in formationservice |" +ex.getMessage());
+         }
+        return count;    }
    
 }

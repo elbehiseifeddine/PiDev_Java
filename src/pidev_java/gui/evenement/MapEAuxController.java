@@ -104,113 +104,113 @@ public class MapEAuxController implements Initializable {
        return  ImageIO.write(outputImage, formatName, new File(outputImagePath));
     }
 
-    @FXML
-    private void showEAux(MouseEvent event) {
-        System.out.println(EventAux.size()+" hadha size EventAux");
-      for (int i=0;i<EventAux.size();i++){
-                 try {
-                     Coordinate FPlace=new Coordinate(EventAux.get(i).getLat(), EventAux.get(i).getLng());
-                     //Marker FormPlace = Marker.createProvided(Marker.Provided.RED).setPosition(FPlace).setVisible(
-                     //true);
-            
-               
-                     
-                     Marker FormPlace= new Marker(getClass().getResource("/pidev_java/assets/im"+EventAux.get(i).getImageE()), 20, 20).setPosition(FPlace)
-                             .setVisible(true);
-                     
-                 
-                     
-                     
-                     
-                     
-                     
-                     map.addMarker(FormPlace);
-                     map.addEventHandler(MarkerEvent.MARKER_CLICKED, eventm -> {
-                       EventLoisir Ev=new EventLoisir();
-                                  
-                         try {
-                             eventm.consume();
-                             for(int j=0;j<EventAux.size();j++){
-                                 if((EventAux.get(j).getLng()==eventm.getMarker().getPosition().getLongitude()) &&(EventAux.get(j).getLat()==eventm.getMarker().getPosition().getLatitude())){
-                                      Ev=EventAux.get(j);
-                                 }
-                             }
-                             
-                             
-                             FXMLLoader loader1 = new FXMLLoader ();
-                             loader1.setLocation(getClass().getResource("/pidev_java/gui/evenement/EventDatails.fxml"));
-                             
-                             Parent  parent = (Parent)loader1.load();
-                             Stage stage = new Stage();
-                             stage.setScene(new Scene(parent));
-                             stage.show();
-                             
-                             EventDatailsController fdc=loader1.getController();
-                             fdc.init(Ev, Ec);
-                             
-                         } catch (IOException ex) {
-                             System.out.println("erreur");
-                         }
-                         
-                         
-                     }); 
-                      map.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, eventm -> {
-                         eventm.consume();
-                          EventLoisir Ev=new EventLoisir();
-                 
-                            for(int j=0;j<EventAux.size();j++){
-                                 if((EventAux.get(j).getLng()==eventm.getMarker().getPosition().getLongitude()) &&(EventAux.get(j).getLat()==eventm.getMarker().getPosition().getLatitude())){
-                                      Ev=EventAux.get(j);
-                                 }
-                             }
-                         
-                         MapLabel  LForm=new MapLabel(Ev.getLabelle(), 10, -10).setVisible(true);
-                         Coordinate C=new Coordinate(Ev.getLat(),Ev.getLng());
-                         LForm.setPosition(C);
-                          System.out.println(LForm.getText());
-                          map.addLabel(LForm);
-                         
-        // the attached labels, custom style
-                          
-                            
-                          
-                          
-                     
-                         
-                     });
-                      
-                           map.addEventHandler(MarkerEvent.MARKER_MOUSEUP, eventm -> {
-                         eventm.consume();
-                               System.out.println("c bn mousse vover");
-                            int id =Integer.parseInt(eventm.getMarker().getId().split("-")[1]);
-                             EventLoisir For=EventAux.get(id-1);
-                         
-                         MapLabel LForm=eventm.getMarker().getMapLabel().get();
-                               System.out.println(LForm.getPosition());
-                          System.out.println(LForm.getText());
-                          map.removeLabel(LForm);
-                         
-        // the attached labels, custom style
-                          
-                            
-                          
-                          
-                     
-                         
-                     });
-                 
-                 
-                 
-                 
-                 } catch (Exception ex) {
-                     System.out.println(ex.getMessage());
-                 }
-            
-            
-            }
-            
-        
-    }
+//    @FXML
+//    private void showEAux(MouseEvent event) {
+//        System.out.println(EventAux.size()+" hadha size EventAux");
+//      for (int i=0;i<EventAux.size();i++){
+//                 try {
+////                     Coordinate FPlace=new Coordinate(EventAux.get(i).getLat(), EventAux.get(i).getLng());
+//                     //Marker FormPlace = Marker.createProvided(Marker.Provided.RED).setPosition(FPlace).setVisible(
+//                     //true);
+//            
+//               
+//                     
+//                     Marker FormPlace= new Marker(getClass().getResource("/pidev_java/assets/im"+EventAux.get(i).getImageE()), 20, 20).setPosition(FPlace)
+//                             .setVisible(true);
+//                     
+//                 
+//                     
+//                     
+//                     
+//                     
+//                     
+//                     map.addMarker(FormPlace);
+//                     map.addEventHandler(MarkerEvent.MARKER_CLICKED, eventm -> {
+//                       EventLoisir Ev=new EventLoisir();
+//                                  
+//                         try {
+//                             eventm.consume();
+//                             for(int j=0;j<EventAux.size();j++){
+//                                 if((EventAux.get(j).getLng()==eventm.getMarker().getPosition().getLongitude()) &&(EventAux.get(j).getLat()==eventm.getMarker().getPosition().getLatitude())){
+//                                      Ev=EventAux.get(j);
+//                                 }
+//                             }
+//                             
+//                             
+//                             FXMLLoader loader1 = new FXMLLoader ();
+//                             loader1.setLocation(getClass().getResource("/pidev_java/gui/evenement/EventDatails.fxml"));
+//                             
+//                             Parent  parent = (Parent)loader1.load();
+//                             Stage stage = new Stage();
+//                             stage.setScene(new Scene(parent));
+//                             stage.show();
+//                             
+//                             EventDatailsController fdc=loader1.getController();
+//                             fdc.init(Ev, Ec);
+//                             
+//                         } catch (IOException ex) {
+//                             System.out.println("erreur");
+//                         }
+//                         
+//                         
+//                     }); 
+//                      map.addEventHandler(MarkerEvent.MARKER_RIGHTCLICKED, eventm -> {
+//                         eventm.consume();
+//                          EventLoisir Ev=new EventLoisir();
+//                 
+//                            for(int j=0;j<EventAux.size();j++){
+//                                 if((EventAux.get(j).getLng()==eventm.getMarker().getPosition().getLongitude()) &&(EventAux.get(j).getLat()==eventm.getMarker().getPosition().getLatitude())){
+//                                      Ev=EventAux.get(j);
+//                                 }
+//                             }
+//                         
+//                         MapLabel  LForm=new MapLabel(Ev.getLabelle(), 10, -10).setVisible(true);
+//                         Coordinate C=new Coordinate(Ev.getLat(),Ev.getLng());
+//                         LForm.setPosition(C);
+//                          System.out.println(LForm.getText());
+//                          map.addLabel(LForm);
+//                         
+//        // the attached labels, custom style
+//                          
+//                            
+//                          
+//                          
+//                     
+//                         
+//                     });
+//                      
+//                           map.addEventHandler(MarkerEvent.MARKER_MOUSEUP, eventm -> {
+//                         eventm.consume();
+//                               System.out.println("c bn mousse vover");
+//                            int id =Integer.parseInt(eventm.getMarker().getId().split("-")[1]);
+//                             EventLoisir For=EventAux.get(id-1);
+//                         
+//                         MapLabel LForm=eventm.getMarker().getMapLabel().get();
+//                               System.out.println(LForm.getPosition());
+//                          System.out.println(LForm.getText());
+//                          map.removeLabel(LForm);
+//                         
+//        // the attached labels, custom style
+//                          
+//                            
+//                          
+//                          
+//                     
+//                         
+//                     });
+//                 
+//                 
+//                 
+//                 
+//                 } catch (Exception ex) {
+//                     System.out.println(ex.getMessage());
+//                 }
+//            
+//            
+//            }
+//            
+//        
+//    }
         
     
 }

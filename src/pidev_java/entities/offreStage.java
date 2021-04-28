@@ -24,6 +24,12 @@ public class offreStage {
     private Date dateExpiration;
 private int etat;
 private int idSociete;
+
+    public offreStage() {
+    }
+
+
+
     public offreStage(String nomProjet, String competence, String description, String domaine, String duree, String typeStage, Date dateCreation, Date dateExpiration) {
         this.nomProjet = nomProjet;
         this.competence = competence;
@@ -151,6 +157,42 @@ private int idSociete;
 
     public void setIdSociete(int idSociete) {
         this.idSociete = idSociete;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNomProjet(String nomProjet) {
+        this.nomProjet = nomProjet;
+    }
+
+    public void setCompetence(String competence) {
+        this.competence = competence;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDomaine(String domaine) {
+        this.domaine = domaine;
+    }
+
+    public void setDuree(String duree) {
+        this.duree = duree;
+    }
+
+    public void setTypeStage(String typeStage) {
+        this.typeStage = typeStage;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public void setDateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
     }
     
     

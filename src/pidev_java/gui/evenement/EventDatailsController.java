@@ -83,5 +83,3 @@ public class EventDatailsController implements Initializable {
         
         this.Ec.participate(ev,this.Event.getLabelle());
     }
-    
-}

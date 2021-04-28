@@ -48,13 +48,14 @@ import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import pidev_java.services.AdminEventService;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.Participant;
 import pidev_java.entities.Societe;
 import pidev_java.gui.formation.ItemPartFController;
 import pidev_java.services.EventService;
 import pidev_java.services.FreelancerService;
-import pidev_java.services.ParticipantService;
+//import pidev_java.services.ParticipantService;
 import pidev_java.services.SocieteService;
 import pidev_java.utils.JavaMail;
 import pidev_java.utils.Javamailform;
@@ -322,11 +323,13 @@ public class EvenementController implements Initializable {
                     rowEvent++;
                 }
 
-                gridEvent.add(anchorPane, columnEvent, rowEvent++); //(child,column,row)
-                //set grid width
-                gridEvent.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gridEvent.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gridEvent.setMaxWidth(Region.USE_PREF_SIZE);
+    public void Ajouter(EventLoisir event) {
+        es.Ajouter(event, iducon, typeucon);
+        
+        new AdminEventService().SendEvenementToAdminEmploi(event.getId());
+        
+        gridMesevent.getChildren().clear();
+        gridEvent.getChildren().clear();
 
                 //set grid height
                 gridEvent.setMinHeight(Region.USE_COMPUTED_SIZE);

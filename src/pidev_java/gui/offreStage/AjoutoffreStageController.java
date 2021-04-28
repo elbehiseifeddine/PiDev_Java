@@ -170,6 +170,8 @@ public class AjoutoffreStageController implements Initializable {
             
            Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
 
+            stageService service = new stageService();
+            int idOffreStage = service.maxId()+1;
         offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbType.getSelectionModel().getSelectedItem(), dateC, dateE);
             e.setIdSociete(s.getId());
             new stageService().add(e);

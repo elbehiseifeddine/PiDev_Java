@@ -90,6 +90,10 @@ public class Freelancer {
         instance=null;
     }
 
+    public Freelancer(int iducon) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getNom() {
         return nom;
     }

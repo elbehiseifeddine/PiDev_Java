@@ -47,6 +47,7 @@ import pidev_java.entities.EventLoisir;
 import pidev_java.entities.Freelancer;
 import pidev_java.entities.Participant;
 import pidev_java.entities.Societe;
+import pidev_java.services.AdminEventService;
 
 import pidev_java.services.FormationService;
 import pidev_java.services.FreelancerService;
@@ -345,6 +346,7 @@ public class FormationController implements Initializable {
 
     public void Ajouter(Formation Form) {
         fs.Ajouter(Form, iducon, typeucon);
+        new AdminEventService().SendFormationToAdminEmploi(Form.getId());
         gridMesFormation.getChildren().clear();
         gridFormation.getChildren().clear();
         int columnMesForm = 0;

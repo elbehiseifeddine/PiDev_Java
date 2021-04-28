@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="506.0" prefWidth="762.0" style="-fx-background-color: #CA226B;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.ItemEventBackController">
+   <children>
+      <VBox fx:id="Vboxadd" layoutX="12.0" layoutY="11.0" prefHeight="476.0" prefWidth="738.0">
+         <children>
+            <AnchorPane prefHeight="478.0" prefWidth="670.0" style="-fx-background-color: #E5E4E2;">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="179.0" layoutX="283.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Logo%20complet%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" layoutY="275.0" prefHeight="172.0" prefWidth="209.0" />
+      <Label fx:id="labelle" layoutX="371.0" layoutY="153.0" prefHeight="31.0" prefWidth="137.0" text="labelle">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="dated" layoutX="367.0" layoutY="321.0" prefHeight="42.0" prefWidth="257.0" text="dated">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="datef" layoutX="371.0" layoutY="350.0" prefHeight="42.0" prefWidth="276.0" text="datef">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fx:id="updateEvent" fill="#1ec62f" glyphName="CHECK" layoutX="563.0" layoutY="263.0" onMouseClicked="#Approuve" size="35" text="" />
+      <Label fx:id="description" layoutX="367.0" layoutY="183.0" prefHeight="34.0" prefWidth="333.0" text="Description">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="186.0" prefHeight="17.0" prefWidth="106.0" text="Description" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="224.0" text="Domaine" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="domaine" layoutX="367.0" layoutY="224.0" prefHeight="17.0" prefWidth="270.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="260.0" text="nb " textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="montant" layoutX="367.0" layoutY="260.0" prefHeight="17.0" prefWidth="173.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="328.0" text="Date Debut" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="357.0" prefHeight="17.0" prefWidth="92.0" text="Date Fin" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="294.0" text="Leiu" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lieu" layoutX="367.0" layoutY="294.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="155.0" prefHeight="17.0" prefWidth="72.0" text="Labelle" textFill="#6c89a1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fx:id="btndeleteE" fill="#f50101" glyphName="TRASH" layoutX="563.0" layoutY="308.0" onMouseClicked="#delete" size="35" text="" />
+      <ImageView fx:id="img" fitHeight="175.0" fitWidth="189.0" layoutX="21.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" y="80.0" />
+   
+                  
+                    
+                  
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

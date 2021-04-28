@@ -243,14 +243,14 @@ public class PublicationController implements Initializable {
             File file = new File("chart.png");
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
             FTPConnection cnx=new FTPConnection();
-            cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart.png","chart.png");
+            //cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart.png","chart.png");
             Image img2 = Image.getInstance("ftp://user:123456789@192.168.1.52/chart.png");
             img2.scaleToFit(documentWidth, documentHeight);
             
             WritableImage image2 = barchart.snapshot(new SnapshotParameters(), null);
             File file2 = new File("chart2.png");
             ImageIO.write(SwingFXUtils.fromFXImage(image2, null), "png", file2);
-            cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart2.png","chart2.png");
+            //cnx.Upload("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\chart2.png","chart2.png");
             Image img3 = Image.getInstance("ftp://user:123456789@192.168.1.52/chart2.png");
             img3.scaleToFit(documentWidth, documentHeight);
 

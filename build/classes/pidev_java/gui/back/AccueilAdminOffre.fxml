@@ -1,15 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminOffreController">
    <children>
-      <Label text="Acceuill Admin Offre">
+      <Label text="Liste des Offre non approuvés">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Label text="Liste des Offres d'Emplois :" textFill="#e10404">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="15.0" top="50.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="EmploiVide" text="Aucune offre d'emploi pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="TabOffreEmploi" prefHeight="222.0" prefWidth="1602.0">
+        <columns>
+          <TableColumn fx:id="Id_Offre_Emploi" prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="ownerEmploi" prefWidth="75.0" text="Créateur" />
+            <TableColumn fx:id="nomProjetEmploi" prefWidth="75.0" text="Nom Projet" />
+            <TableColumn fx:id="descriptionEmploi" prefWidth="75.0" text="Déscription" />
+            <TableColumn fx:id="domaineEmploi" prefWidth="75.0" text="Domaine" />
+            <TableColumn fx:id="competanceEmploi" prefWidth="75.0" text="Compétances" />
+            <TableColumn fx:id="salaireEmploi" prefWidth="75.0" text="Salaire" />
+            <TableColumn fx:id="dateCreationEmploi" prefWidth="75.0" text="Date de création" />
+            <TableColumn fx:id="actionsEmploi" prefWidth="75.0" text="Actions" />
+        </columns>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="30.0" />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label text="Liste des Offres de Stages :" textFill="#d90202">
+         <VBox.margin>
+            <Insets left="15.0" top="30.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="StageVide" text="Aucune offre de stage pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="TabOffreStage" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="id_offre_stage" prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="ownerStage" prefWidth="75.0" text="Créateur" />
+            <TableColumn fx:id="nomProjetStage" prefWidth="75.0" text="Nom Projet" />
+            <TableColumn fx:id="descriptionStage" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="domaineStage" prefWidth="75.0" text="Domaine" />
+            <TableColumn fx:id="competanceStage" prefWidth="75.0" text="Competances" />
+            <TableColumn fx:id="typeStage" prefWidth="75.0" text="Type de Stage" />
+            <TableColumn fx:id="dureeStage" prefWidth="75.0" text="Durée" />
+            <TableColumn fx:id="dateCreationStage" prefWidth="75.0" text="Date de création" />
+            <TableColumn fx:id="actionsStage" prefWidth="75.0" text="Actions" />
+        </columns>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="30.0" />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </children>
 </VBox>

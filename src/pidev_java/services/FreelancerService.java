@@ -30,7 +30,7 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
         try {
             String testS = "SELECT * FROM Societe WHERE email=" + "\"" + entity.getEmail() + "\"";
             String testF = "SELECT * FROM Freelancer WHERE email=" + "\"" + entity.getEmail() + "\"";
-            String testA = "SELECT * FROM admin WHERE login ='"+entity.getEmail()+"' ;";
+            String testA = "SELECT * FROM admin WHERE login ='" + entity.getEmail() + "' ;";
             Statement stS = cnx.createStatement();
             Statement stF = cnx.createStatement();
             Statement stA = cnx.createStatement();
@@ -112,7 +112,7 @@ public class FreelancerService implements UtilisateurInterface<Freelancer> {
     }
 
     public boolean UpdateFreelancer(String nom, String prenom, String email, String adresse,
-             String compte_linkedin, String compte_facebook, String compte_twitter,
+            String compte_linkedin, String compte_facebook, String compte_twitter,
             String sexe, String competences, String langues, String photo_de_profile) {
         Freelancer fe = Freelancer.getInstance();
         System.err.println(nom + " , " + prenom + " , " + email + " , " + adresse + " , " + compte_linkedin + " , "
