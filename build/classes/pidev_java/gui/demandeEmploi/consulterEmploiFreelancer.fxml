@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="-25.0" minHeight="0.0" minWidth="0.0" prefHeight="770.0" prefWidth="1054.0">
          <children>
-            <ScrollPane fx:id="scrollEmploiFreelancer" layoutX="143.0" layoutY="132.0" prefHeight="591.0" prefWidth="796.0">
+            <ScrollPane fx:id="scrollEmploiFreelancer" layoutX="192.0" layoutY="50.0" prefHeight="916.0" prefWidth="1234.0">
                <content>
                   <GridPane fx:id="gridEmploiFreelancer" prefHeight="326.0" prefWidth="707.0">
                      <rowConstraints>
