@@ -63,7 +63,7 @@ public class PayerController implements Initializable {
         Stripe.apiKey = "sk_test_51IkUiCAtj96K3IJDlhcxb4o7Gf3VZ81pJ7z2UD7w59kL92Qxw2qQE7lvwrZAEq3LiQmWngG4XaVpFoa1zZc4VFoK00MFTPUtfL";
     }    
 
-    @FXML
+   @FXML
     private void Payer_commande(ActionEvent event) throws StripeException, IOException {
      Map<String, Object> customerParameter = new HashMap< String, Object>();
         customerParameter.put("email",email.getText());
@@ -132,6 +132,7 @@ Map <String,Object> chargeParam = new HashMap<String,Object>();
             window.show();
 
     }*/
+        
         
         
         

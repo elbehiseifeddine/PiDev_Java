@@ -9,14 +9,14 @@
 <AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.PayerController">
    <children>
       <Button fx:id="payer_commande" layoutX="301.0" layoutY="451.0" mnemonicParsing="false" onAction="#Payer_commande" prefHeight="42.0" prefWidth="189.0" style="-fx-background-color: green;" text="Payer Commande" textFill="WHITE" />
-      <TextField fx:id="devise" layoutX="252.0" layoutY="147.0" text="usd" />
-      <TextField fx:id="num_carte" layoutX="401.0" layoutY="188.0" />
-      <TextField fx:id="annee_expiration" layoutX="401.0" layoutY="270.0" />
-      <TextField fx:id="mois_expiration" layoutX="252.0" layoutY="223.0" />
-      <TextField fx:id="montant" layoutX="401.0" layoutY="360.0" />
-      <TextField fx:id="description" layoutX="401.0" layoutY="105.0" />
-      <TextField fx:id="email" layoutX="252.0" layoutY="71.0" />
-      <TextField fx:id="cvc" layoutX="252.0" layoutY="311.0" />
+      <TextField fx:id="devise" layoutX="335.0" layoutY="146.0" text="usd" />
+      <TextField fx:id="num_carte" layoutX="335.0" layoutY="181.0" />
+      <TextField fx:id="annee_expiration" layoutX="335.0" layoutY="269.0" />
+      <TextField fx:id="mois_expiration" layoutX="335.0" layoutY="222.0" />
+      <TextField fx:id="montant" layoutX="335.0" layoutY="359.0" />
+      <TextField fx:id="description" layoutX="335.0" layoutY="104.0" />
+      <TextField fx:id="email" layoutX="335.0" layoutY="68.0" />
+      <TextField fx:id="cvc" layoutX="335.0" layoutY="308.0" />
       <Text layoutX="123.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font name="System Italic" size="18.0" />
@@ -27,17 +27,17 @@
             <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="229.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de la Cart">
+      <Text layoutX="71.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de la Cart">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="235.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="annee_expiration">
+      <Text layoutX="77.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="annee_expiration">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="282.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+      <Text layoutX="101.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
@@ -52,12 +52,12 @@
             <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="268.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="montant">
+      <Text layoutX="102.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="montant">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="122.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devise">
+      <Text layoutX="119.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devise">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
