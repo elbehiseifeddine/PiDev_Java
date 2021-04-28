@@ -25,7 +25,7 @@ public class MaConnection {
     
     private MaConnection(){
         try{
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+            //DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
             cnx= DriverManager.getConnection(url,userName,password);
             System.out.println("connection établie");
         }catch(SQLException ex){

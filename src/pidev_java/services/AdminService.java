@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pidev_java.entities.Admin;
+import pidev_java.entities.EventLoisir;
+import pidev_java.entities.Formation;
 import pidev_java.entities.offreEmploi;
 import pidev_java.entities.offreStage;
 import pidev_java.interfaces.IAdminService;
@@ -57,38 +59,64 @@ public class AdminService implements IAdminService<Admin> {
                 nonapprouve = OES.countOffreEmploiNonApprouve() + OSS.countOffreStageNonApprouve();
             }
 
-//            if (entity.getType().equals("Admin des events")) {
-//                EventLoisirService ELS = new EventLoisirService();
-//                FormationService FS = new FormationService();
-//                nonapprouve = ELS.countEventsLoisirNonApprouve() + FS.countFormationNonApprouve();
-//            }
+            if (entity.getType().equals("Admin des events")) {
+                EventService ELS = new EventService();
+                FormationService FS = new FormationService();
+                nonapprouve = ELS.countEventsLoisirNonApprouve() + FS.countFormationNonApprouve();
+            }
             st.setInt(8, nonapprouve);
             st.setInt(9, entity.getId());
 
             System.out.println(requette);
             st.executeUpdate();
 
-            ArrayList<offreEmploi> Liste = new AdminEmploiService().getAllEmploiNonApprouve();
-            if (!Liste.isEmpty()) {
-                for (offreEmploi emploi : Liste) {
-                    String sql = "INSERT INTO admin_emploi (id_a_e,id_offre_emploi) VALUES (?,?)";
-                    PreparedStatement pst = cnx.prepareStatement(sql);
-                    pst.setInt(1, entity.getId());
-                    pst.setInt(2, emploi.getId());
-                    pst.executeUpdate();
-                }
+            if (entity.getType().equals("Admin des emplois")) {
+                ArrayList<offreEmploi> Liste = new AdminEmploiService().getAllEmploiNonApprouve();
+                if (!Liste.isEmpty()) {
+                    for (offreEmploi emploi : Liste) {
+                        String sql = "INSERT INTO admin_emploi (id_a_e,id_offre_emploi) VALUES (?,?)";
+                        PreparedStatement pst = cnx.prepareStatement(sql);
+                        pst.setInt(1, entity.getId());
+                        pst.setInt(2, emploi.getId());
+                        pst.executeUpdate();
+                    }
 
+                }
+                ArrayList<offreStage> ListeStage = new AdminEmploiService().getAllStageNonApprouve();
+                if (!Liste.isEmpty()) {
+                    for (offreStage stage : ListeStage) {
+                        String sql = "INSERT INTO admin_emploi (id_a_e,id_offre_stage) VALUES (?,?)";
+                        PreparedStatement pst = cnx.prepareStatement(sql);
+                        pst.setInt(1, entity.getId());
+                        pst.setInt(2, stage.getId());
+                        pst.executeUpdate();
+                    }
+
+                }
             }
-            ArrayList<offreStage> ListeStage = new AdminEmploiService().getAllStageNonApprouve();
-            if (!Liste.isEmpty()) {
-                for (offreStage stage : ListeStage) {
-                    String sql = "INSERT INTO admin_emploi (id_a_e,id_offre_stage) VALUES (?,?)";
-                    PreparedStatement pst = cnx.prepareStatement(sql);
-                    pst.setInt(1, entity.getId());
-                    pst.setInt(2, stage.getId());
-                    pst.executeUpdate();
-                }
+            if (entity.getType().equals("Admin des events")) {
+                ArrayList<EventLoisir> Liste = new AdminEventService().getAllEventLoisirNonApprouve();
+                if (!Liste.isEmpty()) {
+                    for (EventLoisir event : Liste) {
+                        String sql = "INSERT INTO admin_event (id_a_e,id_event_loisir VALUES (?,?)";
+                        PreparedStatement pst = cnx.prepareStatement(sql);
+                        pst.setInt(1, entity.getId());
+                        pst.setInt(2, event.getId());
+                        pst.executeUpdate();
+                    }
 
+                }
+                ArrayList<Formation> Listeformation = new AdminEventService().getAllFormationNonApprouve();
+                if (!Liste.isEmpty()) {
+                    for (Formation formation : Listeformation) {
+                        String sql = "INSERT INTO admin_event (id_a_e,id_formation) VALUES (?,?)";
+                        PreparedStatement pst = cnx.prepareStatement(sql);
+                        pst.setInt(1, entity.getId());
+                        pst.setInt(2, formation.getId());
+                        pst.executeUpdate();
+                    }
+
+                }
             }
         } catch (SQLException ex) {
             System.out.println("this is the add function Connexion à la base de données impossible , " + ex.getMessage());

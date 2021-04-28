@@ -77,11 +77,10 @@ public class EventDatailsController implements Initializable {
                 
     }
 
-    @FXML
-    private void ParticiperForm(MouseEvent event) {
-         EventLoisir ev=new EventLoisir(this.Event.getId());
-        
-        this.Ec.participate(ev);
+//    @FXML
+//    private void ParticiperForm(MouseEvent event) {
+//         EventLoisir ev=new EventLoisir(this.Event.getId());
+//        
+//        this.Ec.participate(ev,this.Event.getLabelle());
+//    }
     }
-    
-}

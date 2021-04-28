@@ -5,6 +5,7 @@
  */
 package pidev_java.gui.back;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,8 +22,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -41,37 +46,43 @@ public class CreateAdminController implements Initializable {
     ObservableList<String> ListEtat = FXCollections.
             observableArrayList("Active", "Inactive");
 
-    @FXML
     private TextField nom;
-    @FXML
     private TextField prenom;
-    @FXML
     private TextField login;
-    @FXML
     private TextField pass;
-    @FXML
-    private ChoiceBox<String> type;
-    @FXML
-    private ChoiceBox<String> etat;
-    @FXML
-    private Button btnValider;
-    @FXML
-    private Button btnReset;
+    private ComboBox<String> type;
+    private ComboBox<String> etat;
 
     private boolean update;
     int id_admin;
-    @FXML
     private Label nom_error;
-    @FXML
     private Label prenom_error;
-    @FXML
     private Label email_error;
-    @FXML
     private Label pass_error;
-    @FXML
     private Label type_error;
-    @FXML
     private Label etat_error;
+    @FXML
+    private VBox Vboxadd;
+    @FXML
+    private Label labelle;
+    @FXML
+    private Label dated;
+    @FXML
+    private Label datef;
+    @FXML
+    private FontAwesomeIconView updateEvent;
+    @FXML
+    private Label description;
+    @FXML
+    private Label domaine;
+    @FXML
+    private Label montant;
+    @FXML
+    private Label lieu;
+    @FXML
+    private FontAwesomeIconView btndeleteE;
+    @FXML
+    private ImageView img;
 
     /**
      * Initializes the controller class.
@@ -88,7 +99,6 @@ public class CreateAdminController implements Initializable {
         etat.setItems(ListEtat);
     }
 
-    @FXML
     private void AjouterAdmin(ActionEvent event) {
         if (update == false) {
             if (nom.getText().equals("")) {
@@ -165,7 +175,6 @@ public class CreateAdminController implements Initializable {
         }
     }
 
-    @FXML
     private void reset(ActionEvent event) {
         nom.setText("");
         prenom.setText("");
@@ -192,5 +201,13 @@ public class CreateAdminController implements Initializable {
     void setUpdate(boolean b) {
         this.update = b;
 
+    }
+
+    @FXML
+    private void updateEvent(MouseEvent event) {
+    }
+
+    @FXML
+    private void deleteEvent(MouseEvent event) {
     }
 }

@@ -141,7 +141,7 @@ public class FreelancerProfileController implements Initializable {
 
         Freelancer fe = Freelancer.getInstance();
         FTPConnection cnx=new FTPConnection();
-        cnx.Upload(url,name);
+        //cnx.Upload(url,name);
         boolean test = new FreelancerService().UpdateFreelancer(tf_nom.getText(),
                 tf_prenom.getText(), tf_email.getText(), tf_adresse.getText(), tf_linkedin.getText(),
                 tf_facebook.getText(), tf_twitter.getText(), (String) tf_sexe.getValue(),

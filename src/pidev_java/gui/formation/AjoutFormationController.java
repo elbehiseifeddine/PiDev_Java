@@ -23,6 +23,8 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,18 +32,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Callback;
 import javax.imageio.ImageIO;
-import org.apache.commons.lang3.RandomStringUtils;
 import pidev_java.entities.Formation;
+import pidev_java.entities.Freelancer;
+import pidev_java.entities.Societe;
 import pidev_java.services.FormationService;
+import pidev_java.utils.JavaMail;
 
 /**
  * FXML Controller class
@@ -80,8 +87,11 @@ public class AjoutFormationController implements Initializable {
     private double lat=0;
     private double lng=0;
     private String place;
+    private boolean valide=false;
     @FXML
     private ImageView btnimage;
+    @FXML
+    private Label labelerreur;
 
     /**
      * Initializes the controller class.
@@ -142,7 +152,14 @@ textdatef.setDayCellFactory(dayCellFactory);
             alert.setContentText("veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
-            
+            if(!valide){
+                 Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                alert1.setTitle("erreur");
+
+                alert1.setContentText("Entrer un montant valide");
+                alert1.showAndWait();
+            }
+            else{
                
             String DateDeb = textdated.getValue().toString().replace('/', '-') + " " + heured.getValue().toString().split(" ")[0]+":00";
             String DateFin = textdatef.getValue().toString().replace('/', '-') + " " + heuref.getValue().toString().split(" ")[0]+":00";
@@ -157,15 +174,31 @@ textdatef.setDayCellFactory(dayCellFactory);
             } else {
                 if(BtnAjoutF.getText().equals("Ajouter")){
                     
-             
-                Formation F = new Formation(labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
+             int IdFormation = fs.maxId()+1;
+                Formation F = new Formation(IdFormation,labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
                 fcontroller.Ajouter(F);
                 }
                 else if(BtnAjoutF.getText().equals("Update")){
                   Formation F = new Formation(this.form.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, (long)this.lng, (long)this.lat, image.getText());
                     if((F.getDateDebut().compareTo(this.form.getDateDebut()) !=0) || (F.getDateFin().compareTo(this.form.getDateFin()) !=0)
                             || !(F.getLieu().equals(this.form.getLieu()))){
-                                
+                              try {
+                                String emailCon="";
+                                if(Freelancer.getInstance() != null) {
+                                    emailCon=Freelancer.getInstance().getEmail();
+                                }
+                                else if(Societe.getInstance() != null){
+                                    emailCon=Societe.getInstance().getEmail();
+                                    
+                                }
+                                JavaMail mail = new JavaMail();
+                                mail.recipient = emailCon;
+                                mail.type = "EmailEditParticipant";
+                                mail.nomform = labelle.getText();
+                                mail.start();
+
+                            } catch (Exception ex) {
+                            }   
                     }
                     fcontroller.Update(F);
                     
@@ -178,7 +211,7 @@ textdatef.setDayCellFactory(dayCellFactory);
             
             }
         }
-
+        }
     }
 
     @FXML
@@ -284,7 +317,7 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
         String ext = "jpg";
       //  File dir = new File("C:/Users/USER/Document/GitHub/5/Oxyvia-Tours/public/picture");
-             File dir1 = new File("C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets");
+             File dir1 = new File("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets");
         //String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(😎, ext);
         String name1 = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
       //  File outputFile = new File(dir, name);
@@ -299,6 +332,28 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
         }
         return name1;
     }
+
+    @FXML
+    private void ControleFloat(KeyEvent event) {
+        FormationService forms=new FormationService();
+        if(montant.getText().isEmpty()){
+            labelerreur.setText("");
+            valide=false;
+        }
+        else{
+            if(forms.estUnEntier(montant.getText())){
+                labelerreur.setText("valide");
+                labelerreur.setTextFill(Color.web("#00ff09", 1.0));
+                valide=true;
+            }
+            else{
+                   labelerreur.setText("non valide");
+                labelerreur.setTextFill(Color.web("#ff0000", 1.0));
+                valide=false;
+            }
+        }
+    }
+
   
 
 }

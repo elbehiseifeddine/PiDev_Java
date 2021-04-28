@@ -6,9 +6,11 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.FormationController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="974.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.formation.FormationController">
   <tabs>
     <Tab fx:id="tabMesFormation" text="Mes Formation">
          <content>
@@ -37,9 +39,9 @@
          <content>
                <AnchorPane prefHeight="180.0" prefWidth="900.0">
                <children>
-            <ScrollPane fx:id="scrolFormation" layoutX="26.0" layoutY="101.0" prefHeight="656.0" prefWidth="900.0">
+            <ScrollPane fx:id="scrolFormation" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
                <content>
-                  <GridPane fx:id="gridFormation" prefHeight="434.0" prefWidth="700.0">
+                  <GridPane fx:id="gridFormation" prefHeight="497.0" prefWidth="884.0">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
@@ -55,9 +57,9 @@
          <content>
                 <AnchorPane prefHeight="180.0" prefWidth="900.0">
                <children>
-            <ScrollPane fx:id="scrolPartF" layoutX="26.0" layoutY="101.0" prefHeight="656.0" prefWidth="900.0">
+            <ScrollPane fx:id="scrolPartF" layoutX="26.0" layoutY="101.0" prefHeight="512.0" prefWidth="900.0">
                <content>
-                  <GridPane fx:id="gridPartF" prefHeight="434.0" prefWidth="700.0">
+                  <GridPane fx:id="gridPartF" prefHeight="501.0" prefWidth="886.0">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>

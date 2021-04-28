@@ -118,7 +118,7 @@ public class PublicationsController implements Initializable {
         String files=file.getAbsolutePath().replace("\\", "\\\\");
         nom=file.getName();
         FTPConnection cnx=new FTPConnection();
-        cnx.Upload(files,nom);
+        //cnx.Upload(files,nom);
         Image image = new Image(file.toURI().toString());
         img.setImage(image);
     }

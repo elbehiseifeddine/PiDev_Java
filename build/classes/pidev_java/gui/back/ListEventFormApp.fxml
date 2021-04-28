@@ -1,15 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="1042.0" prefWidth="1601.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.ListEventFormAppController">
    <children>
-      <Label text="Liste Evenement Formation approuve">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" layoutY="14.0" prefHeight="54.0" prefWidth="1593.0" text="Liste Evenements/Formations" textFill="#e10404" AnchorPane.bottomAnchor="974.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="14.0">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
+      <HBox layoutX="9.0" layoutY="128.0" prefHeight="66.0" prefWidth="1582.0">
+         <children>
+            <Button fx:id="btnEvenement" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadEventData" prefHeight="65.0" prefWidth="791.0" text="Evénements Approuvés">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.9058823585510254" green="0.05098039284348488" blue="0.05098039284348488" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.17451852560043335" green="0.050760235637426376" blue="0.9789473414421082" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnFormation" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadFormationData" prefHeight="65.0" prefWidth="791.0" text="Formations Approuvés">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.9058823585510254" green="0.05098039284348488" blue="0.05098039284348488" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.17451852560043335" green="0.050760235637426376" blue="0.9789473414421082" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="189.0" layoutY="233.0" prefHeight="750.0" prefWidth="900.0">
+         <content>
+            <GridPane fx:id="gridpane" prefHeight="750.0" prefWidth="1000.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="72.00003662109376" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
-</VBox>
+</AnchorPane>

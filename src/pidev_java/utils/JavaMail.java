@@ -31,6 +31,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class JavaMail extends Thread{
     public String recipient,type;
+    public static String nomform;
 
     @Override
     public void run() {

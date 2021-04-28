@@ -58,6 +58,14 @@ public class EventLoisir {
         this.imageE=image;
     }
 
+    public EventLoisir(String text, String text0, String text1, Timestamp valueOf, Timestamp valueOf0, String text2, int parseInt, boolean b, double lng, double lat, String text3) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public EventLoisir(int id, String text, String text0, String text1, Timestamp valueOf, Timestamp valueOf0, String text2, int parseInt, boolean b, double lng, double lat, String text3) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId() {
         return id;
     }

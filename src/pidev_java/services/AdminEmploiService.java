@@ -151,6 +151,17 @@ public class AdminEmploiService implements IAdminEmploiService {
     @Override
     public void ActivateOffreEmploi(offreEmploi offreEmploi, Admin admin) {
         try {
+            
+            for (Admin admin1 : new AdminService().getAllAdminEmploi()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
+            int approuve = admin.getApprouve()+1;
+            String NonApprouve = "UPDATE admin SET approuve =" + approuve + " WHERE id=" + admin.getId();
+                PreparedStatement st00 = cnx.prepareStatement(NonApprouve);
+                st00.executeUpdate();
 
             String req1 = "UPDATE offre_emploi SET etat=1 WHERE id=" + offreEmploi.getId();
 //            String req2 = "UPDATE admin_emploi SET id_offre_emploi=" + null + " WHERE id_a_e <>" + admin.getId();
@@ -173,6 +184,17 @@ public class AdminEmploiService implements IAdminEmploiService {
     @Override
     public void ActivateOffreStage(offreStage offreStage, Admin admin) {
         try {
+            
+            for (Admin admin1 : new AdminService().getAllAdminEmploi()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
+            int approuve = admin.getApprouve()+1;
+            String NonApprouve = "UPDATE admin SET approuve =" + approuve + " WHERE id=" + admin.getId();
+                PreparedStatement st00 = cnx.prepareStatement(NonApprouve);
+                st00.executeUpdate();
 
             String req1 = "UPDATE offre_stage SET etat=1 WHERE id=" + offreStage.getId();
 //            String req2 = "UPDATE admin_emploi SET id_offre_stage=" + null + " WHERE id_a_e <>" + admin.getId();
@@ -194,6 +216,14 @@ public class AdminEmploiService implements IAdminEmploiService {
     @Override
     public void DeactivateOffreEmploi(offreEmploi offreEmploi) {
         try {
+            
+            for (Admin admin1 : new AdminService().getAllAdminEmploi()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
+            
 
             String req1 = "DELETE FROM offre_emploi WHERE id=" + offreEmploi.getId();
             Statement st = cnx.createStatement();
@@ -204,7 +234,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             Statement statement = cnx.createStatement();
             ResultSet rs = statement.executeQuery(find);
             while (rs.next()) {
-                String req2 = "UPDATE admin_emploi SET id_offre_emploi=null";
+                String req2 = "UPDATE admin_emploi SET id_offre_emploi=0 where id = "+rs.getInt("id");
                 Statement st2 = cnx.createStatement();
                 st2.executeUpdate(req2);
             }
@@ -222,6 +252,12 @@ public class AdminEmploiService implements IAdminEmploiService {
     public void DeactivateOffreStage(offreStage offreStage) {
         try {
 
+            for (Admin admin1 : new AdminService().getAllAdminEmploi()) {
+                int nonApprouve = admin1.getNonApprouve() - 1;
+                String NonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin1.getId();
+                PreparedStatement st0 = cnx.prepareStatement(NonApprouve);
+                st0.executeUpdate();
+            }
             String req1 = "DELETE FROM offre_stage WHERE id=" + offreStage.getId();
             Statement st = cnx.createStatement();
             st.executeUpdate(req1);
@@ -231,7 +267,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             Statement statement = cnx.createStatement();
             ResultSet rs = statement.executeQuery(find);
             while (rs.next()) {
-                String req2 = "UPDATE admin_emploi SET id_offre_stage=null";
+                String req2 = "UPDATE admin_emploi SET id_offre_stage=0 where id = "+rs.getInt("id");
                 Statement st2 = cnx.createStatement();
                 st2.executeUpdate(req2);
             }

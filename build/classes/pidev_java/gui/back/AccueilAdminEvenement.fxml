@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminEvenementController">
    <children>
-      <Label text="Acceuill Event Admin">
+      <Label text="Liste des Offre non approuvés">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Label text="Liste des événements :" textFill="#e10404">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="15.0" top="50.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="EventVide" text="Aucune événement pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="TabEvent" prefHeight="222.0" prefWidth="1602.0">
+        <columns>
+          <TableColumn fx:id="Id_event" prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="ownerEvent" prefWidth="75.0" text="Créateur" />
+            <TableColumn fx:id="labelleEvent" prefWidth="75.0" text="Labelle" />
+            <TableColumn fx:id="descriptionEvent" prefWidth="75.0" text="Déscription" />
+            <TableColumn fx:id="domaineEvent" prefWidth="75.0" text="Domaine" />
+            <TableColumn fx:id="lieuEvent" prefWidth="75.0" text="Lieu" />
+            <TableColumn fx:id="dateEvent" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="actionsEvent" prefWidth="75.0" text="Actions" />
+        </columns>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="30.0" />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label text="Liste des formations :" textFill="#d90202">
+         <VBox.margin>
+            <Insets left="15.0" top="30.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="FormationVide" text="Aucune formations pour le moment" textAlignment="CENTER" textFill="#9cbf01" visible="false">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="30.0" top="15.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="TabFormation" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="id_formation" prefWidth="75.0" text="Id" visible="false" />
+          <TableColumn fx:id="ownerFormation" prefWidth="75.0" text="Créateur" />
+            <TableColumn fx:id="labelleFormation" prefWidth="75.0" text="Labelle" />
+            <TableColumn fx:id="descriptionFormation" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="domaineFormation" prefWidth="75.0" text="Domaine" />
+            <TableColumn fx:id="lieuFormation" prefWidth="75.0" text="Lieu" />
+            <TableColumn fx:id="dateFormation" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="actionsFormation" prefWidth="75.0" text="Actions" />
+        </columns>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" top="30.0" />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </children>
 </VBox>
