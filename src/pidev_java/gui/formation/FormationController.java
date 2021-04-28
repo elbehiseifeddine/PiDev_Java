@@ -5,10 +5,17 @@
  */
 package pidev_java.gui.formation;
 
+import com.restfb.BinaryAttachment;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
 import pidev_java.entities.Formation;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 
 import java.util.List;
@@ -99,7 +106,9 @@ public class FormationController implements Initializable {
     private Societe Scon;
     private int iducon;
     private String typeucon;
-    
+    private String fb;
+    @FXML
+    private Button btnfb;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -108,10 +117,13 @@ public class FormationController implements Initializable {
         if(Fcon != null){
             iducon=Fcon.getId();
             typeucon="freelancer";
+            fb=Fcon.getCompte_facebook();
         }
         else{
             iducon=Scon.getId();
             typeucon="societe";
+            fb="";
+            
         }
       
             scrolPartF.setVisible(true);
@@ -679,5 +691,20 @@ public class FormationController implements Initializable {
              }
         
     }
+
+    @FXML
+    private void partager(MouseEvent event) {
+        String token = "EAAK9nssgZAZBEBADRxhXHHvQIz20g5XShKndYGoWFjC3tM6iXaiHZAbOUPAcZA9ufmYU2JdDnwpHOD04gTSB9zTBFQmX3iYpYjLRdxwZAFrKLyFzp1WBEjlydvgK3ISJdcaPQUZBJYZBJ49WIKZBtyc90VY8oR02wULvxasZAL51lybSRrfQGwpGolfK2ZAZAzvseZAEbTXS5sbZBsFZBRLD7qG9L4";
+FacebookClient FbClient = new DefaultFacebookClient(token);
+        try {
+  FileInputStream fi= new FileInputStream (new File("C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets\\"+"delete.png"));
+FacebookType response= FbClient.publish("me/photos",FacebookType.class,
+        BinaryAttachment.with("test",fi),Parameter.with("message","Description"));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    
 
 }

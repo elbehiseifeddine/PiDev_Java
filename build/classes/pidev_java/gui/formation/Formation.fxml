@@ -49,6 +49,7 @@
                </content>
             </ScrollPane>
                   <Button fx:id="btnFormationAux" layoutX="34.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#showFormationAux" text="Formations aux" />
+                  <Button fx:id="btnfb" layoutX="191.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#partager" text="fb" />
               </children>
             </AnchorPane>
          </content>

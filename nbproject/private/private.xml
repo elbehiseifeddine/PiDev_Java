@@ -3,12 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/evenement/EvenementController.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/formation/AjoutFormationController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/Sharefb.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/AjoutFormationBackController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/MapEBackController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/evenement/MapEController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/evenement/AjoutEvent.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/MapEBack.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/AjoutEventBackController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/SharefbController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/evenement/MapE.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/PiDev_Java.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/AjoutEventBack.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/itemFBack.fxml</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/Launcher.java</file>
             <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/evenement/AjoutEventController.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/services/EventService.java</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/bases/BaseGui.fxml</file>
-            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/formation/ItemController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/ItemFBackController.java</file>
+            <file>file:/C:/Users/ASUS/OneDrive/Bureau/PiDev_Java/src/pidev_java/gui/back/ItemEBackController.java</file>
         </group>
     </open-files>
 </project-private>
