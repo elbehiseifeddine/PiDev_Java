@@ -3,26 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemEventBackController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListeEmploiStageController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/formation/itemF.fxml</file>
             <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemEventBack.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminOffre.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminEvenement.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminEvenementController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListEventFormAppController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemFormationHistoriqueController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemFormationHistorique.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/EventLoisir.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemFormationBackController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/AccueilAdminOffreController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListeEmploiStage.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/evenement/ItemEventController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/formation/ItemFController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/formation/FormationController.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/entities/Formation.java</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ListEventFormApp.fxml</file>
-            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemFormationBack.fxml</file>
+            <file>file:/C:/xampp/htdocs/PiDev_Java/src/pidev_java/gui/back/ItemEmploi.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -120,15 +120,15 @@ public class AccueilAdminEvenementController implements Initializable {
         } else {
             Id_event.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-            ownerEvent.setCellValueFactory(data -> {
-                String cellValue = "";
-                if (data.getValue().getidFr != 0) {
-                    cellValue = frs.FindparID(data.getValue().getId()).getNom() + " : freelancer";
-                } else {
-                    cellValue = sos.FindparID(data.getValue().getId()).getNom() + " : Societe";
-                }
-                return new SimpleStringProperty(cellValue);
-            });
+//            ownerEvent.setCellValueFactory(data -> {
+//                String cellValue = "";
+//                if (data.getValue().getidFr != 0) {
+//                    cellValue = frs.FindparID(data.getValue().getId()).getNom() + " : freelancer";
+//                } else {
+//                    cellValue = sos.FindparID(data.getValue().getId()).getNom() + " : Societe";
+//                }
+//                return new SimpleStringProperty(cellValue);
+//            });
 
             labelleEvent.setCellValueFactory(new PropertyValueFactory<>("Labelle"));
             descriptionEvent.setCellValueFactory(new PropertyValueFactory<>("Description"));
@@ -219,15 +219,15 @@ public class AccueilAdminEvenementController implements Initializable {
         } else {
             id_formation.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-            ownerFormation.setCellValueFactory(data -> {
-                String cellValue = "";
-                if (data.getValue().getidFr != 0) {
-                    cellValue = frs.FindparID(data.getValue().getId()).getNom() + " : freelancer";
-                } else {
-                    cellValue = sos.FindparID(data.getValue().getId()).getNom() + " : Societe";
-                }
-                return new SimpleStringProperty(cellValue);
-            });
+//            ownerFormation.setCellValueFactory(data -> {
+//                String cellValue = "";
+//                if (data.getValue().getidFr != 0) {
+//                    cellValue = frs.FindparID(data.getValue().getId()).getNom() + " : freelancer";
+//                } else {
+//                    cellValue = sos.FindparID(data.getValue().getId()).getNom() + " : Societe";
+//                }
+//                return new SimpleStringProperty(cellValue);
+//            });
 
             labelleFormation.setCellValueFactory(new PropertyValueFactory<>("Labelle"));
             descriptionFormation.setCellValueFactory(new PropertyValueFactory<>("Description"));

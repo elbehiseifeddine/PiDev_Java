@@ -44,7 +44,8 @@ public class AdminEmploiService implements IAdminEmploiService {
 
             for (Admin admin : ListAdminEmploi) {
 
-                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + admin.getNonApprouve() + 1 + " WHERE id=" + admin.getId();
+                int nonApprouve =admin.getNonApprouve() + 1;
+                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin.getId();
                 PreparedStatement st0 = cnx.prepareStatement(incrementNonApprouve);
                 st0.executeUpdate();
 
@@ -101,7 +102,8 @@ public class AdminEmploiService implements IAdminEmploiService {
 
             for (Admin admin : ListAdminEmploi) {
 
-                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + admin.getNonApprouve() + 1 + " WHERE id=" + admin.getId();
+                int nonApprouve = admin.getNonApprouve() + 1;
+                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + nonApprouve + " WHERE id=" + admin.getId();
                 PreparedStatement st0 = cnx.prepareStatement(incrementNonApprouve);
                 st0.executeUpdate();
 
