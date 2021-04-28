@@ -237,7 +237,7 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
         this.image.setText(nom);
         FTPConnection cnx = new FTPConnection();
-        cnx.Upload(url, nom);
+        //cnx.Upload(url, nom);
     }
     
     

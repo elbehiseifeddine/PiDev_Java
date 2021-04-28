@@ -85,7 +85,7 @@ public class ListeEmploiStageController implements Initializable {
                 
             }
         } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Load Emploi Data methode ListeEmploiStageController, "+e.getMessage());
 
            }
     }
@@ -129,7 +129,7 @@ public class ListeEmploiStageController implements Initializable {
                 
             }
         } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Load Stage Data methode ListeEmploiStageController, "+e.getMessage());
 
            }
     }

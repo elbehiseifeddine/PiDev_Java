@@ -58,9 +58,9 @@ public class Societe {
         instance=null;
     }
 
-    public Societe(int iducon) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    public Societe(int iducon) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     public String getNom() {
         return nom;

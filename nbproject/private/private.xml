@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignIn.fxml</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignUpFreelancerController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/ForgetPasswordController.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/utils/JavaMail.java</file>
-            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/utilisateur/SignInController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ItemStage.fxml</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ItemStageController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/AdminEventService.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/AdminEmploiService.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/services/ToExcel.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/AccueilAdminOffreController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ItemEmploi.fxml</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/PetitItemEmploiController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ItemEmploiController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/AccueilAdminEvenementController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ListeEmploiStageController.java</file>
+            <file>file:/C:/Users/seifeddine/Documents/NetBeansProjects/PiDev_Java/src/pidev_java/gui/back/ListEventFormAppController.java</file>
         </group>
     </open-files>
 </project-private>

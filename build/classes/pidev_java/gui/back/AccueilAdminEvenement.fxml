@@ -5,14 +5,36 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminEvenementController">
    <children>
-      <Label text="Liste des Offre non approuvés">
+      <Label text="Liste des évenements/formations non approuvés">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9263157844543457" green="0.02744639292359352" blue="0.02744639292359352" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.27157115936279297" green="0.03730994090437889" blue="0.9157894849777222" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <VBox.margin>
+            <Insets left="380.0" />
+         </VBox.margin>
       </Label>
       <Label text="Liste des événements :" textFill="#e10404">
          <font>
@@ -33,7 +55,7 @@
       <TableView fx:id="TabEvent" prefHeight="222.0" prefWidth="1602.0">
         <columns>
           <TableColumn fx:id="Id_event" prefWidth="75.0" text="Id" visible="false" />
-          <TableColumn fx:id="ownerEvent" prefWidth="75.0" text="Créateur" />
+          <TableColumn fx:id="ownerEvent" prefWidth="75.0" text="Créateur" visible="false" />
             <TableColumn fx:id="labelleEvent" prefWidth="75.0" text="Labelle" />
             <TableColumn fx:id="descriptionEvent" prefWidth="75.0" text="Déscription" />
             <TableColumn fx:id="domaineEvent" prefWidth="75.0" text="Domaine" />
@@ -67,7 +89,7 @@
       <TableView fx:id="TabFormation" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="id_formation" prefWidth="75.0" text="Id" visible="false" />
-          <TableColumn fx:id="ownerFormation" prefWidth="75.0" text="Créateur" />
+          <TableColumn fx:id="ownerFormation" prefWidth="75.0" text="Créateur" visible="false" />
             <TableColumn fx:id="labelleFormation" prefWidth="75.0" text="Labelle" />
             <TableColumn fx:id="descriptionFormation" prefWidth="75.0" text="Description" />
             <TableColumn fx:id="domaineFormation" prefWidth="75.0" text="Domaine" />

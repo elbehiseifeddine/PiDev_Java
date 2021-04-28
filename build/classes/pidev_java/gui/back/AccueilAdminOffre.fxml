@@ -5,14 +5,36 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminOffreController">
    <children>
       <Label text="Liste des Offre non approuvés">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8947368264198303" green="0.009941520169377327" blue="0.009941520169377327" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.1323508769273758" green="0.03945419192314148" blue="0.9684210419654846" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <VBox.margin>
+            <Insets left="550.0" />
+         </VBox.margin>
       </Label>
       <Label text="Liste des Offres d'Emplois :" textFill="#e10404">
          <font>

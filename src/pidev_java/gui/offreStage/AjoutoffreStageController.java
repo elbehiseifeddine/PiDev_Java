@@ -172,7 +172,7 @@ public class AjoutoffreStageController implements Initializable {
 
             stageService service = new stageService();
             int idOffreStage = service.maxId()+1;
-        offreStage e = new offreStage(tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbType.getSelectionModel().getSelectedItem(), dateC, dateE);
+        offreStage e = new offreStage(idOffreStage,tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbType.getSelectionModel().getSelectedItem(), dateC, dateE);
             e.setIdSociete(s.getId());
             new stageService().add(e);
             notification();

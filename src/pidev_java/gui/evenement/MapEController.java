@@ -130,72 +130,69 @@ private void animateClickMarker(Coordinate oldPosition, Coordinate newPosition) 
     @FXML
     private void confirmerPlace(MouseEvent event) {
         
-        HttpClient httpclient = HttpClients.createDefault();
-HttpPost httppost = new HttpPost("https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat="+this.lat+"&lon="+this.lng);
-
+        try {
+            HttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost("https://nominatim.openstreetmap.org/reverse?format=geocodejson&lat="+this.lat+"&lon="+this.lng);
+            
 // Request parameters and other properties.
 List<NameValuePair> params = new ArrayList<NameValuePair>(2);
 /*params.add(new BasicNameValuePair("param-1", "12345"));
 params.add(new BasicNameValuePair("param-2", "Hello!"));*/
-        try {
-            httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(MapFController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 //Execute and get the response.
 
-        try {
-          HttpResponse  response = httpclient.execute(httppost);
-       if(response != null){
-     String responseString = new BasicResponseHandler().handleResponse(response);
-      JSONParser parser = new JSONParser();
+
+HttpResponse  response = httpclient.execute(httppost);
+if(response != null){
+    String responseString = new BasicResponseHandler().handleResponse(response);
+    JSONParser parser = new JSONParser();
     
-              try {
-                  Object obj = parser.parse(responseString);
+    try {
+        Object obj = parser.parse(responseString);
 //                  JSONArray array = (JSONArray)obj;
-                  JSONObject obj2 = (JSONObject)obj;
-                  JSONArray array = (JSONArray)obj2.get("features");
-                  JSONObject obj3 = (JSONObject)array.get(0);
-                   JSONObject obj4 = (JSONObject)obj3.get("properties");
-                  JSONObject obj5 = (JSONObject) obj4.get("geocoding");
-                  this.lieu=obj5.get("label").toString();
-                  
-                    
-              } catch (ParseException ex) {
-                 ex.printStackTrace();
-              }
+JSONObject obj2 = (JSONObject)obj;
+JSONArray array = (JSONArray)obj2.get("features");
+JSONObject obj3 = (JSONObject)array.get(0);
+JSONObject obj4 = (JSONObject)obj3.get("properties");
+JSONObject obj5 = (JSONObject) obj4.get("geocoding");
+this.lieu=obj5.get("label").toString();
 
 
-       }
+    } catch (ParseException ex) {
+        ex.printStackTrace();
+    }
+    
+    
+}
 HttpEntity entity = response.getEntity();
-
 if (entity != null) {
     
     
     
     try (InputStream instream = entity.getContent()) {
-     
-  
-      
-       
         
-   
+        
+        
+        
+        
+        
         // do something useful
     } catch (IOException ex) {
         System.out.println("erreur1");
     }
     
 }
- } catch (IOException ex) {
-            System.out.println("erreur2");
+
+this.ej.setCoordnate(this.lat,this.lng,this.lieu);
+Window window =   ((Node)(event.getSource())).getScene().getWindow();
+if (window instanceof Stage){
+    ((Stage) window).close();
+}
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(MapEController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MapEController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        this.ej.setCoordnate(this.lat,this.lng,this.lieu);
-         Window window =   ((Node)(event.getSource())).getScene().getWindow(); 
-            if (window instanceof Stage){
-                ((Stage) window).close();
-            }
     }
     
 }

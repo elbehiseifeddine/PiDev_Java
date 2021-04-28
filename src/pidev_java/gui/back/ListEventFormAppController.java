@@ -84,7 +84,7 @@ public class ListEventFormAppController implements Initializable {
                 
             }
         } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Load event data ListeEventFormAppCOntroller , "+e.getMessage());
 
            }
         
@@ -130,7 +130,7 @@ public class ListEventFormAppController implements Initializable {
                 
             }
         } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Load formation data ListeEventFormAppCOntroller , "+e.getMessage());
 
            }
     }

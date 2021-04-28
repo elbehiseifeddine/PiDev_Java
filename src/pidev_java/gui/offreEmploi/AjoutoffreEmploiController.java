@@ -35,6 +35,7 @@ import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Notifications;
 import pidev_java.entities.Societe;
 import pidev_java.entities.offreEmploi;
+import pidev_java.services.AdminEmploiService;
 import pidev_java.services.Create_QR;
 import pidev_java.services.emploiService;
 
@@ -161,7 +162,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
         
        emploiService service = new emploiService();
        int idOffreEmploi = service.maxId()+1;
-        offreEmploi e = new offreEmploi(tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,cmbDevises.getSelectionModel().getSelectedItem());
+        offreEmploi e = new offreEmploi(idOffreEmploi,tfNom.getText(),tfCompetences.getText(),tfDescription.getText(),cmbDomaine.getSelectionModel().getSelectedItem(),Float.parseFloat(tfsalaire.getText()),dateC,dateE,cmbDevises.getSelectionModel().getSelectedItem());
       e.setIdSociete(s.getId());
         new emploiService().add(e);
          notification();
@@ -217,6 +218,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
     @FXML
     private void cmbDevise(MouseEvent event) {
     }
+}
     
     
 

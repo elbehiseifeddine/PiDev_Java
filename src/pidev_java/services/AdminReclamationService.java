@@ -140,7 +140,7 @@ public class AdminReclamationService implements IAdminReclamationService{
 
             ResultSet rs = st.executeQuery(req1);
             while (rs.next()) {
-                String getReclamation = "SELECT * FROM reclamation WHERE id =" + rs.getInt("id_reclamation");
+                String getReclamation = "SELECT * FROM reclamation WHERE id =" + rs.getInt("id_reclamation")+" AND etat = 1";
                 Statement st2 = cnx.createStatement();
 
                 ResultSet rs2 = st2.executeQuery(getReclamation);

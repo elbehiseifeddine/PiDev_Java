@@ -557,7 +557,62 @@ public class ToExcel {
                 }
             }
 
-            Sheet sheet = workbook.createSheet("Historique Freelancer");
+            String reqSociete = "SELECT DATE_FORMAT(date_creation,'%M') mois ,COUNT(*) count FROM freelancer GROUP BY mois;";
+            Statement stSociete = cnx.createStatement();
+            ResultSet rsSociete = stSociete.executeQuery(reqSociete);
+
+            int Societejanvier = 0;
+            int Societefevrier = 0;
+            int Societemars = 0;
+            int Societeavril = 0;
+            int Societemai = 0;
+            int Societejuin = 0;
+            int Societejuillet = 0;
+            int Societeaout = 0;
+            int Societeseptemebre = 0;
+            int Societeoctobre = 0;
+            int Societenovembre = 0;
+            int Societedecembre = 0;
+            while (rsSociete.next()) {
+                if (rsSociete.getString("mois").equals("January")) {
+                    Societejanvier = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("February")) {
+                    Societefevrier = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("March")) {
+                    Societemars = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("April")) {
+                    Societeavril = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("May")) {
+                    Societemai = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("June")) {
+                    Societejuin = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("July")) {
+                    Societejuillet = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("August")) {
+                    Societeaout = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("September")) {
+                    Societeseptemebre = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("October")) {
+                    Societeoctobre = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("November")) {
+                    Societenovembre = rsSociete.getInt("count");
+                }
+                if (rsSociete.getString("mois").equals("December")) {
+                    Societedecembre = rsSociete.getInt("count");
+                }
+            }
+
+            Sheet sheet = workbook.createSheet("Historique Utilisateurs");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
             headerFont.setFontHeightInPoints((short) 14);
@@ -568,32 +623,34 @@ public class ToExcel {
             CellStyle headerCellStyle = workbook.createCellStyle();
             headerCellStyle.setFont(headerFont);
 
+            imageheader(sheet, workbook);
 // Create a Row
-            Row headerRow = sheet.createRow(0);
+            Row headerRow = sheet.createRow(4);
 
-            for (int i = 0; i < columns.length; i++) {
+            for (int i = 1; i < columns.length + 1; i++) {
                 Cell cell = headerRow.createCell(i);
-                cell.setCellValue(columns[i]);
+                cell.setCellValue(columns[i - 1]);
                 cell.setCellStyle(headerCellStyle);
             }
 
-            int rowNum = 1;
+            int rowNum = 5;
 
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(Freelancerjanvier);
-            row.createCell(1).setCellValue(Freelancerfevrier);
-            row.createCell(2).setCellValue(Freelancermars);
-            row.createCell(3).setCellValue(Freelanceravril);
-            row.createCell(4).setCellValue(Freelancermai);
-            row.createCell(5).setCellValue(Freelancerjuin);
-            row.createCell(6).setCellValue(Freelancerjuillet);
-            row.createCell(7).setCellValue(Freelanceraout);
-            row.createCell(8).setCellValue(Freelancerseptemebre);
-            row.createCell(9).setCellValue(Freelanceroctobre);
-            row.createCell(10).setCellValue(Freelancernovembre);
-            row.createCell(11).setCellValue(Freelancerdecembre);
+            row.createCell(0).setCellValue("Freelancer");
+            row.createCell(1).setCellValue(Freelancerjanvier);
+            row.createCell(2).setCellValue(Freelancerfevrier);
+            row.createCell(3).setCellValue(Freelancermars);
+            row.createCell(4).setCellValue(Freelanceravril);
+            row.createCell(5).setCellValue(Freelancermai);
+            row.createCell(6).setCellValue(Freelancerjuin);
+            row.createCell(7).setCellValue(Freelancerjuillet);
+            row.createCell(8).setCellValue(Freelanceraout);
+            row.createCell(9).setCellValue(Freelancerseptemebre);
+            row.createCell(10).setCellValue(Freelanceroctobre);
+            row.createCell(11).setCellValue(Freelancernovembre);
+            row.createCell(12).setCellValue(Freelancerdecembre);
 
-            row.getCell(0).setCellStyle(cellStyle);
+            row.getCell(0).setCellStyle(headerCellStyle);
             row.getCell(1).setCellStyle(cellStyle);
             row.getCell(2).setCellStyle(cellStyle);
             row.getCell(3).setCellStyle(cellStyle);
@@ -605,11 +662,43 @@ public class ToExcel {
             row.getCell(9).setCellStyle(cellStyle);
             row.getCell(10).setCellStyle(cellStyle);
             row.getCell(11).setCellStyle(cellStyle);
+            row.getCell(12).setCellStyle(cellStyle);
+
+            Row row2 = sheet.createRow(rowNum++);
+            row2.createCell(0).setCellValue("Societe");
+            row2.createCell(1).setCellValue(Societejanvier);
+            row2.createCell(2).setCellValue(Societefevrier);
+            row2.createCell(3).setCellValue(Societemars);
+            row2.createCell(4).setCellValue(Societeavril);
+            row2.createCell(5).setCellValue(Societemai);
+            row2.createCell(6).setCellValue(Societejuin);
+            row2.createCell(7).setCellValue(Societejuillet);
+            row2.createCell(8).setCellValue(Societeaout);
+            row2.createCell(9).setCellValue(Societeseptemebre);
+            row2.createCell(10).setCellValue(Societeoctobre);
+            row2.createCell(11).setCellValue(Societenovembre);
+            row2.createCell(12).setCellValue(Societedecembre);
+
+            row2.getCell(0).setCellStyle(headerCellStyle);
+            row2.getCell(1).setCellStyle(cellStyle);
+            row2.getCell(2).setCellStyle(cellStyle);
+            row2.getCell(3).setCellStyle(cellStyle);
+            row2.getCell(4).setCellStyle(cellStyle);
+            row2.getCell(5).setCellStyle(cellStyle);
+            row2.getCell(6).setCellStyle(cellStyle);
+            row2.getCell(7).setCellStyle(cellStyle);
+            row2.getCell(8).setCellStyle(cellStyle);
+            row2.getCell(9).setCellStyle(cellStyle);
+            row2.getCell(10).setCellStyle(cellStyle);
+            row2.getCell(11).setCellStyle(cellStyle);
+            row2.getCell(12).setCellStyle(cellStyle);
 
 // Resize all columns to fit the content size
             for (int i = 0; i < columns.length; i++) {
                 sheet.autoSizeColumn(i);
             }
+            UserScatterChart(sheet, workbook);
+
         } catch (SQLException ex) {
             Logger.getLogger(ToExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -895,7 +984,7 @@ public class ToExcel {
             row.getCell(10).setCellStyle(cellStyle);
             row.getCell(11).setCellStyle(cellStyle);
             row.getCell(12).setCellStyle(cellStyle);
-            
+
             Row row2 = sheet.createRow(rowNum++);
             row2.createCell(0).setCellValue("Demande stage");
             row2.createCell(1).setCellValue(DemandeStagejanvier);
@@ -1060,9 +1149,8 @@ public class ToExcel {
             OffreExcel(workbook);
 
             FreelancerExcel(workbook);
-            SocieteExcel(workbook);
+
             DemandeExcel(workbook);
-            
 
             JFileChooser f = new JFileChooser();
             f.setDialogTitle("save : ");
@@ -1258,4 +1346,50 @@ public class ToExcel {
         chart.plot(data, bottomAxis, leftAxis);
 
     }
+
+    public void UserScatterChart(Sheet sheet, Workbook workbook) {
+        XSSFDrawing drawing = (XSSFDrawing) sheet.createDrawingPatriarch();
+        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 5, 9, 15, 19);
+
+        XSSFChart chart = drawing.createChart(anchor);
+        XSSFChartLegend legend = chart.getOrCreateLegend();
+        legend.setPosition(LegendPosition.TOP_RIGHT);
+
+        ((XSSFChart) chart).setTitleText("Nombre des Utilisateurs par mois");
+
+//set "the title overlays the plot area" to false explicitly
+        ((XSSFChart) chart).getCTChart().getTitle().addNewOverlay().setVal(false);
+
+        //set font style for title - low level
+        //add run properties to title's first paragraph and first text run. Set bold.
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).addNewRPr().setB(true);
+        //set italic
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setI(true);
+        //set font size 20pt
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().setSz(1000);
+        //add type face for latin and complex script characters
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewLatin().setTypeface("Times New Roman");
+        ((XSSFChart) chart).getCTChart().getTitle().getTx().getRich().getPArray(0).getRArray(0).getRPr().addNewCs().setTypeface("Times New Roman");
+
+        XSSFChartAxis bottomAxis = chart.getChartAxisFactory().createCategoryAxis(AxisPosition.BOTTOM);
+        XSSFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        //CellRangeAddress crXData = new CellRangeAddress(4, 4, 1, 12);
+        //CellRangeAddress crYData1 = new CellRangeAddress(5, 5, 1, 12);
+        //CellRangeAddress crYData2 = new CellRangeAddress(6, 6, 1, 12);
+        ChartDataSource<Number> dsXData = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(4, 4, 1, 12));
+        ChartDataSource<Number> dsYData1 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(5, 5, 1, 12));
+        ChartDataSource<Number> dsYData2 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(6, 6, 1, 12));
+
+        XSSFScatterChartData data = chart.getChartDataFactory().createScatterChartData();
+        ScatterChartSeries seriesTitler1 = data.addSerie(dsXData, dsYData1);
+
+        ScatterChartSeries seriesTitler2 = data.addSerie(dsXData, dsYData2);
+
+        seriesTitler1.setTitle("Freelancers/mois");
+        seriesTitler2.setTitle("Societes/mois");
+        chart.plot(data, bottomAxis, leftAxis);
+    }
+
 }

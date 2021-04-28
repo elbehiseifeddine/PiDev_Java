@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -53,7 +54,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="idSalaire" layoutX="500.0" layoutY="142.0" text="Label">
+      <Label fx:id="idSalaire" layoutX="500.0" layoutY="136.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
@@ -68,9 +69,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="641.0" layoutY="134.0" onMouseClicked="#Supprimer" size="30" text="" />
+      <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="657.0" layoutY="90.0" onMouseClicked="#Supprimer" size="30" text="" />
       <Line endX="440.0" layoutX="196.0" layoutY="226.0" startX="-100.0" />
-      <Label fx:id="idDevise" layoutX="548.0" layoutY="147.0" text="Label" />
+      <Label fx:id="idDevise" layoutX="548.0" layoutY="141.0" text="Label" />
       <Label fx:id="id_Offre_Emploi" layoutX="353.0" layoutY="16.0" text="Label" visible="false" />
+      <ImageView fx:id="aa" fitHeight="102.0" fitWidth="115.0" layoutX="612.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

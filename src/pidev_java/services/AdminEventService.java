@@ -74,7 +74,7 @@ public class AdminEventService implements IAdminEventService {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Send event to admin methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -125,7 +125,7 @@ public class AdminEventService implements IAdminEventService {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Send formation to admin methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -154,7 +154,7 @@ public class AdminEventService implements IAdminEventService {
 //            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Activate event methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -182,7 +182,7 @@ try {
                 st2.executeUpdate(req2);
             }
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Deactivate event methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }        }
 
     @Override
@@ -207,7 +207,7 @@ try {
 //            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Activate formation methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }    }
 
     @Override
@@ -235,7 +235,7 @@ try {
                 st2.executeUpdate(req2);
             }
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Deactivate Formation methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }    }
 
     @Override
@@ -254,17 +254,17 @@ ArrayList<Formation> historique = new ArrayList<>();
 
                 ResultSet rs2 = st2.executeQuery(getReclamation);
                 rs2.first();
-                int id = rs.getInt("id");
-                String labelle = rs.getString("labelle");
-                String lieu = rs.getString("lieu");
-                String domaine = rs.getString("domaine");
-                String description=rs.getString("description");
-                Timestamp dateDebut=rs.getTimestamp("date_debut");
-                Timestamp dateFin=rs.getTimestamp("date_fin");
-                float montant=rs.getFloat("montant");
-                long lat=rs.getLong("lat");
-                long lng=rs.getLong("lng");
-                String image=rs.getString("image");
+                int id = rs2.getInt("id");
+                String labelle = rs2.getString("labelle");
+                String lieu = rs2.getString("lieu");
+                String domaine = rs2.getString("domaine");
+                String description=rs2.getString("description");
+                Timestamp dateDebut=rs2.getTimestamp("date_debut");
+                Timestamp dateFin=rs2.getTimestamp("date_fin");
+                float montant=rs2.getFloat("montant");
+                long lat=rs2.getLong("lat");
+                long lng=rs2.getLong("lng");
+                String image=rs2.getString("image");
                 
                 Formation F = new Formation (id,labelle,description,lieu,dateDebut,dateFin,domaine,montant,true,lng,lat,image);
                 
@@ -278,7 +278,7 @@ ArrayList<Formation> historique = new ArrayList<>();
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Historique Formation methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
         return historique;
     }
@@ -299,17 +299,17 @@ ArrayList<EventLoisir> historique = new ArrayList<>();
 
                 ResultSet rs2 = st2.executeQuery(getReclamation);
                 rs2.first();
-                int id = rs.getInt("id");
-                String labelle = rs.getString("labelle");
-                String lieu = rs.getString("lieu");
-                String domaine = rs.getString("domaine");
-                String description=rs.getString("description");
-                Timestamp dateDebut=rs.getTimestamp("date_debut");
-                Timestamp dateFin=rs.getTimestamp("date_fin");
-                int nbParticipant=rs.getInt("nb_participant");
-                long lat=rs.getLong("lat");
-                long lng=rs.getLong("lng");
-                String image=rs.getString("imagee");
+                int id = rs2.getInt("id");
+                String labelle = rs2.getString("labelle");
+                String lieu = rs2.getString("lieu");
+                String domaine = rs2.getString("domaine");
+                String description=rs2.getString("description");
+                Timestamp dateDebut=rs2.getTimestamp("date_debut");
+                Timestamp dateFin=rs2.getTimestamp("date_fin");
+                int nbParticipant=rs2.getInt("nb_participant");
+                long lat=rs2.getLong("lat");
+                long lng=rs2.getLong("lng");
+                String image=rs2.getString("imagee");
                 
                 EventLoisir Ev = new EventLoisir (id,labelle,description,lieu,dateDebut,dateFin,domaine,nbParticipant,true,lng,lat,image);
                 
@@ -323,7 +323,7 @@ ArrayList<EventLoisir> historique = new ArrayList<>();
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Historique event methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
         return historique;
     }
@@ -353,7 +353,7 @@ ArrayList<EventLoisir> historique = new ArrayList<>();
             rs.close();
             } 
         catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println("get all event non apptouve dans admineventService, "+e.getMessage());
         }
         return res;
     }
@@ -383,7 +383,7 @@ ArrayList<EventLoisir> historique = new ArrayList<>();
             rs.close();
             } 
         catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println("get all formation non apptouve dans admineventService, "+e.getMessage());
         }
         return res;
     }

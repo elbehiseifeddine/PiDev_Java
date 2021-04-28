@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import pidev_java.entities.offreEmploi;
 import pidev_java.services.AdminEmploiService;
@@ -44,6 +46,8 @@ public class PetitItemEmploiController implements Initializable {
 
     private offreEmploi offre;
     private ListeEmploiStageController co;
+    @FXML
+    private ImageView aa;
     /**
      * Initializes the controller class.
      */
@@ -63,6 +67,8 @@ public class PetitItemEmploiController implements Initializable {
     public void setData(offreEmploi os,ListeEmploiStageController fc) {
          this.co=fc;
         this.offre = os;
+        //Image i = new Image("/pidev_java/"+os.getIdSociete()+".png");
+         
         this.id_Offre_Emploi.setText(String.valueOf(os.getId()));
         this.idNom.setText(os.getNomProjet());
         this.idComp.setText(os.getCompetence());
@@ -72,6 +78,7 @@ public class PetitItemEmploiController implements Initializable {
         this.idDevise.setText(String.valueOf(os.getDevise()));
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
+        //this.aa.setImage(i);
      }
     
     

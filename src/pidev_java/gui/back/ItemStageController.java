@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import pidev_java.entities.Admin;
 import pidev_java.entities.offreStage;
 import pidev_java.services.AdminEmploiService;
@@ -46,6 +47,8 @@ public class ItemStageController implements Initializable {
     private Label id_offre_stage;
 
     private offreStage offre ;
+    @FXML
+    private VBox Vboxadd;
     
     /**
      * Initializes the controller class.

@@ -84,6 +84,7 @@
       <FontAwesomeIconView fx:id="icondelete" fill="#ee0e0e" fontSmoothingType="LCD" glyphName="TRASH" layoutX="691.0" layoutY="300.0" onMouseClicked="#Supprimer" size="30" text="" />
       <Label fx:id="idDevise" layoutX="528.0" layoutY="296.0" text="Label" />
       <Label fx:id="id_Offre_Emploi" layoutX="338.0" layoutY="114.0" text="Label" visible="false" />
+                  <ImageView fx:id="aa" fitHeight="116.0" fitWidth="125.0" layoutX="552.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" />
       
        </children>
             </AnchorPane>

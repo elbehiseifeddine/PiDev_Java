@@ -11,7 +11,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import pidev_java.entities.Admin;
 import pidev_java.entities.offreEmploi;
 import pidev_java.gui.offreEmploi.ConsulterOffreEmploiController;
@@ -47,6 +50,10 @@ public class ItemEmploiController implements Initializable {
     private Label id_Offre_Emploi;
 
     private offreEmploi offre;
+    @FXML
+    private VBox Vboxadd;
+    @FXML
+    private ImageView aa;
     /**
      * Initializes the controller class.
      */
@@ -58,6 +65,9 @@ public class ItemEmploiController implements Initializable {
      public void setData(offreEmploi os) {
          
         this.offre = os;
+        //Image i = new Image("/pidev_java/"+os.getIdSociete()+".png");
+         
+        
         this.id_Offre_Emploi.setText(""+os.getId());
         this.idNom.setText(os.getNomProjet());
         this.idComp.setText(os.getCompetence());
@@ -67,6 +77,7 @@ public class ItemEmploiController implements Initializable {
         this.idDevise.setText(String.valueOf(os.getDevise()));
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration())); 
+        //this.aa.setImage(i);
      }
     @FXML
     private void Approuver(MouseEvent event) {

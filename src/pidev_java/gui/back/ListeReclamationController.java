@@ -16,10 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pidev_java.entities.Admin;
@@ -30,25 +28,24 @@ import pidev_java.services.ReclamationService;
 /**
  * FXML Controller class
  *
- * @author ahmed
+ * @author seifeddine
  */
-public class AccueilAdminReclamatonController implements Initializable {
+public class ListeReclamationController implements Initializable {
 
     @FXML
     private ListView<VBox> listView;
-    @FXML
-    private Label titre;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //System.out.println(Admin.getInstance().getId());
         ArrayList<Reclamation> listReclamation = new ArrayList<>();
         ReclamationService service = new ReclamationService();
         AdminReclamationService ars = new AdminReclamationService();
-        listReclamation = service.getAllNonApprouve();
+        listReclamation = ars.historique(Admin.getInstance());
 
         for (Reclamation reclamation : listReclamation) {
             
@@ -112,27 +109,22 @@ public class AccueilAdminReclamatonController implements Initializable {
             //hboxdate.getChildren().addAll(date,txt_date);
             
             //Button approuve = new Button("Approuver");
-            FontAwesomeIconView approuve = new FontAwesomeIconView(FontAwesomeIcon.CHECK_CIRCLE_ALT);
             FontAwesomeIconView deletebtn = new FontAwesomeIconView(FontAwesomeIcon.TRASH_ALT);
             deletebtn.setStyle(
                         " -fx-cursor: hand ;"
                         + "-glyph-size:28px;"
                         + "-fx-fill:#ff1744;"
                 );
-            approuve.setStyle(
-                                " -fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                        );
-            approuve.setOnMouseClicked((event) -> {
-                //ars.Activate(reclamation, Admin.getInstance());
+            
+            deletebtn.setOnMouseClicked((event) -> {
+                ars.Deactivate(reclamation);
             });
             
-            HBox buttons = new HBox(approuve,deletebtn);
+            HBox buttons = new HBox(deletebtn);
             buttons.setSpacing(20);
             buttons.setAlignment(Pos.CENTER);
             VBox vbox1 = new VBox(hboxowner,hboxtype,hboxtexte,hboxdate);
-            VBox vbox2 = new VBox(approuve,deletebtn);
+            VBox vbox2 = new VBox(deletebtn);
             
             //vbox.getChildren().addAll(hboxowner,hboxtype,hboxtexte,hboxdate);
             vbox1.setSpacing(20);
@@ -144,7 +136,7 @@ public class AccueilAdminReclamatonController implements Initializable {
             listView.getItems().add(totale);
             
         }
-
-    }
-
+        // TODO
+    }    
+    
 }

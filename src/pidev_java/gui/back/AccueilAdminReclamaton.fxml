@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.back.AccueilAdminReclamatonController">
    <children>
-      <Label fx:id="titre" text="Acceuill Admin Reclamation">
+      <Label fx:id="titre" text="Acceuill Admin Reclamation" textAlignment="CENTER">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="38.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9254902005195618" green="0.03529411926865578" blue="0.03529411926865578" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.08203248679637909" green="0.05364522337913513" blue="0.9052631855010986" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <VBox.margin>
+            <Insets left="550.0" />
+         </VBox.margin>
       </Label>
       <ListView fx:id="listView" prefHeight="989.0" prefWidth="1602.0" />
    </children>

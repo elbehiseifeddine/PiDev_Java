@@ -82,7 +82,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Send emploi to admin methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
 
     }
@@ -139,7 +139,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Send Stage to admin methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
 
     }
@@ -173,7 +173,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 //            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Activate emploi methode,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -206,7 +206,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 //            st.executeUpdate(req2);
 
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Activate stage methode,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -241,7 +241,7 @@ public class AdminEmploiService implements IAdminEmploiService {
                 st2.executeUpdate(req2);
             }
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Deactivate emploi methode,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -274,7 +274,7 @@ public class AdminEmploiService implements IAdminEmploiService {
                 st2.executeUpdate(req2);
             }
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Deactivate stage methode,Connexion à la base de données impossible , " + ex.getMessage());
         }
     }
 
@@ -320,7 +320,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Historique emploi methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
         return historique;
     }
@@ -366,7 +366,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 
             rs.close();
         } catch (SQLException ex) {
-            System.out.println("Connexion à la base de données impossible , " + ex.getMessage());
+            System.out.println("Historique stage methode ,Connexion à la base de données impossible , " + ex.getMessage());
         }
         return historique;
     }
@@ -395,7 +395,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             }
             rs0.close();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println("get all emploi non approuve dans adminEmploiService "+e.getMessage());
         }
         return res;
     }
@@ -424,7 +424,7 @@ public class AdminEmploiService implements IAdminEmploiService {
             }
             rs0.close();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println("get all stage non approuve dans adminEmploiService ,"+e.getMessage());
         }
         return res;
     }
