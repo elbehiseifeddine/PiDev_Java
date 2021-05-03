@@ -143,7 +143,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label text="Consulter tous les Emploi" textFill="#4e4e4e">
+                              <Label text="Consulter tous les Emplois" textFill="#4e4e4e">
                                
                                  <font>
                                     <Font name="System Bold" size="16.0" />
@@ -179,6 +179,7 @@
                      </graphic>
                   
                   </Button>
+                  
                   <Button fx:id="btn_demande" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onAction="#demandeA" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
@@ -187,7 +188,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label text="Consulter mes Demande" textFill="#4e4e4e">
+                              <Label prefHeight="26.0" prefWidth="287.0" text="Consulter Demandes d'emplois" textFill="#4e4e4e">
                                 
                                  <font>
                                     <Font name="System Bold" size="16.0" />
@@ -200,7 +201,7 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_reclamation" layoutX="10.0" layoutY="436.0" mnemonicParsing="false" onAction="#Reclamation" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_demande2" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onAction="#demandeS" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
@@ -208,8 +209,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label text="Reclamation" textFill="#4e4e4e">
-                                
+                              <Label text="Consulter Demandes des stages" textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

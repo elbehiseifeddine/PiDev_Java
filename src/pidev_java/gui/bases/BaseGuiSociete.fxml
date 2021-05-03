@@ -155,26 +155,7 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_emploi111" mnemonicParsing="false" onAction="#ConsulterDemandeE" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets top="7.0" />
-                                 </HBox.margin></FontAwesomeIconView>
-                              <Label text="Consulter les Demandes d'emploi" textFill="#4e4e4e">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
+                  
                   <Button fx:id="btn_emploi1" layoutX="10.0" layoutY="324.0" mnemonicParsing="false" onAction="#ConsulterOffreEmploi" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
@@ -183,7 +164,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label text="Consulter Offre Emploi" textFill="#4e4e4e">
+                              <Label text="Consulter Offres Emplois" textFill="#4e4e4e">
                                
                                  <font>
                                     <Font name="System Bold" size="16.0" />
@@ -217,26 +198,7 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_emploi1111" layoutX="10.0" layoutY="380.0" mnemonicParsing="false" onAction="#ConsulterDemandeS" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets top="7.0" />
-                                 </HBox.margin></FontAwesomeIconView>
-                              <Label text="Consulter les Demandes de stage" textFill="#4e4e4e">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
+                  
                   <Button fx:id="btn_emploi11" layoutX="10.0" layoutY="363.0" mnemonicParsing="false" onAction="#ConsulterOffreStage" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
@@ -245,7 +207,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label onMouseClicked="#ConsulterOffreStage" text="Consulter Offre Stage" textFill="#4e4e4e">
+                              <Label onMouseClicked="#ConsulterOffreStage" text="Consulter Offres Stages" textFill="#4e4e4e">
                                  <HBox.margin>
                                     <Insets left="10.0" top="5.0" />
                                  </HBox.margin>
@@ -257,7 +219,7 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_reclamation" layoutX="10.0" layoutY="436.0" mnemonicParsing="false" onAction="#Reclamation" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
+                  <Button fx:id="btn_emploi111" mnemonicParsing="false" onAction="#ConsulterDemandeEE" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
                            <children>
@@ -265,8 +227,7 @@
                                  <HBox.margin>
                                     <Insets top="7.0" />
                                  </HBox.margin></FontAwesomeIconView>
-                              <Label text="Reclamation" textFill="#4e4e4e">
-                               
+                              <Label text="Consulter les Demandes " textFill="#4e4e4e">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

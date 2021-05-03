@@ -9,9 +9,9 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class TwilioSMS {
-    
+
     public String ACCOUNT_SID = "ACb853270e5a4dad385925b874a26c382b";
-    public String AUTH_TOKEN = "5358f74afbbfcf0dbeb9396a7c8b6caf";
+    public String AUTH_TOKEN = "9f582aabdbead69125422f3be348cc00";
 
     public TwilioSMS (){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);

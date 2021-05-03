@@ -90,7 +90,7 @@ public class ConsulterOffreEmploiController implements Initializable {
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
                         System.out.println(e.getMessage());
 
            }
@@ -199,7 +199,89 @@ public class ConsulterOffreEmploiController implements Initializable {
            }
     }
     
-     
+     public void delete(int id){
+         emploiService ss=new emploiService();
+         ss.delete(id);
+           Societe s = Societe.getInstance();
+          scrolEmploi.setVisible(true);
+         gridEmploi.getChildren().clear();
+         int columnMesForm = 0;
+        int rowMesForm = 1;
+         try {
+            
+           List<offreEmploi> MesOffre=ss.getOwn(s.getId());
+            for (int i = 0; i < MesOffre.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/offreEmploi/itemEmp.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEmpController itemEmpController = fxmlLoader.getController();
+               
+                itemEmpController.setData(MesOffre.get(i),this);
+
+                 if (columnMesForm == 2) {
+                    columnMesForm = 0;
+                    rowMesForm++;
+                }
+
+                gridEmploi.add(anchorPane, columnMesForm, rowMesForm++); //(child,column,row)
+                //set grid width
+                gridEmploi.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridEmploi.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridEmploi.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridEmploi.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridEmploi.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridEmploi.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+         
+           scrolEmploiAll.setVisible(false);
+         gridEmploiAll.getChildren().clear();
+         int columnMesFormAll = 0;
+        int rowMesFormAll = 1;
+         try {
+            
+           List<offreEmploi> MesOffre=ss.getAll();
+            for (int i = 0; i < MesOffre.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/demandeEmploi/itemAllEmplois.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemEmpController itemEmpController = fxmlLoader.getController();
+               
+                itemEmpController.setData(MesOffre.get(i),this);
+
+                 if (columnMesFormAll == 2) {
+                    columnMesFormAll = 0;
+                    rowMesFormAll++;
+                }
+
+                gridEmploiAll.add(anchorPane, columnMesFormAll, rowMesFormAll++); //(child,column,row)
+                //set grid width
+                gridEmploiAll.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridEmploiAll.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridEmploi.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridEmploiAll.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridEmploiAll.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridEmploiAll.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+           }
+        // TODO
+     }
     
 
 }

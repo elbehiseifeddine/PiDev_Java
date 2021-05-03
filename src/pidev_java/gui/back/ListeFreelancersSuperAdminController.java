@@ -113,9 +113,9 @@ public class ListeFreelancersSuperAdminController implements Initializable {
                 System.out.println(freelancer);
                 System.out.println("aaaaaaaaaaaaaaaaa");
                 File file= new File(freelancer.getPhoto_de_profile());
-                Image img = new Image(file.toURI().toString());
-                Circle image=new Circle();
-                image.setFill(new ImagePattern(img));
+                ImageView image = new ImageView("ftp://user:123456789@192.168.1.52/"+freelancer.getPhoto_de_profile());
+                image.setFitHeight(100);
+                image.setFitWidth(100);
                
                 
                 Label name = new Label(freelancer.getNom() + " " + freelancer.getPrenom());

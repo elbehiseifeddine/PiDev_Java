@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ItemAllstagesController">
+<AnchorPane id="AnchorPane" prefHeight="327.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.offreStage.ItemAllstagesController">
    <children>
       
-      <Label layoutX="511.0" layoutY="33.0" text="Date d'expiration" textFill="#6c89a1">
+      <Label layoutX="547.0" layoutY="33.0" text="Date d'expiration" textFill="#6c89a1">
          <font>
             <Font size="14.0" />
          </font>
@@ -43,7 +42,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="idDTexpr" layoutX="633.0" layoutY="30.0" text="Label">
+      <Label fx:id="idDTexpr" layoutX="669.0" layoutY="30.0" text="Label">
          <font>
             <Font size="14.0" />
          </font>
@@ -53,18 +52,22 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="228.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: green;" text="Demander l'offre de stage" textFill="#fffdfd">
+      <Button layoutX="209.0" layoutY="235.0" mnemonicParsing="false" onAction="#addD" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: green;" text="Demander l'offre de stage" textFill="#fffdfd">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Line endX="482.0" layoutX="111.0" layoutY="299.0" startX="-100.0" />
+      <Line endX="649.800048828125" endY="-3.0517578125E-5" layoutX="111.0" layoutY="299.0" startX="-100.0" stroke="#e49191" />
       <Label layoutX="212.0" layoutY="81.0" text="Chez vous" />
       <Icons525View glyphName="CLOCK" layoutX="69.0" layoutY="215.0" size="15.0" wrappingWidth="11.911458015441895" />
       <Icons525View glyphName="MAP" layoutX="302.0" layoutY="95.0" size="15.0" />
-      <Rating layoutX="522.0" layoutY="-32.0" />
       <FontAwesomeIconView glyphName="STAR" layoutX="66.0" layoutY="93.0" size="15.0" text="" />
       <FontAwesomeIconView glyphName="MAP_MARKER" layoutX="197.0" layoutY="95.0" size="15.0" />
-      <ImageView fx:id="aa" fitHeight="101.0" fitWidth="115.0" layoutX="549.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="aa" fitHeight="101.0" fitWidth="115.0" layoutX="685.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="id_reclamation" layoutX="508.0" layoutY="235.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: green;" text="Envoyer Reclamation" textFill="#fffdfd">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

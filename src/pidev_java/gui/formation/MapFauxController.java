@@ -65,16 +65,17 @@ public class MapFauxController implements Initializable {
     public void inti(List<Formation> F,FormationController fc){
         this.FormationsAux=F;
         this.Fc=fc;
-        for(int i=0;i<FormationsAux.size();i++){
+       /* for(int i=0;i<FormationsAux.size();i++){
             try {
-                this.resize("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets"+FormationsAux.get(i).getImageF(), "C:\\Users\\ASUS\\OneDrive\\Bureau\\PiDev_Java\\src\\pidev_java\\assets\\im"+FormationsAux.get(i).getImageF(), 30, 30);         
+                                this.resize("ftp://user:123456789@192.168.1.52/"+FormationsAux.get(i).getImageF(), "C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets\\im"+FormationsAux.get(i).getImageF(), 30, 30);    
+
             } catch (IOException ex) {
                             System.out.println("mochkla f taswira");
             }
-        }
+        }*/
     }
     
-     public  boolean resize(String inputImagePath,
+    /* public  boolean resize(String inputImagePath,
             String outputImagePath, int scaledWidth, int scaledHeight)
             throws IOException {
         // reads input image
@@ -83,7 +84,7 @@ public class MapFauxController implements Initializable {
  
         // creates output image
         /*BufferedImage outputImage = new BufferedImage(scaledWidth,
-                scaledHeight, BufferedImage.TYPE_INT_BGR);*/
+                scaledHeight, BufferedImage.TYPE_INT_BGR);
         
         
     Image resultingImage = inputImage.getScaledInstance( scaledWidth, scaledHeight, Image.SCALE_DEFAULT);
@@ -94,30 +95,28 @@ public class MapFauxController implements Initializable {
         /*Graphics2D g2d = outputImage.createGraphics();
         g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
         g2d.dispose();
- */
+ 
         // extracts extension of output file
         String formatName = outputImagePath.substring(outputImagePath
                 .lastIndexOf(".") + 1);
  
         // writes to output file
        return  ImageIO.write(outputImage, formatName, new File(outputImagePath));
-    }
+    }*/
 
     @FXML
     private void showFormAux(MouseEvent event) {
        System.out.println(FormationsAux.size()+"size de f aux");
        
              for (int i=0;i<FormationsAux.size();i++){
-                   System.out.println("hadha mtaa formation"+FormationsAux.get(i).getLat());
                  try {
                      Coordinate FPlace=new Coordinate(FormationsAux.get(i).getLat(), FormationsAux.get(i).getLng());
-                                          System.out.println(FPlace.getLatitude()+"    hadha lat mtaa marker");
 
                      //Marker FormPlace = Marker.createProvided(Marker.Provided.RED).setPosition(FPlace).setVisible(
                      //true);
             
                                          
-                     Marker FormPlace= new Marker(getClass().getResource("/pidev_java/assets/im"+FormationsAux.get(i).getImageF()), 20, 20).setPosition(FPlace)
+                     Marker FormPlace= Marker.createProvided(Marker.Provided.RED).setPosition(FPlace)
                              .setVisible(true);
                      
                      
@@ -138,7 +137,9 @@ public class MapFauxController implements Initializable {
                              eventm.consume();
                               for(int j=0;j<FormationsAux.size();j++){
                                  if((FormationsAux.get(j).getLng()==eventm.getMarker().getPosition().getLongitude()) &&(FormationsAux.get(j).getLat()==eventm.getMarker().getPosition().getLatitude())){
-                                      For=FormationsAux.get(j);
+                                     
+                                     For=FormationsAux.get(j);
+                                      
                                  }
                              }
                              

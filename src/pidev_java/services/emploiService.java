@@ -31,8 +31,8 @@ public class emploiService implements IServiceOffre<offreEmploi>{
     public void add(offreEmploi entity) {
         try{
         
-        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire,devise, date_creation, date_expiration,etat,societe_id)"
-                + " values (?,?, ?, ?, ?,?, ?, ?,?,?,?)";
+        String sql = "insert into offre_emploi (nom_projet, competences, description, domaine,fichier, salaire,devise, date_creation, date_expiration,etat,societe_id,id)"
+                + " values (?,?, ?, ?, ?,?, ?, ?,?,?,?,?)";
         
         PreparedStatement  ps =  cnx.prepareStatement(sql);
             ps.setString(1, entity.getNomProjet());
@@ -44,8 +44,9 @@ public class emploiService implements IServiceOffre<offreEmploi>{
             ps.setString(7, entity.getDevise());
             ps.setDate(8,  entity.getDateCreation());
             ps.setDate(9,  entity.getDateExpiration());
-            ps.setInt(10,1);
+            ps.setInt(10,0);
             ps.setInt(11,entity.getIdSociete());
+            ps.setInt(12,entity.getId());
             
            
            

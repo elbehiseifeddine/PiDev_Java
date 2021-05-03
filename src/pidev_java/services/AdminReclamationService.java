@@ -41,12 +41,12 @@ public class AdminReclamationService implements IAdminReclamationService{
         try {
             
             for (Admin admin : ListAdminReclamation) {
-
-                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + admin.getNonApprouve() + 1 + " WHERE id=" + admin.getId();
+                int x= admin.getNonApprouve() + 1;
+                String incrementNonApprouve = "UPDATE admin SET nonapprouve =" + x + " WHERE id=" + admin.getId();
                 PreparedStatement st0 = cnx.prepareStatement(incrementNonApprouve);
                 st0.executeUpdate();
 
-                String req = "INSERT INTO admin_reclamation (id_a_r,id_reclamation) VALUES (?,?)";
+                String req = "INSERT INTO admin_reclamtion (id_a_r,id_reclamation) VALUES (?,?)";
                 PreparedStatement st = cnx.prepareStatement(req);
                 st.setInt(1, admin.getId());
                 st.setInt(2, idReclamation);
@@ -86,7 +86,7 @@ public class AdminReclamationService implements IAdminReclamationService{
                 PreparedStatement st00 = cnx.prepareStatement(NonApprouve);
                 st00.executeUpdate();
             String req1 = "UPDATE reclamation SET etat=1 WHERE id=" + reclamation.getId();
-            String req2 = "DELETE FROM admin_reclamation WHERE id_reclamation=" + reclamation.getId() + " AND id_a_r <>" + admin.getId();
+            String req2 = "DELETE FROM admin_reclamtion WHERE id_reclamation=" + reclamation.getId() + " AND id_a_r <>" + admin.getId();
             Statement st = cnx.createStatement();
 
             st.executeUpdate(req1);
@@ -112,7 +112,7 @@ public class AdminReclamationService implements IAdminReclamationService{
                 st0.executeUpdate();
             }
             String req1 = "DELETE FROM reclamation WHERE id=" + reclamation.getId();
-            String req2 = "DELETE FROM admin_reclamation WHERE id_reclamation=" + reclamation.getId();
+            String req2 = "DELETE FROM admin_reclamtion WHERE id_reclamation=" + reclamation.getId();
             Statement st = cnx.createStatement();
 
             st.executeUpdate(req1);
@@ -135,7 +135,7 @@ public class AdminReclamationService implements IAdminReclamationService{
         try {
             
 
-            String req1 = "SELECT * FROM admin_reclamation WHERE id_a_r=" + admin.getId();
+            String req1 = "SELECT * FROM admin_reclamtion WHERE id_a_r=" + admin.getId();
             Statement st = cnx.createStatement();
 
             ResultSet rs = st.executeQuery(req1);

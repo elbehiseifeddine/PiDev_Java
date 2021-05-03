@@ -69,10 +69,10 @@ public class EventDatailsController implements Initializable {
         
 
         String imgg= form.getImageE();
-        String ch="/pidev_java/assets/";
+        String ch="ftp://user:123456789@192.168.1.52/";
         String imgF= ch+imgg;
         
-        Image imageF = new Image(getClass().getResourceAsStream(imgF));
+        Image imageF = new Image(imgF);
         img.setImage(imageF);
                 
     }

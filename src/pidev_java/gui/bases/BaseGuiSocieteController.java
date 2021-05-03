@@ -59,13 +59,15 @@ public class BaseGuiSocieteController implements Initializable {
     @FXML
     private Button btn_emploi11;
     @FXML
-    private Button btn_reclamation;
-    @FXML
     private Button sign_out_btn;
     @FXML
     private ScrollPane scroll_pane;
     private Parent fxml;
     Stage primaryStage;
+    @FXML
+    private Button btn_emploi111;
+    @FXML
+    private Button btn_emploi1111;
 
     /**
      * Initializes the controller class.
@@ -118,7 +120,6 @@ public class BaseGuiSocieteController implements Initializable {
         }
     }
 
-    @FXML
     private void Reclamation(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/reclamation/Reclamation.fxml"));
@@ -194,27 +195,9 @@ public class BaseGuiSocieteController implements Initializable {
         }
 
     }
-    @FXML
-    private void ConsulterDemandeE (){
-        
-         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/demandeEmploi.fxml"));
-            scroll_pane.setContent(fxml);
-        } catch (IOException e) {
-
-        }
-    }
     
-     @FXML
-    private void ConsulterDemandeS(){
-        
-         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/demandeStage.fxml"));
-            scroll_pane.setContent(fxml);
-        } catch (IOException e) {
-
-        }
-    }
+    
+    
 
     @FXML
     private void Publication(ActionEvent event) {
@@ -236,5 +219,16 @@ public class BaseGuiSocieteController implements Initializable {
 //
 //        }
 //    }
+
+         @FXML
+    private void ConsulterDemandeEE (){
+        
+         try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeEmploi/AfficherDemandeSoc.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+             System.out.println("eroorr");
+        }
+    }
 
 }

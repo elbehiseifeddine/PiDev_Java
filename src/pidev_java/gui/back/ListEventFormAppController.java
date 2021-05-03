@@ -55,6 +55,7 @@ public class ListEventFormAppController implements Initializable {
          try {
             
              ArrayList<EventLoisir> Events=new AdminEventService().historiqueEvenement(Admin.getInstance());
+             System.out.println(Admin.getInstance().getId()+" aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             for (int i = 0; i < Events.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/back/ItemEventBackHistorique.fxml"));

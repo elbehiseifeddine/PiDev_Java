@@ -129,7 +129,7 @@ public class DemandeEmploi {
         this.etat = etat;
     }
 
-    public DemandeEmploi( int id,int freelancer_id, String description, String lettre, Date date_creation, String domaine, String diplome, double salaire) {
+    public DemandeEmploi( int id,int freelancer_id, String description, String lettre, Date date_creation, String domaine, String diplome, double salaire,int offre_id) {
         this.id= id;
         this.freelancer_id = freelancer_id;
         
@@ -140,7 +140,7 @@ public class DemandeEmploi {
         this.domaine = domaine;
         this.diplome = diplome;
         this.salaire = salaire;
-       
+       this.offre_emploi_id=offre_id;
     }
 
    

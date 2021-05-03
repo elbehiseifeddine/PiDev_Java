@@ -207,6 +207,7 @@ public class AccueilAdminEvenementController implements Initializable {
                     return cell;
                 };
         actionsEvent.setCellFactory(cellFactory);
+        TabEvent.setItems(Listevent);
 
         }
     }
@@ -306,7 +307,7 @@ public class AccueilAdminEvenementController implements Initializable {
                     return cell;
                 };
         actionsFormation.setCellFactory(cellFactory);
-
+        TabFormation.setItems(Listformation);
         }
     }
 

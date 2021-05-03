@@ -41,7 +41,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setFloat(6, e.getMontant());
                 preparedStmt.setString(7,e.getImageF());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setLong(10, 1);
                 preparedStmt.setLong(11, 1);
                 preparedStmt.setInt(12, 1);
@@ -69,7 +69,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setFloat(6, e.getMontant());
                 preparedStmt.setString(7,e.getImageF());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
@@ -96,7 +96,7 @@ public class FormationService implements IServiceEvent<Formation>{
                 preparedStmt.setFloat(6, e.getMontant());
                 preparedStmt.setString(7,e.getImageF());
                 preparedStmt.setString(8, e.getLabelle());
-                preparedStmt.setBoolean(9, e.isEtat());
+                preparedStmt.setBoolean(9, false);
                 preparedStmt.setDouble(10, e.getLng());
                 preparedStmt.setDouble(11, e.getLat());
                 preparedStmt.setInt(12, idu);
@@ -184,7 +184,7 @@ public class FormationService implements IServiceEvent<Formation>{
         if(type.equals("freelancer")){
             try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM formation where id_fr_id !="+idu+" or id_fr_id is null";
+            String sql = "SELECT * FROM formation where id_fr_id !="+idu+" or id_fr_id is null and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -213,7 +213,7 @@ public class FormationService implements IServiceEvent<Formation>{
       
               try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM formation where id_so_id !="+idu+" or  id_so_id is null";
+            String sql = "SELECT * FROM formation where id_so_id !="+idu+" or  id_so_id is null and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -260,11 +260,11 @@ public class FormationService implements IServiceEvent<Formation>{
     
         
     public ArrayList<Formation> ListerparU(int idu,String type) {
-        ArrayList<Formation> res = new ArrayList<Formation>();
+        ArrayList<Formation> res = new ArrayList<>();
         if(type.equals("freelancer")){
              try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM formation where id_fr_id="+idu;
+            String sql = "SELECT * FROM formation where id_fr_id="+idu+" and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -292,7 +292,7 @@ public class FormationService implements IServiceEvent<Formation>{
         else if(type.equals("societe")){
              try {
             Statement stmt = con.createStatement();
-            String sql = "SELECT * FROM formation where id_so_id="+idu;
+            String sql = "SELECT * FROM formation where id_so_id="+idu+" and etat=1";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 int id = rs.getInt("id");

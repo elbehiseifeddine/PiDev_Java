@@ -63,11 +63,11 @@ public class BaseGuiController implements Initializable {
     @FXML
     private Button btn_demande;
     @FXML
-    private Button btn_reclamation;
-    @FXML
     private Button sign_out_btn;
     @FXML
     private Button profile;
+    @FXML
+    private Button btn_demande2;
 
     /**
      * Initializes the controller class.
@@ -81,7 +81,7 @@ public class BaseGuiController implements Initializable {
             Image img = new Image("ftp://user:123456789@192.168.1.52/"+Freelancer.getInstance().getPhoto_de_profile());
             myCircle.setFill(new ImagePattern(img));
             System.out.println("FreelancerProfile.fxmlaaaaaaaaaaaaaaa");
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/utilisateur/FreelancerProfile.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/publication/Publications.fxml"));
             System.out.println("FreelancerProfile.fxml");
             scroll_pane.setContent(fxml);
 
@@ -125,7 +125,6 @@ public class BaseGuiController implements Initializable {
         }
     }
 
-    @FXML
     private void Reclamation(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/reclamation/Reclamation.fxml"));
@@ -171,7 +170,7 @@ public class BaseGuiController implements Initializable {
     @FXML
     private void ConsulterStage(ActionEvent event) {
         try {
-            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/ConsulterOffreFreelancer.fxml"));
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/offreStage/ConsulterOffreFreelancer.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 
@@ -194,6 +193,17 @@ public class BaseGuiController implements Initializable {
     private void Publication(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/publication/Publications.fxml"));
+            scroll_pane.setContent(fxml);
+        } catch (IOException e) {
+
+        }
+
+    }
+
+    @FXML
+    private void demandeS(ActionEvent event) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/demandeStage/demandeStage.fxml"));
             scroll_pane.setContent(fxml);
         } catch (IOException e) {
 

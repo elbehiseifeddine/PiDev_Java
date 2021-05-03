@@ -110,69 +110,6 @@
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btn_eventform" layoutX="10.0" layoutY="283.0" mnemonicParsing="false" onAction="#EventForm" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
-                              </FontAwesomeIconView>
-                              <Label text="Evenements et Formations" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btn_demande" layoutX="10.0" layoutY="324.0" mnemonicParsing="false" onAction="#DemandeNonApprouve" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
-                              </FontAwesomeIconView>
-                              <Label text="Demande non Approuvé" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btn_offre" layoutX="10.0" layoutY="324.0" mnemonicParsing="false" onAction="#OffreNonApprouve" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
-                     <graphic>
-                        <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">
-                           <children>
-                              <FontAwesomeIconView glyphName="HOME" size="18">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="10.0" />
-                                 </HBox.margin>
-                              </FontAwesomeIconView>
-                              <Label text="Offre non Approuvé" textFill="#4e4e4e">
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="7.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
                   <Button fx:id="btn_listeFreelancers" layoutX="10.0" layoutY="363.0" mnemonicParsing="false" onAction="#ListeFreelancers" prefHeight="50.0" prefWidth="300.0" styleClass="left-navbar-btn">
                      <graphic>
                         <HBox prefHeight="17.0" prefWidth="284.0" styleClass="left-navbar-btn">

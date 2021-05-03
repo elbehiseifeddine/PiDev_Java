@@ -65,7 +65,8 @@ public class ItemEmploiController implements Initializable {
      public void setData(offreEmploi os) {
          
         this.offre = os;
-        //Image i = new Image("/pidev_java/"+os.getIdSociete()+".png");
+        String t = String.valueOf(os.getIdSociete());
+        Image i = new Image("/pidev_java/"+t+".png");
          
         
         this.id_Offre_Emploi.setText(""+os.getId());
@@ -77,7 +78,7 @@ public class ItemEmploiController implements Initializable {
         this.idDevise.setText(String.valueOf(os.getDevise()));
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration())); 
-        //this.aa.setImage(i);
+        this.aa.setImage(i);
      }
     @FXML
     private void Approuver(MouseEvent event) {

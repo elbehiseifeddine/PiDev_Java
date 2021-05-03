@@ -17,6 +17,7 @@ public class Reclamation_1 {
     private String EmailUser;
     private String nomUser;
     private boolean Etat;
+ 
 
     public Reclamation_1() {
     }
@@ -30,6 +31,7 @@ public class Reclamation_1 {
         this.Etat = Etat;
     }
 
+   
     public Reclamation_1(int id, String type, String TextReclamation, String DateReclamation, String EmailUser, String nomUser, boolean Etat) {
         this.id = id;
         this.type = type;

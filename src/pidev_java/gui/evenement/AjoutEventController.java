@@ -94,7 +94,7 @@ public class AjoutEventController implements Initializable {
     @FXML
     private Label labelerreur;
 
-    private boolean valide = false;
+    private boolean valide = true;
 
     /**
      * Initializes the controller class.
@@ -174,8 +174,9 @@ public class AjoutEventController implements Initializable {
         nom = selectedFile.getName();
 
         this.image.setText(nom);
+        
         FTPConnection cnx = new FTPConnection();
-        //cnx.Upload(url, nom);
+        cnx.Upload(url, nom);
 
 
         /*  FileChooser fc = new FileChooser();
@@ -229,7 +230,7 @@ public class AjoutEventController implements Initializable {
                     if (BtnAjoutE.getText().equals("Ajouter")) {
                         int idEvent = fs.maxId()+1;
                         EventLoisir E = new EventLoisir(idEvent,labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Integer.parseInt(nbpart.getText()), true, this.lng, this.lat, image.getText());
-
+                            
                         Econtroller.Ajouter(E);
                     } else if (BtnAjoutE.getText().equals("Update")) {
                         System.out.println("test1");

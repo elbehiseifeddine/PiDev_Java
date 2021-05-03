@@ -47,7 +47,7 @@ public class DemandeEmploiService implements IServiceDemande <DemandeEmploi>  {
 
 LocalDate locald = LocalDate.now();
 Date date = Date.valueOf(locald);
-            String requete = "INSERT INTO demande_emploi (description,date_creation,domaine,salaire,diplome,nomsociete,freelancer_id,lettre) VALUES (?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO demande_emploi (description,date_creation,domaine,salaire,diplome,nomsociete,freelancer_id,lettre,offre_emploi_id) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
             LocalDate date1 = LocalDate.now();
             pst.setString(1,t.getDescription());
@@ -58,6 +58,7 @@ Date date = Date.valueOf(locald);
              pst.setString(6,t.getNom_societe());
              pst.setInt(7,t.getFreelancer_id());
              pst.setString(8, t.getLettre());
+             pst.setInt(9,t.getOffre_emploi_id());
            
            
             pst.executeUpdate();
@@ -140,6 +141,43 @@ Date date = Date.valueOf(locald);
      
          
 
+    }
+    
+        
+    public void app(int id) throws SQLException{
+           try {
+               
+            String requete = "UPDATE demande_emploi SET etat=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, id);
+            pst.setInt(1, 1);
+          
+           
+            
+            pst.executeUpdate();
+            System.out.println("Demande approuver !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    
+      public void dapp(int id) throws SQLException{
+           try {
+               
+            String requete = "UPDATE demande_emploi SET etat=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, id);
+            pst.setInt(1, -1);
+          
+           
+            
+            pst.executeUpdate();
+            System.out.println("Demande approuver !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
     
 }

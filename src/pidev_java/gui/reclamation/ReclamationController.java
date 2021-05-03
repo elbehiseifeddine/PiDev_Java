@@ -15,13 +15,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import pidev_java.entities.Freelancer;
 import pidev_java.entities.Reclamation_1;
+import pidev_java.services.AdminReclamationService;
 import pidev_java.services.ReclamationService;
 import pidev_java.services.ReclamationService_1;
 
@@ -33,7 +36,7 @@ import pidev_java.services.ReclamationService_1;
 public class ReclamationController implements Initializable {
 
     @FXML
-    private TextField texttype;
+    private ComboBox<String> texttype;
     @FXML
     private TextField texttext;
     @FXML
@@ -57,12 +60,16 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableColumn<Reclamation_1, String> nom;
    
+    ObservableList<String> ListType = FXCollections.
+            observableArrayList("Evenement", "Formation", "Offre Emploi","Offre Stage");
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        texttype.setValue("Evenement");
+        texttype.setItems(ListType);
          ReclamationService_1 rs = new ReclamationService_1();
 
          List<Reclamation_1> lr = rs.Lister();
@@ -95,8 +102,11 @@ public class ReclamationController implements Initializable {
 
     @FXML
     private void modifierec(MouseEvent event) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
+           LocalDateTime now = LocalDateTime.now();  
+           String date=String.valueOf(now).replace("T", " ");
          ReclamationService_1 rs = new ReclamationService_1();
-        Reclamation_1 Rc=new Reclamation_1(Integer.parseInt(textid.getText()),texttype.getText(),texttext.getText(),"12/12/2005","aa@aa","ghaith",true);
+        Reclamation_1 Rc=new Reclamation_1(Integer.parseInt(textid.getText()),texttype.getSelectionModel().getSelectedItem(),texttext.getText(),date,Freelancer.getInstance().getEmail(),Freelancer.getInstance().getNom(),true);
         rs.Modifier(Rc);
          List<Reclamation_1> lr = rs.Lister();
         
@@ -128,8 +138,10 @@ public class ReclamationController implements Initializable {
         
         
         ReclamationService_1 rs = new ReclamationService_1();
-        Reclamation_1 Rc=new Reclamation_1(texttype.getText(),texttext.getText(),date,"aa@aa","ghaith",true);
+        int recId = new ReclamationService_1().maxId()+1;
+        Reclamation_1 Rc=new Reclamation_1(recId,texttype.getSelectionModel().getSelectedItem(),texttext.getText(),date,Freelancer.getInstance().getEmail(),Freelancer.getInstance().getNom(),true);
         rs.Ajouter(Rc);
+        new AdminReclamationService().SendToAdminReclamation(recId);
          List<Reclamation_1> lr = rs.Lister();
         
           ObservableList<Reclamation_1> data =
@@ -142,12 +154,12 @@ public class ReclamationController implements Initializable {
     private void afficherrec(MouseEvent event) {
          Reclamation_1 r = tablerec.getSelectionModel().getSelectedItem();
          textid.setText(String.valueOf(r.getId()));
-         texttype.setText(r.getType());
+         texttype.setValue(r.getType());
          texttext.setText(r.getTextReclamation());
     }
     
     public void initForm(){
-        texttype.setText("");
+        texttype.setValue("");
         texttext.setText("");
     }
     

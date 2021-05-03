@@ -33,18 +33,11 @@ public class BaseGuiSuperAdminController implements Initializable {
 
     @FXML
     private Button btn_home;
-    @FXML
     private Parent fxml;    
     @FXML
     private Button btn_statistique;
     @FXML
     private Button btn_publication;
-    @FXML
-    private Button btn_eventform;
-    @FXML
-    private Button btn_demande;
-    @FXML
-    private Button btn_offre;
     @FXML
     private Button btn_listeFreelancers;
     @FXML
@@ -98,7 +91,6 @@ public class BaseGuiSuperAdminController implements Initializable {
         }
     }
 
-    @FXML
     private void EventForm(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/back/EventFormSuperAdmin.fxml"));
@@ -108,7 +100,6 @@ public class BaseGuiSuperAdminController implements Initializable {
         }
     }
 
-    @FXML
     private void DemandeNonApprouve(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/back/DemandeNonAppSuperAdmin.fxml"));
@@ -118,7 +109,6 @@ public class BaseGuiSuperAdminController implements Initializable {
         }
     }
 
-    @FXML
     private void OffreNonApprouve(ActionEvent event) {
         try {
             fxml = FXMLLoader.load(getClass().getResource("/pidev_java/gui/back/OffreNonAppSuperAdmin.fxml"));

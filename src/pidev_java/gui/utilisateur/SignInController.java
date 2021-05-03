@@ -102,7 +102,7 @@ public class SignInController implements Initializable {
                                 System.err.println(e);
                             }
                         } else {
-                            compte_validator.setText("Compte Desactiver");
+                            compte_validator.setText("Compte Désactiver");
                             compte_validator.setVisible(true);
                         }
 
@@ -175,6 +175,7 @@ public class SignInController implements Initializable {
                                             stage.getIcons().add(img);
                                             stage.setTitle("RightJob");
                                             stage.show();
+                                            
                                         } catch (IOException e) {
                                             System.err.println(e);
                                         }

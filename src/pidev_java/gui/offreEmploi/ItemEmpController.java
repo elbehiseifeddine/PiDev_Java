@@ -132,7 +132,7 @@ public class ItemEmpController implements Initializable {
 {
     alert.close();
 }  else if(result.get() == yesButton){
-         this.ss.delete(this.offre.getId());
+         this.co.delete(this.offre.getId());
          notification();
     }
         } catch (Exception ex) {

@@ -86,10 +86,10 @@ public class AjoutFormationController implements Initializable {
     @FXML
     private JFXTextField image;
     private Formation form;
-    private double lat=0;
-    private double lng=0;
+    private double lat = 0;
+    private double lng = 0;
     private String place;
-    private boolean valide=false;
+    private boolean valide = true;
     @FXML
     private ImageView btnimage;
     @FXML
@@ -102,34 +102,33 @@ public class AjoutFormationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         DatePicker minDate = new DatePicker();
         minDate.setValue(LocalDate.now()); // Max date available will be 2015-01-01
-final Callback<DatePicker, DateCell> dayCellFactory;
+        final Callback<DatePicker, DateCell> dayCellFactory;
 
-dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
-    @Override
-    public void updateItem(LocalDate item, boolean empty) {
-        super.updateItem(item, empty);
-        if (item.isBefore(minDate.getValue())) { //Disable all dates after required date
-            setDisable(true);
-            setStyle("-fx-background-color: #ffc0cb;"); //To set background on different color
-        }
-    }
-};
+        dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item.isBefore(minDate.getValue())) { //Disable all dates after required date
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;"); //To set background on different color
+                }
+            }
+        };
 //Finally, we just need to update our DatePicker cell factory as follow:
-textdated.setDayCellFactory(dayCellFactory);
-textdatef.setDayCellFactory(dayCellFactory);
-       
+        textdated.setDayCellFactory(dayCellFactory);
+        textdatef.setDayCellFactory(dayCellFactory);
+
         // TODO
     }
-    
-    public void init(FormationController fc){
-        this.fcontroller=fc;
-       
+
+    public void init(FormationController fc) {
+        this.fcontroller = fc;
+
     }
-    
-    
-     public void initUpdate(FormationController fc,Formation F){
-         this.form=F;
-        this.fcontroller=fc;
+
+    public void initUpdate(FormationController fc, Formation F) {
+        this.form = F;
+        this.fcontroller = fc;
         labelle.setText(F.getLabelle());
         description.setText(F.getDescription());
         lieu.setText(F.getLieu());
@@ -141,8 +140,7 @@ textdatef.setDayCellFactory(dayCellFactory);
         heured.setValue(LocalTime.parse(F.getDateDebut().toString().split(" ")[1]));
         heuref.setValue(LocalTime.parse(F.getDateFin().toString().split(" ")[1]));
         BtnAjoutF.setText("Update");
-                
-       
+
     }
 
     @FXML
@@ -154,44 +152,41 @@ textdatef.setDayCellFactory(dayCellFactory);
             alert.setContentText("veuillez remplir tous les champs");
             alert.showAndWait();
         } else {
-            if(!valide){
-                 Alert alert1 = new Alert(Alert.AlertType.WARNING);
+            if (!valide) {
+                Alert alert1 = new Alert(Alert.AlertType.WARNING);
                 alert1.setTitle("erreur");
 
                 alert1.setContentText("Entrer un montant valide");
                 alert1.showAndWait();
-            }
-            else{
-               
-            String DateDeb = textdated.getValue().toString().replace('/', '-') + " " + heured.getValue().toString().split(" ")[0]+":00";
-            String DateFin = textdatef.getValue().toString().replace('/', '-') + " " + heuref.getValue().toString().split(" ")[0]+":00";
-            System.out.println(DateDeb);
-            if (Timestamp.valueOf(DateFin).before(Timestamp.valueOf(DateDeb))) {
-                Alert alert1 = new Alert(Alert.AlertType.WARNING);
-                alert1.setTitle("erreur");
-
-                alert1.setContentText("date debut supperieur à la date fin");
-                alert1.showAndWait();
-
             } else {
-                if(BtnAjoutF.getText().equals("Ajouter")){
-                    
-             int IdFormation = fs.maxId()+1;
-                Formation F = new Formation(IdFormation,labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
-                fcontroller.Ajouter(F);
-                }
-                else if(BtnAjoutF.getText().equals("Update")){
-                  Formation F = new Formation(this.form.getId(),labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, (long)this.lng, (long)this.lat, image.getText());
-                    if((F.getDateDebut().compareTo(this.form.getDateDebut()) !=0) || (F.getDateFin().compareTo(this.form.getDateFin()) !=0)
-                            || !(F.getLieu().equals(this.form.getLieu()))){
-                              try {
-                                String emailCon="";
-                                if(Freelancer.getInstance() != null) {
-                                    emailCon=Freelancer.getInstance().getEmail();
-                                }
-                                else if(Societe.getInstance() != null){
-                                    emailCon=Societe.getInstance().getEmail();
-                                    
+
+                String DateDeb = textdated.getValue().toString().replace('/', '-') + " " + heured.getValue().toString().split(" ")[0] + ":00";
+                String DateFin = textdatef.getValue().toString().replace('/', '-') + " " + heuref.getValue().toString().split(" ")[0] + ":00";
+                System.out.println(DateDeb);
+                if (Timestamp.valueOf(DateFin).before(Timestamp.valueOf(DateDeb))) {
+                    Alert alert1 = new Alert(Alert.AlertType.WARNING);
+                    alert1.setTitle("erreur");
+
+                    alert1.setContentText("date debut supperieur à la date fin");
+                    alert1.showAndWait();
+
+                } else {
+                    if (BtnAjoutF.getText().equals("Ajouter")) {
+
+                        int IdFormation = fs.maxId() + 1;
+                        Formation F = new Formation(IdFormation, labelle.getText(), description.getText(), this.place, Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, this.lng, this.lat, image.getText());
+                        fcontroller.Ajouter(F);
+                    } else if (BtnAjoutF.getText().equals("Update")) {
+                        Formation F = new Formation(this.form.getId(), labelle.getText(), description.getText(), lieu.getText(), Timestamp.valueOf(DateDeb), Timestamp.valueOf(DateFin), domaine.getText(), Float.parseFloat(montant.getText()), true, (long) this.lng, (long) this.lat, image.getText());
+                        if ((F.getDateDebut().compareTo(this.form.getDateDebut()) != 0) || (F.getDateFin().compareTo(this.form.getDateFin()) != 0)
+                                || !(F.getLieu().equals(this.form.getLieu()))) {
+                            try {
+                                String emailCon = "";
+                                if (Freelancer.getInstance() != null) {
+                                    emailCon = Freelancer.getInstance().getEmail();
+                                } else if (Societe.getInstance() != null) {
+                                    emailCon = Societe.getInstance().getEmail();
+
                                 }
                                 JavaMail mail = new JavaMail();
                                 mail.recipient = emailCon;
@@ -200,28 +195,27 @@ textdatef.setDayCellFactory(dayCellFactory);
                                 mail.start();
 
                             } catch (Exception ex) {
-                            }   
+                            }
+                        }
+                        fcontroller.Update(F);
+
                     }
-                    fcontroller.Update(F);
-                    
+                    Window window = ((Node) (event.getSource())).getScene().getWindow();
+                    if (window instanceof Stage) {
+                        ((Stage) window).close();
+                    }
+
                 }
-                Window window =   ((Node)(event.getSource())).getScene().getWindow(); 
-            if (window instanceof Stage){
-                ((Stage) window).close();
             }
-               
-            
-            }
-        }
         }
     }
 
     @FXML
     private void AnnulerF(MouseEvent event) {
-             Window window =   ((Node)(event.getSource())).getScene().getWindow(); 
-            if (window instanceof Stage){
-                ((Stage) window).close();
-            }
+        Window window = ((Node) (event.getSource())).getScene().getWindow();
+        if (window instanceof Stage) {
+            ((Stage) window).close();
+        }
     }
 
     @FXML
@@ -230,29 +224,17 @@ textdatef.setDayCellFactory(dayCellFactory);
 
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
         FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+        fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
         File selectedFile = fc.showOpenDialog(null);
         url = selectedFile.getAbsolutePath();
         nom = selectedFile.getName();
 
         this.image.setText(nom);
         FTPConnection cnx = new FTPConnection();
-        //cnx.Upload(url, nom);
+        cnx.Upload(url, nom);
     }
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /* FileChooser fc = new FileChooser();
+
+    /* FileChooser fc = new FileChooser();
         File selected = fc.showOpenDialog(null);
         if(selected !=null )
         {
@@ -271,50 +253,46 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
             image.setText(selected.getName());
         }
     }*/
-
     @FXML
     private void sjhowMap(MouseEvent event) {
-         try {
-                 FXMLLoader loader1 = new FXMLLoader ();
-                 loader1.setLocation(getClass().getResource("/pidev_java/gui/formation/MapF.fxml"));
-                
-                 Parent  parent = (Parent)loader1.load();
-                  Stage stage = new Stage();
-                 stage.setScene(new Scene(parent));
-                  stage.show();
-                   
-                  MapFController mc=loader1.getController();
-                 mc.init(this);
-                
-             } catch (IOException ex) {
-                 Logger.getLogger(FormationController.class.getName()).log(Level.SEVERE, null, ex);
-             }
+        try {
+            FXMLLoader loader1 = new FXMLLoader();
+            loader1.setLocation(getClass().getResource("/pidev_java/gui/formation/MapF.fxml"));
+
+            Parent parent = (Parent) loader1.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+
+            MapFController mc = loader1.getController();
+            mc.init(this);
+
+        } catch (IOException ex) {
+            Logger.getLogger(FormationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    public void setCoordnate(double lat,double lng,String place){
-        this.lat=lat;
-        this.lng=lng;
-        this.place=place;
+
+    public void setCoordnate(double lat, double lng, String place) {
+        this.lat = lat;
+        this.lng = lng;
+        this.place = place;
         lieu.setText(place);
     }
-    
-    
-    
-    
-    public static String saveToFileImageNormal(Image image)throws SQLException  {
+
+    public static String saveToFileImageNormal(Image image) throws SQLException {
 
         String ext = "jpg";
-      //  File dir = new File("C:/Users/USER/Document/GitHub/5/Oxyvia-Tours/public/picture");
-             File dir1 = new File("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets");
+        //  File dir = new File("C:/Users/USER/Document/GitHub/5/Oxyvia-Tours/public/picture");
+        File dir1 = new File("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets");
         //String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(😎, ext);
         String name1 = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
-      //  File outputFile = new File(dir, name);
+        //  File outputFile = new File(dir, name);
         File outputFile1 = new File(dir1, name1);
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
         BufferedImage bImage1 = SwingFXUtils.fromFXImage(image, null);
         try {
-         //   ImageIO.write(bImage, "png", outputFile);
-               ImageIO.write(bImage1, "png", outputFile1);
+            //   ImageIO.write(bImage, "png", outputFile);
+            ImageIO.write(bImage1, "png", outputFile1);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -323,25 +301,21 @@ fc.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
     @FXML
     private void ControleFloat(KeyEvent event) {
-        FormationService forms=new FormationService();
-        if(montant.getText().isEmpty()){
+        FormationService forms = new FormationService();
+        if (montant.getText().isEmpty()) {
             labelerreur.setText("");
-            valide=false;
-        }
-        else{
-            if(forms.estUnEntier(montant.getText())){
+            valide = false;
+        } else {
+            if (forms.estUnEntier(montant.getText())) {
                 labelerreur.setText("valide");
                 labelerreur.setTextFill(Color.web("#00ff09", 1.0));
-                valide=true;
-            }
-            else{
-                   labelerreur.setText("non valide");
+                valide = true;
+            } else {
+                labelerreur.setText("non valide");
                 labelerreur.setTextFill(Color.web("#ff0000", 1.0));
-                valide=false;
+                valide = false;
             }
         }
     }
-
-  
 
 }

@@ -5,14 +5,15 @@
  */
 package pidev_java.services;
 import pidev_java.entities.Reponse;
-//import pidev_java.utils.Singleton;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.sql.DataSource;
+import pidev_java.entities.Question;
+import pidev_java.utils.MaConnection;
 
 
 /**
@@ -23,9 +24,28 @@ public class ReponseService {
    Connection conn;
     
     public ReponseService(){
-         //conn = Singleton.getConn();    
+         conn = MaConnection.getInstance().getCnx();
     }
-    
+    public int addReponseAndGetItsId(Reponse reponse) throws SQLException{
+        
+        String sql="INSERT INTO reponse (id_ques_id, contenu_rep) "
+                + "VALUES ( ?, ?)";
+            
+        String generatedColumns[] = { "ID" };
+        PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
+        statement.setString(2,reponse.getContenu_rep() );
+        statement.setInt(1, reponse.getId_ques_id());
+ 
+        statement.executeUpdate();
+         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Creating quiz failed, no ID obtained.");
+            }
+        }
+    }
     
     public void addReponse(Reponse reponse){
         
@@ -72,8 +92,23 @@ public class ReponseService {
     }
     
     
-    
-    
+    public List<Reponse> getReponseByQuestion(Question question) throws SQLException{
+        
+        List<Reponse> listReponse = new ArrayList();
+        String sql="SELECT * FROM reponse where id_ques_id="+question.getId();
+        Statement st=conn.createStatement();
+        ResultSet res= st.executeQuery(sql);
+        while (res.next())
+        {
+            int id = res.getInt("id");
+            String contenu_rep = res.getString("contenu_rep");
+            int id_ques_id  = res.getInt("id_ques_id");
+            Reponse reponse = new Reponse (id,id_ques_id , contenu_rep);
+            listReponse.add(reponse);
+        }
+            return listReponse;
+    }
+   
     
     public Reponse getReponse( int id ) throws SQLException{
         String sql="SELECT * FROM reponse where id ="+id;
@@ -107,4 +142,3 @@ public class ReponseService {
             return listReponse;
     }
 } 
-

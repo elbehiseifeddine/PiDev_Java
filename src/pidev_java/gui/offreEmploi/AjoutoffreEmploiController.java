@@ -156,6 +156,7 @@ dtExpiration.setDayCellFactory(dayCellFactory);
                     usernameValidator.getItems().add(
                             new MenuItem("choisir votre devise"));
                     usernameValidator.show(cmbDomaine, Side.RIGHT, 10, 0);
+                    
                 }
           else{
          Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
@@ -215,10 +216,9 @@ dtExpiration.setDayCellFactory(dayCellFactory);
        
     
     }
+
     @FXML
     private void cmbDevise(MouseEvent event) {
     }
+    
 }
-    
-    
-

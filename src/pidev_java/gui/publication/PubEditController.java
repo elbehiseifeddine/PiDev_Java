@@ -56,7 +56,7 @@ public class PubEditController implements Initializable {
     public void pubEdit(int id_pub, String desc, String date , String img){
         lb_edit_id.setText(""+id_pub);
         tf_desc_edit.setText(desc);
-        img_edit.setImage(new Image( img));
+        img_edit.setImage(new Image( "ftp://user:123456789@192.168.1.52/"+img));
         lb_edit_date.setText(date);
         
         btn_edit_conf.setOnAction(e->{

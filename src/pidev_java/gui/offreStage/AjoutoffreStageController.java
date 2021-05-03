@@ -43,7 +43,6 @@ import org.controlsfx.control.Notifications;
 import pidev_java.entities.Societe;
 import pidev_java.entities.offreStage;
 import pidev_java.services.AdminEmploiService;
-import pidev_java.services.emploiService;
 import pidev_java.services.stageService;
 
 /**
@@ -106,18 +105,16 @@ public class AjoutoffreStageController implements Initializable {
 
         // TODO
     }
-    
-    
-     public void init(ConsulterOffreStageController cc){
-        this.cs=cc;
-       
+
+    public void init(ConsulterOffreStageController cc) {
+        this.cs = cc;
+
     }
-    
 
     @FXML
     private void ajouterEmploi(MouseEvent event) {
         Societe s = Societe.getInstance();
-        
+
         ContextMenu usernameValidator = new ContextMenu();
         usernameValidator.setAutoHide(false);
         final ContextMenu passValidator = new ContextMenu();
@@ -127,8 +124,7 @@ public class AjoutoffreStageController implements Initializable {
         LocalDateTime now = LocalDateTime.now();
         System.out.println(now.toLocalDate());
         Date dateC = Date.valueOf(now.toLocalDate());
-         
-        
+
         if (this.tfNom.getText().equals("")) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
@@ -160,30 +156,30 @@ public class AjoutoffreStageController implements Initializable {
             usernameValidator.getItems().add(
                     new MenuItem("choisir une durée"));
             usernameValidator.show(cmbDuree, Side.RIGHT, 10, 0);
-        } else if (this.dtExpiration.getValue()==null) {
+        } else if (this.dtExpiration.getValue() == null) {
             usernameValidator.getItems().clear();
             usernameValidator.getItems().add(
                     new MenuItem("saisir une date d'expiration"));
             usernameValidator.show(dtExpiration, Side.RIGHT, 10, 0);
-            
-        } else {
-            
-           Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
 
+        } else {
+
+            Date dateE = java.sql.Date.valueOf(dtExpiration.getValue());
             stageService service = new stageService();
-            int idOffreStage = service.maxId()+1;
-        offreStage e = new offreStage(idOffreStage,tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbType.getSelectionModel().getSelectedItem(), dateC, dateE);
+            int idOffreStage = service.maxId() + 1;
+            offreStage e = new offreStage(idOffreStage, tfNom.getText(), tfCompetences.getText(), tfDescription.getText(), this.cmbDomaine.getSelectionModel().getSelectedItem(), this.cmbDuree.getSelectionModel().getSelectedItem(), this.cmbDomaine.getSelectionModel().getSelectedItem(), dateC, dateE);
+
             e.setIdSociete(s.getId());
             new stageService().add(e);
-            notification();
             new AdminEmploiService().SendOffreStageToAdminEmploi(e.getId());
-           
+
+            notification();
             this.resetStage();
-              this.cs.updateList();
-                Window window = ((Node) (event.getSource())).getScene().getWindow();
-        if (window instanceof Stage) {
-            ((Stage) window).close();
-        }
+            this.cs.updateList();
+            Window window = ((Node) (event.getSource())).getScene().getWindow();
+            if (window instanceof Stage) {
+                ((Stage) window).close();
+            }
         }
     }
 
@@ -228,24 +224,23 @@ public class AjoutoffreStageController implements Initializable {
 
         alert.showAndWait();
     }
-    
-    public void notification(){
-      // Image img = new Image("tt.png");
+
+    public void notification() {
+        // Image img = new Image("tt.png");
         Notifications notificationBuilder = Notifications.create()
                 .title("Succés d'ajout")
                 .text("votre offre a été ajouter avec succés")
-              //  .graphic(new ImageView(img))
+                //  .graphic(new ImageView(img))
                 .hideAfter(Duration.seconds(5))
                 .position(Pos.TOP_RIGHT)
                 .onAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                 System.out.println("clicked on notification");
-            }
-        });
+                    @Override
+                    public void handle(ActionEvent event) {
+                        System.out.println("clicked on notification");
+                    }
+                });
         notificationBuilder.darkStyle();
         notificationBuilder.showInformation();
-       
-    
+
     }
 }

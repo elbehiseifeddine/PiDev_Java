@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="1326.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeEmploi.AfficherDemandeSocController">
+   <children>
+      <ListView fx:id="listOffre" layoutX="48.0" layoutY="45.0" prefHeight="475.0" prefWidth="715.0" />
+      <Button fx:id="btnApprouver" layoutX="1116.0" layoutY="556.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="179.0" style="-fx-background-color: #C12869;" text="Approuver" textFill="#e3e3e3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnDissaprouve" layoutX="815.0" layoutY="553.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #C12869;" text="Rejeter" textFill="#e3e3e3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <ListView fx:id="listDemande" layoutX="795.0" layoutY="45.0" prefHeight="475.0" prefWidth="534.0" />
+      <Button fx:id="btnList" layoutX="180.0" layoutY="553.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="463.0" style="-fx-background-color: #C12869;" text="Lister" textFill="#e3e3e3">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

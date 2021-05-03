@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import pidev_java.entities.Admin;
 import pidev_java.entities.EventLoisir;
 import pidev_java.entities.Formation;
+import pidev_java.entities.Reclamation;
 import pidev_java.entities.offreEmploi;
 import pidev_java.entities.offreStage;
 import pidev_java.interfaces.IAdminService;
@@ -118,6 +119,20 @@ public class AdminService implements IAdminService<Admin> {
 
                 }
             }
+            if (entity.getType().equals("Admin des reclamations")) {
+                ArrayList<Reclamation> Listerec = new ReclamationService().getAllNonApprouve();
+                if (!Listerec.isEmpty()) {
+                    for (Reclamation event : Listerec) {
+                        String sql1 = "INSERT INTO admin_reclamtion (id_a_r,id_reclamation VALUES (?,?)";
+                        PreparedStatement pst = cnx.prepareStatement(sql1);
+                        pst.setInt(1, entity.getId());
+
+                        pst.setInt(2, event.getId());
+                        pst.executeUpdate();
+                    }
+
+                }
+            }
         } catch (SQLException ex) {
             System.out.println("this is the add function Connexion à la base de données impossible , " + ex.getMessage());
         }
@@ -156,7 +171,8 @@ public class AdminService implements IAdminService<Admin> {
     }
 
     @Override
-    public void update(Admin entity, String OldType) {
+    public void update(Admin entity, String OldType
+    ) {
         int nonapprouve;
         try {
 
@@ -223,31 +239,32 @@ public class AdminService implements IAdminService<Admin> {
 
                 }
 
-//                if (entity.getType().equals("Admin des emplois")) {
-//                    OffreEmploiService OES = new OffreEmploiService();
-//                    OffreStageService OSS = new OffreStageService();
-//                    nonapprouve = OES.countOffreEmploiNonApprouve() + OSS.countOffreStageNonApprouve();
-//                    String requette = "UPDATE admin SET 'nom'='" + entity.getNom() + "','prenom'='" + entity.getPrenom()
-//                            + "','login'='" + entity.getLogin() + "','password'='" + entity.getPass() + "' , 'type'='" + entity.getType()
-//                            + "' , 'etat'=" + entity.isEtat() + " , approuve = 0 , nonapprouve = " + nonapprouve + ""
-//                            + " where id = " + entity.getId() + ";";
-//                    Statement st = cnx.createStatement();
-//
-//                    st.executeUpdate(requette);
-//                }
-//
-//                if (entity.getType().equals("Admin des events")) {
-//                    EventLoisirService ELS = new EventLoisirService();
-//                    FormationService FS = new FormationService();
-//                    nonapprouve = ELS.countEventsLoisirNonApprouve() + FS.countFormationNonApprouve();
-//                    String requette = "UPDATE admin SET 'nom'='" + entity.getNom() + "','prenom'='" + entity.getPrenom()
-//                            + "','login'='" + entity.getLogin() + "','password'='" + entity.getPass() + "' , 'type'='" + entity.getType()
-//                            + "' , 'etat'=" + entity.isEtat() + " , approuve = 0 , nonapprouve = " + nonapprouve + ""
-//                            + " where id = " + entity.getId() + ";";
-//                    Statement st = cnx.createStatement();
-//
-//                    st.executeUpdate(requette);
-//                }
+                if (entity.getType().equals("Admin des emplois")) {
+                    
+                    emploiService OES = new emploiService();
+                    stageService OSS = new stageService();
+                    nonapprouve = OES.countOffreEmploiNonApprouve() + OSS.countOffreStageNonApprouve();
+                    String requette = "UPDATE admin SET 'nom'='" + entity.getNom() + "','prenom'='" + entity.getPrenom()
+                            + "','login'='" + entity.getLogin() + "','password'='" + entity.getPass() + "' , 'type'='" + entity.getType()
+                            + "' , 'etat'=" + entity.isEtat() + " , approuve = 0 , nonapprouve = " + nonapprouve + ""
+                            + " where id = " + entity.getId() + ";";
+                    Statement st = cnx.createStatement();
+
+                    st.executeUpdate(requette);
+                }
+
+                if (entity.getType().equals("Admin des events")) {
+                    EventService ELS = new EventService();
+                    FormationService FS = new FormationService();
+                    nonapprouve = ELS.countEventsLoisirNonApprouve() + FS.countFormationNonApprouve();
+                    String requette = "UPDATE admin SET 'nom'='" + entity.getNom() + "','prenom'='" + entity.getPrenom()
+                            + "','login'='" + entity.getLogin() + "','password'='" + entity.getPass() + "' , 'type'='" + entity.getType()
+                            + "' , 'etat'=" + entity.isEtat() + " , approuve = 0 , nonapprouve = " + nonapprouve + ""
+                            + " where id = " + entity.getId() + ";";
+                    Statement st = cnx.createStatement();
+
+                    st.executeUpdate(requette);
+                }
             }
         } catch (SQLException ex) {
             System.out.println(" update function || Connexion à la base de données impossible , " + ex.getMessage());
@@ -255,12 +272,13 @@ public class AdminService implements IAdminService<Admin> {
     }
 
     @Override
-    public void delete(Admin entity) {
+    public void delete(Admin entity
+    ) {
         try {
             System.out.println(entity.getId());
             String delete;
             if (entity.getType().equals("Admin des reclamations")) {
-                delete = "DELETE FROM admin_reclamation where id_a_r =" + entity.getId();
+                delete = "DELETE FROM admin_reclamtion where id_a_r =" + entity.getId();
             }
 
             if (entity.getType().equals("Admin des emplois")) {
@@ -280,7 +298,8 @@ public class AdminService implements IAdminService<Admin> {
     }
 
     @Override
-    public Admin find(int id) {
+    public Admin find(int id
+    ) {
         Admin admin = new Admin();
         String req = "SELECT * FROM admin WHERE id =" + id + ";";
         try {
@@ -308,7 +327,8 @@ public class AdminService implements IAdminService<Admin> {
     }
 
     @Override
-    public ArrayList<Admin> findByName(String name) {
+    public ArrayList<Admin> findByName(String name
+    ) {
         ArrayList<Admin> ListeAdmins = new ArrayList<>();
         String req = "SELECT * FROM admin WHERE nom LIKE %" + name + "%;";
         try {
@@ -427,7 +447,8 @@ public class AdminService implements IAdminService<Admin> {
     }
 
     @Override
-    public Admin findByEmail(String login) {
+    public Admin findByEmail(String login
+    ) {
         Admin a = new Admin();
         try {
 

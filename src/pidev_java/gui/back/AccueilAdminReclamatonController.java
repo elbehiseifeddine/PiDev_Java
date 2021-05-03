@@ -125,7 +125,11 @@ public class AccueilAdminReclamatonController implements Initializable {
                                 + "-fx-fill:#00E676;"
                         );
             approuve.setOnMouseClicked((event) -> {
-                //ars.Activate(reclamation, Admin.getInstance());
+                ars.Activate(reclamation, Admin.getInstance());
+                
+            });
+            deletebtn.setOnMouseClicked((event) -> {
+                ars.Deactivate(reclamation);
             });
             
             HBox buttons = new HBox(approuve,deletebtn);

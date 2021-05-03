@@ -29,6 +29,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import pidev_java.entities.Societe;
 import pidev_java.entities.offreStage;
 import pidev_java.services.stageService;
 
@@ -167,6 +168,54 @@ public class ConsulterOffreStageController implements Initializable {
              } catch (IOException ex) {
                  System.out.println("erreur");
              }
+    }
+    
+    public void delete(int id){
+        stageService ss=new stageService();
+        ss.delete(id);
+         scrolStage.setVisible(true);
+         gridStage.getChildren().clear();
+         int columnMesForm = 0;
+        int rowMesForm = 1;
+         
+        
+         try {
+            
+            
+           List<offreStage> MesOffre=ss.getOwn(Societe.getInstance().getId());
+            for (int i = 0; i < MesOffre.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/pidev_java/gui/offreStage/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+               
+                itemController.setData(MesOffre.get(i),this);
+
+                 if (columnMesForm == 2) {
+                    columnMesForm = 0;
+                    rowMesForm++;
+                }
+
+                gridStage.add(anchorPane, columnMesForm, rowMesForm++); //(child,column,row)
+                //set grid width
+                gridStage.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridStage.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridStage.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                gridStage.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridStage.setPrefHeight(Region.USE_COMPUTED_SIZE);
+               gridStage.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+         //  }
+     }
+        // }TODO
     }
     
     

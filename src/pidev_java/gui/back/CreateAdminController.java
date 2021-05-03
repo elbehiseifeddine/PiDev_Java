@@ -45,44 +45,39 @@ public class CreateAdminController implements Initializable {
             observableArrayList("Admin des reclamations", "Admin des events", "Admin des emplois");
     ObservableList<String> ListEtat = FXCollections.
             observableArrayList("Active", "Inactive");
-
+    @FXML
     private TextField nom;
+    @FXML
     private TextField prenom;
+    @FXML
     private TextField login;
+    @FXML
     private TextField pass;
+    @FXML
     private ComboBox<String> type;
+    @FXML
     private ComboBox<String> etat;
 
     private boolean update;
     int id_admin;
+    @FXML
     private Label nom_error;
+    @FXML
     private Label prenom_error;
+    @FXML
     private Label email_error;
+    @FXML
     private Label pass_error;
+    @FXML
     private Label type_error;
+    @FXML
     private Label etat_error;
     @FXML
     private VBox Vboxadd;
     @FXML
-    private Label labelle;
+    private Button btnValider;
     @FXML
-    private Label dated;
-    @FXML
-    private Label datef;
-    @FXML
-    private FontAwesomeIconView updateEvent;
-    @FXML
-    private Label description;
-    @FXML
-    private Label domaine;
-    @FXML
-    private Label montant;
-    @FXML
-    private Label lieu;
-    @FXML
-    private FontAwesomeIconView btndeleteE;
-    @FXML
-    private ImageView img;
+    private Button btnReset;
 
     /**
      * Initializes the controller class.
@@ -93,12 +88,15 @@ public class CreateAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        type.setValue("Admin des reclamations");
+        
+        
         type.setItems(ListType);
-        etat.setValue("Active");
+        type.setValue("Admin des reclamations");
+        
         etat.setItems(ListEtat);
+        etat.setValue("Active");
     }
-
+    @FXML
     private void AjouterAdmin(ActionEvent event) {
         if (update == false) {
             if (nom.getText().equals("")) {
@@ -174,7 +172,7 @@ public class CreateAdminController implements Initializable {
             stage.close();
         }
     }
-
+    @FXML
     private void reset(ActionEvent event) {
         nom.setText("");
         prenom.setText("");
@@ -203,11 +201,4 @@ public class CreateAdminController implements Initializable {
 
     }
 
-    @FXML
-    private void updateEvent(MouseEvent event) {
-    }
-
-    @FXML
-    private void deleteEvent(MouseEvent event) {
-    }
 }

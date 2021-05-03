@@ -67,7 +67,8 @@ public class PetitItemEmploiController implements Initializable {
     public void setData(offreEmploi os,ListeEmploiStageController fc) {
          this.co=fc;
         this.offre = os;
-        //Image i = new Image("/pidev_java/"+os.getIdSociete()+".png");
+        String t = String.valueOf(os.getIdSociete());
+        Image i = new Image("/pidev_java/"+t+".png");
          
         this.id_Offre_Emploi.setText(String.valueOf(os.getId()));
         this.idNom.setText(os.getNomProjet());
@@ -78,7 +79,7 @@ public class PetitItemEmploiController implements Initializable {
         this.idDevise.setText(String.valueOf(os.getDevise()));
         
         this.idDTexpr.setText(String.valueOf(os.getDateExpiration()));
-        //this.aa.setImage(i);
+        this.aa.setImage(i);
      }
     
     

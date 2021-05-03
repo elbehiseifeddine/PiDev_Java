@@ -1,15 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev_java.gui.demandeStage.DemandeStageController">
    <children>
-      <Label text="demandeStage">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <VBox prefHeight="1042.0" prefWidth="1601.0" stylesheets="@../../styles/Styles.css">
+         <children>
+            <AnchorPane prefHeight="1048.0" prefWidth="1601.0">
+               <children>
+                  <Label layoutX="70.0" layoutY="44.0" prefHeight="71.0" prefWidth="444.0" text="Mes Demandes de Stage envoyer" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="27.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5111111111111111" centerY="0.7142857142857143" radius="0.5">
+                           <stops>
+                              <Stop color="#a1a0a0" />
+                              <Stop color="#bf286aa1" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Label>
+                  <ListView fx:id="listDemande" layoutX="14.0" layoutY="170.0" prefHeight="450.0" prefWidth="677.0" />
+                  <Button fx:id="btnModifier" layoutX="392.0" layoutY="635.0" mnemonicParsing="false" onAction="#modifierDemande" prefHeight="33.0" prefWidth="179.0" style="-fx-background-color: #C12869;" text="modifier" textFill="#e3e3e3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnsupp" layoutX="100.0" layoutY="635.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="164.0" style="-fx-background-color: #C12869;" text="Supprimer" textFill="#e3e3e3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane layoutX="812.0" layoutY="56.0" prefHeight="563.0" prefWidth="745.0" style="-fx-background-color: #E5E4E2;">
+                     <children>
+                        <TextField fx:id="tfDescription" layoutX="202.0" layoutY="95.0" prefHeight="25.0" prefWidth="388.0" promptText="Description" />
+                        <TextField fx:id="tfDomaine" layoutX="229.0" layoutY="140.0" prefHeight="25.0" prefWidth="234.0" promptText="domaine" />
+                        <TextField fx:id="tfEtude" layoutX="437.0" layoutY="200.0" prefHeight="25.0" prefWidth="219.0" promptText="etude" />
+                        <Label layoutX="82.0" layoutY="88.0" prefHeight="40.0" prefWidth="134.0" text="Description :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="82.0" layoutY="133.0" prefHeight="40.0" prefWidth="146.0" text="Votre domaine :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="155.0" layoutY="192.0" prefHeight="40.0" prefWidth="179.0" text="Durée :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="361.0" layoutY="192.0" prefHeight="40.0" prefWidth="71.0" text="Etude :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="82.0" layoutY="309.0" prefHeight="40.0" prefWidth="187.0" text="Lettre de motivation :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="tflettre" layoutX="272.0" layoutY="317.0" prefHeight="162.0" prefWidth="455.0" text="&#10;&#10;" />
+                        <TextField fx:id="tfDuree" layoutX="239.0" layoutY="200.0" prefHeight="25.0" prefWidth="60.0" promptText="0" />
+                        <Label layoutX="306.0" layoutY="200.0" prefHeight="25.0" prefWidth="37.0" text="sem">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnValider" layoutX="279.0" layoutY="515.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="187.0" style="-fx-background-color: #C12869;" text="Valider" textFill="#e4e4e4">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="tfid" layoutX="529.0" layoutY="503.0" opacity="0.0" />
+                        <TextField fx:id="tfType" layoutX="160.0" layoutY="258.0" prefHeight="25.0" prefWidth="219.0" promptText="type" />
+                        <Label layoutX="82.0" layoutY="250.0" prefHeight="40.0" prefWidth="179.0" text="Type :" textFill="#514f4f" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </VBox>

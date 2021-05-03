@@ -6,11 +6,12 @@
 package pidev_java.services;
 
 import pidev_java.entities.Quiz;
-//import pidev_java.utils.Singleton;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.activation.DataSource;
+import pidev_java.utils.MaConnection;
 
 /**
  *
@@ -20,7 +21,25 @@ public class QuizService {
     Connection conn;
     
     public QuizService(){
-        //conn = Singleton.getConn();
+        conn = MaConnection.getInstance().getCnx();
+    }
+    
+        public int addQuizAndGetItsId(Quiz quiz) throws SQLException{
+        
+        String sql="INSERT INTO quiz (nom_quiz, nomb_question) VALUES (? ,?)";
+        String generatedColumns[] = { "ID" };
+        PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
+        statement.setString(1, quiz.getNom_quiz());
+        statement.setInt(2, quiz.getNomb_question());
+        statement.executeUpdate();
+         try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Creating quiz failed, no ID obtained.");
+            }
+        }
     }
     
     

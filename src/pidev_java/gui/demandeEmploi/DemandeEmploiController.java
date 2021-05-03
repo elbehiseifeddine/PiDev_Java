@@ -114,7 +114,7 @@ public class DemandeEmploiController implements Initializable {
             
             Label lb2 = new Label();
               try {
-                  lb2.setGraphic( new ImageView(new Image(new FileInputStream("C:\\Users\\ely\\Desktop\\esprit y3\\semestre 2\\project\\javaFX\\PiDev_Java\\src\\pidev_java\\assets/iconD.png"))));
+                  lb2.setGraphic( new ImageView(new Image(new FileInputStream("C:\\Users\\seifeddine\\Documents\\NetBeansProjects\\PiDev_Java\\src\\pidev_java\\assets\\iconD.png"))));
               } catch (FileNotFoundException ex) {
                   Logger.getLogger(DemandeEmploiController.class.getName()).log(Level.SEVERE, null, ex);
               }
@@ -143,8 +143,9 @@ public class DemandeEmploiController implements Initializable {
                 btnValider.setOnAction(xx->{
            Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == yesButton)
-            {
-                 updateDemande(D);
+            { Boolean test;
+                test= updateDemande(D);
+                if(test==true)
                 JOptionPane.showMessageDialog(null, "Demande modifier !");
             }
             else if(result.get() == noButton)
@@ -213,7 +214,9 @@ public class DemandeEmploiController implements Initializable {
                         resultSet.getDate("date_creation"),
                         resultSet.getString("domaine") ,
                         resultSet.getString("diplome") ,
-                        resultSet.getFloat("salaire")
+                        resultSet.getFloat("salaire"),
+                        resultSet.getInt("offre_emploi_id")
+                    
                 ));
                         
                         
@@ -257,14 +260,67 @@ return DemandeList;
     
     }
        
-       private void updateDemande(DemandeEmploi d){
-           d.setDescription(tfDescription.getText());
- d.setDiplome(tfDiplome.getText());
-           d.setDomaine(tfDomaine.getText());
-           d.setSalaire(Float.parseFloat(tfSalaire.getText()));
-           d.setLettre(tflettre.getText());
+       private Boolean updateDemande(DemandeEmploi d){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Form non valide !");
+            alert.setContentText("verifie les champs !");
+             Boolean valid =true;
+        if(!(tfDescription.getText().isEmpty()) ||!(tfDescription.getText().length()>=30)){
+            d.setDescription(tfDescription.getText());
+        }else{
+            valid=false;
+          
+        }
+        if(!(tfDiplome.getText().isEmpty())){
+           d.setDiplome(tfDiplome.getText()); 
+        }else
+        {
+            valid=false;
+        }
+        if(!tfDomaine.getText().isEmpty()){
+            d.setDomaine(tfDomaine.getText());
+        }else
+        {
+            valid=false;
+        }
+        if(!tflettre.getText().isEmpty()){
+             d.setLettre(tflettre.getText());
+        }else{
+            valid=false;
+        }
+            
+       if(!tfSalaire.getText().isEmpty()){
+            String s = tfSalaire.getText();
+            try {
+              
+                d.setSalaire(Float.parseFloat(s));
+           } catch (NumberFormatException  e) {
+               valid=false;
+           }
+       
+       }else
+       {
+           valid=false;
+       }
+       
+       if(valid==true){
            DemandeEmploiService Cls = DemandeEmploiService.getInstance();
-           Cls.modifier(d);
+          Cls.modifier(d);
+           tfDescription.setText("");
+        tfDiplome.setText("");
+        tfDomaine.setText("");
+        tflettre.setText("");
+        tfSalaire.setText("");
+        
+       }else
+       {
+           alert.showAndWait();
+       }
+        
+       return valid;
+  
+           
            
        }
        

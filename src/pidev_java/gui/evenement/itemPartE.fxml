@@ -89,7 +89,8 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <FontAwesomeIconView fx:id="deletePartEvent" fill="#f00000" glyphName="TRASH" layoutX="1413.0" layoutY="262.0" onMouseClicked="#deleteEvent" scaleX="2.0" scaleY="2.0" size="45" />
+      <FontAwesomeIconView fx:id="deletePartEvent" fill="#f00000" glyphName="TRASH" layoutX="1416.0" layoutY="179.0" onMouseClicked="#deleteEvent" scaleX="2.0" scaleY="2.0" size="45" />
+      <FontAwesomeIconView fx:id="id_reclamation" fill="#8d9e42" glyphName="BOOK" layoutX="1406.0" layoutY="362.0" onMouseClicked="#reclamation" size="60" />
 
       
    </children>

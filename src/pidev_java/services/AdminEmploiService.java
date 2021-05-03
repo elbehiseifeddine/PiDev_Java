@@ -29,11 +29,7 @@ public class AdminEmploiService implements IAdminEmploiService {
 
     Connection cnx = MaConnection.getInstance().getCnx();
 
-    /**
-     * Envoyer l'offre d"emploi vers l'admin
-     *
-     * @param idOffreEmploi
-     */
+    
     @Override
     public void SendOffreEmploiToAdminEmploi(int idOffreEmploi) {
 
@@ -63,6 +59,7 @@ public class AdminEmploiService implements IAdminEmploiService {
                                 String req = "UPDATE admin_emploi SET id_offre_emploi = " + idOffreEmploi + " WHERE id_a_e = " + admin.getId();
                                 PreparedStatement st = cnx.prepareStatement(req);
                                 st.executeUpdate();
+                                break;
                             }
                         }
                     }
@@ -87,11 +84,6 @@ public class AdminEmploiService implements IAdminEmploiService {
 
     }
 
-    /**
-     * Envoyer l'offre de stage vers l'admin
-     *
-     * @param idOffreStage
-     */
     @Override
     public void SendOffreStageToAdminEmploi(int idOffreStage) {
 
@@ -111,16 +103,17 @@ public class AdminEmploiService implements IAdminEmploiService {
                 Statement statement = cnx.createStatement();
                 ResultSet rs = statement.executeQuery(find);
                 if (rs.first()) {
-                    if (rs.getInt("id_offre_emploi") == 0) {
+                    if (rs.getInt("id_offre_stage") == 0) {
                         String req = "UPDATE admin_emploi SET id_offre_stage = " + idOffreStage + " WHERE id_a_e = " + admin.getId();
                         PreparedStatement st = cnx.prepareStatement(req);
                         st.executeUpdate();
                     } else {
                         while (rs.next()) {
-                            if (rs.getInt("id_offre_emploi") == 0) {
+                            if (rs.getInt("id_offre_stage") == 0) {
                                 String req = "UPDATE admin_emploi SET id_offre_stage = " + idOffreStage + " WHERE id_a_e = " + admin.getId();
                                 PreparedStatement st = cnx.prepareStatement(req);
                                 st.executeUpdate();
+                                break;
                             }
                         }
                     }
@@ -177,12 +170,7 @@ public class AdminEmploiService implements IAdminEmploiService {
         }
     }
 
-    /**
-     * Approuver une offre de stage
-     *
-     * @param offreStage
-     * @param admin
-     */
+   
     @Override
     public void ActivateOffreStage(offreStage offreStage, Admin admin) {
         try {
@@ -245,11 +233,7 @@ public class AdminEmploiService implements IAdminEmploiService {
         }
     }
 
-    /**
-     * Supprimer une offre de stage
-     *
-     * @param offreStage
-     */
+ 
     @Override
     public void DeactivateOffreStage(offreStage offreStage) {
         try {
@@ -278,12 +262,7 @@ public class AdminEmploiService implements IAdminEmploiService {
         }
     }
 
-    /**
-     * Recuperer liste des offres d'emplois approuvé par cet admin
-     *
-     * @param admin
-     * @return
-     */
+
     @Override
     public ArrayList<offreEmploi> historiqueOffreEmploi(Admin admin) {
         ArrayList<offreEmploi> historique = new ArrayList<>();
@@ -325,12 +304,7 @@ public class AdminEmploiService implements IAdminEmploiService {
         return historique;
     }
 
-    /**
-     * Recuperer liste des offres d'emplois approuvé par cet admin
-     *
-     * @param admin
-     * @return
-     */
+   
     @Override
     public ArrayList<offreStage> historiqueOffreStage(Admin admin) {
         ArrayList<offreStage> historique = new ArrayList<>();

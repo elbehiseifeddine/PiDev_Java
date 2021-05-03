@@ -39,7 +39,7 @@ import pidev_java.utils.PdfGeneration;
  */
 public class ListeSocieteSuperAdminController implements Initializable {
 
-        ObservableList<Societe> ListSociete = FXCollections.observableArrayList();
+    ObservableList<Societe> ListSociete = FXCollections.observableArrayList();
 
     private TableView<Societe> TableSociete;
     private TableColumn<Societe, Integer> id_societe;
@@ -60,22 +60,23 @@ public class ListeSocieteSuperAdminController implements Initializable {
     private HBox AdminRecHbox;
     @FXML
     private Label LabelReclamationVide;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadDataSociete();
-    }    
+    }
+
     private void refrechSociete() {
         ListSociete.clear();
         SocieteService service = new SocieteService();
         ListSociete.addAll(service.getAll());
-        
+
     }
-    
-     private void loadDataSociete() {
+
+    private void loadDataSociete() {
         refrechSociete();
         SocieteService societeService = new SocieteService();
         ArrayList<Societe> liste = societeService.getAll();
@@ -85,68 +86,70 @@ public class ListeSocieteSuperAdminController implements Initializable {
 
         } else {
             for (Societe societe : liste) {
-                ImageView image = new ImageView("./pidev_java/assets/img-1.jpg");
+
                 Label name = new Label(societe.getNom());
                 name.setStyle("-fx-font-weight: bold;");
                 Label LabelEmail = new Label(societe.getEmail());
                 Label lock = new Label();
                 Button activatebtn = new Button();
-
-                if(societe.getEtat()==0){
+                ImageView image = new ImageView("ftp://user:123456789@192.168.1.52/" + societe.getPhoto_de_profile());
+                image.setFitHeight(100);
+                image.setFitWidth(100);
+                if (societe.getEtat() == 0) {
                     activatebtn.setStyle(
-                        " -fx-cursor: hand ;"
-                        + "-glyph-size:28px;"
-                        + "-fx-fill:#00E676;"
-                        + "-fx-background-radius: 5px;"
-                        + "-fx-background-color: green;"
-                        + "-fx-text-fill: whitesmoke;" 
-                        + "-fx-font-size: 19;" 
-                        + "-fx-font-weight: 600;"
-                    );
-                    activatebtn.setText("Activated");                    
-                }else{
-                    activatebtn.setStyle(
-                        " -fx-cursor: hand ;"
-                        + "-glyph-size:28px;"
-                        + "-fx-fill:#00E676;"
-                        + "-fx-background-radius: 5px;"
-                        + "-fx-background-color: red;"
-                        + "-fx-text-fill: whitesmoke;" 
-                        + "-fx-font-size: 19;" 
-                        + "-fx-font-weight: 600;"
-                    );
-                    activatebtn.setText("Deactivated");  
-                }
-                
-                activatebtn.setOnMouseClicked((event) -> {
-                    if(societe.getEtat()==1){
-                        societeService.ActivateSociete(societe.getId());
-                        activatebtn.setStyle(
                             " -fx-cursor: hand ;"
                             + "-glyph-size:28px;"
                             + "-fx-fill:#00E676;"
                             + "-fx-background-radius: 5px;"
                             + "-fx-background-color: green;"
-                            + "-fx-text-fill: whitesmoke;" 
-                            + "-fx-font-size: 19;" 
+                            + "-fx-text-fill: whitesmoke;"
+                            + "-fx-font-size: 19;"
                             + "-fx-font-weight: 600;"
-                        );
-                        activatebtn.setText("Activated");   
-                    }else{
-                        societeService.DeactivateSociete(societe.getId());
-                        activatebtn.setStyle(
+                    );
+                    activatebtn.setText("Activated");
+                } else {
+                    activatebtn.setStyle(
                             " -fx-cursor: hand ;"
                             + "-glyph-size:28px;"
                             + "-fx-fill:#00E676;"
                             + "-fx-background-radius: 5px;"
                             + "-fx-background-color: red;"
-                            + "-fx-text-fill: whitesmoke;" 
-                            + "-fx-font-size: 19;" 
+                            + "-fx-text-fill: whitesmoke;"
+                            + "-fx-font-size: 19;"
                             + "-fx-font-weight: 600;"
+                    );
+                    activatebtn.setText("Deactivated");
+                }
+
+                activatebtn.setOnMouseClicked((event) -> {
+                    if (societe.getEtat() == 1) {
+                        societeService.ActivateSociete(societe.getId());
+                        activatebtn.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                                + "-fx-background-radius: 5px;"
+                                + "-fx-background-color: green;"
+                                + "-fx-text-fill: whitesmoke;"
+                                + "-fx-font-size: 19;"
+                                + "-fx-font-weight: 600;"
+                        );
+                        activatebtn.setText("Activated");
+                    } else {
+                        societeService.DeactivateSociete(societe.getId());
+                        activatebtn.setStyle(
+                                " -fx-cursor: hand ;"
+                                + "-glyph-size:28px;"
+                                + "-fx-fill:#00E676;"
+                                + "-fx-background-radius: 5px;"
+                                + "-fx-background-color: red;"
+                                + "-fx-text-fill: whitesmoke;"
+                                + "-fx-font-size: 19;"
+                                + "-fx-font-weight: 600;"
                         );
                         activatebtn.setText("Deactivated");
                     }
-                        
+
                 });
                 HBox managebtn = new HBox(activatebtn);
                 managebtn.setStyle("-fx-alignment:center");
@@ -157,7 +160,7 @@ public class ListeSocieteSuperAdminController implements Initializable {
                 vbox.setSpacing(8);
                 vbox.setPadding(new Insets(0, 20, 0, 20));
                 vbox.setAlignment(Pos.CENTER);
-                vbox.setStyle("-fx-background-color: white;"+"-fx-background-radius: 20px;");
+                vbox.setStyle("-fx-background-color: white;" + "-fx-background-radius: 20px;");
                 AdminRecHbox.getChildren().add(vbox);
             }
         }
@@ -173,5 +176,5 @@ public class ListeSocieteSuperAdminController implements Initializable {
         PdfGeneration.SocieteListPdf(List);
         pdfLab.setVisible(true);
     }
-    
+
 }

@@ -933,7 +933,7 @@ public class ToExcel {
                 }
             }
 
-            Sheet sheet = workbook.createSheet("Historique Demande Emploi");
+            Sheet sheet = workbook.createSheet("Historique Demande");
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
             headerFont.setFontHeightInPoints((short) 14);
@@ -1341,7 +1341,6 @@ public class ToExcel {
         LineChartSeries series2 = data.addSeries(xs, ys2);
 
         series2.setTitle("Demande Stage/mois");
-        data.addSeries(xs, ys2);
 
         chart.plot(data, bottomAxis, leftAxis);
 
